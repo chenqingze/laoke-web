@@ -20,6 +20,12 @@ const routes: Routes = [
         loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
       },
       {
+        path: 'im',
+        loadChildren: () => import('../im/im.module').then(m => m.ImModule),
+        data: {preload: true}
+
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
