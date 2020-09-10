@@ -6,6 +6,9 @@ import {webSocket} from 'rxjs/webSocket';
 import {MessageModel} from './message.model';
 import {Message} from './lib/Message_pb';
 import * as OpCode_pb from './lib/OpCode_pb';
+import {AuthRequestModel} from '../auth/auth-request.model';
+import {AuthAck} from './lib/Connection_pb';
+import {AuthAckModel} from '../auth/auth-ack.model';
 
 const enum WsStatus {
     DISCONNECTED,
@@ -26,7 +29,7 @@ export class WebSocketService implements OnDestroy {
     // private statusSub: SubscriptionLike;
     // private heartbeatSub: SubscriptionLike;
     // private reconnection$: Observable<number>;
-    private webSocketSubject: WebSocketSubject<any>;
+    webSocketSubject: WebSocketSubject<any>;
     private onOpenSubject: Subject<Event>;
     private onCloseSubject: Subject<CloseEvent>;
 
@@ -54,7 +57,14 @@ export class WebSocketService implements OnDestroy {
      */
     connect() {
         this.createSocket();
-        this.webSocketSubject.subscribe();
+        // 测试 todo: 测试完毕删掉
+        this.webSocketSubject.subscribe(
+            message => {
+                debugger
+                const a = new AuthAckModel();
+                console.log('收到消息', a.convertMessageToModel(message));
+            }
+        );
         // 建立连接成功修改连接状态
         this.openSubject({
             next: () => {
@@ -74,7 +84,7 @@ export class WebSocketService implements OnDestroy {
      * 订阅消息事件
      * @param opCode 事件类型
      */
-    messages$(opCode: OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap]): Observable<any> {
+    messages$(opCode: OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap]): Observable<Message> {
         return this.webSocketSubject.multiplex(
             () => ({subscribe: opCode}),
             () => ({unsubscribe: opCode}),
@@ -139,7 +149,7 @@ export class WebSocketService implements OnDestroy {
         return {
             url: this.imConfig.ws.url,
             serializer: (messageModel: MessageModel) => messageModel.convertToMessage().serializeBinary(),
-            deserializer: (e: MessageEvent) => Message.deserializeBinary(e.data),
+            deserializer: (e: MessageEvent) => Message.deserializeBinary(e.data) as Message,
             binaryType: 'arraybuffer',
             closeObserver: this.onCloseSubject,
             openObserver: this.onOpenSubject

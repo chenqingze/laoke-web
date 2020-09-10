@@ -11,6 +11,16 @@ export class AuthRequestModel implements MessageModel {
     deviceIdiom: string; // 设备类型:Desktop、Phone、Tablet、Unknown
     devicePlatform: string; // 客户端平台:Android、iOS、Unknown
 
+
+    convertMessageToModel(message: Message): MessageModel {
+        const authRequest = message.getAuthRequest();
+        this.token = authRequest.getToken();
+        this.deviceCode = authRequest.getDeviceCode();
+        this.deviceIdiom = authRequest.getDeviceIdiom();
+        this.devicePlatform = authRequest.getDevicePlatform();
+        return this;
+    }
+
     convertToMessage(): Message {
         const authRequest = new AuthRequest();
         authRequest.setToken(this.token);
@@ -23,17 +33,8 @@ export class AuthRequestModel implements MessageModel {
         authRequest.setDeviceIdiom('test_idiom');
         authRequest.setDevicePlatform('test_platform');
         const message = MessageTool.createMessage();
-        message.setAuthRequest(authRequest);
         message.setOpCode(this.opCode);
+        message.setAuthRequest(authRequest);
         return message;
-    }
-
-    convertMessageToModel(message: Message): MessageModel {
-        const authRequest = message.getAuthRequest();
-        this.token = authRequest.getToken();
-        this.deviceCode = authRequest.getDeviceCode();
-        this.deviceIdiom = authRequest.getDeviceIdiom();
-        this.devicePlatform = authRequest.getDevicePlatform();
-        return this;
     }
 }
