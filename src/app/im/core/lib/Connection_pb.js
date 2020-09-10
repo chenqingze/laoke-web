@@ -375,9 +375,8 @@ proto.AuthAck.prototype.toObject = function(opt_includeInstance) {
 proto.AuthAck.toObject = function(includeInstance, msg) {
   var f, obj = {
     result: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-    code: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    info: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    sessionId: jspb.Message.getFieldWithDefault(msg, 4, "")
+    sessionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    info: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -419,16 +418,12 @@ proto.AuthAck.deserializeBinaryFromReader = function(msg, reader) {
       msg.setResult(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setCode(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSessionId(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setInfo(value);
-      break;
-    case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setSessionId(value);
       break;
     default:
       reader.skipField();
@@ -466,9 +461,9 @@ proto.AuthAck.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getCode();
-  if (f !== 0) {
-    writer.writeUint32(
+  f = message.getSessionId();
+  if (f.length > 0) {
+    writer.writeString(
       2,
       f
     );
@@ -477,13 +472,6 @@ proto.AuthAck.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       3,
-      f
-    );
-  }
-  f = message.getSessionId();
-  if (f.length > 0) {
-    writer.writeString(
-      4,
       f
     );
   }
@@ -509,20 +497,20 @@ proto.AuthAck.prototype.setResult = function(value) {
 
 
 /**
- * optional uint32 code = 2;
- * @return {number}
+ * optional string session_id = 2;
+ * @return {string}
  */
-proto.AuthAck.prototype.getCode = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+proto.AuthAck.prototype.getSessionId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.AuthAck} returns this
  */
-proto.AuthAck.prototype.setCode = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+proto.AuthAck.prototype.setSessionId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -541,24 +529,6 @@ proto.AuthAck.prototype.getInfo = function() {
  */
 proto.AuthAck.prototype.setInfo = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
-};
-
-
-/**
- * optional string session_id = 4;
- * @return {string}
- */
-proto.AuthAck.prototype.getSessionId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.AuthAck} returns this
- */
-proto.AuthAck.prototype.setSessionId = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 

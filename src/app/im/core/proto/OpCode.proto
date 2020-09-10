@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+enum OpCode {
+  UNKNOWN = 0;
+  AUTH_REQUEST = 1;
+  AUTH_ACK = 2;
+  MSG_REQUEST = 3;
+}

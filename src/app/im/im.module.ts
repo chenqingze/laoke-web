@@ -5,9 +5,8 @@ import {FormsModule} from '@angular/forms';
 import {IonicModule} from '@ionic/angular';
 
 import {ImPage} from './im.page';
-import {ImConfig} from './im.config';
-import {environment} from '../../environments/environment';
 import {ImRoutingModule} from './im-routing.module';
+import {AuthService} from './auth/auth.service';
 
 @NgModule({
     imports: [
@@ -20,20 +19,26 @@ import {ImRoutingModule} from './im-routing.module';
 })
 export class ImModule {
 
-    constructor(@Optional() @SkipSelf() parentModule?: ImModule) {
+    constructor(
+        private authService: AuthService,
+        @Optional() @SkipSelf() parentModule?: ImModule
+    ) {
         if (parentModule) {
             throw new Error(
                 'ImModule is already loaded. Import it in the AppModule only');
         }
     }
 
-    static forRoot(config: ImConfig): ModuleWithProviders<ImModule> {
-        return {
-            ngModule: ImModule,
-            providers: [
-                {provide: ImConfig, useValue: config}
-            ]
-        };
-    }
+    /**
+     * 根模块导入使用
+     */
+    // static forRoot(config: ImConfig): ModuleWithProviders<ImModule> {
+    //     return {
+    //         ngModule: ImModule,
+    //         providers: [
+    //             {provide: ImConfig, useValue: config}
+    //         ]
+    //     };
+    // }
 
 }

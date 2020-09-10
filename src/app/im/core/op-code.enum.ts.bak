@@ -1,5 +1,5 @@
 export enum OpCode {
-    // 连接认证相关0～20
+    // 连接认证相关0～10
     UNKNOWN,
     AUTH_REQUEST,
     AUTH_ACK,

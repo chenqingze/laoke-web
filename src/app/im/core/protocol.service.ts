@@ -1,9 +1,12 @@
 import {Injectable} from '@angular/core';
-import {OpCode} from './op-code.enum';
-import * as Message_pb from './lib/Message_pb.js';
 import {ImConfig} from '../im.config';
-import {MessageModel} from './message.model';
+import {Message} from './lib/Message_pb';
+import * as OpCode_pb from './lib/OpCode_pb';
 
+/**
+ * @deprecated 废弃
+ * @since 2.0
+ */
 @Injectable({
     providedIn: 'root'
 })
@@ -40,8 +43,8 @@ export class ProtocolService {
     /**
      * 转换protobuf协议 Message_pb.Message到 model
      */
-    convertMessageToModel(messageProtoBuf: Message_pb.Message): any {
-        const opCode: OpCode = messageProtoBuf.getOpCode();
+    convertMessageToModel(messageProtoBuf: Message): any {
+        const opCode: OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap] = messageProtoBuf.getOpCode();
         switch (opCode) {
             default:
                 return messageProtoBuf;

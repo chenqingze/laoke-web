@@ -14,7 +14,7 @@ export const environment = {
             version: 1 // 版本号
         },
         ws: {
-            url: 'ws://192.168.100.232:9966/ws',
+            url: 'ws://localhost:9966/ws',
             reconnectInterval: 5000, // 重连时间间隔
             reconnectAttempts: 5, // 重连次数
             heartbeatInterval: 100000 // 心跳时间间隔

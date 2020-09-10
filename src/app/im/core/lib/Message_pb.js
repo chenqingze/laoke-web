@@ -12,8 +12,12 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
+var OpCode_pb = require('./OpCode_pb.js');
+goog.object.extend(proto, OpCode_pb);
 var Msg_pb = require('./Msg_pb.js');
 goog.object.extend(proto, Msg_pb);
+var Connection_pb = require('./Connection_pb.js');
+goog.object.extend(proto, Connection_pb);
 goog.exportSymbol('proto.Message', null, global);
 goog.exportSymbol('proto.Message.PayloadCase', null, global);
 /**
@@ -46,13 +50,15 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.Message.oneofGroups_ = [[20]];
+proto.Message.oneofGroups_ = [[11,12,20]];
 
 /**
  * @enum {number}
  */
 proto.Message.PayloadCase = {
   PAYLOAD_NOT_SET: 0,
+  AUTH_REQUEST: 11,
+  AUTH_ACK: 12,
   MSG_REQUEST: 20
 };
 
@@ -97,7 +103,9 @@ proto.Message.toObject = function(includeInstance, msg) {
     magic: jspb.Message.getFieldWithDefault(msg, 1, "0"),
     version: jspb.Message.getFieldWithDefault(msg, 2, 0),
     opCode: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    seq: jspb.Message.getFieldWithDefault(msg, 4, "0"),
+    seq: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    authRequest: (f = msg.getAuthRequest()) && Connection_pb.AuthRequest.toObject(includeInstance, f),
+    authAck: (f = msg.getAuthAck()) && Connection_pb.AuthAck.toObject(includeInstance, f),
     msgRequest: (f = msg.getMsgRequest()) && Msg_pb.MsgRequest.toObject(includeInstance, f)
   };
 
@@ -144,12 +152,22 @@ proto.Message.deserializeBinaryFromReader = function(msg, reader) {
       msg.setVersion(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readUint32());
+      var value = /** @type {!proto.OpCode} */ (reader.readEnum());
       msg.setOpCode(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readUint64String());
+      var value = /** @type {number} */ (reader.readUint64());
       msg.setSeq(value);
+      break;
+    case 11:
+      var value = new Connection_pb.AuthRequest;
+      reader.readMessage(value,Connection_pb.AuthRequest.deserializeBinaryFromReader);
+      msg.setAuthRequest(value);
+      break;
+    case 12:
+      var value = new Connection_pb.AuthAck;
+      reader.readMessage(value,Connection_pb.AuthAck.deserializeBinaryFromReader);
+      msg.setAuthAck(value);
       break;
     case 20:
       var value = new Msg_pb.MsgRequest;
@@ -200,17 +218,33 @@ proto.Message.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getOpCode();
-  if (f !== 0) {
-    writer.writeUint32(
+  if (f !== 0.0) {
+    writer.writeEnum(
       3,
       f
     );
   }
   f = message.getSeq();
-  if (parseInt(f, 10) !== 0) {
-    writer.writeUint64String(
+  if (f !== 0) {
+    writer.writeUint64(
       4,
       f
+    );
+  }
+  f = message.getAuthRequest();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      Connection_pb.AuthRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getAuthAck();
+  if (f != null) {
+    writer.writeMessage(
+      12,
+      f,
+      Connection_pb.AuthAck.serializeBinaryToWriter
     );
   }
   f = message.getMsgRequest();
@@ -261,11 +295,29 @@ proto.Message.prototype.setVersion = function(value) {
 
 
 /**
- * optional uint32 op_code = 3;
- * @return {number}
+ * optional OpCode op_code = 3;
+ * @return {!proto.OpCode}
  */
 proto.Message.prototype.getOpCode = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {!proto.OpCode} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.OpCode} value
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.setOpCode = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional uint64 seq = 4;
+ * @return {number}
+ */
+proto.Message.prototype.getSeq = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
@@ -273,26 +325,82 @@ proto.Message.prototype.getOpCode = function() {
  * @param {number} value
  * @return {!proto.Message} returns this
  */
-proto.Message.prototype.setOpCode = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
+proto.Message.prototype.setSeq = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
 /**
- * optional uint64 seq = 4;
- * @return {string}
+ * optional AuthRequest auth_request = 11;
+ * @return {?proto.AuthRequest}
  */
-proto.Message.prototype.getSeq = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, "0"));
+proto.Message.prototype.getAuthRequest = function() {
+  return /** @type{?proto.AuthRequest} */ (
+    jspb.Message.getWrapperField(this, Connection_pb.AuthRequest, 11));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.AuthRequest|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setAuthRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 11, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.Message} returns this
  */
-proto.Message.prototype.setSeq = function(value) {
-  return jspb.Message.setProto3StringIntField(this, 4, value);
+proto.Message.prototype.clearAuthRequest = function() {
+  return this.setAuthRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasAuthRequest = function() {
+  return jspb.Message.getField(this, 11) != null;
+};
+
+
+/**
+ * optional AuthAck auth_ack = 12;
+ * @return {?proto.AuthAck}
+ */
+proto.Message.prototype.getAuthAck = function() {
+  return /** @type{?proto.AuthAck} */ (
+    jspb.Message.getWrapperField(this, Connection_pb.AuthAck, 12));
+};
+
+
+/**
+ * @param {?proto.AuthAck|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setAuthAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 12, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearAuthAck = function() {
+  return this.setAuthAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasAuthAck = function() {
+  return jspb.Message.getField(this, 12) != null;
 };
 
 

@@ -1,12 +1,11 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {WebSocketSubject, WebSocketSubjectConfig} from 'rxjs/internal-compatibility';
 import {Observable, Observer, PartialObserver, Subject, Subscription} from 'rxjs';
-import * as Message_pb from './lib/Message_pb.js';
-import {OpCode} from './op-code.enum';
 import {ImConfig} from '../im.config';
-import {ProtocolService} from './protocol.service';
 import {webSocket} from 'rxjs/webSocket';
 import {MessageModel} from './message.model';
+import {Message} from './lib/Message_pb';
+import * as OpCode_pb from './lib/OpCode_pb';
 
 const enum WsStatus {
     DISCONNECTED,
@@ -43,8 +42,10 @@ export class WebSocketService implements OnDestroy {
     // public failedMsgModel: { payload: any, opCode: OpCode };
     // public isFailed = false;
 
-    constructor(private imConfig: ImConfig, private protocolService: ProtocolService) {
+    constructor(private imConfig: ImConfig) {
+        console.log('websocket 配置', imConfig);
         // const msg = new Message_pb.MessageModel();
+        this.connect();
     }
 
 
@@ -52,6 +53,7 @@ export class WebSocketService implements OnDestroy {
      * 建立websocket连接
      */
     connect() {
+        this.createSocket();
         this.webSocketSubject.subscribe();
         // 建立连接成功修改连接状态
         this.openSubject({
@@ -72,14 +74,17 @@ export class WebSocketService implements OnDestroy {
      * 订阅消息事件
      * @param opCode 事件类型
      */
-    messages$(opCode: OpCode): Observable<any> {
+    messages$(opCode: OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap]): Observable<any> {
         return this.webSocketSubject.multiplex(
             () => ({subscribe: opCode}),
             () => ({unsubscribe: opCode}),
-            (message: Message_pb.Message) => message.getOpCode() === opCode
+            (message: Message) => message.getOpCode() === opCode
         );
     }
 
+    sendMessage(messageModel: MessageModel): void {
+        this.webSocketSubject.next(messageModel);
+    }
 
     /**
      * 订阅socket连接事件
@@ -127,14 +132,14 @@ export class WebSocketService implements OnDestroy {
     /**
      * 初始化websocket配置
      */
-    private initWebSocketConfig(): WebSocketSubjectConfig<Message_pb.Message> {
+    private initWebSocketConfig(): WebSocketSubjectConfig<any> {
         this.onOpenSubject = new Subject();
         this.onCloseSubject = new Subject();
         // 初始化websocket配置信息
         return {
             url: this.imConfig.ws.url,
-            serializer: (messageModel: MessageModel) => messageModel.convertToMessagePb().serializeBinary(),
-            deserializer: (e: MessageEvent) => Message_pb.Message.deserializeBinary(e.data),
+            serializer: (messageModel: MessageModel) => messageModel.convertToMessage().serializeBinary(),
+            deserializer: (e: MessageEvent) => Message.deserializeBinary(e.data),
             binaryType: 'arraybuffer',
             closeObserver: this.onCloseSubject,
             openObserver: this.onOpenSubject
