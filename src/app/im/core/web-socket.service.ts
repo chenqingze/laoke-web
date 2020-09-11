@@ -3,12 +3,13 @@ import {WebSocketSubject, WebSocketSubjectConfig} from 'rxjs/internal-compatibil
 import {Observable, Observer, PartialObserver, Subject, Subscription} from 'rxjs';
 import {ImConfig} from '../im.config';
 import {webSocket} from 'rxjs/webSocket';
-import {MessageModel} from './message.model';
+import {BaseModel} from './base.model';
 import {Message} from './lib/Message_pb';
 import * as OpCode_pb from './lib/OpCode_pb';
 import {AuthRequestModel} from '../auth/auth-request.model';
 import {AuthAck} from './lib/Connection_pb';
 import {AuthAckModel} from '../auth/auth-ack.model';
+import {MessageTool} from './message.tool';
 
 const enum WsStatus {
     DISCONNECTED,
@@ -33,7 +34,7 @@ export class WebSocketService implements OnDestroy {
     private onOpenSubject: Subject<Event>;
     private onCloseSubject: Subject<CloseEvent>;
 
-    // private wsMessages$: Subject<Message_pb.MessageModel>;
+    // private wsMessages$: Subject<Message_pb.BaseModel>;
     // private statusObserver$: Observer<WsStatus>;
     // public status$: Observable<WsStatus>;
     // private status: WsStatus;
@@ -47,7 +48,7 @@ export class WebSocketService implements OnDestroy {
 
     constructor(private imConfig: ImConfig) {
         console.log('websocket 配置', imConfig);
-        // const msg = new Message_pb.MessageModel();
+        // const msg = new Message_pb.BaseModel();
         this.connect();
     }
 
@@ -60,9 +61,7 @@ export class WebSocketService implements OnDestroy {
         // 测试 todo: 测试完毕删掉
         this.webSocketSubject.subscribe(
             message => {
-                debugger
-                const a = new AuthAckModel();
-                console.log('收到消息', a.convertMessageToModel(message));
+                console.log('收到消息', message);
             }
         );
         // 建立连接成功修改连接状态
@@ -92,7 +91,7 @@ export class WebSocketService implements OnDestroy {
         );
     }
 
-    sendMessage(messageModel: MessageModel): void {
+    sendMessage(messageModel: BaseModel): void {
         this.webSocketSubject.next(messageModel);
     }
 
@@ -148,8 +147,8 @@ export class WebSocketService implements OnDestroy {
         // 初始化websocket配置信息
         return {
             url: this.imConfig.ws.url,
-            serializer: (messageModel: MessageModel) => messageModel.convertToMessage().serializeBinary(),
-            deserializer: (e: MessageEvent) => Message.deserializeBinary(e.data) as Message,
+            serializer: (messageModel: BaseModel) => messageModel.convertToMessage().serializeBinary(),
+            deserializer: (e: MessageEvent) => MessageTool.convertMessageToModel(Message.deserializeBinary(e.data)),
             binaryType: 'arraybuffer',
             closeObserver: this.onCloseSubject,
             openObserver: this.onOpenSubject

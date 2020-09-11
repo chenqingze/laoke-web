@@ -1,10 +1,10 @@
-import {MessageModel} from '../core/message.model';
+import {BaseModel} from '../core/base.model';
 import {MessageTool} from '../core/message.tool';
 import {OpCode} from '../core/lib/OpCode_pb';
 import {AuthRequest} from '../core/lib/Connection_pb';
 import {Message} from '../core/lib/Message_pb';
 
-export class AuthRequestModel implements MessageModel {
+export class AuthRequestModel extends BaseModel {
     readonly opCode = OpCode.AUTH_REQUEST;
     token: string; // 用户token
     deviceCode: string; // 设备号
@@ -12,7 +12,7 @@ export class AuthRequestModel implements MessageModel {
     devicePlatform: string; // 客户端平台:Android、iOS、Unknown
 
 
-    convertMessageToModel(message: Message): MessageModel {
+    convertMessageToModel(message: Message): BaseModel {
         const authRequest = message.getAuthRequest();
         this.token = authRequest.getToken();
         this.deviceCode = authRequest.getDeviceCode();

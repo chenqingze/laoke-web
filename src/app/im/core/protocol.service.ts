@@ -20,7 +20,7 @@ export class ProtocolService {
      * @param payload 负载
      * @param opCode 操作码
      */
-    // messageEncoder(messageModel: MessageModel): Uint8Array {
+    // messageEncoder(messageModel: BaseModel): Uint8Array {
     //     // const message = new Message_pb.Message();
     //     // message.setMagic(this.imConfig.protocol.magic);
     //     // message.setVersion(this.imConfig.protocol.version);

@@ -1,16 +1,16 @@
-import {MessageModel} from '../core/message.model';
+import {BaseModel} from '../core/base.model';
 import {OpCode} from '../core/lib/OpCode_pb';
 import {Message} from '../core/lib/Message_pb';
 import {AuthAck} from '../core/lib/Connection_pb';
 import {MessageTool} from '../core/message.tool';
 
-export class AuthAckModel implements MessageModel {
+export class AuthAckModel extends BaseModel {
     readonly opCode = OpCode.AUTH_ACK;
     result: boolean;
     sessionId: string;
     info: string;
 
-    convertMessageToModel(message: Message): MessageModel {
+    convertMessageToModel(message: Message): BaseModel {
         const authAck = message.getAuthAck();
         this.result = authAck.getResult();
         this.sessionId = authAck.getSessionId();
@@ -28,4 +28,5 @@ export class AuthAckModel implements MessageModel {
         message.setAuthAck(authAck);
         return message;
     }
+
 }
