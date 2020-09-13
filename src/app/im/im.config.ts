@@ -1,3 +1,6 @@
+import {Injector} from '@angular/core';
+import {environment} from '../../environments/environment';
+
 export class ImConfig {
     protocol: {
         magic: string; // 魔数
@@ -10,3 +13,9 @@ export class ImConfig {
         heartbeatInterval?: number;
     };
 }
+
+export const injector = Injector.create({
+    providers: [
+        {provide: ImConfig, useValue: environment.im},
+    ],
+});

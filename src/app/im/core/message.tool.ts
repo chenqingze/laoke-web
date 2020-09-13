@@ -1,17 +1,10 @@
-import {ImConfig} from '../im.config';
-import {environment} from '../../../environments/environment';
-import {Injector} from '@angular/core';
+import {ImConfig, injector} from '../im.config';
 import {Message} from './lib/Message_pb';
 import {OpCode, OpCodeMap} from './lib/OpCode_pb';
 import * as OpCode_pb from './lib/OpCode_pb';
 import {BaseModel} from './base.model';
 import {AuthAckModel} from '../auth/auth-ack.model';
 
-const injector = Injector.create({
-    providers: [
-        {provide: ImConfig, useValue: environment.im},
-    ],
-});
 
 export class MessageTool {
     /**

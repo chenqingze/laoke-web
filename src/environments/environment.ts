@@ -15,9 +15,9 @@ export const environment = {
         },
         ws: {
             url: 'ws://localhost:9966/ws',
-            reconnectInterval: 5000, // 重连时间间隔
+            reconnectInterval: 5_000, // 重连时间间隔
             reconnectAttempts: 5, // 重连次数
-            heartbeatInterval: 100000 // 心跳时间间隔
+            heartbeatInterval: 1_00000 // 心跳时间间隔
         }
     } as ImConfig
 };

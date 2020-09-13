@@ -1,15 +1,22 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {WebSocketSubject, WebSocketSubjectConfig} from 'rxjs/internal-compatibility';
-import {Observable, Observer, PartialObserver, Subject, Subscription} from 'rxjs';
+import {
+    Observable,
+    PartialObserver,
+    Subject,
+    Subscription,
+    SubscriptionLike,
+    timer
+} from 'rxjs';
 import {ImConfig} from '../im.config';
 import {webSocket} from 'rxjs/webSocket';
 import {BaseModel} from './base.model';
 import {Message} from './lib/Message_pb';
 import * as OpCode_pb from './lib/OpCode_pb';
 import {AuthRequestModel} from '../auth/auth-request.model';
-import {AuthAck} from './lib/Connection_pb';
-import {AuthAckModel} from '../auth/auth-ack.model';
 import {MessageTool} from './message.tool';
+import {delay, filter, retryWhen} from 'rxjs/operators';
+import {OpCode} from './lib/OpCode_pb';
 
 const enum WsStatus {
     DISCONNECTED,
@@ -23,32 +30,24 @@ const enum WsStatus {
 })
 export class WebSocketService implements OnDestroy {
 
-    private readonly reconnectInterval: number; // 重连时间间隔
-    private readonly reconnectAttempts: number; // 重连次数
-    private readonly heartbeatInterval: number; // 心跳间隔
-
     // private statusSub: SubscriptionLike;
     // private heartbeatSub: SubscriptionLike;
     // private reconnection$: Observable<number>;
-    webSocketSubject: WebSocketSubject<any>;
-    private onOpenSubject: Subject<Event>;
-    private onCloseSubject: Subject<CloseEvent>;
-
-    // private wsMessages$: Subject<Message_pb.BaseModel>;
     // private statusObserver$: Observer<WsStatus>;
     // public status$: Observable<WsStatus>;
-    // private status: WsStatus;
-    //
     // private isConnecting = false;
 
+    private status: WsStatus = WsStatus.DISCONNECTED;
+    private webSocketSubject: WebSocketSubject<BaseModel>;
+    private openSubject: Subject<Event>;
+    private closeSubject: Subject<CloseEvent>;
+    private wsMessages$: Subject<BaseModel>;
+    private authSub: SubscriptionLike;
 
-    // public loading;
-    // public failedMsgModel: { payload: any, opCode: OpCode };
-    // public isFailed = false;
 
     constructor(private imConfig: ImConfig) {
         console.log('websocket 配置', imConfig);
-        // const msg = new Message_pb.BaseModel();
+        this.wsMessages$ = new Subject<BaseModel>();
         this.connect();
     }
 
@@ -57,25 +56,54 @@ export class WebSocketService implements OnDestroy {
      * 建立websocket连接
      */
     connect() {
+        // 创建socket连接
         this.createSocket();
-        // 测试 todo: 测试完毕删掉
-        this.webSocketSubject.subscribe(
-            message => {
-                console.log('收到消息', message);
-            }
-        );
-        // 建立连接成功修改连接状态
-        this.openSubject({
-            next: () => {
+        // 订阅WebSocket连接事件
+        this.openSubject.subscribe({
+            next: (event: Event) => {
                 // 修改WebSocket状态为：WsStatus.CONNECTED
+                console.log('连接打开', event);
+                this.status = WsStatus.CONNECTED;
+                // todo:发送token 认证
+                console.log('发送认证请求!');
+                const authRequest = AuthRequestModel.createMessageModel();
+                this.sendMessage(authRequest);
             }
         });
+        // token认证响应事件
+        this.authSub = this.messages$(OpCode.AUTH_ACK).subscribe({
+            next: (message) => {
+                // todo:修改WebSocket状态为:WsStatus.AUTHED,存储返回信息到storage
+                console.log('登录认证成功！');
+                console.log(message);
+                this.status = WsStatus.AUTHED;
+            },
+            error: (err: any) => {
+                console.log('error！', err);
+            }
+        });
+        // 订阅WebSocket连接关闭事件
+        this.closeSubject.subscribe({
+            next: () => {
+                this.disconnect();
+                console.log('连接关闭');
+            }
+        });
+        // 用于接收消息的订阅避免直接使用WebSocketSubject对象接收消息,取消订阅后websocket连接断开
+        this.webSocketSubject.pipe(retryWhen((errors) => errors.pipe(delay(10_000)))).subscribe(
+            message => {
+                console.log('收到消息', message);
+                this.wsMessages$.next(message);
+            }
+        );
     }
 
     /**
      * 断开连接
      */
     disconnect() {
+        this.openSubject.complete();
+        this.closeSubject.complete();
         this.webSocketSubject.complete();
     }
 
@@ -83,36 +111,62 @@ export class WebSocketService implements OnDestroy {
      * 订阅消息事件
      * @param opCode 事件类型
      */
-    messages$(opCode: OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap]): Observable<Message> {
-        return this.webSocketSubject.multiplex(
-            () => ({subscribe: opCode}),
-            () => ({unsubscribe: opCode}),
-            (message: Message) => message.getOpCode() === opCode
+    messages$(opCode: OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap]): Observable<BaseModel> {
+        return this.wsMessages$.pipe(
+            filter((model: BaseModel) => model.opCode === opCode)
         );
+
+        // return this.webSocketSubject.multiplex(
+        //     () => ({subscribe: opCode}),
+        //     () => ({unsubscribe: opCode}),
+        //     (message: Message) => message.getOpCode() === opCode
+        // );
     }
 
     sendMessage(messageModel: BaseModel): void {
         this.webSocketSubject.next(messageModel);
     }
 
+
     /**
-     * 订阅socket连接事件
-     * @param observer
+     * 心跳
+     * @private
      */
-    openSubject(observer: PartialObserver<any>): Subscription {
-        return this.onOpenSubject.subscribe(observer);
+    private heartbeatSubscription(observer: PartialObserver<any>): Subscription {
+        return timer(1_000, 30_000).subscribe(observer);
+        // .pipe(
+        //     tap(() => this.connect().next('ping')),
+        //     concatMap(() => {
+        //         return race(
+        //             of('timeout').pipe(delay(3_000)),
+        //             this.connect().pipe(filter(m => m === 'pong'), catchError(error => of('error')))
+        //         );
+        //     })
+        // );
     }
 
     /**
-     * 订阅socket 连接关闭事件
-     * @param observer
+     * 是否建立连接
      */
-    closeSubject(observer: PartialObserver<any>): Subscription {
-        return this.onCloseSubject.subscribe(observer);
+    isConnected(): boolean {
+        console.log('调用时此时状态：', this.status);
+        return this.status === WsStatus.CONNECTED || this.status === WsStatus.AUTHED;
     }
 
+    /**
+     * 是否登录/认证
+     */
+    isAuthed(): boolean {
+        return this.status === WsStatus.AUTHED;
+    }
 
+    /**
+     * 服务销毁取消订阅
+     */
     ngOnDestroy(): void {
+        this.disconnect();
+        // 取消所有消息事件订阅
+        this.wsMessages$.complete();
     }
 
     /**
@@ -123,35 +177,32 @@ export class WebSocketService implements OnDestroy {
 
     }
 
-    /**
-     * 心跳
-     * @private
-     */
-    private heartbeat() {
-
-    }
 
     /**
      * 创建websocket
      */
     private createSocket() {
-        this.webSocketSubject = webSocket(this.initWebSocketConfig());
+        if (!this.webSocketSubject) {
+            this.webSocketSubject = webSocket(this.initWebSocketConfig());
+        }
+        console.log('webSocketSubject is closed ? ', this.webSocketSubject.closed);
+
     }
 
     /**
      * 初始化websocket配置
      */
-    private initWebSocketConfig(): WebSocketSubjectConfig<any> {
-        this.onOpenSubject = new Subject();
-        this.onCloseSubject = new Subject();
+    private initWebSocketConfig(): WebSocketSubjectConfig<BaseModel> {
+        this.openSubject = new Subject();
+        this.closeSubject = new Subject();
         // 初始化websocket配置信息
         return {
             url: this.imConfig.ws.url,
-            serializer: (messageModel: BaseModel) => messageModel.convertToMessage().serializeBinary(),
+            serializer: (messageModel) => messageModel.convertToMessage().serializeBinary(),
             deserializer: (e: MessageEvent) => MessageTool.convertMessageToModel(Message.deserializeBinary(e.data)),
             binaryType: 'arraybuffer',
-            closeObserver: this.onCloseSubject,
-            openObserver: this.onOpenSubject
+            closeObserver: this.closeSubject,
+            openObserver: this.openSubject
         };
     }
 
