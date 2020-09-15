@@ -1,0 +1,55 @@
+.recent-contacts {
+  height: 100%;
+
+  .header-img {
+    border-radius: 5rem;
+    width: 0.84rem;
+    height: 0.84rem;
+  }
+
+  .label {
+    margin-left: 0.2rem;
+    border-bottom: 1px solid #ebebeb;
+    padding-bottom: 0.28rem;
+    padding-top: 0.28rem;
+  }
+
+  ion-thumbnail {
+    margin-inline-end: 0.08rem;
+  }
+
+  .title {
+    font-size: 0.32rem;
+    width: 100%;
+  }
+
+  .content {
+    padding-top: 0.1rem;
+    font-size: 0.24rem;
+    width: 98%;
+
+    span {
+      color: #e52200;
+      margin-right: 0.1rem;
+    }
+  }
+
+  .time {
+    font-size: 0.24rem;
+    color: #999999;
+  }
+
+  .unread {
+    position: absolute;
+    top: 0;
+    left: 0.8rem;
+    font-weight: normal;
+    margin-top: 0.24rem;
+    --padding-top: 0.06rem;
+    --padding-end: 0.1rem;
+    --padding-bottom: 0.06rem;
+    --padding-start: 0.1rem;
+    letter-spacing: -1px;
+  }
+
+}

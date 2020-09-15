@@ -5,6 +5,9 @@ import {IonicModule} from '@ionic/angular';
 import {ImPage} from './im.page';
 import {ImRoutingModule} from './im-routing.module';
 import {WebSocketService} from './core/web-socket.service';
+import {RecentContactsComponent} from './recent-contacts/recent-contacts.component';
+import {DiscoveryComponent} from './discovery/discovery.component';
+import {ContactsComponent} from './contacts/contacts.component';
 
 @NgModule({
     imports: [
@@ -13,7 +16,7 @@ import {WebSocketService} from './core/web-socket.service';
         IonicModule,
         ImRoutingModule
     ],
-    declarations: [ImPage]
+    declarations: [ImPage, RecentContactsComponent, ContactsComponent, DiscoveryComponent]
 })
 export class ImModule {
 

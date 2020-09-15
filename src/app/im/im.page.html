@@ -1,9 +1,68 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>im</ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar class="bw-0">
+        <ion-segment slot="start" color="fff" class="home-segment" [(ngModel)]="subComponent">
+            <ion-segment-button value="{{imSubComponent.RECENT_CONTACTS}}" class="fontS-d32 segment-button">
+                <ion-label>消息</ion-label>
+                <div class="bolder-sm"></div>
+            </ion-segment-button>
+            <!--            <ion-badge class="unread-title" *ngIf="allUnread>0">{{allUnread}}</ion-badge>-->
+            <ion-segment-button value="{{imSubComponent.CONTACTS}}" class="fontS-d32 segment-button">
+                <ion-label>联系人</ion-label>
+                <div class="bolder-sm"></div>
+            </ion-segment-button>
+            <ion-segment-button value="{{imSubComponent.DISCOVERY}}" class="fontS-d32 segment-button">
+                <ion-label>动态</ion-label>
+                <div class="bolder-sm"></div>
+            </ion-segment-button>
+        </ion-segment>
+        <ion-buttons slot="end" class="mr-d32">
+            <em class="iconfont iconindex-search fontS-d4" [routerLink]="['search-friends']"></em>
+            <!--            <i class="iconfont iconmessage-more ml-d60 fontS-d4" (click)="presentPopover($event)"></i>-->
+        </ion-buttons>
+    </ion-toolbar>
 
-<ion-content>
-gagagagag
+    <ion-toolbar *ngIf="subComponent === imSubComponent.DISCOVERY" class="discover-seg-div">
+        <ion-segment slot="start" color="fff" class="mt-d2 discover-segment">
+            <ion-segment-button value="friends-trends" class="fontS-d32 segment-button">
+                <ion-label class="fontS-d28">好友动态</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="attention-trends" class="fontS-d32 segment-button">
+                <ion-label class="fontS-d28">关注动态</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+<!-- 悬浮发布按钮 -->
+<div [routerLink]="['/info/simple-publish']" class="fab-btn"
+     *ngIf="subComponent === imSubComponent.DISCOVERY  && isLogin">
+    <em class="iconfont iconfabu1 fontS-d48 colorf"></em>
+</div>
+<ion-content #content>
+    <!-- 登录状态 -->
+    <div class="w-100 h-100" [hidden]="!isLogin">
+        <!-- recent-contacts 消息/最近联系人 -->
+        <div class="chats w-100 h-100 pt-d24 " [hidden]="subComponent != imSubComponent.RECENT_CONTACTS">
+            <app-recent-contacts></app-recent-contacts>
+        </div>
+        <!-- contacts 联系人-->
+        <div class="contacts h-100 w-100" [hidden]="subComponent != imSubComponent.CONTACTS">
+            <app-contacts></app-contacts>
+        </div>
+        <!-- discover 动态列表 -->
+        <div class="discover h-100 w-100 h-100 discover-list-big" [hidden]="subComponent != imSubComponent.DISCOVERY">
+            <app-discovery></app-discovery>
+        </div>
+    </div>
+    <!-- 未登录 -->
+    <div class="w-100 h-100" [hidden]="isLogin">
+        <div class="unLogin-big w-100">
+            <div class="unLogin w-100">
+                <img src="./assets/message-unLogin.png" alt="">
+                <p class="text-al-center fontS-d24 color9 mb-d2">您还未登录，快去登录吧！</p>
+                <div class="dis-jus-ali-center">
+                    <ion-button (click)="goToLogin()">登录</ion-button>
+                </div>
+            </div>
+        </div>
+    </div>
 </ion-content>
