@@ -9,6 +9,9 @@ import {DiscoveryComponent} from './discovery/discovery.component';
 import {ContactsComponent} from './contacts/contacts.component';
 import {RecentChatsComponent} from './recent-chats/recent-chats.component';
 import {ChatComponent} from './recent-chats/chat/chat.component';
+import {FansComponent} from './contacts/fans/fans.component';
+import {FriendsComponent} from './contacts/friends/friends.component';
+import {GroupsComponent} from './contacts/groups/groups.component';
 
 @NgModule({
     imports: [
@@ -17,7 +20,7 @@ import {ChatComponent} from './recent-chats/chat/chat.component';
         IonicModule,
         ImRoutingModule
     ],
-    declarations: [ImPage, RecentChatsComponent, ContactsComponent, DiscoveryComponent, ChatComponent]
+    declarations: [ImPage, RecentChatsComponent, ContactsComponent, DiscoveryComponent, ChatComponent, FansComponent, FriendsComponent, GroupsComponent]
 })
 export class ImModule {
 

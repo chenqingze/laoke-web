@@ -1,14 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ImSubComponent} from '../im.page';
+
+
+export enum ContactType {
+    FRIENDS,  // 消息
+    GROUPS, // 联系人
+    FANS  // 动态发现
+}
 
 @Component({
-  selector: 'app-contacts',
-  templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.scss'],
+    selector: 'app-contacts',
+    templateUrl: './contacts.component.html',
+    styleUrls: ['./contacts.component.scss'],
 })
 export class ContactsComponent implements OnInit {
+    readonly contactTypeEnum = ContactType;
 
-  constructor() { }
+    contactType: ContactType;
 
-  ngOnInit() {}
+    constructor() {
+        this.contactType = ContactType.FRIENDS;
+    }
+
+    ngOnInit() {
+    }
 
 }

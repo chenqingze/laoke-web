@@ -14,9 +14,9 @@ export enum ImSubComponent {
 })
 export class ImPage implements OnInit {
 
-    readonly imSubComponent = ImSubComponent;
+    readonly imSubComponentEnum = ImSubComponent;
     isLogin: boolean; // 是否登录
-    subComponent: ImSubComponent = ImSubComponent.RECENT_CHATS; // 子页面
+    imSubComponent: ImSubComponent = ImSubComponent.RECENT_CHATS; // 子页面
 
     constructor(
         private router: Router,

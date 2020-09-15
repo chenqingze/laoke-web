@@ -1,16 +1,16 @@
 <ion-header>
     <ion-toolbar class="bw-0">
-        <ion-segment slot="start" color="fff" class="home-segment" [(ngModel)]="subComponent">
-            <ion-segment-button value="{{imSubComponent.RECENT_CONTACTS}}" class="fontS-d32 segment-button">
+        <ion-segment slot="start" color="fff" class="home-segment" [(ngModel)]="imSubComponent">
+            <ion-segment-button value="{{imSubComponentEnum.RECENT_CHATS}}" class="fontS-d32 segment-button">
                 <ion-label>消息</ion-label>
                 <div class="bolder-sm"></div>
             </ion-segment-button>
             <!--            <ion-badge class="unread-title" *ngIf="allUnread>0">{{allUnread}}</ion-badge>-->
-            <ion-segment-button value="{{imSubComponent.CONTACTS}}" class="fontS-d32 segment-button">
+            <ion-segment-button value="{{imSubComponentEnum.CONTACTS}}" class="fontS-d32 segment-button">
                 <ion-label>联系人</ion-label>
                 <div class="bolder-sm"></div>
             </ion-segment-button>
-            <ion-segment-button value="{{imSubComponent.DISCOVERY}}" class="fontS-d32 segment-button">
+            <ion-segment-button value="{{imSubComponentEnum.DISCOVERY}}" class="fontS-d32 segment-button">
                 <ion-label>动态</ion-label>
                 <div class="bolder-sm"></div>
             </ion-segment-button>
@@ -21,7 +21,7 @@
         </ion-buttons>
     </ion-toolbar>
 
-    <ion-toolbar *ngIf="subComponent === imSubComponent.DISCOVERY" class="discover-seg-div">
+    <ion-toolbar *ngIf="imSubComponent === imSubComponentEnum.DISCOVERY" class="discover-seg-div">
         <ion-segment slot="start" color="fff" class="mt-d2 discover-segment">
             <ion-segment-button value="friends-trends" class="fontS-d32 segment-button">
                 <ion-label class="fontS-d28">好友动态</ion-label>
@@ -34,23 +34,32 @@
 </ion-header>
 <!-- 悬浮发布按钮 -->
 <div [routerLink]="['/info/simple-publish']" class="fab-btn"
-     *ngIf="subComponent === imSubComponent.DISCOVERY  && isLogin">
+     *ngIf="imSubComponent === imSubComponentEnum.DISCOVERY  && isLogin">
     <em class="iconfont iconfabu1 fontS-d48 colorf"></em>
 </div>
 <ion-content #content>
     <!-- 登录状态 -->
     <div class="w-100 h-100" [hidden]="!isLogin">
-        <!-- recent-contacts 消息/最近联系人 -->
-        <div class="chats w-100 h-100 pt-d24 " [hidden]="subComponent != imSubComponent.RECENT_CHATS">
-            <app-recent-chats></app-recent-chats>
+        <div class="chats w-100 h-100 pt-d24 ">
+            <!-- recent-contacts 消息/最近联系人 -->
+            <app-recent-chats
+                    [hidden]="imSubComponent != imSubComponentEnum.RECENT_CHATS">
+            </app-recent-chats>
+            <!-- contacts 联系人-->
+
+            <app-contacts
+                    [hidden]="imSubComponent != imSubComponentEnum.CONTACTS">
+            </app-contacts>
+            <!-- discover 动态列表 -->
+            <app-discovery
+                    [hidden]="imSubComponent != imSubComponentEnum.DISCOVERY">
+            </app-discovery>
+
+
         </div>
-        <!-- contacts 联系人-->
-        <div class="contacts h-100 w-100" [hidden]="subComponent != imSubComponent.CONTACTS">
-            <app-contacts></app-contacts>
+        <div class="contacts h-100 w-100">
         </div>
-        <!-- discover 动态列表 -->
-        <div class="discover h-100 w-100 h-100 discover-list-big" [hidden]="subComponent != imSubComponent.DISCOVERY">
-            <app-discovery></app-discovery>
+        <div class="discover h-100 w-100 h-100 discover-list-big">
         </div>
     </div>
     <!-- 未登录 -->

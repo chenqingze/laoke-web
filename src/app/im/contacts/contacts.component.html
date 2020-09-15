@@ -1,3 +1,42 @@
-<p>
-  contacts works!
-</p>
+<div class="contacts h-100 w-100">
+    <div class="border-bf6 dark-borderbottom-333 pb-d32 mt-d28">
+        <ion-row class="ml-d32" [routerLink]="['new-friends']">
+            <ion-col size="11" class="ion-flex ion-align-items-center">新朋友
+                <ion-badge class="ml-d2 unread-friend" color="primary"></ion-badge>
+            </ion-col>
+            <!--<ion-col size="1">
+                <i class="iconfont iconmore fontS-d28 color9"></i>
+            </ion-col>-->
+        </ion-row>
+    </div>
+    <div class="border-bf6 dark-borderbottom-333 pb-d32 mt-d28">
+        <ion-row class="ml-d32">
+            <ion-col size="11" class="ion-flex ion-align-items-center">群通知
+                <ion-badge class="ml-d2" color="primary">`消息数`</ion-badge>
+            </ion-col>
+            <!--<ion-col size="1">
+                <i class="iconfont iconmore fontS-d28 color9"></i>
+            </ion-col>-->
+        </ion-row>
+    </div>
+    <div>
+        <ion-segment [(ngModel)]="contactType" color="fff" class="friends-seg">
+            <ion-segment-button class="segment-button" value="{{contactTypeEnum.FRIENDS}}">
+                <ion-label class="fontS-d28 segment-button">好友</ion-label>
+            </ion-segment-button>
+            <ion-segment-button class="segment-button" value="{{contactTypeEnum.GROUPS}}">
+                <ion-label class="fontS-d28 segment-button">群聊</ion-label>
+            </ion-segment-button>
+            <ion-segment-button class="segment-button" value="{{contactTypeEnum.FANS}}">
+                <ion-label class="fontS-d28 segment-button">粉丝</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+    <div style="height: 100%">
+        <div class="mt-d2">
+            <app-friends [hidden]="contactType != contactTypeEnum.FRIENDS"></app-friends>
+            <app-groups [hidden]="contactType != contactTypeEnum.GROUPS"></app-groups>
+            <app-fans [hidden]="contactType != contactTypeEnum.FANS"></app-fans>
+        </div>
+    </div>
+</div>
