@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
 export enum ImSubComponent {
-    RECENT_CONTACTS,  // 消息
+    RECENT_CHATS,  // 消息
     CONTACTS, // 联系人
     DISCOVERY  // 动态发现
 }
@@ -16,7 +16,7 @@ export class ImPage implements OnInit {
 
     readonly imSubComponent = ImSubComponent;
     isLogin: boolean; // 是否登录
-    subComponent: ImSubComponent = ImSubComponent.RECENT_CONTACTS; // 子页面
+    subComponent: ImSubComponent = ImSubComponent.RECENT_CHATS; // 子页面
 
     constructor(
         private router: Router,

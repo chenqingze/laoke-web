@@ -41,8 +41,8 @@
     <!-- 登录状态 -->
     <div class="w-100 h-100" [hidden]="!isLogin">
         <!-- recent-contacts 消息/最近联系人 -->
-        <div class="chats w-100 h-100 pt-d24 " [hidden]="subComponent != imSubComponent.RECENT_CONTACTS">
-            <app-recent-contacts></app-recent-contacts>
+        <div class="chats w-100 h-100 pt-d24 " [hidden]="subComponent != imSubComponent.RECENT_CHATS">
+            <app-recent-chats></app-recent-chats>
         </div>
         <!-- contacts 联系人-->
         <div class="contacts h-100 w-100" [hidden]="subComponent != imSubComponent.CONTACTS">

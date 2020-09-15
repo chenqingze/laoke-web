@@ -5,9 +5,10 @@ import {IonicModule} from '@ionic/angular';
 import {ImPage} from './im.page';
 import {ImRoutingModule} from './im-routing.module';
 import {WebSocketService} from './core/web-socket.service';
-import {RecentContactsComponent} from './recent-contacts/recent-contacts.component';
 import {DiscoveryComponent} from './discovery/discovery.component';
 import {ContactsComponent} from './contacts/contacts.component';
+import {RecentChatsComponent} from './recent-chats/recent-chats.component';
+import {ChatComponent} from './recent-chats/chat/chat.component';
 
 @NgModule({
     imports: [
@@ -16,7 +17,7 @@ import {ContactsComponent} from './contacts/contacts.component';
         IonicModule,
         ImRoutingModule
     ],
-    declarations: [ImPage, RecentContactsComponent, ContactsComponent, DiscoveryComponent]
+    declarations: [ImPage, RecentChatsComponent, ContactsComponent, DiscoveryComponent, ChatComponent]
 })
 export class ImModule {
 
