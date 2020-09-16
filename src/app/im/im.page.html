@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar class="bw-0">
         <ion-segment slot="start" color="fff" class="home-segment" [(ngModel)]="imSubComponent">
-            <ion-segment-button value="{{imSubComponentEnum.RECENT_CHATS}}" class="fontS-d32 segment-button">
+            <ion-segment-button value="{{imSubComponentEnum.RECENT_CONTACTS}}" class="fontS-d32 segment-button">
                 <ion-label>消息</ion-label>
                 <div class="bolder-sm"></div>
             </ion-segment-button>
@@ -43,7 +43,7 @@
         <div class="chats w-100 h-100 pt-d24 ">
             <!-- recent-contacts 消息/最近联系人 -->
             <app-recent-chats
-                    [hidden]="imSubComponent != imSubComponentEnum.RECENT_CHATS">
+                    [hidden]="imSubComponent != imSubComponentEnum.RECENT_CONTACTS">
             </app-recent-chats>
             <!-- contacts 联系人-->
 

@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { RecentChatsComponent } from './recent-chats.component';
+import { RecentContactsComponent } from './recent-contacts.component';
 
-describe('RecentChatsComponent', () => {
-  let component: RecentChatsComponent;
-  let fixture: ComponentFixture<RecentChatsComponent>;
+describe('RecentContactsComponent', () => {
+  let component: RecentContactsComponent;
+  let fixture: ComponentFixture<RecentContactsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecentChatsComponent ],
+      declarations: [ RecentContactsComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(RecentChatsComponent);
+    fixture = TestBed.createComponent(RecentContactsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
