@@ -7,11 +7,11 @@ import {ImRoutingModule} from './im-routing.module';
 import {WebSocketService} from './core/web-socket.service';
 import {DiscoveryComponent} from './discovery/discovery.component';
 import {ContactsComponent} from './contacts/contacts.component';
-import {RecentChatsComponent} from './recent-chats/recent-chats.component';
-import {ChatComponent} from './recent-chats/chat/chat.component';
 import {FansComponent} from './contacts/fans/fans.component';
 import {FriendsComponent} from './contacts/friends/friends.component';
 import {GroupsComponent} from './contacts/groups/groups.component';
+import {RecentContactsComponent} from './recent-contacts/recent-contacts.component';
+import {RecentContactComponent} from './recent-contacts/recent-contact/recent-contact.component';
 
 @NgModule({
     imports: [
@@ -20,7 +20,16 @@ import {GroupsComponent} from './contacts/groups/groups.component';
         IonicModule,
         ImRoutingModule
     ],
-    declarations: [ImPage, RecentChatsComponent, ContactsComponent, DiscoveryComponent, ChatComponent, FansComponent, FriendsComponent, GroupsComponent]
+    declarations: [
+        ImPage,
+        RecentContactComponent,
+        RecentContactsComponent,
+        ContactsComponent,
+        DiscoveryComponent,
+        FansComponent,
+        FriendsComponent,
+        GroupsComponent
+    ]
 })
 export class ImModule {
 
