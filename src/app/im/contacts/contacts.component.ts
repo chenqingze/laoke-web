@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ImSubComponent} from '../im.page';
 
 
 export enum ContactType {

@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-discovery',
-  templateUrl: './discovery.component.html',
-  styleUrls: ['./discovery.component.scss'],
+    selector: 'app-discovery',
+    templateUrl: './discovery.component.html',
+    styleUrls: ['./discovery.component.scss'],
 })
 export class DiscoveryComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit() {}
+    ngOnInit() {
+    }
 
 }

@@ -1,7 +1,7 @@
 import {ImConfig, injector} from '../im.config';
 import {Message} from './lib/Message_pb';
-import {OpCode, OpCodeMap} from './lib/OpCode_pb';
 import * as OpCode_pb from './lib/OpCode_pb';
+import {OpCode} from './lib/OpCode_pb';
 import {BaseModel} from './base.model';
 import {AuthAckModel} from '../auth/auth-ack.model';
 

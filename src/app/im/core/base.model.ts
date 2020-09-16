@@ -9,6 +9,7 @@ export abstract class BaseModel {
     static createMessageModel<T extends BaseModel>(this: Constructor<T>): T {
         return new this();
     }
+
     abstract convertToMessage(): Message;
 
     abstract convertMessageToModel(message: Message): BaseModel;

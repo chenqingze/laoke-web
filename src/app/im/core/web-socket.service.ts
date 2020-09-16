@@ -1,22 +1,15 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {WebSocketSubject, WebSocketSubjectConfig} from 'rxjs/internal-compatibility';
-import {
-    Observable,
-    PartialObserver,
-    Subject,
-    Subscription,
-    SubscriptionLike,
-    timer
-} from 'rxjs';
+import {Observable, PartialObserver, Subject, Subscription, SubscriptionLike, timer} from 'rxjs';
 import {ImConfig} from '../im.config';
 import {webSocket} from 'rxjs/webSocket';
 import {BaseModel} from './base.model';
 import {Message} from './lib/Message_pb';
 import * as OpCode_pb from './lib/OpCode_pb';
+import {OpCode} from './lib/OpCode_pb';
 import {AuthRequestModel} from '../auth/auth-request.model';
 import {MessageTool} from './message.tool';
 import {delay, filter, retryWhen} from 'rxjs/operators';
-import {OpCode} from './lib/OpCode_pb';
 
 const enum WsStatus {
     DISCONNECTED,

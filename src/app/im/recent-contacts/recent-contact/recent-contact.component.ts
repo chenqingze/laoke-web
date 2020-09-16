@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-recent-contact',
-  templateUrl: './recent-contact.component.html',
-  styleUrls: ['./recent-contact.component.scss'],
+    selector: 'app-recent-contact',
+    templateUrl: './recent-contact.component.html',
+    styleUrls: ['./recent-contact.component.scss'],
 })
 export class RecentContactComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit() {}
+    ngOnInit() {
+    }
 
 }
