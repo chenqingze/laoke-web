@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {DbService} from './shared/db.service';
 
 export enum ImSubComponent {
     RECENT_CONTACTS,  // 消息
@@ -19,20 +20,22 @@ export class ImPage implements OnInit {
     imSubComponent: ImSubComponent = ImSubComponent.RECENT_CONTACTS; // 子页面
 
     constructor(
+        private dbService: DbService,
         private router: Router,
         private activatedRoute: ActivatedRoute
     ) {
         // this.isLogin = !!localStorage.getItem('token');
         // for test
         this.isLogin = true;
+        this.dbService.dbReady$().subscribe((isReady) => {
+            if (isReady) {
+                this.dbService.storage.executeSql('INSERT INTO testTab (artist_name, song_name) VALUES (?, ?)', [1, 'sum']);
+                console.log('数据库准备就绪！');
+            }
+        });
     }
 
     ngOnInit() {
-    }
-
-    // 跳转到 登录
-    goToLogin() {
-        this.router.navigate(['/sign-in', {backUrl: 'im'}]);
     }
 
 }

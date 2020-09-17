@@ -1,5 +1,4 @@
 import {BaseModel} from '../core/base.model';
-import {MessageTool} from '../core/message.tool';
 import {OpCode} from '../core/lib/OpCode_pb';
 import {AuthRequest} from '../core/lib/Connection_pb';
 import {Message} from '../core/lib/Message_pb';
@@ -32,7 +31,7 @@ export class AuthRequestModel extends BaseModel {
         authRequest.setDeviceCode('test_code');
         authRequest.setDeviceIdiom('test_idiom');
         authRequest.setDevicePlatform('test_platform');
-        const message = MessageTool.createMessage();
+        const message = this.createMessage();
         message.setOpCode(this.opCode);
         message.setAuthRequest(authRequest);
         return message;

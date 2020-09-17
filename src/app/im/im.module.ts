@@ -12,13 +12,15 @@ import {FriendsComponent} from './contacts/friends/friends.component';
 import {GroupsComponent} from './contacts/groups/groups.component';
 import {RecentContactsComponent} from './recent-contacts/recent-contacts.component';
 import {RecentContactComponent} from './recent-contacts/recent-contact/recent-contact.component';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        ImRoutingModule
+        ImRoutingModule,
+        SharedModule
     ],
     declarations: [
         ImPage,
