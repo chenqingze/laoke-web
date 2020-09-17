@@ -17,6 +17,7 @@ export class DbService {
 
     constructor(private platform: Platform,
                 private sqlite: SQLite) {
+        // todo:放在登录后触发
         this.platform.ready().then(() => {
             this.initDB().then(() => console.log('database init complete ! '));
         }).catch(error => {

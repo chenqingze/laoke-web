@@ -27,12 +27,13 @@ export class ImPage implements OnInit {
         // this.isLogin = !!localStorage.getItem('token');
         // for test
         this.isLogin = true;
-        this.dbService.dbReady$().subscribe((isReady) => {
-            if (isReady) {
-                this.dbService.storage.executeSql('INSERT INTO testTab (artist_name, song_name) VALUES (?, ?)', [1, 'sum']);
-                console.log('数据库准备就绪！');
-            }
-        });
+        // 测试用：todo：删除此代码
+        // this.dbService.dbReady$().subscribe((isReady) => {
+        //     if (isReady) {
+        //         this.dbService.storage.executeSql('INSERT INTO testTab (artist_name, song_name) VALUES (?, ?)', [1, 'sum']);
+        //         console.log('数据库准备就绪！');
+        //     }
+        // });
     }
 
     ngOnInit() {
