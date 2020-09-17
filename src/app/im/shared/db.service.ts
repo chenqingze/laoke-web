@@ -3,9 +3,11 @@ import {Platform} from '@ionic/angular';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {SQLite, SQLiteObject} from '@ionic-native/sqlite/ngx';
 
+
 @Injectable()
 export class DbService {
-    storage: SQLiteObject;
+    private window: any = window;
+    storage: SQLiteObject | any;
     private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
     private dbName: string;
     readonly createTableSqlStatements: string [] = [
@@ -15,12 +17,8 @@ export class DbService {
 
     constructor(private platform: Platform,
                 private sqlite: SQLite) {
-        // todo:完善从localStorage获取用户信息作为数据库命名，这里写死一个用于开发
-        // this.dbName='im_'+localStorage.getItem('username')+'.db';
-        this.dbName = 'userId_im.db';
-
         this.platform.ready().then(() => {
-            this.initDB();
+            this.initDB().then(() => console.log('database init complete ! '));
         }).catch(error => {
             console.log(error);
         });
@@ -30,20 +28,26 @@ export class DbService {
      * init database
      * @private
      */
-    private initDB() {
-        this.sqlite.create({
-            name: this.dbName,
-            location: 'default'
-        }).then((db: SQLiteObject) => {
-            this.storage = db;
-            console.log(' database is created success !');
-            // 创建数据库表
-            this.createTables().then(() => {
-                console.log('Database and table is ready !');
-                this.isDbReady.next(true);
+    private async initDB() {
+        // todo:完善从localStorage获取用户信息作为数据库命名，这里写死一个用于开发
+        // this.dbName='im_'+localStorage.getItem('username')+'.db';
+        this.dbName = 'userId_im.db';
+        if (!this.platform.is('cordova')) {
+            // 设置数据库大小
+            this.storage = browserDbExtend(this.window.openDatabase(this.dbName, '1.0', '消息数据库', 10 * 1024 * 1024));
+        } else {
+            this.storage = await this.sqlite.create({
+                name: this.dbName,
+                location: 'default'
             });
+        }
+        console.log(' database is created success !');
+        // 创建数据库表
+        this.createTables().then((result) => {
+            console.log('table is created success ? ', result);
+            this.isDbReady.next(true);
         }).catch(e => {
-            console.log('error ' + JSON.stringify(e));
+            console.log('create table error', JSON.stringify(e));
         });
     }
 
@@ -55,7 +59,7 @@ export class DbService {
         return this.storage.sqlBatch(this.createTableSqlStatements)
             .then(() => {
                 console.log(' table is created success !');
-                // return true;
+                return true;
             });
     }
 
@@ -68,3 +72,39 @@ export class DbService {
 
 
 }
+
+
+export const browserDbExtend = (db) => {
+
+    return {
+        executeSql: (statement: string, params?: any[]) => {
+            return new Promise((resolve, reject) => {
+                db.transaction((tx) => {
+                    tx.executeSql(statement, params, (t, res) => {
+                        resolve(res);
+                        // resolve({t, res});
+                    }, (t, err) => {
+                        reject({err});
+                        // reject({t, err});
+                    });
+                });
+            });
+        },
+
+        sqlBatch: (arr) => {
+            return new Promise((r, rj) => {
+                const batch = [];
+                db.transaction((tx) => {
+                    for (const item of arr) {
+                        batch.push(new Promise((resolve, reject) => {
+                            tx.executeSql(item, [], () => {
+                                resolve(true);
+                            });
+                        }));
+                        Promise.all(batch).then(() => r(true));
+                    }
+                });
+            });
+        }
+    };
+};
