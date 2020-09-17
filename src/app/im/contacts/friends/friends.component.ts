@@ -11,6 +11,12 @@ export class FriendsComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log("friends ngOnInit ...")
     }
+
+    ionViewWillEnter(){
+        console.log("friends ionViewWillEnter ...")
+    }
+
 
 }

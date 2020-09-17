@@ -11,6 +11,11 @@ export class FansComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log("Fans ngOnInit ...")
+    }
+
+    ionViewWillEnter(){
+        console.log("Fans ionViewWillEnter ...")
     }
 
 }
