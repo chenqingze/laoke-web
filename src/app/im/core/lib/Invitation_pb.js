@@ -23,67 +23,68 @@ goog.exportSymbol('proto.Invitation', null, global);
  * @extends {jspb.Message}
  * @constructor
  */
-proto.Invitation = function (opt_data) {
-    jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+proto.Invitation = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.Invitation, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-    /**
-     * @public
-     * @override
-     */
-    proto.Invitation.displayName = 'proto.Invitation';
+  /**
+   * @public
+   * @override
+   */
+  proto.Invitation.displayName = 'proto.Invitation';
 }
 
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-    /**
-     * Creates an object representation of this proto.
-     * Field names that are reserved in JavaScript and will be renamed to pb_name.
-     * Optional fields that are not set will be set to undefined.
-     * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-     * For the list of reserved names please see:
-     *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-     * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-     *     JSPB instance for transitional soy proto support:
-     *     http://goto/soy-param-migration
-     * @return {!Object}
-     */
-    proto.Invitation.prototype.toObject = function (opt_includeInstance) {
-        return proto.Invitation.toObject(opt_includeInstance, this);
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.Invitation.prototype.toObject = function(opt_includeInstance) {
+  return proto.Invitation.toObject(opt_includeInstance, this);
+};
 
 
-    /**
-     * Static version of the {@see toObject} method.
-     * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-     *     the JSPB instance for transitional soy proto support:
-     *     http://goto/soy-param-migration
-     * @param {!proto.Invitation} msg The msg instance to transform.
-     * @return {!Object}
-     * @suppress {unusedLocalVariables} f is only used for nested messages
-     */
-    proto.Invitation.toObject = function (includeInstance, msg) {
-        var f, obj = {
-            id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-            requesterid: jspb.Message.getFieldWithDefault(msg, 2, 0),
-            requesteralias: jspb.Message.getFieldWithDefault(msg, 3, ""),
-            requesternickname: jspb.Message.getFieldWithDefault(msg, 4, ""),
-            addresseeid: jspb.Message.getFieldWithDefault(msg, 5, 0),
-            addresseealias: jspb.Message.getFieldWithDefault(msg, 6, ""),
-            addresseenickname: jspb.Message.getFieldWithDefault(msg, 7, ""),
-            content: jspb.Message.getFieldWithDefault(msg, 8, ""),
-            inviteStatus: jspb.Message.getFieldWithDefault(msg, 9, ""),
-            inviteType: jspb.Message.getFieldWithDefault(msg, 10, ""),
-            createdat: jspb.Message.getFieldWithDefault(msg, 11, 0),
-            updatedat: jspb.Message.getFieldWithDefault(msg, 12, 0)
-        };
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.Invitation} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.Invitation.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    requesterid: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    requesteralias: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    requesternickname: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    addresseeid: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    addresseealias: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    addresseenickname: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    content: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    inviteStatus: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    inviteType: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    createdat: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    updatedat: jspb.Message.getFieldWithDefault(msg, 12, 0)
+  };
 
-        if (includeInstance) {
-            obj.$jspbMessageInstance = msg;
-        }
-        return obj;
-    };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
 
 
@@ -92,10 +93,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.Invitation}
  */
-proto.Invitation.deserializeBinary = function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.Invitation;
-    return proto.Invitation.deserializeBinaryFromReader(msg, reader);
+proto.Invitation.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.Invitation;
+  return proto.Invitation.deserializeBinaryFromReader(msg, reader);
 };
 
 
@@ -106,67 +107,67 @@ proto.Invitation.deserializeBinary = function (bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.Invitation}
  */
-proto.Invitation.deserializeBinaryFromReader = function (msg, reader) {
-    while (reader.nextField()) {
-        if (reader.isEndGroup()) {
-            break;
-        }
-        var field = reader.getFieldNumber();
-        switch (field) {
-            case 1:
-                var value = /** @type {string} */ (reader.readString());
-                msg.setId(value);
-                break;
-            case 2:
-                var value = /** @type {number} */ (reader.readUint64());
-                msg.setRequesterid(value);
-                break;
-            case 3:
-                var value = /** @type {string} */ (reader.readString());
-                msg.setRequesteralias(value);
-                break;
-            case 4:
-                var value = /** @type {string} */ (reader.readString());
-                msg.setRequesternickname(value);
-                break;
-            case 5:
-                var value = /** @type {number} */ (reader.readUint64());
-                msg.setAddresseeid(value);
-                break;
-            case 6:
-                var value = /** @type {string} */ (reader.readString());
-                msg.setAddresseealias(value);
-                break;
-            case 7:
-                var value = /** @type {string} */ (reader.readString());
-                msg.setAddresseenickname(value);
-                break;
-            case 8:
-                var value = /** @type {string} */ (reader.readString());
-                msg.setContent(value);
-                break;
-            case 9:
-                var value = /** @type {string} */ (reader.readString());
-                msg.setInviteStatus(value);
-                break;
-            case 10:
-                var value = /** @type {string} */ (reader.readString());
-                msg.setInviteType(value);
-                break;
-            case 11:
-                var value = /** @type {number} */ (reader.readUint64());
-                msg.setCreatedat(value);
-                break;
-            case 12:
-                var value = /** @type {number} */ (reader.readUint64());
-                msg.setUpdatedat(value);
-                break;
-            default:
-                reader.skipField();
-                break;
-        }
+proto.Invitation.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setRequesterid(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRequesteralias(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRequesternickname(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setAddresseeid(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAddresseealias(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAddresseenickname(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setContent(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setInviteStatus(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setInviteType(value);
+      break;
+    case 11:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setCreatedat(value);
+      break;
+    case 12:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setUpdatedat(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
 };
 
 
@@ -174,10 +175,10 @@ proto.Invitation.deserializeBinaryFromReader = function (msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.Invitation.prototype.serializeBinary = function () {
-    var writer = new jspb.BinaryWriter();
-    proto.Invitation.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
+proto.Invitation.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.Invitation.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
 };
 
 
@@ -188,92 +189,92 @@ proto.Invitation.prototype.serializeBinary = function () {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.Invitation.serializeBinaryToWriter = function (message, writer) {
-    var f = undefined;
-    f = message.getId();
-    if (f.length > 0) {
-        writer.writeString(
-            1,
-            f
-        );
-    }
-    f = message.getRequesterid();
-    if (f !== 0) {
-        writer.writeUint64(
-            2,
-            f
-        );
-    }
-    f = message.getRequesteralias();
-    if (f.length > 0) {
-        writer.writeString(
-            3,
-            f
-        );
-    }
-    f = message.getRequesternickname();
-    if (f.length > 0) {
-        writer.writeString(
-            4,
-            f
-        );
-    }
-    f = message.getAddresseeid();
-    if (f !== 0) {
-        writer.writeUint64(
-            5,
-            f
-        );
-    }
-    f = message.getAddresseealias();
-    if (f.length > 0) {
-        writer.writeString(
-            6,
-            f
-        );
-    }
-    f = message.getAddresseenickname();
-    if (f.length > 0) {
-        writer.writeString(
-            7,
-            f
-        );
-    }
-    f = message.getContent();
-    if (f.length > 0) {
-        writer.writeString(
-            8,
-            f
-        );
-    }
-    f = message.getInviteStatus();
-    if (f.length > 0) {
-        writer.writeString(
-            9,
-            f
-        );
-    }
-    f = message.getInviteType();
-    if (f.length > 0) {
-        writer.writeString(
-            10,
-            f
-        );
-    }
-    f = message.getCreatedat();
-    if (f !== 0) {
-        writer.writeUint64(
-            11,
-            f
-        );
-    }
-    f = message.getUpdatedat();
-    if (f !== 0) {
-        writer.writeUint64(
-            12,
-            f
-        );
-    }
+proto.Invitation.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getRequesterid();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+  f = message.getRequesteralias();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getRequesternickname();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getAddresseeid();
+  if (f !== 0) {
+    writer.writeUint64(
+      5,
+      f
+    );
+  }
+  f = message.getAddresseealias();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+  f = message.getAddresseenickname();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getContent();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+  f = message.getInviteStatus();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = message.getInviteType();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
+    );
+  }
+  f = message.getCreatedat();
+  if (f !== 0) {
+    writer.writeUint64(
+      11,
+      f
+    );
+  }
+  f = message.getUpdatedat();
+  if (f !== 0) {
+    writer.writeUint64(
+      12,
+      f
+    );
+  }
 };
 
 
@@ -281,8 +282,8 @@ proto.Invitation.serializeBinaryToWriter = function (message, writer) {
  * optional string id = 1;
  * @return {string}
  */
-proto.Invitation.prototype.getId = function () {
-    return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.Invitation.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
@@ -290,8 +291,8 @@ proto.Invitation.prototype.getId = function () {
  * @param {string} value
  * @return {!proto.Invitation} returns this
  */
-proto.Invitation.prototype.setId = function (value) {
-    return jspb.Message.setProto3StringField(this, 1, value);
+proto.Invitation.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -299,8 +300,8 @@ proto.Invitation.prototype.setId = function (value) {
  * optional uint64 requesterId = 2;
  * @return {number}
  */
-proto.Invitation.prototype.getRequesterid = function () {
-    return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+proto.Invitation.prototype.getRequesterid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
@@ -308,8 +309,8 @@ proto.Invitation.prototype.getRequesterid = function () {
  * @param {number} value
  * @return {!proto.Invitation} returns this
  */
-proto.Invitation.prototype.setRequesterid = function (value) {
-    return jspb.Message.setProto3IntField(this, 2, value);
+proto.Invitation.prototype.setRequesterid = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -317,8 +318,8 @@ proto.Invitation.prototype.setRequesterid = function (value) {
  * optional string requesterAlias = 3;
  * @return {string}
  */
-proto.Invitation.prototype.getRequesteralias = function () {
-    return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+proto.Invitation.prototype.getRequesteralias = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
@@ -326,8 +327,8 @@ proto.Invitation.prototype.getRequesteralias = function () {
  * @param {string} value
  * @return {!proto.Invitation} returns this
  */
-proto.Invitation.prototype.setRequesteralias = function (value) {
-    return jspb.Message.setProto3StringField(this, 3, value);
+proto.Invitation.prototype.setRequesteralias = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -335,8 +336,8 @@ proto.Invitation.prototype.setRequesteralias = function (value) {
  * optional string requesterNickname = 4;
  * @return {string}
  */
-proto.Invitation.prototype.getRequesternickname = function () {
-    return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+proto.Invitation.prototype.getRequesternickname = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
@@ -344,8 +345,8 @@ proto.Invitation.prototype.getRequesternickname = function () {
  * @param {string} value
  * @return {!proto.Invitation} returns this
  */
-proto.Invitation.prototype.setRequesternickname = function (value) {
-    return jspb.Message.setProto3StringField(this, 4, value);
+proto.Invitation.prototype.setRequesternickname = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -353,8 +354,8 @@ proto.Invitation.prototype.setRequesternickname = function (value) {
  * optional uint64 addresseeId = 5;
  * @return {number}
  */
-proto.Invitation.prototype.getAddresseeid = function () {
-    return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+proto.Invitation.prototype.getAddresseeid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
@@ -362,8 +363,8 @@ proto.Invitation.prototype.getAddresseeid = function () {
  * @param {number} value
  * @return {!proto.Invitation} returns this
  */
-proto.Invitation.prototype.setAddresseeid = function (value) {
-    return jspb.Message.setProto3IntField(this, 5, value);
+proto.Invitation.prototype.setAddresseeid = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -371,8 +372,8 @@ proto.Invitation.prototype.setAddresseeid = function (value) {
  * optional string addresseeAlias = 6;
  * @return {string}
  */
-proto.Invitation.prototype.getAddresseealias = function () {
-    return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+proto.Invitation.prototype.getAddresseealias = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
 
@@ -380,8 +381,8 @@ proto.Invitation.prototype.getAddresseealias = function () {
  * @param {string} value
  * @return {!proto.Invitation} returns this
  */
-proto.Invitation.prototype.setAddresseealias = function (value) {
-    return jspb.Message.setProto3StringField(this, 6, value);
+proto.Invitation.prototype.setAddresseealias = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -389,8 +390,8 @@ proto.Invitation.prototype.setAddresseealias = function (value) {
  * optional string addresseeNickname = 7;
  * @return {string}
  */
-proto.Invitation.prototype.getAddresseenickname = function () {
-    return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+proto.Invitation.prototype.getAddresseenickname = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
@@ -398,8 +399,8 @@ proto.Invitation.prototype.getAddresseenickname = function () {
  * @param {string} value
  * @return {!proto.Invitation} returns this
  */
-proto.Invitation.prototype.setAddresseenickname = function (value) {
-    return jspb.Message.setProto3StringField(this, 7, value);
+proto.Invitation.prototype.setAddresseenickname = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -407,8 +408,8 @@ proto.Invitation.prototype.setAddresseenickname = function (value) {
  * optional string content = 8;
  * @return {string}
  */
-proto.Invitation.prototype.getContent = function () {
-    return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+proto.Invitation.prototype.getContent = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
 
@@ -416,8 +417,8 @@ proto.Invitation.prototype.getContent = function () {
  * @param {string} value
  * @return {!proto.Invitation} returns this
  */
-proto.Invitation.prototype.setContent = function (value) {
-    return jspb.Message.setProto3StringField(this, 8, value);
+proto.Invitation.prototype.setContent = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
@@ -425,8 +426,8 @@ proto.Invitation.prototype.setContent = function (value) {
  * optional string invite_status = 9;
  * @return {string}
  */
-proto.Invitation.prototype.getInviteStatus = function () {
-    return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+proto.Invitation.prototype.getInviteStatus = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
 
@@ -434,8 +435,8 @@ proto.Invitation.prototype.getInviteStatus = function () {
  * @param {string} value
  * @return {!proto.Invitation} returns this
  */
-proto.Invitation.prototype.setInviteStatus = function (value) {
-    return jspb.Message.setProto3StringField(this, 9, value);
+proto.Invitation.prototype.setInviteStatus = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -443,8 +444,8 @@ proto.Invitation.prototype.setInviteStatus = function (value) {
  * optional string invite_type = 10;
  * @return {string}
  */
-proto.Invitation.prototype.getInviteType = function () {
-    return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+proto.Invitation.prototype.getInviteType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
 
 
@@ -452,8 +453,8 @@ proto.Invitation.prototype.getInviteType = function () {
  * @param {string} value
  * @return {!proto.Invitation} returns this
  */
-proto.Invitation.prototype.setInviteType = function (value) {
-    return jspb.Message.setProto3StringField(this, 10, value);
+proto.Invitation.prototype.setInviteType = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
@@ -461,8 +462,8 @@ proto.Invitation.prototype.setInviteType = function (value) {
  * optional uint64 createdAt = 11;
  * @return {number}
  */
-proto.Invitation.prototype.getCreatedat = function () {
-    return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+proto.Invitation.prototype.getCreatedat = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
 };
 
 
@@ -470,8 +471,8 @@ proto.Invitation.prototype.getCreatedat = function () {
  * @param {number} value
  * @return {!proto.Invitation} returns this
  */
-proto.Invitation.prototype.setCreatedat = function (value) {
-    return jspb.Message.setProto3IntField(this, 11, value);
+proto.Invitation.prototype.setCreatedat = function(value) {
+  return jspb.Message.setProto3IntField(this, 11, value);
 };
 
 
@@ -479,8 +480,8 @@ proto.Invitation.prototype.setCreatedat = function (value) {
  * optional uint64 updatedAt = 12;
  * @return {number}
  */
-proto.Invitation.prototype.getUpdatedat = function () {
-    return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
+proto.Invitation.prototype.getUpdatedat = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
 };
 
 
@@ -488,8 +489,8 @@ proto.Invitation.prototype.getUpdatedat = function () {
  * @param {number} value
  * @return {!proto.Invitation} returns this
  */
-proto.Invitation.prototype.setUpdatedat = function (value) {
-    return jspb.Message.setProto3IntField(this, 12, value);
+proto.Invitation.prototype.setUpdatedat = function(value) {
+  return jspb.Message.setProto3IntField(this, 12, value);
 };
 
 

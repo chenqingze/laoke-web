@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {IonContent} from '@ionic/angular';
 
 
 export enum ContactType {
@@ -14,7 +15,7 @@ export enum ContactType {
 })
 export class ContactsComponent implements OnInit {
     readonly contactTypeEnum = ContactType;
-
+    @Input() content: IonContent;
     contactType: ContactType;
 
     constructor() {

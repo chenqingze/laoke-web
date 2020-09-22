@@ -1,7 +1,7 @@
 import {BaseModel} from '../core/base.model';
 import {OpCode} from '../core/lib/OpCode_pb';
 import {Message} from '../core/lib/Message_pb';
-import {AuthAck} from '../core/lib/Connection_pb';
+import {AuthAck} from '../core/lib/Auth_pb';
 
 export class AuthAckModel extends BaseModel {
     readonly opCode = OpCode.AUTH_ACK;

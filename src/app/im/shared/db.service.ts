@@ -12,7 +12,8 @@ export class DbService {
     private dbName: string;
     readonly createTableSqlStatements: string [] = [
         // todo:完善需要创建的表 sql,这里写了个测试
-            `CREATE TABLE IF NOT EXISTS testTab( id INTEGER PRIMARY KEY AUTOINCREMENT, artist_name TEXT, song_name TEXT)`
+            `CREATE TABLE IF NOT EXISTS testTab( id INTEGER PRIMARY KEY AUTOINCREMENT, artist_name TEXT, song_name TEXT)`,
+        `CREATE TABLE IF NOT EXISTS "group" (id TEXT PRIMARY KEY,name TEXT, notice TEXT,groupNo TEXT,header TEXT,isMute BOOLEAN, isConfirmJoin BOOLEAN)`
     ];
 
     constructor(private platform: Platform,

@@ -17,10 +17,12 @@ goog.exportSymbol('proto.OpCode', null, global);
  * @enum {number}
  */
 proto.OpCode = {
-    UNKNOWN: 0,
-    AUTH_REQUEST: 1,
-    AUTH_ACK: 2,
-    MSG_REQUEST: 3
+  UNKNOWN: 0,
+  AUTH_REQUEST: 1,
+  AUTH_ACK: 2,
+  MSG_REQUEST: 3,
+  QUERY_USER_GROUP_REQUEST: 4,
+  QUERY_USER_GROUP_ACK: 5
 };
 
 goog.object.extend(exports, proto);

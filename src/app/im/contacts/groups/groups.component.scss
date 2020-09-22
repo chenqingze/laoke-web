@@ -1,0 +1,80 @@
+.avatar-group{
+  width: 0.88rem;
+  height: 0.88rem;
+  border-radius: 1rem;
+  border: 0.04rem solid #f0f0f0;
+  margin-top:0.16rem;
+  margin-bottom: 0.16rem;
+  margin-right: 0.24rem;
+}
+.friends-name{
+  font-size: 0.36rem;
+  color: #242424 !important;
+  margin-left: 0.28rem;
+}
+
+// 索引列表
+.index-list {
+  margin-top: 2rem;
+  list-style: none;
+  position: fixed;
+  top: 2rem;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  margin-bottom: 0.32rem;
+  padding-bottom: 0.64rem;
+
+  li {
+    width: 1rem;
+    line-height: 1.8;
+    text-align: center;
+    color: #666;
+    font-size: 0.24rem;
+  }
+
+}
+
+.letter-group{
+  padding: 0.12rem 0;
+  color: #666666;
+  font-size: 0.3rem;
+  font-weight: normal;
+}
+
+.letter {
+  display: flex;
+  width: 20px;
+  position: fixed;
+  right: 0;
+  top: 125px;
+  z-index: 10010;
+  justify-content: center;
+  align-items: center;
+
+  .letter-right {
+    font-size: 0.5em;
+    display: flex;
+    //flex-direction: column;
+    //flex-flow:1;
+    flex-flow: column nowrap;
+    background: transparent;
+    color: #2c2c2c;
+    border-top-left-radius: 6px;
+    align-items: center;
+
+    span {
+      display: block;
+      //padding: 1px 1px;
+    }
+  }
+}
+
+.letter:after {
+  display: block;
+  content: '';
+  clear: both;
+}
