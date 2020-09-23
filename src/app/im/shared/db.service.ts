@@ -21,7 +21,8 @@ export class DbService {
                 +`isMute BOOLEAN, isStickOnTop BOOLEAN, status VARCHAR(32), createdAt NUMBER(32),updatedAt NUMBER(32))`,
             `CREATE TABLE IF NOT EXISTS invitation( id VARCHAR PRIMARY KEY, requesterId VARCHAR, requesterAlias VARCHAR, requesterNickname VARCHAR, `
                 +`requesterProfile VARCHAR, addresseeId VARCHAR, addresseeAlias VARCHAR, addresseeNickname VARCHAR, addresseeProfile VARCHAR, `
-                +`inviteStatus VARCHAR, readStatus NUMBER, content VARCHAR, inviteType VARCHAR, createdAt NUMBER(32), updatedAt NUMBER(32))`
+                +`inviteStatus VARCHAR, readStatus NUMBER, content VARCHAR, inviteType VARCHAR, createdAt NUMBER(32), updatedAt NUMBER(32))`,
+            `CREATE TABLE IF NOT EXISTS "group" (id TEXT PRIMARY KEY,name TEXT, notice TEXT,groupNo TEXT,header TEXT,isMute BOOLEAN, isConfirmJoin BOOLEAN)`
     ];
 
     constructor(private platform: Platform,

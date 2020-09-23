@@ -11,7 +11,7 @@ import {AuthRequestModel} from '../auth/auth-request.model';
 import {MessageTool} from './message.tool';
 import {delay, filter, retryWhen} from 'rxjs/operators';
 
-const enum WsStatus {
+export const enum WsStatus {
     DISCONNECTED,
     CONNECTED,
     AUTHED
@@ -27,7 +27,7 @@ export class WebSocketService implements OnDestroy {
     // private heartbeatSub: SubscriptionLike;
     // private reconnection$: Observable<number>;
     // private statusObserver$: Observer<WsStatus>;
-    // public status$: Observable<WsStatus>;
+    public status$: Subject<WsStatus>;
     // private isConnecting = false;
 
     private status: WsStatus = WsStatus.DISCONNECTED;
@@ -41,6 +41,10 @@ export class WebSocketService implements OnDestroy {
     constructor(private imConfig: ImConfig) {
         console.log('websocket 配置', imConfig);
         this.wsMessages$ = new Subject<BaseModel>();
+        this.status$ = new Subject<WsStatus>();
+        this.status$.subscribe((connectStatus) => {
+            this.status = connectStatus;
+        });
         this.connect();
     }
 
@@ -56,7 +60,7 @@ export class WebSocketService implements OnDestroy {
             next: (event: Event) => {
                 // 修改WebSocket状态为：WsStatus.CONNECTED
                 console.log('连接打开', event);
-                this.status = WsStatus.CONNECTED;
+                this.status$.next(WsStatus.CONNECTED);
                 // todo:发送token 认证
                 console.log('发送认证请求!');
                 const authRequest = AuthRequestModel.createMessageModel();
@@ -69,12 +73,20 @@ export class WebSocketService implements OnDestroy {
                 // todo:修改WebSocket状态为:WsStatus.AUTHED,存储返回信息到storage
                 console.log('登录认证成功！');
                 console.log(message);
-                this.status = WsStatus.AUTHED;
+                this.status$.next(WsStatus.AUTHED);
             },
             error: (err: any) => {
                 console.log('error！', err);
             }
         });
+
+       // this.messages$(OpCode.QUERY_USER_GROUP_ACK).subscribe({
+       //      next: (message) => {
+       //          console.log('123123');
+       //      }, error: () => {
+       //          console.log('123123');
+       //      }
+       //  });
         // 订阅WebSocket连接关闭事件
         this.closeSubject.subscribe({
             next: () => {
@@ -105,6 +117,7 @@ export class WebSocketService implements OnDestroy {
      * @param opCode 事件类型
      */
     messages$(opCode: OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap]): Observable<BaseModel> {
+        // debugger;
         return this.wsMessages$.pipe(
             filter((model: BaseModel) => model.opCode === opCode)
         );

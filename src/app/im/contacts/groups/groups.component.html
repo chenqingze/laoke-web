@@ -1,3 +1,20 @@
-<p>
-    groups works!
-</p>
+<div class="letter">
+    <ul class="index-list">
+        <li *ngFor="let letter of allLetters" (click)="scrollToTop(letter)">{{letter}}</li>
+    </ul>
+</div>
+<div class="border-bec">
+    <ion-list>
+        <ion-item-group *ngFor="let letter of letters">
+            <ion-item-divider color="light" id="{{letter}}">
+                <ion-label class="letter-group">{{letter}}</ion-label>
+            </ion-item-divider>
+            <ion-item *ngFor="let h of groupList" lines="none">
+                <ion-avatar class="avatar-group" slot="start" *ngIf="letter==h.pinyin">
+                    <img src="{{h.header}}">
+                </ion-avatar>
+                <ion-label class="pr-d60" *ngIf="letter==h.pinyin">{{h.name}}</ion-label>
+            </ion-item>
+        </ion-item-group>
+    </ion-list>
+</div>

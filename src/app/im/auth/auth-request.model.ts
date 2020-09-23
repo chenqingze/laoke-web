@@ -1,6 +1,6 @@
 import {BaseModel} from '../core/base.model';
 import {OpCode} from '../core/lib/OpCode_pb';
-import {AuthRequest} from '../core/lib/Connection_pb';
+import {AuthRequest} from '../core/lib/Auth_pb';
 import {Message} from '../core/lib/Message_pb';
 
 export class AuthRequestModel extends BaseModel {

@@ -4,84 +4,66 @@
 import * as jspb from "google-protobuf";
 
 export class Invitation extends jspb.Message {
-    getId(): string;
+  getId(): string;
+  setId(value: string): void;
 
-    setId(value: string): void;
+  getRequesterid(): number;
+  setRequesterid(value: number): void;
 
-    getRequesterid(): number;
+  getRequesteralias(): string;
+  setRequesteralias(value: string): void;
 
-    setRequesterid(value: number): void;
+  getRequesternickname(): string;
+  setRequesternickname(value: string): void;
 
-    getRequesteralias(): string;
+  getAddresseeid(): number;
+  setAddresseeid(value: number): void;
 
-    setRequesteralias(value: string): void;
+  getAddresseealias(): string;
+  setAddresseealias(value: string): void;
 
-    getRequesternickname(): string;
+  getAddresseenickname(): string;
+  setAddresseenickname(value: string): void;
 
-    setRequesternickname(value: string): void;
+  getContent(): string;
+  setContent(value: string): void;
 
-    getAddresseeid(): number;
+  getInviteStatus(): string;
+  setInviteStatus(value: string): void;
 
-    setAddresseeid(value: number): void;
+  getInviteType(): string;
+  setInviteType(value: string): void;
 
-    getAddresseealias(): string;
+  getCreatedat(): number;
+  setCreatedat(value: number): void;
 
-    setAddresseealias(value: string): void;
+  getUpdatedat(): number;
+  setUpdatedat(value: number): void;
 
-    getAddresseenickname(): string;
-
-    setAddresseenickname(value: string): void;
-
-    getContent(): string;
-
-    setContent(value: string): void;
-
-    getInviteStatus(): string;
-
-    setInviteStatus(value: string): void;
-
-    getInviteType(): string;
-
-    setInviteType(value: string): void;
-
-    getCreatedat(): number;
-
-    setCreatedat(value: number): void;
-
-    getUpdatedat(): number;
-
-    setUpdatedat(value: number): void;
-
-    serializeBinary(): Uint8Array;
-
-    toObject(includeInstance?: boolean): Invitation.AsObject;
-
-    static toObject(includeInstance: boolean, msg: Invitation): Invitation.AsObject;
-
-    static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
-    static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
-
-    static serializeBinaryToWriter(message: Invitation, writer: jspb.BinaryWriter): void;
-
-    static deserializeBinary(bytes: Uint8Array): Invitation;
-
-    static deserializeBinaryFromReader(message: Invitation, reader: jspb.BinaryReader): Invitation;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Invitation.AsObject;
+  static toObject(includeInstance: boolean, msg: Invitation): Invitation.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Invitation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Invitation;
+  static deserializeBinaryFromReader(message: Invitation, reader: jspb.BinaryReader): Invitation;
 }
 
 export namespace Invitation {
-    export type AsObject = {
-        id: string,
-        requesterid: number,
-        requesteralias: string,
-        requesternickname: string,
-        addresseeid: number,
-        addresseealias: string,
-        addresseenickname: string,
-        content: string,
-        inviteStatus: string,
-        inviteType: string,
-        createdat: number,
-        updatedat: number,
-    }
+  export type AsObject = {
+    id: string,
+    requesterid: number,
+    requesteralias: string,
+    requesternickname: string,
+    addresseeid: number,
+    addresseealias: string,
+    addresseenickname: string,
+    content: string,
+    inviteStatus: string,
+    inviteType: string,
+    createdat: number,
+    updatedat: number,
+  }
 }
 

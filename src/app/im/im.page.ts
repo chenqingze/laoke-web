@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DbService} from './shared/db.service';
+import {IonContent} from '@ionic/angular';
 
 export enum ImSubComponent {
     RECENT_CONTACTS,  // 消息
@@ -16,6 +17,8 @@ export enum ImSubComponent {
 export class ImPage implements OnInit {
 
     readonly imSubComponentEnum = ImSubComponent;
+    @ViewChild('content', {static: false}) content: IonContent;
+
     isLogin: boolean; // 是否登录
     imSubComponent: ImSubComponent = ImSubComponent.RECENT_CONTACTS; // 子页面
 
