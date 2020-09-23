@@ -4,10 +4,10 @@ import {QueryGroupRequestModel} from './query-group-request.model';
 import {OpCode} from '../../core/lib/OpCode_pb';
 import {Subscription} from 'rxjs';
 import {QueryGroupAckModel} from './query-group-ack.model';
-import {GroupService} from './service/group.service';
 import {GroupModel} from './group.model';
 import {DbService} from '../../shared/db.service';
 import {IonContent} from '@ionic/angular';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-groups',
@@ -21,8 +21,10 @@ export class GroupsComponent implements OnInit, OnDestroy {
     allLetters: Array<string>;
     groupSub: Subscription;
     groupList: Array<GroupModel>;
+
     constructor(private webSocketService: WebSocketService,
                 public elementRef: ElementRef,
+                private router: Router,
                 private dbSer: DbService) {
         this.groupList = new Array<GroupModel>();
         this.allLetters = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -33,6 +35,7 @@ export class GroupsComponent implements OnInit, OnDestroy {
 
         console.log('测试开始了呀');
         const groupReq = QueryGroupRequestModel.createMessageModel();
+
         groupReq.userId = '123';
         this.webSocketService.status$.subscribe((status) => {
             if (status === WsStatus.AUTHED) {
@@ -61,8 +64,8 @@ export class GroupsComponent implements OnInit, OnDestroy {
                             this.groupList.push(g);
                             this.dbSer.dbReady$().subscribe((isReady) => {
                                 if (isReady) {
-                                    this.dbSer.storage.executeSql('INSERT INTO "group" (id,name,notice,groupNo,header,isMute,isConfirmJoin) VALUES (?,?, ?,?,?,?,?)',
-                                        [g.id, g.name, g.notice, g.groupNo,g.header, g.isMute, g.isConfirmJoin]);
+                                    this.dbSer.storage.executeSql('INSERT OR REPLACE INTO "group" (id,name,notice,groupNo,header,isMute,isConfirmJoin) VALUES (?,?, ?,?,?,?,?)',
+                                        [g.id, g.name, g.notice, g.groupNo, g.header, g.isMute, g.isConfirmJoin]);
                                     console.log('yes！');
                                 }
                             });
@@ -81,8 +84,12 @@ export class GroupsComponent implements OnInit, OnDestroy {
     }
 
 
-    openCreateGroup(){
+    openCreateGroup() {
 
+    }
+
+    openGroupChat(id, name) {
+        this.router.navigate(['/tabs/im/group-chat', {groupName: name, groupId: id}]);
     }
 
     scrollToTop(letter) {

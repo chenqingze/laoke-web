@@ -9,7 +9,7 @@
             <ion-item-divider color="light" id="{{letter}}">
                 <ion-label class="letter-group">{{letter}}</ion-label>
             </ion-item-divider>
-            <ion-item *ngFor="let h of groupList" lines="none">
+            <ion-item *ngFor="let h of groupList" lines="none" (click)="openGroupChat(h.id,h.name)">
                 <ion-avatar class="avatar-group" slot="start" *ngIf="letter==h.pinyin">
                     <img src="{{h.header}}">
                 </ion-avatar>
