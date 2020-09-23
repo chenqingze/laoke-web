@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {DbService} from './db.service';
 
 
 @NgModule({
@@ -8,7 +7,7 @@ import {DbService} from './db.service';
     imports: [
         CommonModule
     ],
-    providers: [DbService]
+    providers: []
 })
 export class SharedModule {
 }

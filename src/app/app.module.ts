@@ -9,6 +9,7 @@ import {AppComponent} from './app.component';
 import {environment} from '../environments/environment';
 import {ImConfig} from './im/im.config';
 import {SQLite} from '@ionic-native/sqlite/ngx';
+import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
 
 @NgModule({
     declarations: [AppComponent],
@@ -17,11 +18,13 @@ import {SQLite} from '@ionic-native/sqlite/ngx';
         BrowserModule,
         IonicModule.forRoot(),
         AppRoutingModule,
+        HttpClientModule
         // ImModule.forRoot(environment.im)
     ],
     providers: [
         StatusBar,
         SplashScreen,
+        HttpClient,
         SQLite,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
         {provide: ImConfig, useValue: environment.im}

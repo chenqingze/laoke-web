@@ -5,6 +5,7 @@ import {ImConfig, injector} from '../im.config';
 type Constructor<M> = new(...args: any[]) => M;
 
 export abstract class BaseModel {
+    seq: string;
     abstract readonly opCode: OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap];
 
     static createMessageModel<T extends BaseModel>(this: Constructor<T>): T {
@@ -19,6 +20,7 @@ export abstract class BaseModel {
         message.setMagic(injector.get(ImConfig).protocol.magic);
         message.setVersion(injector.get(ImConfig).protocol.version);
         message.setSeq(new Date().getMilliseconds().toString());
+        this.seq = message.getSeq();
         return message;
     }
 

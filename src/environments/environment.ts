@@ -19,7 +19,8 @@ export const environment = {
             reconnectAttempts: 5, // 重连次数
             heartbeatInterval: 1_00000 // 心跳时间间隔
         }
-    } as ImConfig
+    } as ImConfig,
+    msgApiUrl: 'http://localhost:8080'
 };
 
 /*
