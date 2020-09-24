@@ -14,6 +14,7 @@ import {RecentContactsComponent} from './recent-contacts/recent-contacts.compone
 import {RecentContactComponent} from './recent-contacts/recent-contact/recent-contact.component';
 import {SharedModule} from './shared/shared.module';
 import {HttpClient} from '@angular/common/http';
+import {NgPipesModule} from 'ngx-pipes';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import {HttpClient} from '@angular/common/http';
         FormsModule,
         IonicModule,
         ImRoutingModule,
-        SharedModule
+        SharedModule,
+        NgPipesModule
     ],
     declarations: [
         ImPage,

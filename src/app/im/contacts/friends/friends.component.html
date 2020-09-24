@@ -1,5 +1,18 @@
 
-<!-- <p> -->
+ <!--<p>
     friends works! <br />
     <div *ngFor="let item of friends">{{item.id}}</div>
-<!-- </p> -->
+ </p> -->
+
+<ul>
+    <li class="letter" *ngFor="let letter of alphabet">{{letter}}</li>
+</ul>
+<input type="search" [(ngModel)]="searchContent" placeholder="搜索">
+<div *ngFor="let letter of alphabet;">
+    <div *ngIf="(friends1|filterBy:['orderStr']: letter)|filterBy:['orderStr','name']:searchContent;let  filterFriends">
+        <ul *ngIf="filterFriends.length>0">
+            <h3>{{letter}}</h3>
+            <li *ngFor="let friend of filterFriends">{{friend.name}}</li>
+        </ul>
+    </div>
+</div>
