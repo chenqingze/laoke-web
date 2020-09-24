@@ -1,0 +1,38 @@
+.emoji-picker {
+  height: 195px;
+  //border-top: 1px solid #999;
+  //background: rgb(240, 240, 240);
+  background: #f7f7f7;
+}
+
+.emoji-picker .emoji-items {
+  padding: 10px !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.swiper-slide {
+  word-break: break-all!important;
+  display: block!important;
+}
+.emoji-picker .emoji-items .emoji-item {
+  display: block;
+  float: left;
+  width: 12.5%;
+  height: 42px;
+  font-size: 1.2em;
+  line-height: 42px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets{
+  bottom: 0px!important;
+}
+.swiper-pagination-bullet{
+  background: #68CD03!important;
+}
+
+
+.swiper-container{
+  position: unset !important;
+}

@@ -7,7 +7,11 @@ const routes: Routes = [
     {
         path: '',
         component: ImPage
-    }
+    },
+  {
+    path: 'group-chat',
+    loadChildren: () => import('./page/group-chat/group-chat.module').then( m => m.GroupChatPageModule)
+  }
 ];
 
 @NgModule({
