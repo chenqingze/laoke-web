@@ -22,6 +22,8 @@ var Auth_pb = require('./Auth_pb.js');
 goog.object.extend(proto, Auth_pb);
 var Group_pb = require('./Group_pb.js');
 goog.object.extend(proto, Group_pb);
+var Invitation_pb = require('./Invitation_pb.js');
+goog.object.extend(proto, Invitation_pb);
 goog.exportSymbol('proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message', null, global);
 goog.exportSymbol('proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.PayloadCase', null, global);
 /**
@@ -35,7 +37,7 @@ goog.exportSymbol('proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.Payl
  * @constructor
  */
 proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_);
+  jspb.Message.initialize(this, opt_data, 0, 500, null, proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_);
 };
 goog.inherits(proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -54,7 +56,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_ = [[11,12,20,21,22]];
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_ = [[11,12,20,21,22,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010]];
 
 /**
  * @enum {number}
@@ -65,7 +67,17 @@ proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.PayloadCase = {
   AUTH_ACK: 12,
   MSG_REQUEST: 20,
   QUERY_USER_GROUP_REQUEST: 21,
-  QUERY_USER_GROUP_ACK: 22
+  QUERY_USER_GROUP_ACK: 22,
+  FRIEND_INVITATION_REQUEST_REQUEST: 1001,
+  FRIEND_INVITATION_REQUEST_ACK: 1002,
+  FRIEND_INVITATION_ACCEPT_REQUEST: 1003,
+  FRIEND_INVITATION_ACCEPT_ACK: 1004,
+  FRIEND_INVITATION_DECLINED_REQUEST: 1005,
+  FRIEND_INVITATION_DECLINED_ACK: 1006,
+  FRIEND_INVITATION_REQUEST: 1007,
+  FRIEND_INVITATION_ACK: 1008,
+  FRIEND_REQUEST: 1009,
+  FRIEND_ACK: 1010
 };
 
 /**
@@ -114,7 +126,17 @@ proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.toObject = function(inc
     authAck: (f = msg.getAuthAck()) && Auth_pb.AuthAck.toObject(includeInstance, f),
     msgRequest: (f = msg.getMsgRequest()) && Msg_pb.MsgRequest.toObject(includeInstance, f),
     queryUserGroupRequest: (f = msg.getQueryUserGroupRequest()) && Group_pb.QueryUserGroupsRequest.toObject(includeInstance, f),
-    queryUserGroupAck: (f = msg.getQueryUserGroupAck()) && Group_pb.QueryUserGroupsAck.toObject(includeInstance, f)
+    queryUserGroupAck: (f = msg.getQueryUserGroupAck()) && Group_pb.QueryUserGroupsAck.toObject(includeInstance, f),
+    friendInvitationRequestRequest: (f = msg.getFriendInvitationRequestRequest()) && Invitation_pb.FriendInvitationRequestRequest.toObject(includeInstance, f),
+    friendInvitationRequestAck: (f = msg.getFriendInvitationRequestAck()) && Invitation_pb.FriendInvitationRequestAck.toObject(includeInstance, f),
+    friendInvitationAcceptRequest: (f = msg.getFriendInvitationAcceptRequest()) && Invitation_pb.FriendInvitationAcceptRequest.toObject(includeInstance, f),
+    friendInvitationAcceptAck: (f = msg.getFriendInvitationAcceptAck()) && Invitation_pb.FriendInvitationAcceptAck.toObject(includeInstance, f),
+    friendInvitationDeclinedRequest: (f = msg.getFriendInvitationDeclinedRequest()) && Invitation_pb.FriendInvitationDeclinedRequest.toObject(includeInstance, f),
+    friendInvitationDeclinedAck: (f = msg.getFriendInvitationDeclinedAck()) && Invitation_pb.FriendInvitationDeclinedAck.toObject(includeInstance, f),
+    friendInvitationRequest: (f = msg.getFriendInvitationRequest()) && Invitation_pb.FriendInvitationRequest.toObject(includeInstance, f),
+    friendInvitationAck: (f = msg.getFriendInvitationAck()) && Invitation_pb.FriendInvitationAck.toObject(includeInstance, f),
+    friendRequest: (f = msg.getFriendRequest()) && Invitation_pb.FriendRequest.toObject(includeInstance, f),
+    friendAck: (f = msg.getFriendAck()) && Invitation_pb.FriendAck.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -191,6 +213,56 @@ proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.deserializeBinaryFromRe
       var value = new Group_pb.QueryUserGroupsAck;
       reader.readMessage(value,Group_pb.QueryUserGroupsAck.deserializeBinaryFromReader);
       msg.setQueryUserGroupAck(value);
+      break;
+    case 1001:
+      var value = new Invitation_pb.FriendInvitationRequestRequest;
+      reader.readMessage(value,Invitation_pb.FriendInvitationRequestRequest.deserializeBinaryFromReader);
+      msg.setFriendInvitationRequestRequest(value);
+      break;
+    case 1002:
+      var value = new Invitation_pb.FriendInvitationRequestAck;
+      reader.readMessage(value,Invitation_pb.FriendInvitationRequestAck.deserializeBinaryFromReader);
+      msg.setFriendInvitationRequestAck(value);
+      break;
+    case 1003:
+      var value = new Invitation_pb.FriendInvitationAcceptRequest;
+      reader.readMessage(value,Invitation_pb.FriendInvitationAcceptRequest.deserializeBinaryFromReader);
+      msg.setFriendInvitationAcceptRequest(value);
+      break;
+    case 1004:
+      var value = new Invitation_pb.FriendInvitationAcceptAck;
+      reader.readMessage(value,Invitation_pb.FriendInvitationAcceptAck.deserializeBinaryFromReader);
+      msg.setFriendInvitationAcceptAck(value);
+      break;
+    case 1005:
+      var value = new Invitation_pb.FriendInvitationDeclinedRequest;
+      reader.readMessage(value,Invitation_pb.FriendInvitationDeclinedRequest.deserializeBinaryFromReader);
+      msg.setFriendInvitationDeclinedRequest(value);
+      break;
+    case 1006:
+      var value = new Invitation_pb.FriendInvitationDeclinedAck;
+      reader.readMessage(value,Invitation_pb.FriendInvitationDeclinedAck.deserializeBinaryFromReader);
+      msg.setFriendInvitationDeclinedAck(value);
+      break;
+    case 1007:
+      var value = new Invitation_pb.FriendInvitationRequest;
+      reader.readMessage(value,Invitation_pb.FriendInvitationRequest.deserializeBinaryFromReader);
+      msg.setFriendInvitationRequest(value);
+      break;
+    case 1008:
+      var value = new Invitation_pb.FriendInvitationAck;
+      reader.readMessage(value,Invitation_pb.FriendInvitationAck.deserializeBinaryFromReader);
+      msg.setFriendInvitationAck(value);
+      break;
+    case 1009:
+      var value = new Invitation_pb.FriendRequest;
+      reader.readMessage(value,Invitation_pb.FriendRequest.deserializeBinaryFromReader);
+      msg.setFriendRequest(value);
+      break;
+    case 1010:
+      var value = new Invitation_pb.FriendAck;
+      reader.readMessage(value,Invitation_pb.FriendAck.deserializeBinaryFromReader);
+      msg.setFriendAck(value);
       break;
     default:
       reader.skipField();
@@ -287,6 +359,86 @@ proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.serializeBinaryToWriter
       22,
       f,
       Group_pb.QueryUserGroupsAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getFriendInvitationRequestRequest();
+  if (f != null) {
+    writer.writeMessage(
+      1001,
+      f,
+      Invitation_pb.FriendInvitationRequestRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getFriendInvitationRequestAck();
+  if (f != null) {
+    writer.writeMessage(
+      1002,
+      f,
+      Invitation_pb.FriendInvitationRequestAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getFriendInvitationAcceptRequest();
+  if (f != null) {
+    writer.writeMessage(
+      1003,
+      f,
+      Invitation_pb.FriendInvitationAcceptRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getFriendInvitationAcceptAck();
+  if (f != null) {
+    writer.writeMessage(
+      1004,
+      f,
+      Invitation_pb.FriendInvitationAcceptAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getFriendInvitationDeclinedRequest();
+  if (f != null) {
+    writer.writeMessage(
+      1005,
+      f,
+      Invitation_pb.FriendInvitationDeclinedRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getFriendInvitationDeclinedAck();
+  if (f != null) {
+    writer.writeMessage(
+      1006,
+      f,
+      Invitation_pb.FriendInvitationDeclinedAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getFriendInvitationRequest();
+  if (f != null) {
+    writer.writeMessage(
+      1007,
+      f,
+      Invitation_pb.FriendInvitationRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getFriendInvitationAck();
+  if (f != null) {
+    writer.writeMessage(
+      1008,
+      f,
+      Invitation_pb.FriendInvitationAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getFriendRequest();
+  if (f != null) {
+    writer.writeMessage(
+      1009,
+      f,
+      Invitation_pb.FriendRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getFriendAck();
+  if (f != null) {
+    writer.writeMessage(
+      1010,
+      f,
+      Invitation_pb.FriendAck.serializeBinaryToWriter
     );
   }
 };
@@ -546,6 +698,376 @@ proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.clearQueryUse
  */
 proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.hasQueryUserGroupAck = function() {
   return jspb.Message.getField(this, 22) != null;
+};
+
+
+/**
+ * optional FriendInvitationRequestRequest friend_invitation_request_request = 1001;
+ * @return {?proto.FriendInvitationRequestRequest}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.getFriendInvitationRequestRequest = function() {
+  return /** @type{?proto.FriendInvitationRequestRequest} */ (
+    jspb.Message.getWrapperField(this, Invitation_pb.FriendInvitationRequestRequest, 1001));
+};
+
+
+/**
+ * @param {?proto.FriendInvitationRequestRequest|undefined} value
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+*/
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.setFriendInvitationRequestRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1001, proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.clearFriendInvitationRequestRequest = function() {
+  return this.setFriendInvitationRequestRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.hasFriendInvitationRequestRequest = function() {
+  return jspb.Message.getField(this, 1001) != null;
+};
+
+
+/**
+ * optional FriendInvitationRequestAck friend_invitation_request_ack = 1002;
+ * @return {?proto.FriendInvitationRequestAck}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.getFriendInvitationRequestAck = function() {
+  return /** @type{?proto.FriendInvitationRequestAck} */ (
+    jspb.Message.getWrapperField(this, Invitation_pb.FriendInvitationRequestAck, 1002));
+};
+
+
+/**
+ * @param {?proto.FriendInvitationRequestAck|undefined} value
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+*/
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.setFriendInvitationRequestAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1002, proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.clearFriendInvitationRequestAck = function() {
+  return this.setFriendInvitationRequestAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.hasFriendInvitationRequestAck = function() {
+  return jspb.Message.getField(this, 1002) != null;
+};
+
+
+/**
+ * optional FriendInvitationAcceptRequest friend_invitation_accept_request = 1003;
+ * @return {?proto.FriendInvitationAcceptRequest}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.getFriendInvitationAcceptRequest = function() {
+  return /** @type{?proto.FriendInvitationAcceptRequest} */ (
+    jspb.Message.getWrapperField(this, Invitation_pb.FriendInvitationAcceptRequest, 1003));
+};
+
+
+/**
+ * @param {?proto.FriendInvitationAcceptRequest|undefined} value
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+*/
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.setFriendInvitationAcceptRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1003, proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.clearFriendInvitationAcceptRequest = function() {
+  return this.setFriendInvitationAcceptRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.hasFriendInvitationAcceptRequest = function() {
+  return jspb.Message.getField(this, 1003) != null;
+};
+
+
+/**
+ * optional FriendInvitationAcceptAck friend_invitation_accept_ack = 1004;
+ * @return {?proto.FriendInvitationAcceptAck}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.getFriendInvitationAcceptAck = function() {
+  return /** @type{?proto.FriendInvitationAcceptAck} */ (
+    jspb.Message.getWrapperField(this, Invitation_pb.FriendInvitationAcceptAck, 1004));
+};
+
+
+/**
+ * @param {?proto.FriendInvitationAcceptAck|undefined} value
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+*/
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.setFriendInvitationAcceptAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1004, proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.clearFriendInvitationAcceptAck = function() {
+  return this.setFriendInvitationAcceptAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.hasFriendInvitationAcceptAck = function() {
+  return jspb.Message.getField(this, 1004) != null;
+};
+
+
+/**
+ * optional FriendInvitationDeclinedRequest friend_invitation_declined_request = 1005;
+ * @return {?proto.FriendInvitationDeclinedRequest}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.getFriendInvitationDeclinedRequest = function() {
+  return /** @type{?proto.FriendInvitationDeclinedRequest} */ (
+    jspb.Message.getWrapperField(this, Invitation_pb.FriendInvitationDeclinedRequest, 1005));
+};
+
+
+/**
+ * @param {?proto.FriendInvitationDeclinedRequest|undefined} value
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+*/
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.setFriendInvitationDeclinedRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1005, proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.clearFriendInvitationDeclinedRequest = function() {
+  return this.setFriendInvitationDeclinedRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.hasFriendInvitationDeclinedRequest = function() {
+  return jspb.Message.getField(this, 1005) != null;
+};
+
+
+/**
+ * optional FriendInvitationDeclinedAck friend_invitation_declined_ack = 1006;
+ * @return {?proto.FriendInvitationDeclinedAck}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.getFriendInvitationDeclinedAck = function() {
+  return /** @type{?proto.FriendInvitationDeclinedAck} */ (
+    jspb.Message.getWrapperField(this, Invitation_pb.FriendInvitationDeclinedAck, 1006));
+};
+
+
+/**
+ * @param {?proto.FriendInvitationDeclinedAck|undefined} value
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+*/
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.setFriendInvitationDeclinedAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1006, proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.clearFriendInvitationDeclinedAck = function() {
+  return this.setFriendInvitationDeclinedAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.hasFriendInvitationDeclinedAck = function() {
+  return jspb.Message.getField(this, 1006) != null;
+};
+
+
+/**
+ * optional FriendInvitationRequest friend_invitation_request = 1007;
+ * @return {?proto.FriendInvitationRequest}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.getFriendInvitationRequest = function() {
+  return /** @type{?proto.FriendInvitationRequest} */ (
+    jspb.Message.getWrapperField(this, Invitation_pb.FriendInvitationRequest, 1007));
+};
+
+
+/**
+ * @param {?proto.FriendInvitationRequest|undefined} value
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+*/
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.setFriendInvitationRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1007, proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.clearFriendInvitationRequest = function() {
+  return this.setFriendInvitationRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.hasFriendInvitationRequest = function() {
+  return jspb.Message.getField(this, 1007) != null;
+};
+
+
+/**
+ * optional FriendInvitationAck friend_invitation_ack = 1008;
+ * @return {?proto.FriendInvitationAck}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.getFriendInvitationAck = function() {
+  return /** @type{?proto.FriendInvitationAck} */ (
+    jspb.Message.getWrapperField(this, Invitation_pb.FriendInvitationAck, 1008));
+};
+
+
+/**
+ * @param {?proto.FriendInvitationAck|undefined} value
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+*/
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.setFriendInvitationAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1008, proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.clearFriendInvitationAck = function() {
+  return this.setFriendInvitationAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.hasFriendInvitationAck = function() {
+  return jspb.Message.getField(this, 1008) != null;
+};
+
+
+/**
+ * optional FriendRequest friend_request = 1009;
+ * @return {?proto.FriendRequest}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.getFriendRequest = function() {
+  return /** @type{?proto.FriendRequest} */ (
+    jspb.Message.getWrapperField(this, Invitation_pb.FriendRequest, 1009));
+};
+
+
+/**
+ * @param {?proto.FriendRequest|undefined} value
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+*/
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.setFriendRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1009, proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.clearFriendRequest = function() {
+  return this.setFriendRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.hasFriendRequest = function() {
+  return jspb.Message.getField(this, 1009) != null;
+};
+
+
+/**
+ * optional FriendAck friend_ack = 1010;
+ * @return {?proto.FriendAck}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.getFriendAck = function() {
+  return /** @type{?proto.FriendAck} */ (
+    jspb.Message.getWrapperField(this, Invitation_pb.FriendAck, 1010));
+};
+
+
+/**
+ * @param {?proto.FriendAck|undefined} value
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+*/
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.setFriendAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1010, proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.clearFriendAck = function() {
+  return this.setFriendAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.hasFriendAck = function() {
+  return jspb.Message.getField(this, 1010) != null;
 };
 
 

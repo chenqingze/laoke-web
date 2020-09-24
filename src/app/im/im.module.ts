@@ -13,6 +13,7 @@ import {GroupsComponent} from './contacts/groups/groups.component';
 import {RecentContactsComponent} from './recent-contacts/recent-contacts.component';
 import {RecentContactComponent} from './recent-contacts/recent-contact/recent-contact.component';
 import {SharedModule} from './shared/shared.module';
+import {NgPipesModule} from 'ngx-pipes';
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import {SharedModule} from './shared/shared.module';
         FormsModule,
         IonicModule,
         ImRoutingModule,
-        SharedModule
+        SharedModule,
+        NgPipesModule
     ],
     declarations: [
         ImPage,

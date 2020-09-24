@@ -17,8 +17,8 @@ export class DbService {
     readonly createTableSqlStatements: string [] = [
         // todo:完善需要创建的表 sql,这里写了个测试
             `CREATE TABLE IF NOT EXISTS testTab( id INTEGER PRIMARY KEY AUTOINCREMENT, artist_name TEXT, song_name TEXT)`,
-            `CREATE TABLE IF NOT EXISTS friend(id VARCHAR PRIMARY KEY, userId VARCHAR, profilePhoto VARCHAR, alias VARCHAR, isBlocked BOOLEAN, `
-                +`isMute BOOLEAN, isStickOnTop BOOLEAN, status VARCHAR(32), createdAt NUMBER(32),updatedAt NUMBER(32))`,
+            `CREATE TABLE IF NOT EXISTS friend(id VARCHAR PRIMARY KEY, userId VARCHAR, userName VARCHAR, profilePhoto VARCHAR, alias VARCHAR, `
+                +` isBlocked BOOLEAN, isMute BOOLEAN, isStickOnTop BOOLEAN, status VARCHAR(32), createdAt NUMBER(32),updatedAt NUMBER(32))`,
             `CREATE TABLE IF NOT EXISTS invitation( id VARCHAR PRIMARY KEY, requesterId VARCHAR, requesterAlias VARCHAR, requesterNickname VARCHAR, `
                 +`requesterProfile VARCHAR, addresseeId VARCHAR, addresseeAlias VARCHAR, addresseeNickname VARCHAR, addresseeProfile VARCHAR, `
                 +`inviteStatus VARCHAR, readStatus NUMBER, content VARCHAR, inviteType VARCHAR, createdAt NUMBER(32), updatedAt NUMBER(32))`,
