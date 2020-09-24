@@ -6,6 +6,8 @@ import {AuthAckModel} from '../auth/auth-ack.model';
 import {GroupModel} from '../contacts/groups/group.model';
 import {QueryUserGroupsAck} from './lib/Group_pb';
 import {QueryGroupAckModel} from '../contacts/groups/query-group-ack.model';
+import {MucMsgModel} from '../page/group-chat/muc-msg.model';
+import {GroupMsgRequestModel} from '../page/group-chat/group-msg-request.model';
 
 
 export class MessageTool {
@@ -19,6 +21,8 @@ export class MessageTool {
                 return AuthAckModel.createMessageModel().convertMessageToModel(message);
             case OpCode.QUERY_USER_GROUP_ACK:
                 return QueryGroupAckModel.createMessageModel().convertMessageToModel(message);
+            case OpCode.MSG_REQUEST:
+                return GroupMsgRequestModel.createMessageModel().convertMessageToModel(message);
             case OpCode.UNKNOWN:
             default:
                 throw new Error('opCode is not found.');

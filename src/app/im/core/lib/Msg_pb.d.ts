@@ -31,6 +31,9 @@ export class MsgRequest extends jspb.Message {
   getExtendData(): string;
   setExtendData(value: string): void;
 
+  getSenderId(): string;
+  setSenderId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MsgRequest.AsObject;
   static toObject(includeInstance: boolean, msg: MsgRequest): MsgRequest.AsObject;
@@ -52,12 +55,16 @@ export namespace MsgRequest {
     content: string,
     time: number,
     extendData: string,
+    senderId: string,
   }
 }
 
 export class MsgAck extends jspb.Message {
   getMsgId(): string;
   setMsgId(value: string): void;
+
+  getSeq(): string;
+  setSeq(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MsgAck.AsObject;
@@ -72,6 +79,7 @@ export class MsgAck extends jspb.Message {
 export namespace MsgAck {
   export type AsObject = {
     msgId: string,
+    seq: string,
   }
 }
 

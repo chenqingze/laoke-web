@@ -13,11 +13,13 @@ message MsgRequest {
   string content = 7; // 消息内容
   uint32 time = 8; // 发送时间
   string extend_data = 9; // 扩展字段
+  string sender_id = 10; // 发送者
 }
 
 // 消息发送请求收到确认
 message MsgAck {
   string msg_id = 1; // 消息id
+  string seq = 2;
 }
 
 

@@ -99,6 +99,8 @@ export class WebSocketService implements OnDestroy {
             message => {
                 console.log('收到消息', message);
                 this.wsMessages$.next(message);
+            }, error => {
+                console.log(error);
             }
         );
     }
