@@ -9,4 +9,5 @@ export class MucMsgModel{
     senderName;
     lastChatTime;
     width;
+    seq;
 }

@@ -66,6 +66,9 @@ export class MsgAck extends jspb.Message {
   getSeq(): string;
   setSeq(value: string): void;
 
+  getConversationType(): string;
+  setConversationType(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MsgAck.AsObject;
   static toObject(includeInstance: boolean, msg: MsgAck): MsgAck.AsObject;
@@ -80,6 +83,7 @@ export namespace MsgAck {
   export type AsObject = {
     msgId: string,
     seq: string,
+    conversationType: string,
   }
 }
 

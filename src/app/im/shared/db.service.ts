@@ -2,13 +2,11 @@ import {Injectable} from '@angular/core';
 import {Platform} from '@ionic/angular';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {SQLite, SQLiteObject} from '@ionic-native/sqlite/ngx';
-import { ImModule } from '../im.module';
-import { root } from 'rxjs/internal/util/root';
 
 
 @Injectable({
     providedIn: 'root'
-  })
+})
 export class DbService {
     private window: any = window;
     storage: SQLiteObject | any;
@@ -17,11 +15,13 @@ export class DbService {
     readonly createTableSqlStatements: string [] = [
         // todo:完善需要创建的表 sql,这里写了个测试
             `CREATE TABLE IF NOT EXISTS testTab( id INTEGER PRIMARY KEY AUTOINCREMENT, artist_name TEXT, song_name TEXT)`,
+            `CREATE TABLE IF NOT EXISTS msg_hist(seq NUMBER(32),id VARCHAR,conversationType VARCHAR,conversationId VARCHAR,senderId NUMBER ,msgDirection VARCHAR,msgType VARCHAR,msgStatus VARCHAR,content VARCHAR,createdAt NUMBER(32),updatedAt NUMBER(32),revokeAt NUMBER(32))`,
+
             `CREATE TABLE IF NOT EXISTS friend(id VARCHAR PRIMARY KEY, userId VARCHAR, userName VARCHAR, profilePhoto VARCHAR, alias VARCHAR, `
-                +` isBlocked BOOLEAN, isMute BOOLEAN, isStickOnTop BOOLEAN, status VARCHAR(32), createdAt NUMBER(32),updatedAt NUMBER(32))`,
+        + ` isBlocked BOOLEAN, isMute BOOLEAN, isStickOnTop BOOLEAN, status VARCHAR(32), createdAt NUMBER(32),updatedAt NUMBER(32))`,
             `CREATE TABLE IF NOT EXISTS invitation( id VARCHAR PRIMARY KEY, requesterId VARCHAR, requesterAlias VARCHAR, requesterNickname VARCHAR, `
-                +`requesterProfile VARCHAR, addresseeId VARCHAR, addresseeAlias VARCHAR, addresseeNickname VARCHAR, addresseeProfile VARCHAR, `
-                +`inviteStatus VARCHAR, readStatus NUMBER, content VARCHAR, inviteType VARCHAR, createdAt NUMBER(32), updatedAt NUMBER(32))`,
+        + `requesterProfile VARCHAR, addresseeId VARCHAR, addresseeAlias VARCHAR, addresseeNickname VARCHAR, addresseeProfile VARCHAR, `
+        + `inviteStatus VARCHAR, readStatus NUMBER, content VARCHAR, inviteType VARCHAR, createdAt NUMBER(32), updatedAt NUMBER(32))`,
             `CREATE TABLE IF NOT EXISTS "group" (id TEXT PRIMARY KEY,name TEXT, notice TEXT,groupNo TEXT,header TEXT,isMute BOOLEAN, isConfirmJoin BOOLEAN)`
     ];
 

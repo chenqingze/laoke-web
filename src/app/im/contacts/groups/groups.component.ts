@@ -8,6 +8,8 @@ import {GroupModel} from './group.model';
 import {DbService} from '../../shared/db.service';
 import {IonContent} from '@ionic/angular';
 import {Router} from '@angular/router';
+import {type} from 'os';
+import {tap} from 'rxjs/operators';
 
 @Component({
     selector: 'app-groups',

@@ -37,6 +37,11 @@ export class Message extends jspb.Message {
   getMsgRequest(): Msg_pb.MsgRequest | undefined;
   setMsgRequest(value?: Msg_pb.MsgRequest): void;
 
+  hasMsgAck(): boolean;
+  clearMsgAck(): void;
+  getMsgAck(): Msg_pb.MsgAck | undefined;
+  setMsgAck(value?: Msg_pb.MsgAck): void;
+
   hasQueryUserGroupRequest(): boolean;
   clearQueryUserGroupRequest(): void;
   getQueryUserGroupRequest(): Group_pb.QueryUserGroupsRequest | undefined;
@@ -117,6 +122,7 @@ export namespace Message {
     authRequest?: Auth_pb.AuthRequest.AsObject,
     authAck?: Auth_pb.AuthAck.AsObject,
     msgRequest?: Msg_pb.MsgRequest.AsObject,
+    msgAck?: Msg_pb.MsgAck.AsObject,
     queryUserGroupRequest?: Group_pb.QueryUserGroupsRequest.AsObject,
     queryUserGroupAck?: Group_pb.QueryUserGroupsAck.AsObject,
     friendInvitationRequestRequest?: Invitation_pb.FriendInvitationRequestRequest.AsObject,
@@ -136,6 +142,7 @@ export namespace Message {
     AUTH_REQUEST = 11,
     AUTH_ACK = 12,
     MSG_REQUEST = 20,
+    MSG_ACK = 23,
     QUERY_USER_GROUP_REQUEST = 21,
     QUERY_USER_GROUP_ACK = 22,
     FRIEND_INVITATION_REQUEST_REQUEST = 1001,

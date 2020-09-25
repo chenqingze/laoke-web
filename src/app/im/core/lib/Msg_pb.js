@@ -251,7 +251,7 @@ proto.MsgRequest.deserializeBinaryFromReader = function(msg, reader) {
       msg.setContent(value);
       break;
     case 8:
-      var value = /** @type {number} */ (reader.readUint32());
+      var value = /** @type {number} */ (reader.readUint64());
       msg.setTime(value);
       break;
     case 9:
@@ -342,7 +342,7 @@ proto.MsgRequest.serializeBinaryToWriter = function(message, writer) {
   }
   f = message.getTime();
   if (f !== 0) {
-    writer.writeUint32(
+    writer.writeUint64(
       8,
       f
     );
@@ -491,7 +491,7 @@ proto.MsgRequest.prototype.setContent = function(value) {
 
 
 /**
- * optional uint32 time = 8;
+ * optional uint64 time = 8;
  * @return {number}
  */
 proto.MsgRequest.prototype.getTime = function() {
@@ -577,7 +577,8 @@ proto.MsgAck.prototype.toObject = function(opt_includeInstance) {
 proto.MsgAck.toObject = function(includeInstance, msg) {
   var f, obj = {
     msgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    seq: jspb.Message.getFieldWithDefault(msg, 2, "")
+    seq: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    conversationType: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -622,6 +623,10 @@ proto.MsgAck.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setSeq(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setConversationType(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -665,6 +670,13 @@ proto.MsgAck.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getConversationType();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -701,6 +713,24 @@ proto.MsgAck.prototype.getSeq = function() {
  */
 proto.MsgAck.prototype.setSeq = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string conversation_type = 3;
+ * @return {string}
+ */
+proto.MsgAck.prototype.getConversationType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.MsgAck} returns this
+ */
+proto.MsgAck.prototype.setConversationType = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

@@ -1,20 +1,19 @@
 import {BaseModel} from '../../core/base.model';
 import {Message} from '../../core/lib/Message_pb';
-import {OpCode, OpCodeMap} from '../../core/lib/OpCode_pb';
-import {QueryUserGroupsRequest} from '../../core/lib/Group_pb';
+import {OpCode} from '../../core/lib/OpCode_pb';
 import {MsgRequest} from '../../core/lib/Msg_pb';
 
-export class GroupMsgRequestModel extends BaseModel{
-    msgId; // 消息id、可由发送方生成,用户消息去重,这里由MsgAck 返回给客户端，且返回时携带相同seq
-    conversationId;
-    conversationType;
-    msgStatus;
-    msgType;
-    msgAttachStr;
-    content;
-    time;
-    extendData;
-    senderId;
+export class GroupMsgRequestModel extends BaseModel {
+    msgId: string;
+    conversationId: string;
+    conversationType: number;
+    msgStatus: number;
+    msgType: number;
+    msgAttachstr: string;
+    content: string;
+    time: number;
+    extendData: string;
+    senderId: string;
 
 
     readonly opCode = OpCode.MSG_REQUEST;
@@ -26,7 +25,7 @@ export class GroupMsgRequestModel extends BaseModel{
         this.conversationType = groupMsgRequest.getConversationType();
         this.msgStatus = groupMsgRequest.getMsgStatus();
         this.msgType = groupMsgRequest.getMsgType();
-        this.msgAttachStr = groupMsgRequest.getMsgAttachstr();
+        this.msgAttachstr = groupMsgRequest.getMsgAttachstr();
         this.content = groupMsgRequest.getContent();
         this.time = groupMsgRequest.getTime();
         this.extendData = groupMsgRequest.getExtendData();
@@ -36,14 +35,14 @@ export class GroupMsgRequestModel extends BaseModel{
 
     convertToMessage(): Message {
         const groupMsgRequest = new MsgRequest();
-        groupMsgRequest.setMsgId('');
+        groupMsgRequest.setMsgId('123');
         groupMsgRequest.setConversationId(this.conversationId);
-        groupMsgRequest.setConversationType(this.conversationType);
-        groupMsgRequest.setMsgStatus(this.msgStatus);
+        groupMsgRequest.setConversationType(1);
+        groupMsgRequest.setMsgStatus(0);
         groupMsgRequest.setMsgType(this.msgType);
-        groupMsgRequest.setMsgAttachstr(this.msgAttachStr);
+        groupMsgRequest.setMsgAttachstr(this.msgAttachstr);
         groupMsgRequest.setContent(this.content);
-        groupMsgRequest.setTime(new Date().getTime());
+        groupMsgRequest.setTime(this.time);
         groupMsgRequest.setSenderId(this.senderId);
         const message = this.createMessage();
         message.setOpCode(this.opCode);
