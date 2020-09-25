@@ -23,6 +23,14 @@ const routes: Routes = [
   {
     path: 'check-new-friend',
     loadChildren: () => import('./addfriendgroup/check-new-friend/check-new-friend.module').then(m => m.CheckNewFriendPageModule)
+  },
+  {
+    path: 'group-chat-setting',
+    loadChildren: () => import('./page/group-chat-setting/group-chat-setting.module').then( m => m.GroupChatSettingPageModule)
+  },
+  {
+    path: 'group-info',
+    loadChildren: () => import('./page/group-info/group-info.module').then( m => m.GroupInfoPageModule)
   }
 
 

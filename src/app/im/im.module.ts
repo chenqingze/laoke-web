@@ -16,6 +16,7 @@ import {RecentContactComponent} from './recent-contacts/recent-contact/recent-co
 import {HttpClient} from '@angular/common/http';
 import {NgPipesModule} from 'ngx-pipes';
 import {InvitationService} from './addfriendgroup/shared/invitation.service';
+import { MucHeaderPipe } from './shared/pipe/muc-header/muc-header.pipe';
 
 @NgModule({
     imports: [
@@ -33,7 +34,8 @@ import {InvitationService} from './addfriendgroup/shared/invitation.service';
         DiscoveryComponent,
         FansComponent,
         FriendsComponent,
-        GroupsComponent
+        GroupsComponent,
+        MucHeaderPipe
     ],
 })
 export class ImModule {

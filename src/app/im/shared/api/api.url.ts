@@ -6,6 +6,8 @@ export const API_URL = {
     TALK_GROUP: {
         getGroupInfoById: `${API_HOST}/group/`,
         getUserInGroup: `${API_HOST}/in/`,
+        getUser: `${API_HOST}/user/`,
+
     },
 
     FRIEND:{
