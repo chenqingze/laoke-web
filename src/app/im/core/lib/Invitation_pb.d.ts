@@ -71,11 +71,14 @@ export class Friend extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  getUserid(): string;
-  setUserid(value: string): void;
+  getUserid(): number;
+  setUserid(value: number): void;
 
-  getFriendid(): string;
-  setFriendid(value: string): void;
+  getFriendid(): number;
+  setFriendid(value: number): void;
+
+  getFriendname(): string;
+  setFriendname(value: string): void;
 
   getAlias(): string;
   setAlias(value: string): void;
@@ -108,8 +111,9 @@ export class Friend extends jspb.Message {
 export namespace Friend {
   export type AsObject = {
     id: string,
-    userid: string,
-    friendid: string,
+    userid: number,
+    friendid: number,
+    friendname: string,
     alias: string,
     isblocked: number,
     ismute: number,

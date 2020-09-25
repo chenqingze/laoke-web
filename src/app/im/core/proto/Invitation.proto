@@ -21,24 +21,24 @@ message Invitation{
 // 好友
 message Friend{
   string id = 1;
-  uint64 userId = 2 [jstype = JS_STRING];
-  uint64 friendId = 3 [jstype = JS_STRING];
-  string alias = 4;
-  uint32 isBlocked = 5;
-  uint32 isMute = 6;
-  uint32 isStickOnTop = 7;
-  uint32 createdAt = 8;
-  uint32 updatedAt = 9;
+  uint64 userId = 2;
+  uint64 friendId = 3;
+  string friendName = 4;
+  string alias = 5;
+  uint32 isBlocked = 6;
+  uint32 isMute = 7;
+  uint32 isStickOnTop = 8;
+  uint32 createdAt = 9;
+  uint32 updatedAt = 10;
 }
 
 //-------------------------------------------------发送好友邀请-[发送方]----------------------------------------
 
 // 发送好友邀请
 message FriendInvitationRequestRequest{
-  string id = 1;
-  uint64 addresseeId = 2 [jstype = JS_STRING];
-  string addresseeAlias = 3;
-  string content = 4;
+  uint64 addresseeId = 1 [jstype = JS_STRING];
+  string addresseeAlias = 2;
+  string content = 3;
 }
 
 //---------------------------------------------发送好友邀请ack-[发送方]-and-[接收方]--------------------------------

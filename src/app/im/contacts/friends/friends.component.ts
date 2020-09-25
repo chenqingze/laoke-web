@@ -1,7 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { DbService } from '../../shared/db.service';
 import { Friend } from './friend.model';
-import { FriendService } from './service/friend.service';
+import { FriendService } from './shared/friend.service';
+import {concatMap, mergeMap} from 'rxjs/operators';
+import {forkJoin, of} from 'rxjs';
 
 @Component({
     selector: 'app-friends',
@@ -14,13 +16,15 @@ export class FriendsComponent implements OnInit {
 
     constructor(private friendService:FriendService) {
         this.friends = [];
+
+
     }
 
     ngOnInit() {
         console.log("friends ngOnInit ...")
         this.friendService.getFriend().subscribe((friendResult)=>{
             if(friendResult != null){
-                this.friends=friendResult.rows;      
+                this.friends=friendResult.rows;
             }
         })
     }

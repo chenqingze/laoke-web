@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="mr-d16">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>新朋友</ion-title>
+    <!--<ion-buttons class="header-searchbtn" slot="end" [routerLink]="['/tabs/im/add-friends']">
+      <span class="fontS-d32" fill="clear" >{{'ADD'|translate}}</span>
+    </ion-buttons>-->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!--<ion-list lines="none" class="ion-padding-top">
+    <ion-item-sliding *ngFor="let item of invitations;" detail="false" class="mb-d32">
+      <ion-item>
+        <ion-thumbnail slot="start" class="header-img">
+          <img src="{{item.userId == item.requesterId ? (item.addresseeProfile | imgUrl) : (item.requesterProfile | imgUrl)}}">
+        </ion-thumbnail>
+        <ion-label class="label">
+          <ion-row class="ion-align-items-center">
+            <ion-col size="7">
+              <div class="title line-clamp">{{item.userId == item.requesterId ? item.addresseeNickname : item.requesterNickname}}</div>
+              <div class="fontS-d28 color9 line-clamp qianming-content">{{item.content}}</div>
+            </ion-col>
+            <ion-col size="5" class="ion-text-right">
+              <div class="fontS-d24" *ngIf="(item.userId == item.requesterId) && (item.status == 'request')">等待验证</div>
+              <div class="fontS-d24" *ngIf="item.userId == item.requesterId && item.status == 'accepted'">已添加</div>
+              <div class="fontS-d24" *ngIf="item.userId == item.requesterId && item.status == 'declined'">被拒绝</div>
+              <div class="ion-flex ion-justify-content-end">
+                <div class="fontS-d24 refuse-btn" *ngIf="(item.userId == item.addresseeId) && (item.status == 'request')" (click)="decline($event,item)">拒绝</div>
+                <div class="fontS-d24 accept-btn" *ngIf="(item.userId == item.addresseeId) && (item.status == 'request')" (click)="accept($event,item)">接受</div>
+              </div>
+              <div class="fontS-d24" *ngIf="item.userId == item.addresseeId && item.status == 'accepted'">已同意</div>
+              <div class="fontS-d24" *ngIf="item.userId == item.addresseeId && item.status == 'declined'">已拒绝</div>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="delInvitation(item)">删除记录</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>-->
+
+</ion-content>

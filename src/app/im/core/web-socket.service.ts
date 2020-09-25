@@ -1,6 +1,6 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {WebSocketSubject, WebSocketSubjectConfig} from 'rxjs/internal-compatibility';
-import {Observable, of, PartialObserver, Subject, Subscription, SubscriptionLike, timer} from 'rxjs';
+import {Observable, PartialObserver, Subject, Subscription, SubscriptionLike, timer} from 'rxjs';
 import {ImConfig} from '../im.config';
 import {webSocket} from 'rxjs/webSocket';
 import {BaseModel} from './base.model';
@@ -126,17 +126,16 @@ export class WebSocketService implements OnDestroy {
      */
     private messageFilterExpression(model: BaseModel, opCodeArg: OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap]
         | OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap] []): boolean {
-        let result = false;
         if (opCodeArg instanceof Array) {
             for (const opCode of opCodeArg) {
-                result = result || (model.opCode === opCode);
+                if (model.opCode === opCode) {
+                    return true;
+                }
             }
+            return false;
         } else {
-            result = model.opCode === opCodeArg;
+            return model.opCode === opCodeArg;
         }
-
-        return result;
-
     }
 
     sendMessage(messageModel: BaseModel): void {

@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="mr-d16">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" class="mr-d24">
+      <span class="fontS-d28 colorf publish-btn" (click)="addFriend()">发送</span>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none" class="pt-d62">
+    <ion-item class="ml-d38">
+      <ion-avatar class="header-img">
+<!--        <img src="{{profile|imgUrl}}">-->
+        <img src="{{profile}}">
+      </ion-avatar>
+      <ion-label class="ml-d28">
+        <h3 class="title">{{nickname}}</h3>
+        <!-- <p class="sign-name">用户的个性签名</p> -->
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <div class="ml-d32 mr-d32 mt-d84">
+    <ion-row>
+      <ion-col size="12" class="fontS-d28 color6 mb-d24">添加好友申请</ion-col>
+      <ion-col size="12" style="background: #F6F6F6;height: 1.8rem;border-radius: 0.1rem">
+        <ion-textarea [(ngModel)]="content" class="user-nickname"></ion-textarea>
+      </ion-col>
+    </ion-row>
+    <ion-row class="mt-d64">
+      <ion-col size="12" class="fontS-d28 color6">设置备注名称</ion-col>
+    </ion-row>
+    <ion-row class="mt-d24">
+      <ion-col size="12">
+        <ion-input class="fontS-d32" placeholder="编辑备注名" [(ngModel)]="alias"></ion-input>
+      </ion-col>
+    </ion-row>
+    <!--<ion-row class="mt-d64">
+      <ion-col size="12">
+        <ion-button shape="round" fill="outline" (click)="addFriend()">发送</ion-button>
+      </ion-col>
+    </ion-row>-->
+    <!-- <ion-row class="mt-d64">
+      <ion-col>
+        <ion-button shape="round" fill="outline">拒绝</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button shape="round">接受</ion-button>
+      </ion-col>
+    </ion-row> -->
+  </div>
+
+</ion-content>

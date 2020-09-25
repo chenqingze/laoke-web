@@ -1,0 +1,39 @@
+
+.header-img {
+  margin-right: 0;
+  width: 1.38rem;
+  height: 1.38rem;
+
+}
+
+.title{
+  font-size: 0.42rem;
+}
+.sign-name{
+  font-size: 0.32rem;
+  color: #666666;
+  margin-top: 0.2rem;
+}
+.user-nickname{
+  margin-left: 0.36rem;
+  margin-top: 0.32rem;
+}
+.sc-ion-input-ios-h{
+  padding: 0.3rem !important;
+  background: #f6f6f6;
+}
+ion-button{
+  --padding-start: 1.2rem;
+  --padding-end: 1.2rem;
+}
+.publish-btn {
+  background: #e52200;
+  border-radius: 0.3rem;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  margin: 0 auto;
+  padding: 0.14rem 0.32rem;
+  line-height: 1;
+}
+
