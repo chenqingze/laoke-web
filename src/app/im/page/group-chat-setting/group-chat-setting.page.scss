@@ -1,0 +1,54 @@
+.avatar-img {
+  width: 0.96rem;
+  height: 0.96rem;
+  display: inline-block;
+}
+
+.avatar-img:nth-child(2n) {
+  margin-left: 0.28rem;
+  margin-right: 0.28rem;
+}
+
+.avatar-add {
+  background: #EEEEEE;
+  text-align: center;
+
+  .iconupload-photo {
+    display: inline-block;
+    margin-top: 18%;
+  }
+}
+
+.list-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+}
+
+.group-gonggao-title {
+  padding: 0.4rem 0 0.2rem;
+}
+
+.group-notice {
+  padding-bottom: 0.4rem;
+}
+
+.list-row-toggle {
+  padding: 0.3rem 0;
+  align-items: center;
+}
+
+ion-content {
+  --background: #f6f6f6;
+}
+
+.dismiss-group {
+  margin-top: 0.2rem;
+  background: #FFFFFF;
+  margin-bottom: 1rem;
+}
+
+.line-clamp-3 {
+  white-space: pre-wrap !important;
+}
