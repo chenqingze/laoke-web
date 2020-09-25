@@ -769,14 +769,15 @@ proto.Friend.prototype.toObject = function(opt_includeInstance) {
 proto.Friend.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    userid: jspb.Message.getFieldWithDefault(msg, 2, "0"),
-    friendid: jspb.Message.getFieldWithDefault(msg, 3, "0"),
-    alias: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    isblocked: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    ismute: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    isstickontop: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    createdat: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    updatedat: jspb.Message.getFieldWithDefault(msg, 9, 0)
+    userid: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    friendid: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    friendname: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    alias: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    isblocked: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    ismute: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    isstickontop: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    createdat: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    updatedat: jspb.Message.getFieldWithDefault(msg, 10, 0)
   };
 
   if (includeInstance) {
@@ -818,34 +819,38 @@ proto.Friend.deserializeBinaryFromReader = function(msg, reader) {
       msg.setId(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readUint64String());
+      var value = /** @type {number} */ (reader.readUint64());
       msg.setUserid(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readUint64String());
+      var value = /** @type {number} */ (reader.readUint64());
       msg.setFriendid(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAlias(value);
+      msg.setFriendname(value);
       break;
     case 5:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setIsblocked(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAlias(value);
       break;
     case 6:
       var value = /** @type {number} */ (reader.readUint32());
-      msg.setIsmute(value);
+      msg.setIsblocked(value);
       break;
     case 7:
       var value = /** @type {number} */ (reader.readUint32());
-      msg.setIsstickontop(value);
+      msg.setIsmute(value);
       break;
     case 8:
       var value = /** @type {number} */ (reader.readUint32());
-      msg.setCreatedat(value);
+      msg.setIsstickontop(value);
       break;
     case 9:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setCreatedat(value);
+      break;
+    case 10:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setUpdatedat(value);
       break;
@@ -886,58 +891,65 @@ proto.Friend.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getUserid();
-  if (parseInt(f, 10) !== 0) {
-    writer.writeUint64String(
+  if (f !== 0) {
+    writer.writeUint64(
       2,
       f
     );
   }
   f = message.getFriendid();
-  if (parseInt(f, 10) !== 0) {
-    writer.writeUint64String(
+  if (f !== 0) {
+    writer.writeUint64(
       3,
       f
     );
   }
-  f = message.getAlias();
+  f = message.getFriendname();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getIsblocked();
-  if (f !== 0) {
-    writer.writeUint32(
+  f = message.getAlias();
+  if (f.length > 0) {
+    writer.writeString(
       5,
       f
     );
   }
-  f = message.getIsmute();
+  f = message.getIsblocked();
   if (f !== 0) {
     writer.writeUint32(
       6,
       f
     );
   }
-  f = message.getIsstickontop();
+  f = message.getIsmute();
   if (f !== 0) {
     writer.writeUint32(
       7,
       f
     );
   }
-  f = message.getCreatedat();
+  f = message.getIsstickontop();
   if (f !== 0) {
     writer.writeUint32(
       8,
       f
     );
   }
-  f = message.getUpdatedat();
+  f = message.getCreatedat();
   if (f !== 0) {
     writer.writeUint32(
       9,
+      f
+    );
+  }
+  f = message.getUpdatedat();
+  if (f !== 0) {
+    writer.writeUint32(
+      10,
       f
     );
   }
@@ -964,45 +976,45 @@ proto.Friend.prototype.setId = function(value) {
 
 /**
  * optional uint64 userId = 2;
- * @return {string}
+ * @return {number}
  */
 proto.Friend.prototype.getUserid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, "0"));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {number} value
  * @return {!proto.Friend} returns this
  */
 proto.Friend.prototype.setUserid = function(value) {
-  return jspb.Message.setProto3StringIntField(this, 2, value);
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
  * optional uint64 friendId = 3;
- * @return {string}
+ * @return {number}
  */
 proto.Friend.prototype.getFriendid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, "0"));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {number} value
  * @return {!proto.Friend} returns this
  */
 proto.Friend.prototype.setFriendid = function(value) {
-  return jspb.Message.setProto3StringIntField(this, 3, value);
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional string alias = 4;
+ * optional string friendName = 4;
  * @return {string}
  */
-proto.Friend.prototype.getAlias = function() {
+proto.Friend.prototype.getFriendname = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -1011,34 +1023,34 @@ proto.Friend.prototype.getAlias = function() {
  * @param {string} value
  * @return {!proto.Friend} returns this
  */
-proto.Friend.prototype.setAlias = function(value) {
+proto.Friend.prototype.setFriendname = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional uint32 isBlocked = 5;
+ * optional string alias = 5;
+ * @return {string}
+ */
+proto.Friend.prototype.getAlias = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.Friend} returns this
+ */
+proto.Friend.prototype.setAlias = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional uint32 isBlocked = 6;
  * @return {number}
  */
 proto.Friend.prototype.getIsblocked = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.Friend} returns this
- */
-proto.Friend.prototype.setIsblocked = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
-};
-
-
-/**
- * optional uint32 isMute = 6;
- * @return {number}
- */
-proto.Friend.prototype.getIsmute = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
@@ -1047,16 +1059,16 @@ proto.Friend.prototype.getIsmute = function() {
  * @param {number} value
  * @return {!proto.Friend} returns this
  */
-proto.Friend.prototype.setIsmute = function(value) {
+proto.Friend.prototype.setIsblocked = function(value) {
   return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
 /**
- * optional uint32 isStickOnTop = 7;
+ * optional uint32 isMute = 7;
  * @return {number}
  */
-proto.Friend.prototype.getIsstickontop = function() {
+proto.Friend.prototype.getIsmute = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
@@ -1065,16 +1077,16 @@ proto.Friend.prototype.getIsstickontop = function() {
  * @param {number} value
  * @return {!proto.Friend} returns this
  */
-proto.Friend.prototype.setIsstickontop = function(value) {
+proto.Friend.prototype.setIsmute = function(value) {
   return jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
 /**
- * optional uint32 createdAt = 8;
+ * optional uint32 isStickOnTop = 8;
  * @return {number}
  */
-proto.Friend.prototype.getCreatedat = function() {
+proto.Friend.prototype.getIsstickontop = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
 };
 
@@ -1083,16 +1095,16 @@ proto.Friend.prototype.getCreatedat = function() {
  * @param {number} value
  * @return {!proto.Friend} returns this
  */
-proto.Friend.prototype.setCreatedat = function(value) {
+proto.Friend.prototype.setIsstickontop = function(value) {
   return jspb.Message.setProto3IntField(this, 8, value);
 };
 
 
 /**
- * optional uint32 updatedAt = 9;
+ * optional uint32 createdAt = 9;
  * @return {number}
  */
-proto.Friend.prototype.getUpdatedat = function() {
+proto.Friend.prototype.getCreatedat = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
 };
 
@@ -1101,8 +1113,26 @@ proto.Friend.prototype.getUpdatedat = function() {
  * @param {number} value
  * @return {!proto.Friend} returns this
  */
-proto.Friend.prototype.setUpdatedat = function(value) {
+proto.Friend.prototype.setCreatedat = function(value) {
   return jspb.Message.setProto3IntField(this, 9, value);
+};
+
+
+/**
+ * optional uint32 updatedAt = 10;
+ * @return {number}
+ */
+proto.Friend.prototype.getUpdatedat = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.Friend} returns this
+ */
+proto.Friend.prototype.setUpdatedat = function(value) {
+  return jspb.Message.setProto3IntField(this, 10, value);
 };
 
 

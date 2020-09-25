@@ -15,6 +15,7 @@ import {RecentContactComponent} from './recent-contacts/recent-contact/recent-co
 import {SharedModule} from './shared/shared.module';
 import {HttpClient} from '@angular/common/http';
 import {NgPipesModule} from 'ngx-pipes';
+import {InvitationService} from './addfriendgroup/shared/invitation.service';
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ export class ImModule {
 
     constructor(
         private webSocketService: WebSocketService,
-        @Optional() @SkipSelf() parentModule?: ImModule
+        private invitationService: InvitationService,
+    @Optional() @SkipSelf() parentModule?: ImModule,
     ) {
         if (parentModule) {
             throw new Error(
