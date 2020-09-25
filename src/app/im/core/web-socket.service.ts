@@ -48,6 +48,7 @@ export class WebSocketService implements OnDestroy {
         this.status$.subscribe((connectStatus) => {
             this.status = connectStatus;
         });
+        // todo:实现登录后，放在登录后触发连接
         this.connect();
     }
 
