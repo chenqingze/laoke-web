@@ -31,7 +31,9 @@
                 "output": "./svg"
               }
             ],
-            "styles": [
+            "styles": [{
+              "input": "src/theme/variables-custom.scss"
+            },
               {
                 "input": "src/theme/variables.scss"
               },

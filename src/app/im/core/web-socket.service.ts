@@ -80,13 +80,13 @@ export class WebSocketService implements OnDestroy {
             }
         });
 
-       // this.messages$(OpCode.QUERY_USER_GROUP_ACK).subscribe({
-       //      next: (message) => {
-       //          console.log('123123');
-       //      }, error: () => {
-       //          console.log('123123');
-       //      }
-       //  });
+        // this.messages$(OpCode.QUERY_USER_GROUP_ACK).subscribe({
+        //      next: (message) => {
+        //          console.log('123123');
+        //      }, error: () => {
+        //          console.log('123123');
+        //      }
+        //  });
         // 订阅WebSocket连接关闭事件
         this.closeSubject.subscribe({
             next: () => {
@@ -114,19 +114,33 @@ export class WebSocketService implements OnDestroy {
 
     /**
      * 订阅消息事件
-     * @param opCode 事件类型
+     * @param opCodeArg 事件类型
      */
-    messages$(opCode: OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap]): Observable<BaseModel> {
-        // debugger;
+    messages$(opCodeArg: OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap]
+        | OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap] []): Observable<BaseModel> {
         return this.wsMessages$.pipe(
-            filter((model: BaseModel) => model.opCode === opCode)
+            filter((model: BaseModel) => this.messageFilterExpression(model, opCodeArg))
         );
+    }
 
-        // return this.webSocketSubject.multiplex(
-        //     () => ({subscribe: opCode}),
-        //     () => ({unsubscribe: opCode}),
-        //     (message: Message) => message.getOpCode() === opCode
-        // );
+    /**
+     * 过滤消息类型
+     * @param model
+     * @param opCodeArg
+     * @private
+     */
+    private messageFilterExpression(model: BaseModel, opCodeArg: OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap]
+        | OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap] []): boolean {
+        if (opCodeArg instanceof Array) {
+            for (const opCode of opCodeArg) {
+                if (model.opCode === opCode) {
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            return model.opCode === opCodeArg;
+        }
     }
 
     sendMessage(messageModel: BaseModel): void {

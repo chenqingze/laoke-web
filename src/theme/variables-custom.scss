@@ -1,0 +1,1829 @@
+body {
+  max-width: 1080px;
+  margin: 0 auto;
+  font-size: 0.32rem;
+  // padding: 0;
+  line-height: 1.5;
+  /* Status bar height on iOS 11.0 */
+  padding-top: constant(safe-area-inset-top);
+  padding-bottom: constant(safe-area-inset-bottom);
+  /* Status bar height on iOS 11+ */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+// ios header
+.ios-header {
+  ion-header {
+    ion-toolbar:first-child {
+      /* Status bar height on iOS 11.0 */
+      padding-top: constant(safe-area-inset-top) !important;
+      /* Status bar height on iOS 11+ */
+      padding-top: env(safe-area-inset-top) !important;
+    }
+
+    ion-buttons {
+      ion-back-button {
+        color: #242424;
+        padding-right: 0.3rem;
+      }
+    }
+  }
+}
+
+// android header
+.android-header {
+  ion-header {
+    ion-toolbar:first-child {
+      padding-top: 0.8rem !important;
+    }
+
+    ion-buttons {
+      ion-back-button {
+        color: #242424;
+        padding-right: 0.3rem;
+      }
+    }
+  }
+}
+
+:focus {
+  outline: none;
+}
+
+.border-bf6 {
+  border-bottom: 1px solid #ECECEC;
+}
+
+.border-bec {
+  border-bottom: 1px solid #ECECEC;
+}
+
+.border-tec {
+  border-top: 1px solid #ECECEC;
+}
+
+.border-bf6-d2 {
+  border-bottom: 0.2rem solid #f6f6f6;
+}
+
+.border-tf6-d2 {
+  border-top: 0.2rem solid #f6f6f6;
+}
+
+// ion-header{
+//      ion-toolbar:first-child {
+//         padding-top: 0.8rem !important;
+//     }
+//     ion-buttons {
+//         ion-back-button {
+//             color: #242424;
+//             padding-right: 0.3rem;
+//         }
+//     }
+// }
+/* ion-header .ios{
+     ion-toolbar:first-child {
+        padding-top: constant(safe-area-inset-top);
+        padding-top: env(safe-area-inset-top);
+    }
+    ion-buttons {
+        ion-back-button {
+            color: #242424;
+            padding-right: 0.3rem;
+        }
+    }
+} */
+ion-footer {
+  /* Status bar height on iOS 11.0 */
+  //padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: calc(constant(safe-area-inset-bottom)-0.6rem);
+  /* Status bar height on iOS 11+ */
+  //padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: calc(env(safe-area-inset-bottom)-0.6rem);
+}
+
+
+
+ion-label {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ion-item {
+  --min-height: 0;
+}
+
+ion-col,
+ion-row,
+ion-grid,
+ion-card,
+ion-chip {
+  margin: 0;
+  padding: 0;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+}
+
+ion-chip {
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}
+
+ion-input {
+  --placeholder-font-weight: normal !important;
+}
+
+ion-textarea {
+  --placeholder-font-weight: normal !important;
+}
+
+p {
+  --padding-start: 0.1rem;
+  --inner-padding-end: 0.1rem;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+}
+
+.line-height1 {
+  line-height: 1;
+}
+
+.ion-flex {
+  display: flex;
+}
+
+.ion-block {
+  display: block;
+}
+
+.bottom-0 {
+  bottom: 0;
+}
+
+.bottom-d24 {
+  bottom: 0.24rem;
+}
+
+// 高度比例
+.h-100 {
+  height: 100%;
+}
+
+//宽度比例
+.w-100 {
+  width: 100%;
+}
+
+.w-90 {
+  width: 90%;
+}
+
+.w-84 {
+  width: 84%;
+}
+
+.w-75 {
+  width: 75%;
+}
+
+.w-70 {
+  width: 70%;
+}
+
+.w-60 {
+  width: 60%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.w-27 {
+  width: 27%;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.w-20 {
+  width: 20%;
+}
+
+//margin
+.margin-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.margin-d30 {
+  margin: 0.3rem;
+}
+
+.margin-d32 {
+  margin: 0.32rem;
+}
+
+.margin-d64 {
+  margin: 0.64rem;
+}
+
+.mlr-d005 {
+  margin: 0 0.05rem;
+}
+
+.mt-d260 {
+  margin-top: 2.6rem;
+}
+
+.mt-d250 {
+  margin-top: 2.5rem;
+}
+
+.mt-d200 {
+  margin-top: 2rem;
+}
+
+.mt-d134 {
+  margin-top: 1.34rem;
+}
+
+.mt-d112 {
+  margin-top: 1.12rem;
+}
+
+.mt-d98 {
+  margin-top: 0.98rem;
+}
+
+.mt-d84 {
+  margin-top: 0.84rem;
+}
+
+.mt-d64 {
+  margin-top: 0.64rem;
+}
+
+.mt-d60 {
+  margin-top: 0.6rem;
+}
+
+.mt-d52 {
+  margin-top: 0.52rem;
+}
+
+.mt-d46 {
+  margin-top: 0.46rem;
+}
+
+.mt-d42 {
+  margin-top: 0.42rem;
+}
+
+.mt-d40 {
+  margin-top: 0.4rem;
+}
+
+.mt-d4 {
+  margin-top: 0.4rem;
+}
+
+.mt-d36 {
+  margin-top: 0.36rem;
+}
+
+.mt-d32 {
+  margin-top: 0.32rem;
+}
+
+.mt-d28 {
+  margin-top: 0.28rem;
+}
+
+.mt-d26 {
+  margin-top: 0.26rem;
+}
+
+.mt-d24 {
+  margin-top: 0.24rem;
+}
+
+.mt-d2 {
+  margin-top: 0.2rem;
+}
+
+.mt-d16 {
+  margin-top: 0.16rem;
+}
+
+.mt-d12 {
+  margin-top: 0.12rem;
+}
+
+.mt-d10 {
+  margin-top: 0.1rem;
+}
+
+.mt-d08 {
+  margin-top: 0.08rem;
+}
+
+.mt-d02 {
+  margin-top: 0.02rem;
+}
+
+.mt-d-10 {
+  margin-top: -0.1rem;
+}
+
+.mt-d-004 {
+  margin-top: -0.04rem;
+}
+
+.mb-d200 {
+  margin-bottom: 2rem;
+}
+
+.mb-d130 {
+  margin-bottom: 1.3rem;
+}
+
+.mb-d118 {
+  margin-bottom: 1.18rem;
+}
+
+.mb-d98 {
+  margin-bottom: 0.98rem;
+}
+
+.mb-d64 {
+  margin-bottom: 0.64rem;
+}
+
+.mb-d42 {
+  margin-bottom: 0.42rem !important;
+}
+
+.mb-d32 {
+  margin-bottom: 0.32rem;
+}
+
+.mb-d24 {
+  margin-bottom: 0.24rem;
+}
+
+.mb-d22 {
+  margin-bottom: 0.22rem;
+}
+
+.mb-d2 {
+  margin-bottom: 0.2rem;
+}
+
+.mb-d28 {
+  margin-bottom: 0.28rem;
+}
+
+.mb-d18 {
+  margin-bottom: 0.18rem;
+}
+
+.mb-d12 {
+  margin-bottom: 0.12rem;
+}
+
+.mb-d10 {
+  margin-bottom: 0.1rem;
+}
+
+.ml-d08 {
+  margin-left: 0.08rem;
+}
+
+.ml-d1 {
+  margin-left: 0.1rem;
+}
+
+.ml-d12 {
+  margin-left: 0.12rem;
+}
+
+.ml-d14 {
+  margin-left: 0.14rem;
+}
+
+.ml-d18 {
+  margin-left: 0.18rem;
+}
+
+.ml-d2 {
+  margin-left: 0.2rem;
+}
+
+.ml-d24 {
+  margin-left: 0.24rem;
+}
+
+.ml-d28 {
+  margin-left: 0.28rem;
+}
+
+.ml-d32 {
+  margin-left: 0.32rem;
+}
+
+.ml-d30 {
+  margin-left: 0.3rem;
+}
+
+.ml-d38 {
+  margin-left: 0.38rem;
+}
+
+.ml-d60 {
+  margin-left: 0.6rem;
+}
+
+.ml-d130 {
+  margin-left: 1.3rem;
+}
+
+.ml-d-036 {
+  margin-left: -0.36rem;
+}
+
+.mr-d66 {
+  margin-right: 0.66rem;
+}
+
+.mr-d56 {
+  margin-right: 0.56rem;
+}
+
+.mr-d40 {
+  margin-right: 0.4rem;
+}
+
+.mr-d32 {
+  margin-right: 0.32rem;
+}
+
+.mr-d30 {
+  margin-right: 0.3rem;
+}
+
+.mr-d28 {
+  margin-right: 0.28rem;
+}
+
+.mr-d24 {
+  margin-right: 0.24rem;
+}
+
+.mr-d2 {
+  margin-right: 0.2rem;
+}
+
+.mr-d16 {
+  margin-right: 0.16rem;
+}
+
+.mr-d14 {
+  margin-right: 0.14rem;
+}
+
+.mr-d12 {
+  margin-right: 0.12rem;
+}
+
+.mr-d06 {
+  margin-right: 0.06rem;
+}
+
+// padding
+.padding-d24 {
+  padding: 0.24rem;
+}
+
+.padding-d30 {
+  padding: 0.3rem;
+}
+
+.padding-d0-d30 {
+  padding: 0 0.3rem;
+}
+
+.padding-d20-d32 {
+  padding: 0.2rem 0.32rem;
+}
+
+.padding-d32 {
+  padding: 0.32rem;
+}
+
+.padding-d10 {
+  padding: 0.1rem;
+}
+
+.pb-d08 {
+  padding-bottom: 0.08rem;
+}
+
+.padding-d0-d32 {
+  padding: 0 0.32rem;
+}
+
+.pb-d12 {
+  padding-bottom: 0.12rem !important;
+}
+
+.pb-d16 {
+  padding-bottom: 0.16rem;
+}
+
+.pb-d24 {
+  padding-bottom: 0.24rem;
+}
+
+.pb-d26 {
+  padding-bottom: 0.26rem;
+}
+
+.pb-d32 {
+  padding-bottom: 0.32rem;
+}
+
+.pb-d42 {
+  padding-bottom: 0.42rem;
+}
+
+.pb-d6 {
+  padding-bottom: 0.6rem;
+}
+
+.pb-d84 {
+  padding-bottom: 0.84rem;
+}
+
+.pb-d100 {
+  padding-bottom: 1rem;
+}
+
+.pb-d140 {
+  padding-bottom: 1.4rem;
+}
+
+.pb-d200 {
+  padding-bottom: 2rem;
+}
+
+.pt-d100 {
+  padding-top: 1rem;
+}
+
+.pt-d260 {
+  padding-top: 2.6rem;
+}
+
+.pt-d62 {
+  padding-top: 0.62rem;
+}
+
+.pt-d60 {
+  padding-top: 0.6rem;
+}
+
+.pt-d52 {
+  padding-top: 0.52rem;
+}
+
+.pt-d44 {
+  padding-top: 0.44rem;
+}
+
+.pt-d44 {
+  padding-top: 0.44rem;
+}
+
+.pt-d42 {
+  padding-top: 0.42rem;
+}
+
+.pt-d32 {
+  padding-top: 0.32rem;
+}
+
+.pt-d28 {
+  padding-top: 0.28rem;
+}
+
+.pt-d24 {
+  padding-top: 0.24rem;
+}
+
+.pt-d16 {
+  padding-top: 0.16rem;
+}
+
+.pt-d14 {
+  padding-top: 0.14rem;
+}
+
+.pt-d12 {
+  padding-top: 0.12rem;
+}
+
+.pt-d10 {
+  padding-top: 0.1rem;
+}
+
+.pt-d08 {
+  padding-top: 0.08rem;
+}
+
+.pt-d53 {
+  padding-top: 0.53rem;
+}
+
+.pl-d60 {
+  padding-left: 0.6rem;
+}
+
+.pl-d40 {
+  padding-left: 0.4rem;
+}
+
+.pl-d32 {
+  padding-left: 0.32rem;
+}
+
+.pl-d24 {
+  padding-left: 0.24rem;
+}
+
+.pl-d20 {
+  padding-left: 0.2rem;
+}
+
+.pl-d12 {
+  padding-left: 0.12rem;
+}
+
+.pl-d08 {
+  padding-left: 0.08rem;
+}
+
+.pl-d0 {
+  padding-left: 0 !important;
+}
+
+.pr-d12 {
+  padding-right: 0.12rem;
+}
+
+.pr-d2 {
+  padding-right: 0.2rem;
+}
+
+.pr-d24 {
+  padding-right: 0.24rem;
+}
+
+.pr-d32 {
+  padding-right: 0.32rem;
+}
+
+.pr-d40 {
+  padding-right: 0.4rem;
+}
+
+.pr-d60 {
+  padding-right: 0.6rem;
+}
+
+.pr-d90 {
+  padding-right: 0.9rem;
+}
+
+.pr-d147 {
+  padding-right: 1.47rem;
+}
+
+//字号
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.fontS-d140 {
+  font-size: 1.4rem;
+}
+
+.fontS-d100 {
+  font-size: 1rem;
+}
+
+.fontS-d72 {
+  font-size: 0.72rem;
+}
+
+.fontS-d6 {
+  font-size: 0.6rem;
+}
+
+.fontS-d56 {
+  font-size: 0.56rem;
+}
+
+.fontS-d53 {
+  font-size: 0.53rem !important;
+}
+
+.fontS-d48 {
+  font-size: 0.48rem;
+}
+
+.fontS-d46 {
+  font-size: 0.46rem;
+}
+
+.fontS-d44 {
+  font-size: 0.44rem !important;
+}
+
+.fontS-d42 {
+  font-size: 0.42rem;
+}
+
+.fontS-d4 {
+  font-size: 0.4rem !important;
+}
+
+.fontS-d38 {
+  font-size: 0.38rem;
+}
+
+.fontS-d36 {
+  font-size: 0.36rem;
+}
+
+.fontS-d34 {
+  font-size: 0.34rem;
+}
+
+.fontS-d32 {
+  font-size: 0.32rem!important;
+}
+
+.fontS-d3 {
+  font-size: 0.3rem;
+}
+
+.fontS-d28 {
+  font-size: 0.28rem !important;
+}
+
+.fontS-d24 {
+  font-size: 0.24rem;
+}
+
+.fontS-d22 {
+  font-size: 0.22rem;
+}
+
+.fontS-d21 {
+  font-size: 0.21rem;
+}
+
+.fontS-d20 {
+  font-size: 0.2rem;
+}
+
+.fontS-d23 {
+  font-size: 0.23rem;
+}
+
+.fontS-d2 {
+  font-size: 0.2rem;
+}
+
+.fontS-d18 {
+  font-size: 0.18rem;
+}
+
+.fontS-d14 {
+  font-size: 0.14rem;
+}
+
+.fontS-d10 {
+  font-size: 0.1rem;
+}
+
+.text-line-through {
+  text-decoration: line-through;
+}
+
+.bg-1e {
+  background: #1e1e1e;
+  --background: #1e1e1e;
+}
+
+.bg-fff {
+  background: #fff;
+}
+
+.bg-ec {
+  background: #ececec;
+}
+
+.bg-f6 {
+  background: #f6f6f6;
+}
+
+.ion-bg-f6 {
+  --background: #f6f6f6;
+}
+
+.z-index10 {
+  z-index: 10;
+}
+
+.z-index-0 {
+  z-index: 0;
+}
+
+.z-index-9 {
+  z-index: 9;
+}
+
+.sc-ion-input-ios-h {
+  --padding-top: 0;
+  --padding-end: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+}
+
+//字体颜色
+.color-primary {
+  color: var(--ion-color-primary, #e52200);
+}
+
+.color-light-bg {
+  background: var(--ion-color-light, #f4f5f8);
+}
+
+.color24 {
+  color: var(--ion-color-step-150, #242424);
+}
+
+.color3 {
+  color: var(--ion-color-step-200, #333333);
+}
+
+.color46 {
+  color: #464646;
+}
+
+.color6 {
+  color: var(--ion-color-step-400, #666666) !important;
+}
+
+.color9 {
+  color: var(--ion-color-step-600, #999999);
+}
+
+.colorc {
+  color: #cccccc;
+}
+
+.colord {
+  color: #dddddd;
+}
+
+.colorf {
+  color: var(--ion-text-color, #ffffff);
+}
+.colorffd161{
+  color: #ffd161;
+}
+.colorff5000{
+  color: #ff5000;
+}
+.colorC {
+  color: var(--ion-text-color, #ffffff);
+}
+
+// 默认提示文字颜色
+.placeholder-color-b7 {
+  --placeholder-color: #b7b7b7;
+}
+
+.placeholder-color-9 {
+  --placeholder-color: #999999;
+}
+
+.placeholder-color-6 {
+  --placeholder-color: #666666;
+}
+
+//文字对齐
+.text-al-center {
+  text-align: center;
+}
+
+.text-al-left {
+  text-align: left;
+}
+
+.text-al-right {
+  text-align: right;
+}
+
+// position
+.position-r {
+  position: relative;
+}
+
+.position-ab {
+  position: absolute;
+}
+
+.position-f {
+  position: fixed;
+}
+
+// 图片样式
+.info-single-image {
+  width: 2.2rem;
+  height: 2.2rem;
+  object-fit: cover;
+  --border-radius: 0.05rem;
+  border-radius: 0.05rem;
+
+  // margin-bottom:0.36rem;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.05rem;
+  }
+}
+
+.trends-single-image {
+  width: 3.7rem;
+  height: 3.7rem;
+  --border-radius: 0.1rem;
+}
+
+.two-imgage .info-single-image:nth-child(3n+2) {
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+}
+
+.upload-photo .upload-img-list:nth-child(3n+2) {
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+}
+
+.upload-img-list {
+  margin-bottom: 0.12rem;
+}
+
+.ion-badge-bg {
+  background: var(--ion-color-warning, #FFEAE6);
+}
+
+.open-close {
+  width: 0.71rem;
+  height: 0.49rem;
+}
+
+.upload-photo {
+  .iconupload-photo {
+    font-size: 0.6rem;
+    left: 36%;
+    top: 30%;
+  }
+}
+
+.upload-photo-bg {
+  background: #EEEEEE;
+}
+
+.edit-image {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  .edit-image-bg {
+    width: 0.8rem;
+    height: 0.48rem;
+    background: #000;
+    opacity: 0.5;
+    border-radius: 0 0.1rem;
+  }
+
+  .edit-image-font {
+    position: absolute;
+    color: #fff;
+    bottom: 0.06rem;
+    left: 14%;
+  }
+}
+
+.delete-image {
+  right: 0;
+  top: 0;
+
+  .delete-image-bg {
+    width: 0.42rem;
+    height: 0.42rem;
+    background: #000;
+    opacity: 0.5;
+    border-radius: 0 0.1rem;
+  }
+
+  .delete-image-font {
+    color: #fff;
+    top: 0.06rem;
+    right: 20%;
+  }
+}
+
+// 首页
+.home-user-Avatar {
+  width: 0.52rem;
+  height: 0.52rem;
+
+  img {
+    width: 0.52rem;
+    height: 0.52rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+.no-image-title {
+  max-width: 7rem;
+  white-space: initial;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.home-left-title {
+  max-width: 4.4rem;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  min-height: 1.4rem;
+}
+
+// 一行-多余隐藏
+.line-clamp {
+  text-overflow: -o-ellipsis-lastline;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  //display: -webkit-box !important;
+  //-webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  //line-height: 1.5;
+  display: inline-block !important;
+  white-space: nowrap;
+}
+
+// p标签 一行-多余隐藏
+.line-clamp-p {
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  //display: -webkit-box !important;
+  //-webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  //line-height: 1.5;
+  //display: inline-block !important;
+  white-space: nowrap;
+}
+
+// 展示两行-多余隐藏
+.line-clamp-2 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+// 展示三行-多余隐藏
+.line-clamp-3 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.meiwen-label {
+  position: absolute;
+  right: 0.2rem;
+  bottom: 0.3rem;
+
+  .meiwen-label-bg {
+    width: 1.2rem;
+    height: 0.6rem;
+    background: #000;
+    opacity: 0.5;
+    border-radius: 0.1rem;
+  }
+
+  .meiwen-label-font {
+    color: #fff;
+    position: absolute;
+    bottom: 0.15rem;
+    left: 32%;
+    display: inherit;
+  }
+}
+
+//我的页面-店铺icon 渐变色
+.my-store-icon {
+  background: linear-gradient(to right, #F30100, #FF4E18);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+ion-segment {
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+  z-index: 6;
+}
+
+ion-segment-button {
+  --border-width: 0;
+  position: relative;
+}
+
+.segment-button-checked {
+  --indicator-box-shadow: 0;
+  font-weight: bold;
+  font-size: 0.32rem;
+  --border-radius: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+//    在线，电话咨询
+.online-consult {
+  --background: linear-gradient(to right, #F30100, #FF4E18)
+}
+
+.tel-consult {
+  --background: linear-gradient(to right, #FFA600, #FFBC01)
+}
+
+// 登录注册
+.login {
+  .content-width {
+    width: 82%;
+    margin-left: 9%;
+  }
+
+  .cipher-login {
+    margin-left: 0.1rem;
+
+    a {
+      padding-right: 0.32rem;
+    }
+  }
+
+  .logo-img {
+    width: 1.84rem;
+    height: 1.55rem;
+  }
+
+  .checkbox {
+    margin-top: 0.07rem;
+    padding-right: 0;
+    margin-right: 0;
+
+    // text-align: right;
+    ion-checkbox {
+      --size: 0.32rem !important;
+    }
+  }
+
+  .eight-six {
+    margin-left: 0.1rem;
+  }
+
+  .wechat-login {
+    // position: fixed;
+    // bottom: 4%;
+    // right: 0;
+    margin-top: 18%;
+  }
+
+  .wechat-img {
+    width: 0.88rem;
+    //margin-bottom: 0.24rem;
+  }
+
+  .next-step {
+    margin-top: 1.39rem;
+  }
+}
+
+.sc-ion-searchbar-ios-h {
+  -webkit-padding-end: 0.4rem;
+  padding-inline-end: 0.4rem;
+
+  .searchbar-input.sc-ion-searchbar-ios {
+    border-radius: 4rem;
+  }
+}
+
+.alert-common {
+  .alert-wrapper {
+    width: 100%;
+    padding: 0.2rem 0.1rem 0rem 0.2rem
+  }
+
+  .alert-title {
+    font-size: 0.34rem;
+  }
+
+  .alert-message {
+    font-size: 0.28rem;
+  }
+
+  .alert-button-inner {
+    font-size: 0.28rem;
+    color: #e52200;
+  }
+}
+
+.toastdefault {
+  opacity: .9 !important;
+  text-align: center;
+  width: 70%;
+  margin-left: 15%;
+  --border-radius: 0.1rem !important;
+}
+
+.gray-star {
+  color: #d3d3d3;
+  font-size: 0.28rem;
+  margin: 0.05rem;
+}
+
+.blink-star {
+  background: linear-gradient(to right, #FFC341, #FED955);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin: 0.05rem;
+  font-size: 0.28rem;
+}
+
+// 搜索框的搜索图标
+.searchbar-search-icon.sc-ion-searchbar-ios {
+  //margin-left: calc(50% - 60px);
+  left: 0.1rem;
+  //top: 0.5px;
+  position: absolute;
+  width: 18px;
+  height: 100%;
+  contain: strict;
+  color: rgba(153, 153, 153, 1);
+  //font-weight: bolder;
+}
+
+// 搜索框
+.searchbar-left-aligned.sc-ion-searchbar-ios-h .searchbar-input.sc-ion-searchbar-ios {
+  //padding-left: 10px;
+  //padding-right: 5rem;
+  //margin-right: 5rem;
+  color: #000;
+  font-size: 0.3rem;
+}
+
+// 搜索框
+.sc-ion-searchbar-ios-h {
+  //--background: rgba(var(--ion-text-color-rgb,0,0,0),0.07);
+  --background: rgba(246, 246, 246, 1);
+  --box-shadow: none;
+  --cancel-button-color: var(--ion-color-primary, #3880ff);
+  --clear-button-color: var(--ion-color-step-600, #666);
+  --color: var(--ion-text-color, #000);
+  --icon-color: var(--ion-color-step-600, #666);
+  //padding-left: 12px;
+  //padding-right: 12px;
+  //padding-top: 12px;
+  //padding-bottom: 12px;
+  //height: 60px;
+  //contain: strict;
+}
+
+// 购物车模态
+.shopping-cart {
+  .modal-wrapper {
+    min-height: 60vh;
+    height: fit-content;
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    // border-top-left-radius: 0.15rem;
+    // border-top-right-radius: 0.15rem;
+    border-radius: 0.4rem 0.4rem 0 0 !important;
+  }
+}
+
+//个人主页操作模态
+.personal-operation {
+  .modal-wrapper {
+    //min-height: 37vh;
+    //height: fit-content;
+    height: 5.2rem;
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    border-radius: 0.4rem 0.4rem 0 0 !important;
+  }
+}
+
+//新增分类
+.add-classify {
+  .modal-wrapper {
+    width: 6.52rem;
+    height: 4rem;
+    border-radius: 0.2rem;
+  }
+}
+
+// 添加规格
+.add-specs {
+  .modal-wrapper {
+    width: 6.9rem;
+    height: 4.44rem;
+    border-radius: 0.1rem;
+    overflow: visible;
+  }
+
+  .ion-page {
+    overflow: visible;
+  }
+}
+
+// 添加规格
+.select-specification {
+  .modal-wrapper {
+    width: 6.9rem;
+    height: 5.59rem;
+    border-radius: 0.1rem;
+    overflow: visible;
+  }
+
+  .ion-page {
+    overflow: visible;
+  }
+}
+
+// 编辑个人资料
+.edit-profile-operation {
+  .modal-wrapper {
+    width: 6.9rem;
+    height: 5.59rem;
+    border-radius: 0.24rem;
+    overflow: visible;
+  }
+
+  .ion-page {
+    overflow: visible;
+  }
+}
+
+// 分享模态
+.share-modal {
+  .modal-wrapper {
+    height: 3.26rem;
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    border-radius: 0.4rem 0.4rem 0 0 !important;
+  }
+}
+
+// 消息转发
+.message-retransmission {
+  .modal-wrapper {
+    width: 6.52rem;
+    min-height: 5.3rem;
+    height: 6rem;
+    max-height: 7.3rem;
+    --border-radius: 0.2rem !important;
+    border-radius: 0.2rem !important;
+    overflow: visible;
+  }
+
+  .ion-page {
+
+    // overflow: visible;
+    div {
+      border-radius: 0.2rem;
+    }
+  }
+}
+
+// 查看房型
+.hotel-room-type {
+  align-items: flex-end !important;
+
+  .modal-wrapper {
+    height: 11rem;
+    --border-radius: 0.4rem 0.4rem 0 0 !important;
+    border-radius: 0.4rem 0.4rem 0 0 !important;
+    //overflow: visible;
+  }
+
+  .ion-page {
+    overflow: visible;
+  }
+}
+
+// 选择电子卡
+.ecard-modal {
+  .modal-wrapper {
+    height: 40% !important;
+    position: absolute;
+    top: 60%;
+    border-radius: 0.4rem 0.4rem 0 0;
+  }
+}
+
+// alert
+.alert-wrapper.sc-ion-alert-ios {
+  width: 6.52rem;
+  border-radius: 0.2rem;
+  max-width: 100%;
+}
+
+.alert-title.sc-ion-alert-ios {
+  text-align: left;
+  padding-left: 0.06rem;
+}
+
+.alert-radio-label.sc-ion-alert-ios {
+  padding-left: 0.42rem;
+}
+
+.alert-head.sc-ion-alert-ios {
+  padding-bottom: 0.24rem;
+}
+
+.alert-message.sc-ion-alert-ios:empty {
+  padding-bottom: 0 !important;
+}
+
+.alert-radio-group.sc-ion-alert-ios {
+  border-top: none !important;
+}
+
+.cancel-secondary {
+  .sc-ion-alert-ios {
+    font-size: 0.28rem !important;
+    font-weight: bold;
+  }
+}
+
+.delete-classify {
+  .sc-ion-alert-ios {
+    text-align: left;
+  }
+
+  .alert-message.sc-ion-alert-ios {
+    color: #999;
+  }
+}
+
+.save-classify {
+  .alert-message.sc-ion-alert-ios {
+    text-align: left;
+    color: #999999;
+  }
+}
+
+.alert-button-group.sc-ion-alert-ios {
+  justify-content: flex-end;
+  padding-right: 0.32rem;
+  padding-bottom: 0.2rem;
+}
+
+.alert-button.sc-ion-alert-ios {
+  border-top: 0;
+  border-right: 0;
+  -webkit-box-flex: inherit;
+  flex: inherit;
+  min-width: 24%;
+}
+
+.aclass {
+  background: #1e1e1e;
+  height: 10rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 80%;
+  }
+}
+
+.aclass-invite {
+  //top: 6.7rem;
+  top: 5.2rem;
+  left: 35.5%;
+  position: absolute;
+
+  img {
+    width: 2.2rem;
+    border-radius: 0.05rem;
+  }
+}
+
+// 水平居中
+.dis-jus-ali {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// 水平垂直居中
+.dis-jus-ali-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.jus-end {
+  justify-content: flex-end;
+}
+
+.ali-center {
+  align-items: center;
+}
+
+// 去掉顶部导航栏下划线
+.toolbar-border {
+  --border-width: 0 !important;
+}
+
+.toolbar-border-55 {
+  --border-width: 0 0 0.55px !important;
+}
+
+ion-toolbar {
+  --border-width: 0 !important;
+}
+
+ion-back-button {
+  font-size: 0.3rem;
+}
+
+// 顶部搜索框样式
+.header-searchbar {
+  background: #f6f6f6;
+  width: 5.52rem;
+  height: 0.72rem;
+  border-radius: 0.5rem;
+  font-size: 0.28rem;
+
+  i {
+    color: #999999;
+    margin-left: 0.32rem;
+    margin-right: 0.14rem;
+  }
+}
+
+// 首页顶部搜索框样式
+.home-header-searchbar {
+  background: #f6f6f6;
+  //width: 5.52rem;
+  height: 0.68rem;
+  border-radius: 0.5rem;
+  font-size: 0.28rem;
+  --placeholder-color: #333;
+
+  i {
+    color: #999999;
+    margin-left: 0.32rem;
+    margin-right: 0.14rem;
+  }
+}
+
+.header-searchbtn {
+  padding: 0 0.28rem 0 0.3rem;
+}
+
+// 开启通知权限弹窗
+.pop-notification {
+
+  // padding: 42% 12%;
+  .modal-wrapper {
+    border-radius: 0.2rem;
+    width: 6rem;
+    height: 7.2rem;
+  }
+}
+
+// 发布信息成功弹窗
+.pop-info-publish {
+
+  //  padding: 58% 12%;
+  .modal-wrapper {
+    border-radius: 0.2rem;
+    width: 6rem;
+    height: 4.2rem;
+  }
+}
+
+// 选择好友配送
+.pop-friend-delivery {
+  .modal-wrapper {
+    border-radius: 0.2rem;
+    width: 6.52rem;
+    height: 4.26rem;
+  }
+}
+
+// 首页下拉菜单
+.home-popover-class {
+  .popover-arrow {
+    display: block !important;
+    top: 1.1rem !important;
+    right: 0.4rem !important;
+    left: auto !important;
+  }
+
+  .popover-arrow.sc-ion-popover-ios:after {
+    background: #242424 !important;
+  }
+
+  .popover-content {
+    top: 1.27rem !important;
+    right: 0.12rem !important;
+    width: 2.73rem;
+    left: auto !important;
+  }
+}
+
+// 消息下拉菜单
+.message-popover-class {
+  .popover-arrow {
+    display: block !important;
+    top: 1.44rem !important;
+    right: 0.4rem !important;
+    left: auto !important;
+  }
+
+  .popover-arrow.sc-ion-popover-ios:after {
+    background: #333333 !important;
+  }
+
+  .popover-content {
+    top: 1.62rem !important;
+    right: 0.12rem !important;
+    width: 2.73rem;
+    left: auto !important;
+  }
+}
+
+// 回车样式
+.replace-br {
+  white-space: pre-line !important;
+}
+
+.color-blue {
+  color: #1C7EDF;
+}
+
+//  .select-bill{
+.popover-arrow.sc-ion-popover-ios {
+  left: unset;
+  right: 0.6rem;
+}
+
+.popover-content.sc-ion-popover-ios {
+  width: 3rem;
+  left: unset;
+  right: 0.2rem;
+}
+
+//  }
+.action-sheet-button.sc-ion-action-sheet-ios {
+  font-size: 0.32rem;
+  border-bottom: 1px solid #ececec;
+}
+
+// 温馨提示弹窗
+.warm-prompt {
+
+  //  padding: 58% 12%;
+  .modal-wrapper {
+    border-radius: 0.2rem;
+    width: 5rem;
+    height: 5.6rem;
+  }
+}
+
+.img-height {
+  max-height: 26rem;
+  overflow: hidden;
+}
+
+//日历
+.ion2-calendar-class {
+  &.sc-ion-modal-ios-h {
+    align-items: flex-end;
+  }
+
+  .modal-wrapper {
+    height: 78% !important;
+  }
+
+  .calendar-page {
+    .month-box {
+      border-bottom: 0.2rem solid #f6f6f6 !important;
+      padding-bottom: 0.32em !important;
+
+      h4 {
+        font-size: 0.32rem !important;
+        font-weight: bold !important;
+        color: #242424 !important;
+        margin: 0.4rem 0 0 !important;
+      }
+
+      .days-box {
+        padding-top: 0.32rem !important;
+      }
+
+      .primary .between button.days-btn:after,
+      .primary .startSelection:after,
+      .primary .endSelection:after {
+        opacity: 0.5 !important;
+      }
+
+    }
+  }
+
+  ion-header ion-toolbar:first-child {
+    padding-top: 0 !important;
+  }
+
+  .week-title {
+    color: #242424 !important;
+  }
+
+  .week-toolbar.primary {
+    --background: #fff !important;
+  }
+
+  .sc-ion-buttons-ios-s ion-button {
+    font-size: 0.32rem !important;
+  }
+}
+
+// 下拉刷新后的 toast提示样式
+.refresh-toast {
+  --color: #ffffff;
+  --border-radius: 1rem;
+  --width: 3.2rem;
+  --height: 0.6rem;
+  text-align: center;
+  margin-top: 2.6rem;
+  opacity: .9;
+  font-size: 0.28rem;
+  z-index: 9 !important;
+}
+
+.home-refresh-toast {
+  --color: #ffffff;
+  --border-radius: 1rem;
+  --width: 3.2rem;
+  --height: 0.6rem;
+  text-align: center;
+  margin-top: 3.4rem;
+  opacity: .9;
+  font-size: 0.28rem;
+  z-index: 9 !important;
+}

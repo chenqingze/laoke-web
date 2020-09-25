@@ -13,11 +13,11 @@ export class GroupService {
 
     queryGroupInfo(groupId) {
         const url = API_URL.TALK_GROUP.getGroupInfoById + groupId;
-        return this.apiService.get(url);
+        return this.apiService.getByAuth(url);
     }
 
     queryUserInGroup(groupId){
         const url =  API_URL.TALK_GROUP.getUserInGroup + groupId;
-        return this.apiService.get(url);
+        return this.apiService.getByAuth(url);
     }
 }

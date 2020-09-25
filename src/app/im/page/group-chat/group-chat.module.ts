@@ -9,6 +9,7 @@ import { GroupChatPageRoutingModule } from './group-chat-routing.module';
 import { GroupChatPage } from './group-chat.page';
 import {GroupService} from '../../service/group-service/group.service';
 import {HttpHandler} from '@angular/common/http';
+import {EmojiPickerComponent} from '../../components/emoji-picker/emoji-picker.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import {HttpHandler} from '@angular/common/http';
     IonicModule,
     GroupChatPageRoutingModule
   ],
-  declarations: [GroupChatPage],
+    declarations: [GroupChatPage, EmojiPickerComponent],
   providers: [
       GroupService,
   ]

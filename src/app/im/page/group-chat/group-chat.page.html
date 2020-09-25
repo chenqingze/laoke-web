@@ -7,6 +7,65 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content #content scrollEvents="true" class="dark-bg-9">
 
 </ion-content>
+<ion-footer *ngIf="!mute||this.owner==this.currentUser">
+  <div [ngStyle]="{'display':showKeyboard?'block':'none'}" class="showKeyboard"></div>
+  <ion-badge [ngClass]="{'move-top':showKeyboard}" color="primary" *ngFor="let at of atList;let i =index" (click)="removeAt(at,i)">
+    @{{at.nickname}}</ion-badge>
+
+  <ion-row class="send-box">
+    <ion-col size="12" class="ion-flex ion-align-items-center" [ngStyle]="{'bottom':showKeyboard ? '300px':'0'}">
+      <!-- 键盘语音切换，图标稍后替换-->
+      <i class="iconfont pl-d20 pr-d2 iconchat-yuyin fontS-d53" (click)="showSendVoice()" *ngIf="showVoice"></i>
+      <i class="iconfont pl-d20 pr-d2 iconchat-keyboard fontS-d53" (click)="showSendVoice()" *ngIf="!showVoice"></i>
+
+      <!--按住说话和请输入-->
+      <ion-button cols="28" rows="1" style="width: 66%;border-radius: 0.1rem;padding-left: 0.2rem;margin: 0px" color="light" *ngIf="!showVoice" (touchstart)="startRecordAudio()" (touchend)="finishRecord()">
+        按住说话
+      </ion-button>
+      <ion-textarea cols="28" rows="1" type="text" placeholder="请输入...." class="chat-textarea" #textarea *ngIf="showVoice" (ionFocus)="getFocus()" (ionBlur)="blurInput()" (ionChange)="updateEditor()" [(ngModel)]="messageContent"></ion-textarea>
+      <i class="iconfont icondongtai-detail-emoji fontS-d53" (click)="triggerEmoji()"></i>
+
+      <!--  加号按钮-->
+      <i class="iconfont fontS-d53 iconstore-add-peisongfei" (click)="showUploadFile()" *ngIf="isCheck"></i>
+
+      <!-- 发送按钮-->
+      <ion-button size="small" class="ml-d28 mr-d2" *ngIf="!isCheck" (click)="sendMessage()">发送
+      </ion-button>
+
+    </ion-col>
+  </ion-row>
+  <!--  文件区域-->
+  <ion-row class="mt-d32 chat-more" *ngIf="showUpload">
+    <ion-col size="3" class="ion-text-center" (click)="openGalaxy()">
+      <div class="pic-map-bg">
+        <i class="iconfont fontS-d56 iconxiangce"></i>
+      </div>
+      <p>相册</p>
+    </ion-col>
+    <ion-col size="3" class="ion-text-center" (click)="openCamera()">
+      <div class="pic-map-bg">
+        <i class="iconfont fontS-d56 iconcamera"></i>
+      </div>
+      <p>拍摄</p>
+    </ion-col>
+    <ion-col size="3" class="ion-text-center" (click)="choosePosition()">
+      <div class="pic-map-bg">
+        <i class="iconfont fontS-d56 iconmap-daohang"></i>
+      </div>
+      <p>位置</p>
+    </ion-col>
+    <ion-col size="3" class="ion-text-center" (click)="chooseFile()" *ngIf="!isIos">
+      <div class="pic-map-bg">
+        <i class="iconfont fontS-d56 iconwenjian"></i>
+      </div>
+      <p>文件</p>
+    </ion-col>
+  </ion-row>
+  <ion-row class="mt-d32 chat-more" *ngIf="showEmoji">
+    <app-emoji-picker ngDefaultControl style="width: 100%" [(ngModel)]="messageContent"></app-emoji-picker>
+  </ion-row>
+  <audio id="chatAudio" controls="controls" hidden="true"></audio>
+</ion-footer>
