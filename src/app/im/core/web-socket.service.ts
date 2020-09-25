@@ -95,7 +95,7 @@ export class WebSocketService implements OnDestroy {
         });
         // 用于接收消息的订阅避免直接使用WebSocketSubject对象接收消息,取消订阅后websocket连接断开
         this.webSocketSubject.pipe(
-            debug('webSocketSubject接收数据:'),
+            debug('webSocketSubject连接事件:'),
             retryWhen((errors) => errors.pipe(delay(10_000)))).subscribe(
             message => {
                 this.wsMessages$.next(message as BaseModel);
@@ -109,8 +109,8 @@ export class WebSocketService implements OnDestroy {
      * 断开连接
      */
     disconnect() {
-        this.openSubject.complete();
-        this.closeSubject.complete();
+        // this.openSubject.complete();
+        // this.closeSubject.complete();
         this.webSocketSubject.complete();
     }
 
