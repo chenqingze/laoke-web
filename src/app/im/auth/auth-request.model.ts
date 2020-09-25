@@ -4,6 +4,7 @@ import {AuthRequest} from '../core/lib/Auth_pb';
 import {Message} from '../core/lib/Message_pb';
 
 export class AuthRequestModel extends BaseModel {
+
     readonly opCode = OpCode.AUTH_REQUEST;
     token: string; // 用户token
     deviceCode: string; // 设备号
@@ -27,7 +28,7 @@ export class AuthRequestModel extends BaseModel {
         authRequest.setDeviceIdiom(this.deviceIdiom);
         authRequest.setDevicePlatform(this.devicePlatform);
         // 测试,todo: 测试完成后删除
-        authRequest.setToken('test_token');
+        // authRequest.setToken('test_token');
         authRequest.setDeviceCode('test_code');
         authRequest.setDeviceIdiom('test_idiom');
         authRequest.setDevicePlatform('test_platform');

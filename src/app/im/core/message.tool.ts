@@ -7,6 +7,7 @@ import {QueryGroupAckModel} from '../contacts/groups/query-group-ack.model';
 
 import {GroupMsgAckModel} from '../page/group-chat/group-msg-ack.model';
 import {GroupMsgRequestModel} from '../page/group-chat/group-msg-request.model';
+import {FriendInvitationRequestAckModel} from '../addfriendgroup/shared/friend-invitation-request-ack.model';
 
 
 export class MessageTool {
@@ -24,6 +25,9 @@ export class MessageTool {
                 return GroupMsgRequestModel.createMessageModel().convertMessageToModel(message);
             case OpCode.MSG_ACK:
                 return GroupMsgAckModel.createMessageModel().convertMessageToModel(message);
+
+            case OpCode.FRIEND_INVITATION_REQUEST_ACK:
+                return FriendInvitationRequestAckModel.createMessageModel().convertMessageToModel(message);
             case OpCode.UNKNOWN:
             default:
                 throw new Error('opCode is not found.');
