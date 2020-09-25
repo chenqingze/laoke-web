@@ -9,7 +9,7 @@ import {AppComponent} from './app.component';
 import {environment} from '../environments/environment';
 import {ImConfig} from './im/im.config';
 import {SQLite} from '@ionic-native/sqlite/ngx';
-import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
     declarations: [AppComponent],
