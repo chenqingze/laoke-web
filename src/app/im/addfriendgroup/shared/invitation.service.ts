@@ -3,54 +3,85 @@ import {WebSocketService, WsStatus} from '../../core/web-socket.service';
 import {OpCode} from '../../core/lib/OpCode_pb';
 import {DbService} from '../../shared/db.service';
 import {concatMap, mergeMap} from 'rxjs/operators';
-import {Observable, of} from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 import {FriendInvitationRequestAckModel} from './friend-invitation-request-ack.model';
+import {Invitation, InviteStatus} from './Invitation.model';
+import {fromPromise} from 'rxjs/internal-compatibility';
+import {BaseModel} from '../../core/base.model';
+import {FriendInvitationAcceptAckModel} from './friend-invitation-accept-ack.model';
+import {FriendInvitationDeclinedAckModel} from './friend-invitation-declined-ack.model';
 
 @Injectable({
     providedIn: 'root'
 })
 export class InvitationService {
 
+    updateInvitation: Subject<BaseModel>;
+
     constructor(
-            private wsService: WebSocketService,
-            private dbService: DbService
+        private wsService: WebSocketService,
+        private dbService: DbService
     ) {
         console.log('InvitationService constructor ...');
-        this.subsFriendInvitationRequestAck();
+        this.listenInvitation();
+        this.updateInvitation = new Subject<BaseModel>();
     }
 
-    addInvitation(f: FriendInvitationRequestAckModel): Observable<any> {
-        let sql: string = 'insert into invitation (id,requesterId,requesterAlias,requesterNickname,addresseeId,addresseeAlias,' +
-                'addresseeNickname,content,inviteStatus,inviteType,readStatus,createdAt,updatedAt) values(?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    //监听好友申请请求
+
+    addInvitation(friendInvitationRequestAckModel: FriendInvitationRequestAckModel): Observable<any> {
+        let sql: string = 'insert into invitation (id,requesterId,requesterAlias,requesterNickname,requesterProfile,addresseeId,addresseeAlias,' +
+            'addresseeNickname,addresseeProfile,content,inviteStatus,inviteType,readStatus,createdAt,updatedAt) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+        let f = friendInvitationRequestAckModel.invitation;
         f.readStatus = 0;
-        return this.dbService.dbReady$().pipe(mergeMap(isDbReady => {
+        return this.dbService.dbReady$().pipe(concatMap(isDbReady => {
             if (isDbReady) {
-                return this.dbService.storage.executeSql(sql, [f.id, f.requesterId, f.requesterAlias, f.requesterNickname,
-                    f.addresseeId, f.addresseeAlias, f.addresseeNickname, f.content, f.inviteStatus, f.inviteType, f.readStatus, f.createdAt, f.updatedAt]);
+                return this.dbService.storage.executeSql(sql, [f.id, f.requesterId, f.requesterAlias, f.requesterNickname, f.requesterProfile,
+                    f.addresseeId, f.addresseeAlias, f.addresseeNickname, f.addresseeProfile, f.content, f.inviteStatus, f.inviteType, f.readStatus,
+                    f.createdAt, f.updatedAt]);
             }
             return of(null);
         }));
     }
 
+    listenInvitation() {
+        this.wsService.messages$(OpCode.FRIEND_INVITATION_REQUEST_ACK).pipe(concatMap(
+            (friendInvitationRequestAckModel: FriendInvitationRequestAckModel) =>
+                this.addInvitation(friendInvitationRequestAckModel))).subscribe(
+                    (sqlResult) => {
+                        if (sqlResult != null) {
+                            console.log('save success: %o', sqlResult);
+                            this.updateInvitation.next();
+                        }
+                        if (sqlResult == null) {
+                            console.error('save fail');
+                        }
+                    },
+                    err => {
+                        console.error('err', err);
+                    });
 
-    //-------------------------------------------------subscribe-----------------------------------------------------------------
+        this.wsService.messages$(OpCode.FRIEND_INVITATION_ACCEPT_ACK).subscribe((
+            friendInvitationAcceptAckModel: FriendInvitationAcceptAckModel
+        ) => {
 
-    subsFriendInvitationRequestAck() {
-        this.wsService.messages$(OpCode.FRIEND_INVITATION_REQUEST_ACK).pipe(
-                concatMap((friendInvitationRequestAckModel: FriendInvitationRequestAckModel) => this.addInvitation(friendInvitationRequestAckModel)))
-                .subscribe(
-                        (sqlResult) => {
-                            if (sqlResult != null) {
-                                console.log('save success: %o', sqlResult);
-                            }
-                            if (sqlResult == null) {
-                                console.error('save fail');
-                            }
-                        },
-                        err => {
-                            console.error("err", err);
-                        });
+        });
+
+        this.wsService.messages$(OpCode.FRIEND_INVITATION_DECLINED_ACK).subscribe((
+            friendInvitationDeclinedAckModel: FriendInvitationDeclinedAckModel
+        ) => {
+
+        });
     }
 
+    getInvitation(): Observable<any> {
+        let sql: string = 'select * from invitation where inviteType = ?';
+        return this.dbService.dbReady$().pipe(concatMap(isDbReady => {
+            if (isDbReady) {
+                return this.dbService.storage.executeSql(sql, ['INVITE_FRIEND']);
+            }
+            return of(null);
+        }));
+    }
 
 }

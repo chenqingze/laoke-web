@@ -67,6 +67,8 @@ export class WebSocketService implements OnDestroy {
                 // todo:发送token 认证
                 console.log('发送认证请求!');
                 let s = window.prompt('请输入userId', '123');
+                // @ts-ignore
+                window.userId = s;
                 const authRequest = AuthRequestModel.createMessageModel();
                 authRequest.token = s;
                 this.sendMessage(authRequest);

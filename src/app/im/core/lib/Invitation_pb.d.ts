@@ -3,7 +3,7 @@
 
 import * as jspb from "google-protobuf";
 
-export class Invitation extends jspb.Message {
+export class InvitationProto extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
@@ -16,6 +16,9 @@ export class Invitation extends jspb.Message {
   getRequesternickname(): string;
   setRequesternickname(value: string): void;
 
+  getRequesterprofile(): string;
+  setRequesterprofile(value: string): void;
+
   getAddresseeid(): string;
   setAddresseeid(value: string): void;
 
@@ -24,6 +27,9 @@ export class Invitation extends jspb.Message {
 
   getAddresseenickname(): string;
   setAddresseenickname(value: string): void;
+
+  getAddresseeprofile(): string;
+  setAddresseeprofile(value: string): void;
 
   getContent(): string;
   setContent(value: string): void;
@@ -41,24 +47,26 @@ export class Invitation extends jspb.Message {
   setUpdatedat(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Invitation.AsObject;
-  static toObject(includeInstance: boolean, msg: Invitation): Invitation.AsObject;
+  toObject(includeInstance?: boolean): InvitationProto.AsObject;
+  static toObject(includeInstance: boolean, msg: InvitationProto): InvitationProto.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Invitation, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Invitation;
-  static deserializeBinaryFromReader(message: Invitation, reader: jspb.BinaryReader): Invitation;
+  static serializeBinaryToWriter(message: InvitationProto, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InvitationProto;
+  static deserializeBinaryFromReader(message: InvitationProto, reader: jspb.BinaryReader): InvitationProto;
 }
 
-export namespace Invitation {
+export namespace InvitationProto {
   export type AsObject = {
     id: string,
     requesterid: string,
     requesteralias: string,
     requesternickname: string,
+    requesterprofile: string,
     addresseeid: string,
     addresseealias: string,
     addresseenickname: string,
+    addresseeprofile: string,
     content: string,
     invitestatus: string,
     invitetype: string,
@@ -67,7 +75,7 @@ export namespace Invitation {
   }
 }
 
-export class Friend extends jspb.Message {
+export class FriendProto extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
@@ -99,16 +107,16 @@ export class Friend extends jspb.Message {
   setUpdatedat(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Friend.AsObject;
-  static toObject(includeInstance: boolean, msg: Friend): Friend.AsObject;
+  toObject(includeInstance?: boolean): FriendProto.AsObject;
+  static toObject(includeInstance: boolean, msg: FriendProto): FriendProto.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Friend, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Friend;
-  static deserializeBinaryFromReader(message: Friend, reader: jspb.BinaryReader): Friend;
+  static serializeBinaryToWriter(message: FriendProto, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FriendProto;
+  static deserializeBinaryFromReader(message: FriendProto, reader: jspb.BinaryReader): FriendProto;
 }
 
-export namespace Friend {
+export namespace FriendProto {
   export type AsObject = {
     id: string,
     userid: number,
@@ -152,41 +160,10 @@ export namespace FriendInvitationRequestRequest {
 }
 
 export class FriendInvitationRequestAck extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
-  getRequesterid(): string;
-  setRequesterid(value: string): void;
-
-  getRequesteralias(): string;
-  setRequesteralias(value: string): void;
-
-  getRequesternickname(): string;
-  setRequesternickname(value: string): void;
-
-  getAddresseeid(): string;
-  setAddresseeid(value: string): void;
-
-  getAddresseealias(): string;
-  setAddresseealias(value: string): void;
-
-  getAddresseenickname(): string;
-  setAddresseenickname(value: string): void;
-
-  getContent(): string;
-  setContent(value: string): void;
-
-  getInvitestatus(): string;
-  setInvitestatus(value: string): void;
-
-  getInvitetype(): string;
-  setInvitetype(value: string): void;
-
-  getCreatedat(): number;
-  setCreatedat(value: number): void;
-
-  getUpdatedat(): number;
-  setUpdatedat(value: number): void;
+  hasInvitationproto(): boolean;
+  clearInvitationproto(): void;
+  getInvitationproto(): InvitationProto | undefined;
+  setInvitationproto(value?: InvitationProto): void;
 
   getRes(): number;
   setRes(value: number): void;
@@ -203,18 +180,7 @@ export class FriendInvitationRequestAck extends jspb.Message {
 
 export namespace FriendInvitationRequestAck {
   export type AsObject = {
-    id: string,
-    requesterid: string,
-    requesteralias: string,
-    requesternickname: string,
-    addresseeid: string,
-    addresseealias: string,
-    addresseenickname: string,
-    content: string,
-    invitestatus: string,
-    invitetype: string,
-    createdat: number,
-    updatedat: number,
+    invitationproto?: InvitationProto.AsObject,
     res: number,
   }
 }
@@ -240,10 +206,13 @@ export namespace FriendInvitationAcceptRequest {
 }
 
 export class FriendInvitationAcceptAck extends jspb.Message {
-  hasFriend(): boolean;
-  clearFriend(): void;
-  getFriend(): Friend | undefined;
-  setFriend(value?: Friend): void;
+  getId(): string;
+  setId(value: string): void;
+
+  hasFriendproto(): boolean;
+  clearFriendproto(): void;
+  getFriendproto(): FriendProto | undefined;
+  setFriendproto(value?: FriendProto): void;
 
   getRes(): number;
   setRes(value: number): void;
@@ -260,7 +229,8 @@ export class FriendInvitationAcceptAck extends jspb.Message {
 
 export namespace FriendInvitationAcceptAck {
   export type AsObject = {
-    friend?: Friend.AsObject,
+    id: string,
+    friendproto?: FriendProto.AsObject,
     res: number,
   }
 }
@@ -330,10 +300,10 @@ export namespace FriendInvitationRequest {
 }
 
 export class FriendInvitationAck extends jspb.Message {
-  clearInvitationList(): void;
-  getInvitationList(): Array<Invitation>;
-  setInvitationList(value: Array<Invitation>): void;
-  addInvitation(value?: Invitation, index?: number): Invitation;
+  clearInvitationprotoList(): void;
+  getInvitationprotoList(): Array<InvitationProto>;
+  setInvitationprotoList(value: Array<InvitationProto>): void;
+  addInvitationproto(value?: InvitationProto, index?: number): InvitationProto;
 
   getRes(): number;
   setRes(value: number): void;
@@ -350,7 +320,7 @@ export class FriendInvitationAck extends jspb.Message {
 
 export namespace FriendInvitationAck {
   export type AsObject = {
-    invitationList: Array<Invitation.AsObject>,
+    invitationprotoList: Array<InvitationProto.AsObject>,
     res: number,
   }
 }
@@ -376,10 +346,10 @@ export namespace FriendRequest {
 }
 
 export class FriendAck extends jspb.Message {
-  clearInvitationList(): void;
-  getInvitationList(): Array<Invitation>;
-  setInvitationList(value: Array<Invitation>): void;
-  addInvitation(value?: Invitation, index?: number): Invitation;
+  clearFriendprotoList(): void;
+  getFriendprotoList(): Array<FriendProto>;
+  setFriendprotoList(value: Array<FriendProto>): void;
+  addFriendproto(value?: FriendProto, index?: number): FriendProto;
 
   getRes(): number;
   setRes(value: number): void;
@@ -396,7 +366,7 @@ export class FriendAck extends jspb.Message {
 
 export namespace FriendAck {
   export type AsObject = {
-    invitationList: Array<Invitation.AsObject>,
+    friendprotoList: Array<FriendProto.AsObject>,
     res: number,
   }
 }

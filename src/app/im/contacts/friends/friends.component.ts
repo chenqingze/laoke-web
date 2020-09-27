@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { DbService } from '../../shared/db.service';
-import { Friend } from './friend.model';
+import { Friend } from './shared/friend.model';
 import { FriendService } from './shared/friend.service';
 import {concatMap, mergeMap} from 'rxjs/operators';
 import {forkJoin, of} from 'rxjs';
