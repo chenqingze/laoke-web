@@ -2,6 +2,7 @@
 // file: Invitation.proto
 
 import * as jspb from "google-protobuf";
+import * as Friend_pb from "./Friend_pb";
 
 export class InvitationProto extends jspb.Message {
   getId(): string;
@@ -75,63 +76,7 @@ export namespace InvitationProto {
   }
 }
 
-export class FriendProto extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
-  getUserid(): number;
-  setUserid(value: number): void;
-
-  getFriendid(): number;
-  setFriendid(value: number): void;
-
-  getFriendname(): string;
-  setFriendname(value: string): void;
-
-  getAlias(): string;
-  setAlias(value: string): void;
-
-  getIsblocked(): number;
-  setIsblocked(value: number): void;
-
-  getIsmute(): number;
-  setIsmute(value: number): void;
-
-  getIsstickontop(): number;
-  setIsstickontop(value: number): void;
-
-  getCreatedat(): number;
-  setCreatedat(value: number): void;
-
-  getUpdatedat(): number;
-  setUpdatedat(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FriendProto.AsObject;
-  static toObject(includeInstance: boolean, msg: FriendProto): FriendProto.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FriendProto, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FriendProto;
-  static deserializeBinaryFromReader(message: FriendProto, reader: jspb.BinaryReader): FriendProto;
-}
-
-export namespace FriendProto {
-  export type AsObject = {
-    id: string,
-    userid: number,
-    friendid: number,
-    friendname: string,
-    alias: string,
-    isblocked: number,
-    ismute: number,
-    isstickontop: number,
-    createdat: number,
-    updatedat: number,
-  }
-}
-
-export class FriendInvitationRequestRequest extends jspb.Message {
+export class InvitationRequestRequest extends jspb.Message {
   getAddresseeid(): string;
   setAddresseeid(value: string): void;
 
@@ -142,16 +87,16 @@ export class FriendInvitationRequestRequest extends jspb.Message {
   setContent(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FriendInvitationRequestRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: FriendInvitationRequestRequest): FriendInvitationRequestRequest.AsObject;
+  toObject(includeInstance?: boolean): InvitationRequestRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: InvitationRequestRequest): InvitationRequestRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FriendInvitationRequestRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FriendInvitationRequestRequest;
-  static deserializeBinaryFromReader(message: FriendInvitationRequestRequest, reader: jspb.BinaryReader): FriendInvitationRequestRequest;
+  static serializeBinaryToWriter(message: InvitationRequestRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InvitationRequestRequest;
+  static deserializeBinaryFromReader(message: InvitationRequestRequest, reader: jspb.BinaryReader): InvitationRequestRequest;
 }
 
-export namespace FriendInvitationRequestRequest {
+export namespace InvitationRequestRequest {
   export type AsObject = {
     addresseeid: string,
     addresseealias: string,
@@ -159,7 +104,7 @@ export namespace FriendInvitationRequestRequest {
   }
 }
 
-export class FriendInvitationRequestAck extends jspb.Message {
+export class InvitationRequestAck extends jspb.Message {
   hasInvitationproto(): boolean;
   clearInvitationproto(): void;
   getInvitationproto(): InvitationProto | undefined;
@@ -169,93 +114,93 @@ export class FriendInvitationRequestAck extends jspb.Message {
   setRes(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FriendInvitationRequestAck.AsObject;
-  static toObject(includeInstance: boolean, msg: FriendInvitationRequestAck): FriendInvitationRequestAck.AsObject;
+  toObject(includeInstance?: boolean): InvitationRequestAck.AsObject;
+  static toObject(includeInstance: boolean, msg: InvitationRequestAck): InvitationRequestAck.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FriendInvitationRequestAck, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FriendInvitationRequestAck;
-  static deserializeBinaryFromReader(message: FriendInvitationRequestAck, reader: jspb.BinaryReader): FriendInvitationRequestAck;
+  static serializeBinaryToWriter(message: InvitationRequestAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InvitationRequestAck;
+  static deserializeBinaryFromReader(message: InvitationRequestAck, reader: jspb.BinaryReader): InvitationRequestAck;
 }
 
-export namespace FriendInvitationRequestAck {
+export namespace InvitationRequestAck {
   export type AsObject = {
     invitationproto?: InvitationProto.AsObject,
     res: number,
   }
 }
 
-export class FriendInvitationAcceptRequest extends jspb.Message {
+export class InvitationAcceptRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FriendInvitationAcceptRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: FriendInvitationAcceptRequest): FriendInvitationAcceptRequest.AsObject;
+  toObject(includeInstance?: boolean): InvitationAcceptRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: InvitationAcceptRequest): InvitationAcceptRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FriendInvitationAcceptRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FriendInvitationAcceptRequest;
-  static deserializeBinaryFromReader(message: FriendInvitationAcceptRequest, reader: jspb.BinaryReader): FriendInvitationAcceptRequest;
+  static serializeBinaryToWriter(message: InvitationAcceptRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InvitationAcceptRequest;
+  static deserializeBinaryFromReader(message: InvitationAcceptRequest, reader: jspb.BinaryReader): InvitationAcceptRequest;
 }
 
-export namespace FriendInvitationAcceptRequest {
+export namespace InvitationAcceptRequest {
   export type AsObject = {
     id: string,
   }
 }
 
-export class FriendInvitationAcceptAck extends jspb.Message {
+export class InvitationAcceptAck extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
   hasFriendproto(): boolean;
   clearFriendproto(): void;
-  getFriendproto(): FriendProto | undefined;
-  setFriendproto(value?: FriendProto): void;
+  getFriendproto(): Friend_pb.FriendProto | undefined;
+  setFriendproto(value?: Friend_pb.FriendProto): void;
 
   getRes(): number;
   setRes(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FriendInvitationAcceptAck.AsObject;
-  static toObject(includeInstance: boolean, msg: FriendInvitationAcceptAck): FriendInvitationAcceptAck.AsObject;
+  toObject(includeInstance?: boolean): InvitationAcceptAck.AsObject;
+  static toObject(includeInstance: boolean, msg: InvitationAcceptAck): InvitationAcceptAck.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FriendInvitationAcceptAck, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FriendInvitationAcceptAck;
-  static deserializeBinaryFromReader(message: FriendInvitationAcceptAck, reader: jspb.BinaryReader): FriendInvitationAcceptAck;
+  static serializeBinaryToWriter(message: InvitationAcceptAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InvitationAcceptAck;
+  static deserializeBinaryFromReader(message: InvitationAcceptAck, reader: jspb.BinaryReader): InvitationAcceptAck;
 }
 
-export namespace FriendInvitationAcceptAck {
+export namespace InvitationAcceptAck {
   export type AsObject = {
     id: string,
-    friendproto?: FriendProto.AsObject,
+    friendproto?: Friend_pb.FriendProto.AsObject,
     res: number,
   }
 }
 
-export class FriendInvitationDeclinedRequest extends jspb.Message {
+export class InvitationDeclinedRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FriendInvitationDeclinedRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: FriendInvitationDeclinedRequest): FriendInvitationDeclinedRequest.AsObject;
+  toObject(includeInstance?: boolean): InvitationDeclinedRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: InvitationDeclinedRequest): InvitationDeclinedRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FriendInvitationDeclinedRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FriendInvitationDeclinedRequest;
-  static deserializeBinaryFromReader(message: FriendInvitationDeclinedRequest, reader: jspb.BinaryReader): FriendInvitationDeclinedRequest;
+  static serializeBinaryToWriter(message: InvitationDeclinedRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InvitationDeclinedRequest;
+  static deserializeBinaryFromReader(message: InvitationDeclinedRequest, reader: jspb.BinaryReader): InvitationDeclinedRequest;
 }
 
-export namespace FriendInvitationDeclinedRequest {
+export namespace InvitationDeclinedRequest {
   export type AsObject = {
     id: string,
   }
 }
 
-export class FriendInvitationDeclinedAck extends jspb.Message {
+export class InvitationDeclinedAck extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
@@ -263,43 +208,43 @@ export class FriendInvitationDeclinedAck extends jspb.Message {
   setRes(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FriendInvitationDeclinedAck.AsObject;
-  static toObject(includeInstance: boolean, msg: FriendInvitationDeclinedAck): FriendInvitationDeclinedAck.AsObject;
+  toObject(includeInstance?: boolean): InvitationDeclinedAck.AsObject;
+  static toObject(includeInstance: boolean, msg: InvitationDeclinedAck): InvitationDeclinedAck.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FriendInvitationDeclinedAck, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FriendInvitationDeclinedAck;
-  static deserializeBinaryFromReader(message: FriendInvitationDeclinedAck, reader: jspb.BinaryReader): FriendInvitationDeclinedAck;
+  static serializeBinaryToWriter(message: InvitationDeclinedAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InvitationDeclinedAck;
+  static deserializeBinaryFromReader(message: InvitationDeclinedAck, reader: jspb.BinaryReader): InvitationDeclinedAck;
 }
 
-export namespace FriendInvitationDeclinedAck {
+export namespace InvitationDeclinedAck {
   export type AsObject = {
     id: string,
     res: number,
   }
 }
 
-export class FriendInvitationRequest extends jspb.Message {
+export class InvitationRequest extends jspb.Message {
   getUpdatedat(): number;
   setUpdatedat(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FriendInvitationRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: FriendInvitationRequest): FriendInvitationRequest.AsObject;
+  toObject(includeInstance?: boolean): InvitationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: InvitationRequest): InvitationRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FriendInvitationRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FriendInvitationRequest;
-  static deserializeBinaryFromReader(message: FriendInvitationRequest, reader: jspb.BinaryReader): FriendInvitationRequest;
+  static serializeBinaryToWriter(message: InvitationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InvitationRequest;
+  static deserializeBinaryFromReader(message: InvitationRequest, reader: jspb.BinaryReader): InvitationRequest;
 }
 
-export namespace FriendInvitationRequest {
+export namespace InvitationRequest {
   export type AsObject = {
     updatedat: number,
   }
 }
 
-export class FriendInvitationAck extends jspb.Message {
+export class InvitationAck extends jspb.Message {
   clearInvitationprotoList(): void;
   getInvitationprotoList(): Array<InvitationProto>;
   setInvitationprotoList(value: Array<InvitationProto>): void;
@@ -309,64 +254,18 @@ export class FriendInvitationAck extends jspb.Message {
   setRes(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FriendInvitationAck.AsObject;
-  static toObject(includeInstance: boolean, msg: FriendInvitationAck): FriendInvitationAck.AsObject;
+  toObject(includeInstance?: boolean): InvitationAck.AsObject;
+  static toObject(includeInstance: boolean, msg: InvitationAck): InvitationAck.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FriendInvitationAck, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FriendInvitationAck;
-  static deserializeBinaryFromReader(message: FriendInvitationAck, reader: jspb.BinaryReader): FriendInvitationAck;
+  static serializeBinaryToWriter(message: InvitationAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InvitationAck;
+  static deserializeBinaryFromReader(message: InvitationAck, reader: jspb.BinaryReader): InvitationAck;
 }
 
-export namespace FriendInvitationAck {
+export namespace InvitationAck {
   export type AsObject = {
     invitationprotoList: Array<InvitationProto.AsObject>,
-    res: number,
-  }
-}
-
-export class FriendRequest extends jspb.Message {
-  getUpdatedat(): number;
-  setUpdatedat(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FriendRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: FriendRequest): FriendRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FriendRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FriendRequest;
-  static deserializeBinaryFromReader(message: FriendRequest, reader: jspb.BinaryReader): FriendRequest;
-}
-
-export namespace FriendRequest {
-  export type AsObject = {
-    updatedat: number,
-  }
-}
-
-export class FriendAck extends jspb.Message {
-  clearFriendprotoList(): void;
-  getFriendprotoList(): Array<FriendProto>;
-  setFriendprotoList(value: Array<FriendProto>): void;
-  addFriendproto(value?: FriendProto, index?: number): FriendProto;
-
-  getRes(): number;
-  setRes(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FriendAck.AsObject;
-  static toObject(includeInstance: boolean, msg: FriendAck): FriendAck.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FriendAck, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FriendAck;
-  static deserializeBinaryFromReader(message: FriendAck, reader: jspb.BinaryReader): FriendAck;
-}
-
-export namespace FriendAck {
-  export type AsObject = {
-    friendprotoList: Array<FriendProto.AsObject>,
     res: number,
   }
 }

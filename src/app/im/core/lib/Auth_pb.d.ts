@@ -1,4 +1,4 @@
-// package: com.aihangxunxi.aitalk.im.protocol.buffers
+// package: 
 // file: Auth.proto
 
 import * as jspb from "google-protobuf";

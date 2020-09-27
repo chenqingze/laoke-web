@@ -1,4 +1,4 @@
-// package: com.aihangxunxi.aitalk.im.protocol.buffers
+// package: 
 // file: Message.proto
 
 import * as jspb from "google-protobuf";
@@ -8,6 +8,7 @@ import * as Connection_pb from "./Connection_pb";
 import * as Auth_pb from "./Auth_pb";
 import * as Group_pb from "./Group_pb";
 import * as Invitation_pb from "./Invitation_pb";
+import * as Friend_pb from "./Friend_pb";
 
 export class Message extends jspb.Message {
   getMagic(): string;
@@ -52,55 +53,55 @@ export class Message extends jspb.Message {
   getQueryUserGroupAck(): Group_pb.QueryUserGroupsAck | undefined;
   setQueryUserGroupAck(value?: Group_pb.QueryUserGroupsAck): void;
 
-  hasFriendInvitationRequestRequest(): boolean;
-  clearFriendInvitationRequestRequest(): void;
-  getFriendInvitationRequestRequest(): Invitation_pb.FriendInvitationRequestRequest | undefined;
-  setFriendInvitationRequestRequest(value?: Invitation_pb.FriendInvitationRequestRequest): void;
+  hasInvitationRequestRequest(): boolean;
+  clearInvitationRequestRequest(): void;
+  getInvitationRequestRequest(): Invitation_pb.InvitationRequestRequest | undefined;
+  setInvitationRequestRequest(value?: Invitation_pb.InvitationRequestRequest): void;
 
-  hasFriendInvitationRequestAck(): boolean;
-  clearFriendInvitationRequestAck(): void;
-  getFriendInvitationRequestAck(): Invitation_pb.FriendInvitationRequestAck | undefined;
-  setFriendInvitationRequestAck(value?: Invitation_pb.FriendInvitationRequestAck): void;
+  hasInvitationRequestAck(): boolean;
+  clearInvitationRequestAck(): void;
+  getInvitationRequestAck(): Invitation_pb.InvitationRequestAck | undefined;
+  setInvitationRequestAck(value?: Invitation_pb.InvitationRequestAck): void;
 
-  hasFriendInvitationAcceptRequest(): boolean;
-  clearFriendInvitationAcceptRequest(): void;
-  getFriendInvitationAcceptRequest(): Invitation_pb.FriendInvitationAcceptRequest | undefined;
-  setFriendInvitationAcceptRequest(value?: Invitation_pb.FriendInvitationAcceptRequest): void;
+  hasInvitationAcceptRequest(): boolean;
+  clearInvitationAcceptRequest(): void;
+  getInvitationAcceptRequest(): Invitation_pb.InvitationAcceptRequest | undefined;
+  setInvitationAcceptRequest(value?: Invitation_pb.InvitationAcceptRequest): void;
 
-  hasFriendInvitationAcceptAck(): boolean;
-  clearFriendInvitationAcceptAck(): void;
-  getFriendInvitationAcceptAck(): Invitation_pb.FriendInvitationAcceptAck | undefined;
-  setFriendInvitationAcceptAck(value?: Invitation_pb.FriendInvitationAcceptAck): void;
+  hasInvitationAcceptAck(): boolean;
+  clearInvitationAcceptAck(): void;
+  getInvitationAcceptAck(): Invitation_pb.InvitationAcceptAck | undefined;
+  setInvitationAcceptAck(value?: Invitation_pb.InvitationAcceptAck): void;
 
-  hasFriendInvitationDeclinedRequest(): boolean;
-  clearFriendInvitationDeclinedRequest(): void;
-  getFriendInvitationDeclinedRequest(): Invitation_pb.FriendInvitationDeclinedRequest | undefined;
-  setFriendInvitationDeclinedRequest(value?: Invitation_pb.FriendInvitationDeclinedRequest): void;
+  hasInvitationDeclinedRequest(): boolean;
+  clearInvitationDeclinedRequest(): void;
+  getInvitationDeclinedRequest(): Invitation_pb.InvitationDeclinedRequest | undefined;
+  setInvitationDeclinedRequest(value?: Invitation_pb.InvitationDeclinedRequest): void;
 
-  hasFriendInvitationDeclinedAck(): boolean;
-  clearFriendInvitationDeclinedAck(): void;
-  getFriendInvitationDeclinedAck(): Invitation_pb.FriendInvitationDeclinedAck | undefined;
-  setFriendInvitationDeclinedAck(value?: Invitation_pb.FriendInvitationDeclinedAck): void;
+  hasInvitationDeclinedAck(): boolean;
+  clearInvitationDeclinedAck(): void;
+  getInvitationDeclinedAck(): Invitation_pb.InvitationDeclinedAck | undefined;
+  setInvitationDeclinedAck(value?: Invitation_pb.InvitationDeclinedAck): void;
 
-  hasFriendInvitationRequest(): boolean;
-  clearFriendInvitationRequest(): void;
-  getFriendInvitationRequest(): Invitation_pb.FriendInvitationRequest | undefined;
-  setFriendInvitationRequest(value?: Invitation_pb.FriendInvitationRequest): void;
+  hasInvitationRequest(): boolean;
+  clearInvitationRequest(): void;
+  getInvitationRequest(): Invitation_pb.InvitationRequest | undefined;
+  setInvitationRequest(value?: Invitation_pb.InvitationRequest): void;
 
-  hasFriendInvitationAck(): boolean;
-  clearFriendInvitationAck(): void;
-  getFriendInvitationAck(): Invitation_pb.FriendInvitationAck | undefined;
-  setFriendInvitationAck(value?: Invitation_pb.FriendInvitationAck): void;
+  hasInvitationAck(): boolean;
+  clearInvitationAck(): void;
+  getInvitationAck(): Invitation_pb.InvitationAck | undefined;
+  setInvitationAck(value?: Invitation_pb.InvitationAck): void;
 
   hasFriendRequest(): boolean;
   clearFriendRequest(): void;
-  getFriendRequest(): Invitation_pb.FriendRequest | undefined;
-  setFriendRequest(value?: Invitation_pb.FriendRequest): void;
+  getFriendRequest(): Friend_pb.FriendRequest | undefined;
+  setFriendRequest(value?: Friend_pb.FriendRequest): void;
 
   hasFriendAck(): boolean;
   clearFriendAck(): void;
-  getFriendAck(): Invitation_pb.FriendAck | undefined;
-  setFriendAck(value?: Invitation_pb.FriendAck): void;
+  getFriendAck(): Friend_pb.FriendAck | undefined;
+  setFriendAck(value?: Friend_pb.FriendAck): void;
 
   getPayloadCase(): Message.PayloadCase;
   serializeBinary(): Uint8Array;
@@ -125,16 +126,16 @@ export namespace Message {
     msgAck?: Msg_pb.MsgAck.AsObject,
     queryUserGroupRequest?: Group_pb.QueryUserGroupsRequest.AsObject,
     queryUserGroupAck?: Group_pb.QueryUserGroupsAck.AsObject,
-    friendInvitationRequestRequest?: Invitation_pb.FriendInvitationRequestRequest.AsObject,
-    friendInvitationRequestAck?: Invitation_pb.FriendInvitationRequestAck.AsObject,
-    friendInvitationAcceptRequest?: Invitation_pb.FriendInvitationAcceptRequest.AsObject,
-    friendInvitationAcceptAck?: Invitation_pb.FriendInvitationAcceptAck.AsObject,
-    friendInvitationDeclinedRequest?: Invitation_pb.FriendInvitationDeclinedRequest.AsObject,
-    friendInvitationDeclinedAck?: Invitation_pb.FriendInvitationDeclinedAck.AsObject,
-    friendInvitationRequest?: Invitation_pb.FriendInvitationRequest.AsObject,
-    friendInvitationAck?: Invitation_pb.FriendInvitationAck.AsObject,
-    friendRequest?: Invitation_pb.FriendRequest.AsObject,
-    friendAck?: Invitation_pb.FriendAck.AsObject,
+    invitationRequestRequest?: Invitation_pb.InvitationRequestRequest.AsObject,
+    invitationRequestAck?: Invitation_pb.InvitationRequestAck.AsObject,
+    invitationAcceptRequest?: Invitation_pb.InvitationAcceptRequest.AsObject,
+    invitationAcceptAck?: Invitation_pb.InvitationAcceptAck.AsObject,
+    invitationDeclinedRequest?: Invitation_pb.InvitationDeclinedRequest.AsObject,
+    invitationDeclinedAck?: Invitation_pb.InvitationDeclinedAck.AsObject,
+    invitationRequest?: Invitation_pb.InvitationRequest.AsObject,
+    invitationAck?: Invitation_pb.InvitationAck.AsObject,
+    friendRequest?: Friend_pb.FriendRequest.AsObject,
+    friendAck?: Friend_pb.FriendAck.AsObject,
   }
 
   export enum PayloadCase {
@@ -145,14 +146,14 @@ export namespace Message {
     MSG_ACK = 23,
     QUERY_USER_GROUP_REQUEST = 21,
     QUERY_USER_GROUP_ACK = 22,
-    FRIEND_INVITATION_REQUEST_REQUEST = 1001,
-    FRIEND_INVITATION_REQUEST_ACK = 1002,
-    FRIEND_INVITATION_ACCEPT_REQUEST = 1003,
-    FRIEND_INVITATION_ACCEPT_ACK = 1004,
-    FRIEND_INVITATION_DECLINED_REQUEST = 1005,
-    FRIEND_INVITATION_DECLINED_ACK = 1006,
-    FRIEND_INVITATION_REQUEST = 1007,
-    FRIEND_INVITATION_ACK = 1008,
+    INVITATION_REQUEST_REQUEST = 1001,
+    INVITATION_REQUEST_ACK = 1002,
+    INVITATION_ACCEPT_REQUEST = 1003,
+    INVITATION_ACCEPT_ACK = 1004,
+    INVITATION_DECLINED_REQUEST = 1005,
+    INVITATION_DECLINED_ACK = 1006,
+    INVITATION_REQUEST = 1007,
+    INVITATION_ACK = 1008,
     FRIEND_REQUEST = 1009,
     FRIEND_ACK = 1010,
   }

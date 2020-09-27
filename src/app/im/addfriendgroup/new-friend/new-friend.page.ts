@@ -1,18 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {Invitation, InviteStatus} from '../shared/Invitation.model';
 import {InvitationService} from '../shared/invitation.service';
-import {concat, forkJoin, of} from 'rxjs';
 import {WebSocketService} from '../../core/web-socket.service';
 import {OpCode} from '../../core/lib/OpCode_pb';
-import {concatMap, filter, map} from 'rxjs/operators';
-import {FriendInvitationRequestAckModel} from '../shared/friend-invitation-request-ack.model';
-import {FriendInvitationAcceptRequestModel} from '../shared/friend-invitation-accept-request.model';
+import {InvitationRequestAckModel} from '../shared/friend-invitation-request-ack.model';
+import {InvitationAcceptRequestModel} from '../shared/friend-invitation-accept-request.model';
 import {Router} from '@angular/router';
 import {ToastController} from '@ionic/angular';
-import {FriendInvitationAcceptAckModel} from '../shared/friend-invitation-accept-ack.model';
-import {FriendInvitationDeclinedAck} from '../../core/lib/Invitation_pb';
-import {FriendInvitationDeclinedAckModel} from '../shared/friend-invitation-declined-ack.model';
-import {FriendInvitationDeclinedRequestModel} from '../shared/friend-invitation-declined-request.model';
+import {InvitationAcceptAckModel} from '../shared/friend-invitation-accept-ack.model';
+import {InvitationDeclinedAckModel} from '../shared/friend-invitation-declined-ack.model';
+import {InvitationDeclinedRequestModel} from '../shared/friend-invitation-declined-request.model';
 
 @Component({
     selector: 'app-new-friend',
@@ -54,13 +51,13 @@ export class NewFriendPage implements OnInit {
     listenInvitation() {
         console.log(InviteStatus.REQUESTED)
         this.wsService.messages$(OpCode.FRIEND_INVITATION_REQUEST_ACK).subscribe((
-            friendInvitationRequestAckModel: FriendInvitationRequestAckModel
+            friendInvitationRequestAckModel: InvitationRequestAckModel
         ) => {
             this.invitations.unshift(friendInvitationRequestAckModel.invitation);
         });
 
         this.wsService.messages$(OpCode.FRIEND_INVITATION_ACCEPT_ACK).subscribe((
-            friendInvitationAcceptAckModel: FriendInvitationAcceptAckModel
+            friendInvitationAcceptAckModel: InvitationAcceptAckModel
         ) => {
             for (let i = 0; i < this.invitations.length; i++) {
                 if(this.invitations[i].id == friendInvitationAcceptAckModel.id)
@@ -69,7 +66,7 @@ export class NewFriendPage implements OnInit {
         });
 
         this.wsService.messages$(OpCode.FRIEND_INVITATION_DECLINED_ACK).subscribe((
-            friendInvitationDeclinedAckModel: FriendInvitationDeclinedAckModel
+            friendInvitationDeclinedAckModel: InvitationDeclinedAckModel
         ) => {
             for (let i = 0; i < this.invitations.length; i++) {
                 if(this.invitations[i].id == friendInvitationDeclinedAckModel.id)
@@ -79,7 +76,7 @@ export class NewFriendPage implements OnInit {
     }
 
     decline($event: MouseEvent, item: Invitation) {
-        const friendInvitationDeclinedRequestModel = FriendInvitationDeclinedRequestModel.createMessageModel();
+        const friendInvitationDeclinedRequestModel = InvitationDeclinedRequestModel.createMessageModel();
         friendInvitationDeclinedRequestModel.id = item.id;
         this.wsService.sendMessage(friendInvitationDeclinedRequestModel);
 
@@ -89,7 +86,7 @@ export class NewFriendPage implements OnInit {
     }
 
     accept($event: MouseEvent, item: Invitation) {
-        const friendInvitationAcceptRequestModel = FriendInvitationAcceptRequestModel.createMessageModel();
+        const friendInvitationAcceptRequestModel = InvitationAcceptRequestModel.createMessageModel();
         friendInvitationAcceptRequestModel.id = item.id;
         this.wsService.sendMessage(friendInvitationAcceptRequestModel);
 

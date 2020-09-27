@@ -1,29 +1,29 @@
 import {BaseModel} from '../../core/base.model';
 import {OpCode} from '../../core/lib/OpCode_pb';
 import {Message} from '../../core/lib/Message_pb';
-import {FriendInvitationRequestAck, InvitationProto} from '../../core/lib/Invitation_pb';
+import {InvitationRequestAck, InvitationProto} from '../../core/lib/Invitation_pb';
 import {Invitation, ReadStatus} from './Invitation.model';
 
 
-export class FriendInvitationRequestAckModel extends BaseModel {
+export class InvitationRequestAckModel extends BaseModel {
     readonly opCode = OpCode.FRIEND_INVITATION_REQUEST_ACK;
     invitation:Invitation;
     res:number; //0-失败，1-成功*/
 
     convertMessageToModel(message: Message): BaseModel {
-        const friendInvitationRequestAck = message.getFriendInvitationRequestAck();
+        const friendInvitationRequestAck = message.getInvitationRequestAck();
         this.invitation = this.convertToInvitationModel(friendInvitationRequestAck.getInvitationproto()) ;
         this.res = friendInvitationRequestAck.getRes();
         return this;
     }
 
     convertToMessage(): Message {
-        const friendInvitationRequestAck = new FriendInvitationRequestAck();
+        const friendInvitationRequestAck = new InvitationRequestAck();
         friendInvitationRequestAck.setInvitationproto(this.convertToInvitationMessage(this.invitation));
         friendInvitationRequestAck.setRes(this.res);
         const message = this.createMessage();
         message.setOpCode(this.opCode);
-        message.setFriendInvitationRequestAck(friendInvitationRequestAck);
+        message.setInvitationRequestAck(friendInvitationRequestAck);
         return message;
     }
 
