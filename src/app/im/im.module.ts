@@ -12,9 +12,9 @@ import {FriendsComponent} from './contacts/friends/friends.component';
 import {GroupsComponent} from './contacts/groups/groups.component';
 import {RecentContactsComponent} from './recent-contacts/recent-contacts.component';
 import {RecentContactComponent} from './recent-contacts/recent-contact/recent-contact.component';
-import {HttpClient} from '@angular/common/http';
 import {NgPipesModule} from 'ngx-pipes';
 import {InvitationService} from './addfriendgroup/shared/invitation.service';
+import { MucHeaderPipe } from './shared/pipe/muc-header/muc-header.pipe';
 
 @NgModule({
     imports: [
@@ -32,7 +32,8 @@ import {InvitationService} from './addfriendgroup/shared/invitation.service';
         DiscoveryComponent,
         FansComponent,
         FriendsComponent,
-        GroupsComponent
+        GroupsComponent,
+        MucHeaderPipe
     ],
 })
 export class ImModule {
@@ -40,7 +41,7 @@ export class ImModule {
     constructor(
         private webSocketService: WebSocketService,
         private invitationService: InvitationService,
-    @Optional() @SkipSelf() parentModule?: ImModule,
+        @Optional() @SkipSelf() parentModule?: ImModule,
     ) {
         if (parentModule) {
             throw new Error(

@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {GroupService} from '../../service/group-service/group.service';
 import {Subscription} from 'rxjs';
 import {filter} from 'rxjs/operators';
@@ -85,6 +85,7 @@ export class GroupChatPage implements OnInit, OnDestroy {
 
     constructor(private activeRouter: ActivatedRoute,
                 private modalCtrl: ModalController,
+                private router: Router,
                 private wsService: WebSocketService,
                 private groupMsgDbService: GroupMsgDbService,
                 private dialog: AlertController,
@@ -105,9 +106,16 @@ export class GroupChatPage implements OnInit, OnDestroy {
         this.atList = [];
         this.conversationList = [];
         this.showList = new Array<any>();
+        this.groupMsgDbService.queryMucHist(this.groupId).then((d) => {
+            for (let i = 0; i < d.rows.length; i++) {
+                console.log(d.rows.item(i));
+                this.conversationList.push(d.rows.item(i));
+                this.scrollToBottom();
+            }
+
+        });
         // console.log('111');
     }
-
     queryGroupInfo() {
         this.groupService.queryGroupInfo(this.groupId).subscribe({
             next: (data) => {
@@ -288,6 +296,7 @@ export class GroupChatPage implements OnInit, OnDestroy {
             this.groupMsgDbService.saveMucHist(groupMsgReq.seq,
                 groupMsgReq.conversationType, groupMsgReq.conversationId, 'OUT',
                 groupMsgReq.msgType, groupMsgReq.msgStatus, this.messageContent);
+            this.messageContent = '';
         }
     }
 
@@ -303,6 +312,10 @@ export class GroupChatPage implements OnInit, OnDestroy {
         groupMsgReq.senderName = '发发发';
         this.conversationList.push(model);
 
+    }
+
+    openSetting(){
+        this.router.navigate(['/tabs/im/group-chat-setting',{groupId: this.groupId}]);
     }
 
 
