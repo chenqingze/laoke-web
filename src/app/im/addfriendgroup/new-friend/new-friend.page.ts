@@ -12,6 +12,7 @@ import {ToastController} from '@ionic/angular';
 import {FriendInvitationAcceptAckModel} from '../shared/friend-invitation-accept-ack.model';
 import {FriendInvitationDeclinedAck} from '../../core/lib/Invitation_pb';
 import {FriendInvitationDeclinedAckModel} from '../shared/friend-invitation-declined-ack.model';
+import {FriendInvitationDeclinedRequestModel} from '../shared/friend-invitation-declined-request.model';
 
 @Component({
     selector: 'app-new-friend',
@@ -78,9 +79,9 @@ export class NewFriendPage implements OnInit {
     }
 
     decline($event: MouseEvent, item: Invitation) {
-        const friendInvitationAcceptRequestModel = FriendInvitationAcceptRequestModel.createMessageModel();
-        friendInvitationAcceptRequestModel.id = item.id;
-        this.wsService.sendMessage(friendInvitationAcceptRequestModel);
+        const friendInvitationDeclinedRequestModel = FriendInvitationDeclinedRequestModel.createMessageModel();
+        friendInvitationDeclinedRequestModel.id = item.id;
+        this.wsService.sendMessage(friendInvitationDeclinedRequestModel);
 
         this.showToast('发送成功！');
 

@@ -18,7 +18,7 @@ export class FriendInvitationAcceptAckModel extends BaseModel {
         this.id = friendInvitationAcceptAck.getId();
         let friendModel = friendInvitationAcceptAck.getFriendproto();
         const friend = new Friend();
-        friend.id = friendModel.getId();
+        // friend.id = friendModel.getId();
         //todo: 更新好友信息
         this.friend = friend;
         this.res = friendInvitationAcceptAck.getRes();
