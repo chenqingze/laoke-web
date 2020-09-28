@@ -103,4 +103,9 @@ export class GroupsComponent implements OnInit, OnDestroy {
         }
     }
 
+    create(){
+        this.router.navigate(['/tabs/im/create-group']);
+
+    }
+
 }

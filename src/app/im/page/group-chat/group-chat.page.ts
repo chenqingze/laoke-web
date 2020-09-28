@@ -319,4 +319,7 @@ export class GroupChatPage implements OnInit, OnDestroy {
     }
 
 
+    back() {
+        this.router.navigate(['/tabs/im'], {replaceUrl: false});
+    }
 }

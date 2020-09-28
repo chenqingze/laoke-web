@@ -2,9 +2,21 @@ syntax = "proto3";
 
 //***********************群组相关操作***********************//
 
-// 创建群
 message CreateGroupRequest{
+  repeated string user = 1;
+  string owner = 2;
+  string header = 3;
+  string name = 4;
+  string group_id = 5;
+}
 
+message CreateGroupAck{
+  string success = 1;
+  string message = 2;
+  string group_id = 3;
+  string owner = 4;
+  string name = 5;
+  string header = 6;
 }
 
 //解散群
@@ -44,4 +56,34 @@ message GroupMember{
   string profile_photo = 3;
   string nickname =4;
   string alias = 5;
+}
+message AskFroJoinGroupRequest{
+  string group_id = 1;
+  string user_id = 2;
+  string message = 3;
+  string success= 4;
+  string content = 5;
+
+}
+
+message AskForJoinGroupAck{
+  string group_id = 1;
+  string user_id = 2;
+  string message = 3;
+  string success= 4;
+
+
+}
+message InvitationJoinGroupRequest{
+  string group_id = 1;
+  repeated string user = 2 ;
+  string current_user = 3;
+  string message = 4;
+  string success = 5;
+}
+
+message InvitationJoinGroupAck{
+  string group_id = 1;
+  string success = 2;
+  string message = 3;
 }

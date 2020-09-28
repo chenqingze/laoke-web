@@ -4,6 +4,23 @@
 import * as jspb from "google-protobuf";
 
 export class CreateGroupRequest extends jspb.Message {
+  clearUserList(): void;
+  getUserList(): Array<string>;
+  setUserList(value: Array<string>): void;
+  addUser(value: string, index?: number): string;
+
+  getOwner(): string;
+  setOwner(value: string): void;
+
+  getHeader(): string;
+  setHeader(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateGroupRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateGroupRequest): CreateGroupRequest.AsObject;
@@ -16,6 +33,51 @@ export class CreateGroupRequest extends jspb.Message {
 
 export namespace CreateGroupRequest {
   export type AsObject = {
+    userList: Array<string>,
+    owner: string,
+    header: string,
+    name: string,
+    groupId: string,
+  }
+}
+
+export class CreateGroupAck extends jspb.Message {
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getOwner(): string;
+  setOwner(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  getHeader(): string;
+  setHeader(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateGroupAck.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateGroupAck): CreateGroupAck.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateGroupAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateGroupAck;
+  static deserializeBinaryFromReader(message: CreateGroupAck, reader: jspb.BinaryReader): CreateGroupAck;
+}
+
+export namespace CreateGroupAck {
+  export type AsObject = {
+    success: string,
+    message: string,
+    groupId: string,
+    owner: string,
+    name: string,
+    header: string,
   }
 }
 
@@ -202,6 +264,140 @@ export namespace GroupMember {
     profilePhoto: string,
     nickname: string,
     alias: string,
+  }
+}
+
+export class AskFroJoinGroupRequest extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getContent(): string;
+  setContent(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AskFroJoinGroupRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AskFroJoinGroupRequest): AskFroJoinGroupRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AskFroJoinGroupRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AskFroJoinGroupRequest;
+  static deserializeBinaryFromReader(message: AskFroJoinGroupRequest, reader: jspb.BinaryReader): AskFroJoinGroupRequest;
+}
+
+export namespace AskFroJoinGroupRequest {
+  export type AsObject = {
+    groupId: string,
+    userId: string,
+    message: string,
+    success: string,
+    content: string,
+  }
+}
+
+export class AskForJoinGroupAck extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AskForJoinGroupAck.AsObject;
+  static toObject(includeInstance: boolean, msg: AskForJoinGroupAck): AskForJoinGroupAck.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AskForJoinGroupAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AskForJoinGroupAck;
+  static deserializeBinaryFromReader(message: AskForJoinGroupAck, reader: jspb.BinaryReader): AskForJoinGroupAck;
+}
+
+export namespace AskForJoinGroupAck {
+  export type AsObject = {
+    groupId: string,
+    userId: string,
+    message: string,
+    success: string,
+  }
+}
+
+export class InvitationJoinGroupRequest extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  clearUserList(): void;
+  getUserList(): Array<string>;
+  setUserList(value: Array<string>): void;
+  addUser(value: string, index?: number): string;
+
+  getCurrentUser(): string;
+  setCurrentUser(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): InvitationJoinGroupRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: InvitationJoinGroupRequest): InvitationJoinGroupRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: InvitationJoinGroupRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InvitationJoinGroupRequest;
+  static deserializeBinaryFromReader(message: InvitationJoinGroupRequest, reader: jspb.BinaryReader): InvitationJoinGroupRequest;
+}
+
+export namespace InvitationJoinGroupRequest {
+  export type AsObject = {
+    groupId: string,
+    userList: Array<string>,
+    currentUser: string,
+    message: string,
+    success: string,
+  }
+}
+
+export class InvitationJoinGroupAck extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): InvitationJoinGroupAck.AsObject;
+  static toObject(includeInstance: boolean, msg: InvitationJoinGroupAck): InvitationJoinGroupAck.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: InvitationJoinGroupAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InvitationJoinGroupAck;
+  static deserializeBinaryFromReader(message: InvitationJoinGroupAck, reader: jspb.BinaryReader): InvitationJoinGroupAck;
+}
+
+export namespace InvitationJoinGroupAck {
+  export type AsObject = {
+    groupId: string,
+    success: string,
+    message: string,
   }
 }
 

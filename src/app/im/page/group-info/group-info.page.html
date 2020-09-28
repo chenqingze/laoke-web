@@ -1,9 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>group-info</ion-title>
+    <ion-buttons slot="start" class="mr-d16">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>申请加入群</ion-title>
+    <ion-buttons slot="end" class="mr-d16">
+      <span class="fontS-d28 colorf publish-btn" (click)="join()">发送</span>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-item lines="none" class="mt-d24">
+    <ion-avatar class="header-img" slot="start">
+      <img src="{{groupInfo.header}}">
+    </ion-avatar>
+    <ion-label class="title">{{groupInfo.name}}</ion-label>
+  </ion-item>
+  <ion-row class="mt-d84" >
+    <ion-col class="pl-d40 fontS-d28 color6">添加进群申请</ion-col>
+  </ion-row>
+  <ion-row class="ml-d2 mr-d2">
+    <ion-textarea [(ngModel)]="content" maxlength="100" rows="3" cols="20" placeholder="备注" clearOnEdit="true" mode="ios" style="border: 1px silver solid;margin: 10px;padding:3px"></ion-textarea>
+  </ion-row>
 </ion-content>

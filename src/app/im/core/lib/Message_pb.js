@@ -58,7 +58,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.Message.oneofGroups_ = [[11,12,20,23,21,22,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010]];
+proto.Message.oneofGroups_ = [[11,12,20,23,21,22,24,25,26,27,28,29,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010]];
 
 /**
  * @enum {number}
@@ -71,6 +71,12 @@ proto.Message.PayloadCase = {
   MSG_ACK: 23,
   QUERY_USER_GROUP_REQUEST: 21,
   QUERY_USER_GROUP_ACK: 22,
+  ASK_FOR_JOIN_GROUP_REQUEST: 24,
+  ASK_FOR_JOIN_GROUP_ACK: 25,
+  INVITATION_JOIN_GROUP_REQUEST: 26,
+  INVITATION_JOIN_GROUP_ACK: 27,
+  CREATE_GROUP_REQUEST: 28,
+  CREATE_GROUP_ACK: 29,
   INVITATION_REQUEST_REQUEST: 1001,
   INVITATION_REQUEST_ACK: 1002,
   INVITATION_ACCEPT_REQUEST: 1003,
@@ -131,6 +137,12 @@ proto.Message.toObject = function(includeInstance, msg) {
     msgAck: (f = msg.getMsgAck()) && Msg_pb.MsgAck.toObject(includeInstance, f),
     queryUserGroupRequest: (f = msg.getQueryUserGroupRequest()) && Group_pb.QueryUserGroupsRequest.toObject(includeInstance, f),
     queryUserGroupAck: (f = msg.getQueryUserGroupAck()) && Group_pb.QueryUserGroupsAck.toObject(includeInstance, f),
+    askForJoinGroupRequest: (f = msg.getAskForJoinGroupRequest()) && Group_pb.AskFroJoinGroupRequest.toObject(includeInstance, f),
+    askForJoinGroupAck: (f = msg.getAskForJoinGroupAck()) && Group_pb.AskForJoinGroupAck.toObject(includeInstance, f),
+    invitationJoinGroupRequest: (f = msg.getInvitationJoinGroupRequest()) && Group_pb.InvitationJoinGroupRequest.toObject(includeInstance, f),
+    invitationJoinGroupAck: (f = msg.getInvitationJoinGroupAck()) && Group_pb.InvitationJoinGroupAck.toObject(includeInstance, f),
+    createGroupRequest: (f = msg.getCreateGroupRequest()) && Group_pb.CreateGroupRequest.toObject(includeInstance, f),
+    createGroupAck: (f = msg.getCreateGroupAck()) && Group_pb.CreateGroupAck.toObject(includeInstance, f),
     invitationRequestRequest: (f = msg.getInvitationRequestRequest()) && Invitation_pb.InvitationRequestRequest.toObject(includeInstance, f),
     invitationRequestAck: (f = msg.getInvitationRequestAck()) && Invitation_pb.InvitationRequestAck.toObject(includeInstance, f),
     invitationAcceptRequest: (f = msg.getInvitationAcceptRequest()) && Invitation_pb.InvitationAcceptRequest.toObject(includeInstance, f),
@@ -222,6 +234,36 @@ proto.Message.deserializeBinaryFromReader = function(msg, reader) {
       var value = new Group_pb.QueryUserGroupsAck;
       reader.readMessage(value,Group_pb.QueryUserGroupsAck.deserializeBinaryFromReader);
       msg.setQueryUserGroupAck(value);
+      break;
+    case 24:
+      var value = new Group_pb.AskFroJoinGroupRequest;
+      reader.readMessage(value,Group_pb.AskFroJoinGroupRequest.deserializeBinaryFromReader);
+      msg.setAskForJoinGroupRequest(value);
+      break;
+    case 25:
+      var value = new Group_pb.AskForJoinGroupAck;
+      reader.readMessage(value,Group_pb.AskForJoinGroupAck.deserializeBinaryFromReader);
+      msg.setAskForJoinGroupAck(value);
+      break;
+    case 26:
+      var value = new Group_pb.InvitationJoinGroupRequest;
+      reader.readMessage(value,Group_pb.InvitationJoinGroupRequest.deserializeBinaryFromReader);
+      msg.setInvitationJoinGroupRequest(value);
+      break;
+    case 27:
+      var value = new Group_pb.InvitationJoinGroupAck;
+      reader.readMessage(value,Group_pb.InvitationJoinGroupAck.deserializeBinaryFromReader);
+      msg.setInvitationJoinGroupAck(value);
+      break;
+    case 28:
+      var value = new Group_pb.CreateGroupRequest;
+      reader.readMessage(value,Group_pb.CreateGroupRequest.deserializeBinaryFromReader);
+      msg.setCreateGroupRequest(value);
+      break;
+    case 29:
+      var value = new Group_pb.CreateGroupAck;
+      reader.readMessage(value,Group_pb.CreateGroupAck.deserializeBinaryFromReader);
+      msg.setCreateGroupAck(value);
       break;
     case 1001:
       var value = new Invitation_pb.InvitationRequestRequest;
@@ -376,6 +418,54 @@ proto.Message.serializeBinaryToWriter = function(message, writer) {
       22,
       f,
       Group_pb.QueryUserGroupsAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getAskForJoinGroupRequest();
+  if (f != null) {
+    writer.writeMessage(
+      24,
+      f,
+      Group_pb.AskFroJoinGroupRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getAskForJoinGroupAck();
+  if (f != null) {
+    writer.writeMessage(
+      25,
+      f,
+      Group_pb.AskForJoinGroupAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getInvitationJoinGroupRequest();
+  if (f != null) {
+    writer.writeMessage(
+      26,
+      f,
+      Group_pb.InvitationJoinGroupRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getInvitationJoinGroupAck();
+  if (f != null) {
+    writer.writeMessage(
+      27,
+      f,
+      Group_pb.InvitationJoinGroupAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreateGroupRequest();
+  if (f != null) {
+    writer.writeMessage(
+      28,
+      f,
+      Group_pb.CreateGroupRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreateGroupAck();
+  if (f != null) {
+    writer.writeMessage(
+      29,
+      f,
+      Group_pb.CreateGroupAck.serializeBinaryToWriter
     );
   }
   f = message.getInvitationRequestRequest();
@@ -752,6 +842,228 @@ proto.Message.prototype.clearQueryUserGroupAck = function() {
  */
 proto.Message.prototype.hasQueryUserGroupAck = function() {
   return jspb.Message.getField(this, 22) != null;
+};
+
+
+/**
+ * optional AskFroJoinGroupRequest ask_for_join_group_request = 24;
+ * @return {?proto.AskFroJoinGroupRequest}
+ */
+proto.Message.prototype.getAskForJoinGroupRequest = function() {
+  return /** @type{?proto.AskFroJoinGroupRequest} */ (
+    jspb.Message.getWrapperField(this, Group_pb.AskFroJoinGroupRequest, 24));
+};
+
+
+/**
+ * @param {?proto.AskFroJoinGroupRequest|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setAskForJoinGroupRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 24, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearAskForJoinGroupRequest = function() {
+  return this.setAskForJoinGroupRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasAskForJoinGroupRequest = function() {
+  return jspb.Message.getField(this, 24) != null;
+};
+
+
+/**
+ * optional AskForJoinGroupAck ask_for_join_group_ack = 25;
+ * @return {?proto.AskForJoinGroupAck}
+ */
+proto.Message.prototype.getAskForJoinGroupAck = function() {
+  return /** @type{?proto.AskForJoinGroupAck} */ (
+    jspb.Message.getWrapperField(this, Group_pb.AskForJoinGroupAck, 25));
+};
+
+
+/**
+ * @param {?proto.AskForJoinGroupAck|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setAskForJoinGroupAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 25, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearAskForJoinGroupAck = function() {
+  return this.setAskForJoinGroupAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasAskForJoinGroupAck = function() {
+  return jspb.Message.getField(this, 25) != null;
+};
+
+
+/**
+ * optional InvitationJoinGroupRequest invitation_join_group_request = 26;
+ * @return {?proto.InvitationJoinGroupRequest}
+ */
+proto.Message.prototype.getInvitationJoinGroupRequest = function() {
+  return /** @type{?proto.InvitationJoinGroupRequest} */ (
+    jspb.Message.getWrapperField(this, Group_pb.InvitationJoinGroupRequest, 26));
+};
+
+
+/**
+ * @param {?proto.InvitationJoinGroupRequest|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setInvitationJoinGroupRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 26, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearInvitationJoinGroupRequest = function() {
+  return this.setInvitationJoinGroupRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasInvitationJoinGroupRequest = function() {
+  return jspb.Message.getField(this, 26) != null;
+};
+
+
+/**
+ * optional InvitationJoinGroupAck invitation_join_group_ack = 27;
+ * @return {?proto.InvitationJoinGroupAck}
+ */
+proto.Message.prototype.getInvitationJoinGroupAck = function() {
+  return /** @type{?proto.InvitationJoinGroupAck} */ (
+    jspb.Message.getWrapperField(this, Group_pb.InvitationJoinGroupAck, 27));
+};
+
+
+/**
+ * @param {?proto.InvitationJoinGroupAck|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setInvitationJoinGroupAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 27, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearInvitationJoinGroupAck = function() {
+  return this.setInvitationJoinGroupAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasInvitationJoinGroupAck = function() {
+  return jspb.Message.getField(this, 27) != null;
+};
+
+
+/**
+ * optional CreateGroupRequest create_group_request = 28;
+ * @return {?proto.CreateGroupRequest}
+ */
+proto.Message.prototype.getCreateGroupRequest = function() {
+  return /** @type{?proto.CreateGroupRequest} */ (
+    jspb.Message.getWrapperField(this, Group_pb.CreateGroupRequest, 28));
+};
+
+
+/**
+ * @param {?proto.CreateGroupRequest|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setCreateGroupRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 28, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearCreateGroupRequest = function() {
+  return this.setCreateGroupRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasCreateGroupRequest = function() {
+  return jspb.Message.getField(this, 28) != null;
+};
+
+
+/**
+ * optional CreateGroupAck create_group_ack = 29;
+ * @return {?proto.CreateGroupAck}
+ */
+proto.Message.prototype.getCreateGroupAck = function() {
+  return /** @type{?proto.CreateGroupAck} */ (
+    jspb.Message.getWrapperField(this, Group_pb.CreateGroupAck, 29));
+};
+
+
+/**
+ * @param {?proto.CreateGroupAck|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setCreateGroupAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 29, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearCreateGroupAck = function() {
+  return this.setCreateGroupAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasCreateGroupAck = function() {
+  return jspb.Message.getField(this, 29) != null;
 };
 
 

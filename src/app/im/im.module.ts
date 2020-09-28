@@ -12,9 +12,12 @@ import {FriendsComponent} from './contacts/friends/friends.component';
 import {GroupsComponent} from './contacts/groups/groups.component';
 import {RecentContactsComponent} from './recent-contacts/recent-contacts.component';
 import {RecentContactComponent} from './recent-contacts/recent-contact/recent-contact.component';
-import {NgPipesModule} from 'ngx-pipes';
 import {InvitationService} from './addfriendgroup/shared/invitation.service';
+
 import { MucHeaderPipe } from './shared/pipe/muc-header/muc-header.pipe';
+import { SearchTextPipe } from './shared/pipe/search-text/search-text.pipe';
+import {SharedModule} from './shared/shared.module';
+import {NgPipesModule} from 'ngx-pipes';
 
 @NgModule({
     imports: [
@@ -22,7 +25,11 @@ import { MucHeaderPipe } from './shared/pipe/muc-header/muc-header.pipe';
         FormsModule,
         IonicModule,
         ImRoutingModule,
-        NgPipesModule
+        NgPipesModule,
+        SharedModule
+    ],
+    exports: [
+        SearchTextPipe
     ],
     declarations: [
         ImPage,
@@ -33,8 +40,9 @@ import { MucHeaderPipe } from './shared/pipe/muc-header/muc-header.pipe';
         FansComponent,
         FriendsComponent,
         GroupsComponent,
-        MucHeaderPipe
-    ],
+        MucHeaderPipe,
+        SearchTextPipe
+    ]
 })
 export class ImModule {
 

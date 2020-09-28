@@ -53,6 +53,36 @@ export class Message extends jspb.Message {
   getQueryUserGroupAck(): Group_pb.QueryUserGroupsAck | undefined;
   setQueryUserGroupAck(value?: Group_pb.QueryUserGroupsAck): void;
 
+  hasAskForJoinGroupRequest(): boolean;
+  clearAskForJoinGroupRequest(): void;
+  getAskForJoinGroupRequest(): Group_pb.AskFroJoinGroupRequest | undefined;
+  setAskForJoinGroupRequest(value?: Group_pb.AskFroJoinGroupRequest): void;
+
+  hasAskForJoinGroupAck(): boolean;
+  clearAskForJoinGroupAck(): void;
+  getAskForJoinGroupAck(): Group_pb.AskForJoinGroupAck | undefined;
+  setAskForJoinGroupAck(value?: Group_pb.AskForJoinGroupAck): void;
+
+  hasInvitationJoinGroupRequest(): boolean;
+  clearInvitationJoinGroupRequest(): void;
+  getInvitationJoinGroupRequest(): Group_pb.InvitationJoinGroupRequest | undefined;
+  setInvitationJoinGroupRequest(value?: Group_pb.InvitationJoinGroupRequest): void;
+
+  hasInvitationJoinGroupAck(): boolean;
+  clearInvitationJoinGroupAck(): void;
+  getInvitationJoinGroupAck(): Group_pb.InvitationJoinGroupAck | undefined;
+  setInvitationJoinGroupAck(value?: Group_pb.InvitationJoinGroupAck): void;
+
+  hasCreateGroupRequest(): boolean;
+  clearCreateGroupRequest(): void;
+  getCreateGroupRequest(): Group_pb.CreateGroupRequest | undefined;
+  setCreateGroupRequest(value?: Group_pb.CreateGroupRequest): void;
+
+  hasCreateGroupAck(): boolean;
+  clearCreateGroupAck(): void;
+  getCreateGroupAck(): Group_pb.CreateGroupAck | undefined;
+  setCreateGroupAck(value?: Group_pb.CreateGroupAck): void;
+
   hasInvitationRequestRequest(): boolean;
   clearInvitationRequestRequest(): void;
   getInvitationRequestRequest(): Invitation_pb.InvitationRequestRequest | undefined;
@@ -126,6 +156,12 @@ export namespace Message {
     msgAck?: Msg_pb.MsgAck.AsObject,
     queryUserGroupRequest?: Group_pb.QueryUserGroupsRequest.AsObject,
     queryUserGroupAck?: Group_pb.QueryUserGroupsAck.AsObject,
+    askForJoinGroupRequest?: Group_pb.AskFroJoinGroupRequest.AsObject,
+    askForJoinGroupAck?: Group_pb.AskForJoinGroupAck.AsObject,
+    invitationJoinGroupRequest?: Group_pb.InvitationJoinGroupRequest.AsObject,
+    invitationJoinGroupAck?: Group_pb.InvitationJoinGroupAck.AsObject,
+    createGroupRequest?: Group_pb.CreateGroupRequest.AsObject,
+    createGroupAck?: Group_pb.CreateGroupAck.AsObject,
     invitationRequestRequest?: Invitation_pb.InvitationRequestRequest.AsObject,
     invitationRequestAck?: Invitation_pb.InvitationRequestAck.AsObject,
     invitationAcceptRequest?: Invitation_pb.InvitationAcceptRequest.AsObject,
@@ -146,6 +182,12 @@ export namespace Message {
     MSG_ACK = 23,
     QUERY_USER_GROUP_REQUEST = 21,
     QUERY_USER_GROUP_ACK = 22,
+    ASK_FOR_JOIN_GROUP_REQUEST = 24,
+    ASK_FOR_JOIN_GROUP_ACK = 25,
+    INVITATION_JOIN_GROUP_REQUEST = 26,
+    INVITATION_JOIN_GROUP_ACK = 27,
+    CREATE_GROUP_REQUEST = 28,
+    CREATE_GROUP_ACK = 29,
     INVITATION_REQUEST_REQUEST = 1001,
     INVITATION_REQUEST_ACK = 1002,
     INVITATION_ACCEPT_REQUEST = 1003,

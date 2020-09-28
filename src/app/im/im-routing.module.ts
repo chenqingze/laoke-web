@@ -35,6 +35,10 @@ const routes: Routes = [
   {
     path: 'chat-window',
     loadChildren: () => import('./chat/chat-window/chat-window.module').then( m => m.ChatWindowPageModule)
+  },
+  {
+    path: 'create-group',
+    loadChildren: () => import('./page/create-group/create-group.module').then( m => m.CreateGroupPageModule)
   }
 
 
