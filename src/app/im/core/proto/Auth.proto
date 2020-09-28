@@ -1,6 +1,4 @@
 syntax = "proto3";
-option java_multiple_files = true;
-package com.aihangxunxi.aitalk.im.protocol.buffers;
 
 //***********************认证相关相关***********************//
 

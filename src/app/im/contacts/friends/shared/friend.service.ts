@@ -3,7 +3,7 @@ import {SQLiteObject} from '@ionic-native/sqlite/ngx';
 import {EMPTY, empty, from, Observable, of, Subscription} from 'rxjs';
 import {concatMap, mergeMap} from 'rxjs/operators';
 import {DbService} from 'src/app/im/shared/db.service';
-import {Friend} from '../friend.model';
+import {Friend} from './friend.model';
 import {ApiService} from '../../../shared/api/api.service';
 import {fromPromise} from 'rxjs/internal-compatibility';
 

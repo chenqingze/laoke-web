@@ -1,18 +1,17 @@
 import {BaseModel} from '../../core/base.model';
 import {OpCode} from '../../core/lib/OpCode_pb';
 import {Message} from '../../core/lib/Message_pb';
-import {AuthAck} from '../../core/lib/Auth_pb';
-import {FriendInvitationRequestRequest} from '../../core/lib/Invitation_pb';
+import {InvitationRequestRequest} from '../../core/lib/Invitation_pb';
 
 
-export class FriendInvitationRequestRequestModel extends BaseModel {
-    readonly opCode = OpCode.FRIEND_INVITATION_REQUEST_REQUEST;
+export class InvitationRequestRequestModel extends BaseModel {
+    readonly opCode = OpCode.INVITATION_REQUEST_REQUEST;
     addresseeId:string;
     addresseeAlias:string;
     content:string;
 
     convertMessageToModel(message: Message): BaseModel {
-        const friendInvitationRequestRequest = message.getFriendInvitationRequestRequest();
+        const friendInvitationRequestRequest = message.getInvitationRequestRequest();
         this.addresseeId = friendInvitationRequestRequest.getAddresseeid();
         this.addresseeAlias = friendInvitationRequestRequest.getAddresseealias();
         this.content = friendInvitationRequestRequest.getContent();
@@ -20,13 +19,13 @@ export class FriendInvitationRequestRequestModel extends BaseModel {
     }
 
     convertToMessage(): Message {
-        const friendInvitationRequestRequest = new FriendInvitationRequestRequest();
+        const friendInvitationRequestRequest = new InvitationRequestRequest();
         friendInvitationRequestRequest.setAddresseeid(this.addresseeId);
         friendInvitationRequestRequest.setAddresseealias(this.addresseeAlias);
         friendInvitationRequestRequest.setContent(this.content);
         const message = this.createMessage();
         message.setOpCode(this.opCode);
-        message.setFriendInvitationRequestRequest(friendInvitationRequestRequest);
+        message.setInvitationRequestRequest(friendInvitationRequestRequest);
         return message;
     }
 

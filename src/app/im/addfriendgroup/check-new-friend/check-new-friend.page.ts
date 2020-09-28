@@ -3,9 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ApiService} from '../../shared/api/api.service';
 import {WebSocketService} from '../../core/web-socket.service';
 import {ToastController} from '@ionic/angular';
-import {FriendInvitationRequestRequest} from '../../core/lib/Invitation_pb';
 import {FriendService} from '../../contacts/friends/shared/friend.service';
-import {FriendInvitationRequestRequestModel} from '../shared/friend-invitation-request-request.model';
+import {InvitationRequestRequestModel} from '../shared/friend-invitation-request-request.model';
 
 @Component({
   selector: 'app-check-new-friend',
@@ -49,7 +48,7 @@ export class CheckNewFriendPage implements OnInit {
     this.showToast('发送成功');
     // this.showToast('申请添加好友发送成功');
 
-    const friendInvitationRequestRequestModel  = FriendInvitationRequestRequestModel.createMessageModel()
+    const friendInvitationRequestRequestModel  = InvitationRequestRequestModel.createMessageModel()
     friendInvitationRequestRequestModel.addresseeId = this.friendId;
     friendInvitationRequestRequestModel.addresseeAlias = this.alias;
     friendInvitationRequestRequestModel.content = this.content;
