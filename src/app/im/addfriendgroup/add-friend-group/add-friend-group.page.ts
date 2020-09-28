@@ -39,31 +39,31 @@ export class AddFriendGroupPage implements OnInit {
   }
 
   searchFriend(e) {
-    console.log("add-friend search")
+    console.log('add-friend search');
 
     this.friendService.searchFriend(this.searchCon).then(data => {
       this.friend = data.data;
       if (data.data) {
-        this.friendService.getFriendById(data.data.id).subscribe(data => {
-          data = data.rows;
-          if (!!data&&data.length == 0) {
+        this.friendService.getFriendById(data.data.id).subscribe(res => {
+          res = res.rows;
+          if (!!res && res.length === 0) {
             this.router.navigate(['/tabs/im/check-new-friend', {
               userId: this.friend.id,
               nickname: this.friend.nickname,
               profile: this.friend.headImgPath
             }]);
           }
-          if (!!data&&data.length > 0) {
+          if (!!res && res.length > 0) {
             this.dialog.presentAlert('已经是好友跳转个人主页');
             // this.router.navigate(['/personal-home/' + data.item(0).friendId]);
             // this.router.navigate(['/chat-window'], {queryParams: {id: data.item(0).friendId}});
           }
-        })
+        });
       } else {
         this.dialog.presentAlert('未找到用户');
       }
 
-    })
+    });
   }
 
   /*searchGroup() {

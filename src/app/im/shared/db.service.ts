@@ -17,7 +17,7 @@ export class DbService {
             `CREATE TABLE IF NOT EXISTS testTab( id INTEGER PRIMARY KEY AUTOINCREMENT, artist_name TEXT, song_name TEXT)`,
             `CREATE TABLE IF NOT EXISTS msg_hist(seq NUMBER(32),id VARCHAR,conversationType VARCHAR,conversationId VARCHAR,senderId NUMBER ,msgDirection VARCHAR,msgType NUMBER,msgStatus NUMBER,content VARCHAR,createdAt NUMBER(32),updatedAt NUMBER(32),revokeAt NUMBER(32))`,
             `CREATE TABLE IF NOT EXISTS recent_contact(conversationId VARCHAR,userId NUMBER,alias  VARCHAR,conversationType  VARCHAR,lastAckMsgId VARCHAR,lastAckMsgTime NUMBER,msgDirection,msgType,msgStatus,content,isBlocked,ismUTE,isStickOnTop,consultDirection,unreadCount,createdAt,updatedAt,revokeAt)`,
-            `CREATE TABLE IF NOT EXISTS friend(id VARCHAR PRIMARY KEY, friendId VARCHAR, friendName VARCHAR, profilePhoto VARCHAR, alias VARCHAR, `
+            `CREATE TABLE IF NOT EXISTS friend(id VARCHAR PRIMARY KEY, userId VARCHAR, friendId VARCHAR, friendName VARCHAR, friendProfile VARCHAR, alias VARCHAR, `
         + ` isBlocked BOOLEAN, isMute BOOLEAN, isStickOnTop BOOLEAN, orderStr VARCHAR(32), status VARCHAR(32), createdAt NUMBER(32),updatedAt NUMBER(32))`,
             `CREATE TABLE IF NOT EXISTS invitation( id VARCHAR PRIMARY KEY, requesterId VARCHAR, requesterAlias VARCHAR, requesterNickname VARCHAR, `
         + `requesterProfile VARCHAR, addresseeId VARCHAR, addresseeAlias VARCHAR, addresseeNickname VARCHAR, addresseeProfile VARCHAR, `

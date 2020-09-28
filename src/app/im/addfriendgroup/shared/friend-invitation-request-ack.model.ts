@@ -7,8 +7,8 @@ import {Invitation, ReadStatus} from './Invitation.model';
 
 export class InvitationRequestAckModel extends BaseModel {
     readonly opCode = OpCode.INVITATION_REQUEST_ACK;
-    invitation:Invitation;
-    res:number; //0-失败，1-成功*/
+    invitation: Invitation;
+    res: number; // 0-失败，1-成功*/
 
     convertMessageToModel(message: Message): BaseModel {
         const friendInvitationRequestAck = message.getInvitationRequestAck();
@@ -27,8 +27,8 @@ export class InvitationRequestAckModel extends BaseModel {
         return message;
     }
 
-    convertToInvitationModel(invitationProto:InvitationProto): Invitation{
-        let invite: Invitation = new Invitation();
+    convertToInvitationModel(invitationProto: InvitationProto): Invitation{
+        const invite: Invitation = new Invitation();
         invite.id = invitationProto.getId();
         invite.requesterId = invitationProto.getRequesterid();
         invite.requesterAlias = invitationProto.getRequesteralias();
@@ -48,7 +48,7 @@ export class InvitationRequestAckModel extends BaseModel {
         return invite;
     }
 
-    convertToInvitationMessage(invitation:Invitation): InvitationProto{
+    convertToInvitationMessage(invitation: Invitation): InvitationProto{
         const invitationProto = new InvitationProto();
         invitationProto.setId(invitation.id);
         invitationProto.setRequesterid(invitation.requesterId);

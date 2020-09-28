@@ -2,10 +2,12 @@
 export class Friend{
     id:string;
     userId:string;
-    profilePhoto:string;
+    friendId:string;
+    friendName:string;
+    friendProfile:string;
     alias:string;
     isBlocked:number;
-    inMute:number;
+    isMute:number;
     isStickOnTop:number;
     status:string;
     createdAt:number;

@@ -1,9 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
-import { DbService } from '../../shared/db.service';
+/// <reference types="node" />
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import { Friend } from './shared/friend.model';
 import { FriendService } from './shared/friend.service';
-import {concatMap, mergeMap} from 'rxjs/operators';
-import {forkJoin, of} from 'rxjs';
+import {IonContent} from '@ionic/angular';
+import {LetterObjs} from './shared/letter-objs.model';
+import * as pinyin from 'pinyin';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'app-friends',
@@ -12,109 +14,70 @@ import {forkJoin, of} from 'rxjs';
 })
 export class FriendsComponent implements OnInit {
 
-    friends:Array<Friend>;
+    @Input() content: IonContent;
 
-    constructor(private friendService:FriendService) {
+    objectKeys = Object.keys;
+
+    friends: Array<Friend>;
+
+    userId: string;
+
+    letterObjs: LetterObjs;
+
+    constructor(
+        private friendService: FriendService,
+        private router: Router,
+        private route: ActivatedRoute,
+        private elementRef: ElementRef
+        ) {
         this.friends = [];
-
-
+        this.letterObjs = new LetterObjs();
     }
 
     ngOnInit() {
-        console.log("friends ngOnInit ...")
-        this.friendService.getFriend().subscribe((friendResult)=>{
-            if(friendResult != null){
-                this.friends=friendResult.rows;
+        console.log('friends ngOnInit ...');
+        this.friendService.getFriend().subscribe((friendResult) => {
+            if (friendResult != null){
+                const letterObjs = new LetterObjs();
+                const friendList = new Array<Friend>();
+                for (let i = 0; i < friendResult.rows.length; i++) {
+                    const friend = friendResult.rows.item(i);
+                    // if(friend.status != "effective") continue;
+                    friendList.push(friend);
+
+                    const arrays = pinyin(friend.alias ? friend.alias : friend.nickname, {style: pinyin.STYLE_NORMAL});
+                    const byte = arrays[0][0];
+                    const first = byte.split('')[0].toUpperCase();
+                    const isletter = /^[a-zA-Z]+$/.test(first);
+                    if (isletter) {
+                        letterObjs[first].push(friend);
+                    } else {
+                        letterObjs.digit.push(friend);
+                    }
+                }
+                this.friends = friendList;
+                this.letterObjs = letterObjs;
             }
-        })
+        });
     }
 
-    // 字母
-    alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
-    // 搜索内容绑定
-    searchContent: string;
-    // 测试数据
-    friends1 = [
-        {
-            orderStr: 'a', name: '爱斯基摩',
-            phone: '770-504-2217',
-            photo: 'https://randomuser.me/api/portraits/men/27.jpg',
-            isFavorite: false
-        }, {
-            orderStr: 'a', name: 'aichard Mahoney',
-            phone: '423-676-2869',
-            photo: 'https://randomuser.me/api/portraits/men/1.jpg',
-            isFavorite: true
-        }, {
-            orderStr: 'r', name: 'richard Mahoney',
-            phone: '423-676-2869',
-            photo: 'https://randomuser.me/api/portraits/men/1.jpg',
-            isFavorite: true
-        }, {
-            orderStr: 'r', name: 'richard Mahoney',
-            phone: '423-676-2869',
-            photo: 'https://randomuser.me/api/portraits/men/1.jpg',
-            isFavorite: true
-        }, {
-            orderStr: 'r', name: 'richard Mahoney',
-            phone: '423-676-2869',
-            photo: 'https://randomuser.me/api/portraits/men/1.jpg',
-            isFavorite: true
-        }, {
-            orderStr: 'd', name: 'donna Price',
-            phone: '859-496-2817',
-            photo: 'https://randomuser.me/api/portraits/women/50.jpg',
-            isFavorite: false
-        }, {
-            orderStr: 'd', name: 'Dorothy H. Spencer',
-            phone: '573-394-9254',
-            photo: 'https://randomuser.me/api/portraits/women/67.jpg',
-            isFavorite: true
-        }, {
-            orderStr: 'd', name: 'Dorothy H. Spencer',
-            phone: '573-394-9254',
-            photo: 'https://randomuser.me/api/portraits/women/67.jpg',
-            isFavorite: true
-        }, {
-            orderStr: 'd', name: 'Dorothy H. Spencer',
-            phone: '573-394-9254',
-            photo: 'https://randomuser.me/api/portraits/women/67.jpg',
-            isFavorite: true
-        }, {
-            orderStr: 'l', name: 'Lisa Landers',
-            phone: '901-747-3428',
-            photo: 'https://randomuser.me/api/portraits/women/3.jpg',
-            isFavorite: false
-        }, {
-            orderStr: 'd', name: 'Dorothy H. Spencer',
-            phone: '573-394-9254',
-            photo: 'https://randomuser.me/api/portraits/women/67.jpg',
-            isFavorite: true
-        },
-        {
-            orderStr: 'z', name: 'zisa Landers',
-            phone: '901-747-3428',
-            photo: 'https://randomuser.me/api/portraits/women/3.jpg',
-            isFavorite: false
-        },
-        {
-            orderStr: 'w', name: 'wisa Landers',
-            phone: '901-747-3428',
-            photo: 'https://randomuser.me/api/portraits/women/3.jpg',
-            isFavorite: false
-        },
-        {
-            orderStr: 'y', name: 'yisa Landers',
-            phone: '901-747-3428',
-            photo: 'https://randomuser.me/api/portraits/women/3.jpg',
-            isFavorite: false
-        },
-        {
-            orderStr: 'y', name: 'yisa Landers',
-            phone: '901-747-3428',
-            photo: 'https://randomuser.me/api/portraits/women/3.jpg',
-            isFavorite: false
-        }];
+    scrollToTop(letter) {
+        if (this.elementRef.nativeElement.querySelector('ion-item-divider#' + letter)) {
+            const scrollTop = this.elementRef.nativeElement.querySelector('ion-item-divider#' + letter).offsetTop;
+            this.content.scrollToPoint(0, scrollTop);
+        }
+    }
 
+    goChat($event: MouseEvent, friend: Friend) {
+        /*const  user: any = await this.friendsService.goFriend(friend);
+        await this.sqlService.updFriendMsg(user);
+        if (user.status == 'effective') {
+            this.router.navigate(['/chat-window'],{relativeTo: this.route, queryParams: {id:friend.friendId,chatType:'friend'}});
+        }else{
+            this.commonUtil.showToast('该用户已注销');
+        }*/
+
+        this.router.navigate(['/tabs/im/chat-window'], {relativeTo: this.route, queryParams: {id: friend.friendId, chatType: 'friend'}});
+    }
 
 }

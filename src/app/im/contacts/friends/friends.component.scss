@@ -1,14 +1,42 @@
-.letter {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  border: solid 1px blue;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 30px;
-  font-size: 16px;
-  text-transform: uppercase;
-  cursor: pointer;
+// 索引列表
+.index-list {
+  margin-top: 2rem;
+  padding: 0;
+  list-style: none;
+  position: fixed;
+  top: 2rem;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  margin-bottom: 0.32rem;
+  padding-bottom: 0.64rem;
+
+  li {
+    width: 1rem;
+    line-height: 1.8;
+    text-align: center;
+    color: #666;
+    font-size: 0.24rem;
+  }
+
+}
+
+.letter-group{
+  padding: 0.12rem 0;
+  color: #666666;
+  font-size: 0.3rem;
+  font-weight: normal;
+}
+
+.avatar-group{
+  width: 0.88rem;
+  height: 0.88rem;
+  border-radius: 1rem;
+  border: 0.04rem solid #f0f0f0;
+  margin-top:0.16rem;
+  margin-bottom: 0.16rem;
+  margin-right: 0.24rem;
 }

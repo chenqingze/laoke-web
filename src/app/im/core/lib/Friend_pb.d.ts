@@ -16,6 +16,9 @@ export class FriendProto extends jspb.Message {
   getFriendname(): string;
   setFriendname(value: string): void;
 
+  getFriendprofile(): string;
+  setFriendprofile(value: string): void;
+
   getAlias(): string;
   setAlias(value: string): void;
 
@@ -27,6 +30,9 @@ export class FriendProto extends jspb.Message {
 
   getIsstickontop(): number;
   setIsstickontop(value: number): void;
+
+  getStatus(): string;
+  setStatus(value: string): void;
 
   getCreatedat(): number;
   setCreatedat(value: number): void;
@@ -50,10 +56,12 @@ export namespace FriendProto {
     userid: string,
     friendid: string,
     friendname: string,
+    friendprofile: string,
     alias: string,
     isblocked: number,
     ismute: number,
     isstickontop: number,
+    status: string,
     createdat: number,
     updatedat: number,
   }

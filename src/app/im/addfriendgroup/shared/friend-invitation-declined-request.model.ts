@@ -6,16 +6,16 @@ import {InvitationDeclinedRequest} from '../../core/lib/Invitation_pb';
 
 export class InvitationDeclinedRequestModel extends BaseModel {
     readonly opCode = OpCode.INVITATION_DECLINED_REQUEST;
-    id:string;
+    id: string;
 
     convertMessageToModel(message: Message): BaseModel {
-        let friendInvitationDeclinedRequest = message.getInvitationDeclinedRequest();
+        const friendInvitationDeclinedRequest = message.getInvitationDeclinedRequest();
         this.id = friendInvitationDeclinedRequest.getId();
         return this;
     }
 
     convertToMessage(): Message {
-        let friendInvitationDeclinedRequest = new InvitationDeclinedRequest();
+        const friendInvitationDeclinedRequest = new InvitationDeclinedRequest();
         friendInvitationDeclinedRequest.setId(this.id);
 
         const message = this.createMessage();
