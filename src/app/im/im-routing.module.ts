@@ -31,6 +31,10 @@ const routes: Routes = [
   {
     path: 'group-info',
     loadChildren: () => import('./page/group-info/group-info.module').then( m => m.GroupInfoPageModule)
+  },
+  {
+    path: 'create-group',
+    loadChildren: () => import('./page/create-group/create-group.module').then( m => m.CreateGroupPageModule)
   }
 
 

@@ -82,7 +82,7 @@ export class AddFriendGroupPage implements OnInit {
                                 }
                             });
                         } else {
-                            alert('未找到群');
+                            this.dialog.presentAlert('未找到群');
                         }
                     }, error: (err) => {
                         console.log(err);

@@ -15,6 +15,7 @@ import {RecentContactComponent} from './recent-contacts/recent-contact/recent-co
 import {NgPipesModule} from 'ngx-pipes';
 import {InvitationService} from './addfriendgroup/shared/invitation.service';
 import { MucHeaderPipe } from './shared/pipe/muc-header/muc-header.pipe';
+import { SearchTextPipe } from './shared/pipe/search-text/search-text.pipe';
 
 @NgModule({
     imports: [
@@ -33,8 +34,12 @@ import { MucHeaderPipe } from './shared/pipe/muc-header/muc-header.pipe';
         FansComponent,
         FriendsComponent,
         GroupsComponent,
-        MucHeaderPipe
+        MucHeaderPipe,
+        SearchTextPipe
     ],
+    exports: [
+        SearchTextPipe
+    ]
 })
 export class ImModule {
 

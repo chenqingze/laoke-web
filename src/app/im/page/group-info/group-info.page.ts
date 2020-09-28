@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WebSocketService} from '../../core/web-socket.service';
 import {AlertControllerService} from '../../service/alert-controller/alert-controller.service';
@@ -7,13 +7,14 @@ import {GroupModel} from '../../contacts/groups/group.model';
 import {GroupService} from '../../service/group-service/group.service';
 import {AskForJoinGroupRequestModel} from './ask-for-join-group-request.model';
 import {OpCode} from '../../core/lib/OpCode_pb';
+import {AskForJoinGroupAckModel} from './ask-for-join-group-ack.model';
 
 @Component({
     selector: 'app-group-info',
     templateUrl: './group-info.page.html',
     styleUrls: ['./group-info.page.scss'],
 })
-export class GroupInfoPage implements OnInit {
+export class GroupInfoPage implements OnInit, OnDestroy {
     groupId;
     groupInfo;
     content;
@@ -38,10 +39,22 @@ export class GroupInfoPage implements OnInit {
         this.groupSer.queryGroupInfo(this.groupId).toPromise().then((d) => {
             this.groupInfo = d.group;
         });
-        this.wsService.messages$(OpCode.ASK_FOR_JOIN_GROUP_ACK).subscribe((f) => {
-            console.log(f);
+        this.receiveSub = this.wsService.messages$(OpCode.ASK_FOR_JOIN_GROUP_ACK).subscribe((f: AskForJoinGroupAckModel) => {
+            if (f.success == 'in') {
+                this.dialog.presentAlert(f.message);
+                this.router.navigate(['/tabs/im/group-chat', {groupName: this.groupInfo.name, groupId: this.groupId}], {replaceUrl: true});
+            } else if (f.success == 'ok') {
+                this.dialog.presentAlert(f.message);
+                this.router.navigate(['/tabs/im/group-chat', {groupName: this.groupInfo.name, groupId: this.groupId}], {replaceUrl: true});
+            } else if (f.success == 'full') {
+                this.dialog.presentAlert(f.message);
+            }
         });
 
+    }
+
+    ngOnDestroy() {
+        this.receiveSub.unsubscribe();
     }
 
     // 加入群聊

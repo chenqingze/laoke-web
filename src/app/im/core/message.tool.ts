@@ -10,6 +10,8 @@ import {GroupMsgRequestModel} from '../page/group-chat/group-msg-request.model';
 import {InvitationRequestAckModel} from '../addfriendgroup/shared/friend-invitation-request-ack.model';
 import {InvitationAcceptAckModel} from '../addfriendgroup/shared/friend-invitation-accept-ack.model';
 import {InvitationDeclinedAckModel} from '../addfriendgroup/shared/friend-invitation-declined-ack.model';
+import {AskForJoinGroupRequestModel} from '../page/group-info/ask-for-join-group-request.model';
+import {AskForJoinGroupAckModel} from '../page/group-info/ask-for-join-group-ack.model';
 
 
 export class MessageTool {
@@ -27,7 +29,10 @@ export class MessageTool {
                 return GroupMsgRequestModel.createMessageModel().convertMessageToModel(message);
             case OpCode.MSG_ACK:
                 return GroupMsgAckModel.createMessageModel().convertMessageToModel(message);
-
+            case OpCode.ASK_FOR_JOIN_GROUP_REQUEST:
+                return AskForJoinGroupRequestModel.createMessageModel().convertMessageToModel(message);
+            case OpCode.ASK_FOR_JOIN_GROUP_ACK:
+                return AskForJoinGroupAckModel.createMessageModel().convertMessageToModel(message);
             case OpCode.INVITATION_REQUEST_ACK:
                 return InvitationRequestAckModel.createMessageModel().convertMessageToModel(message);
             case OpCode.INVITATION_ACCEPT_ACK:

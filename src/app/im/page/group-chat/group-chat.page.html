@@ -1,7 +1,11 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button text=""></ion-back-button>
+            <ion-buttons slot="start" class="mr-d16">
+                <ion-button (click)="back()">
+                    <ion-icon name="chevron-back-outline" color="dark"></ion-icon>
+                </ion-button>
+            </ion-buttons>
         </ion-buttons>
         <ion-title>{{name}}({{memberCount}})</ion-title>
         <ion-buttons slot="end">

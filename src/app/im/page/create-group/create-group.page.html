@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="mr-d16">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>创建群聊</ion-title>
+    <ion-buttons slot="end" (click)="router2GroupName()">
+            <span class="fontS-d28 mr-d32 colorf publish-btn">确定<span
+                    *ngIf="selected.length>0">({{selected.length}})</span></span>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <div class="pl-d32 pr-d32 fixed-search dark-borderbottom-333">
+      <div class="choosed-header-img">
+                 <span *ngFor="let u of selected" class="choose-header" (click)="checked1(u)">
+                    <img src="{{u | talkHeader|async}}" class="talk-header"
+                         onerror="this.src='assets/msg_default.png'">
+                </span>
+      </div>
+      <ion-searchbar *ngIf="selected.length == 0" placeholder="搜索" [(ngModel)]="search"
+                     (ionChange)="input()"></ion-searchbar>
+      <ion-input class="ml-d12 input-search" *ngIf="selected.length > 0" placeholder="搜索" [(ngModel)]="search"
+                 (ionChange)="input()"></ion-input>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+  <ul class="letter">
+    <li class="letter-right" *ngFor="let letter of allLetters" (click)="scrollToTop(letter)">{{letter}}</li>
+  </ul>
+  <ion-list class="friend-list" lines="none">
+    <ion-item-group *ngFor="let letter of letters">
+      <ion-item-divider color="light" id="{{letter}}" *ngIf="!onSearch">
+        <ion-label>{{letter}}</ion-label>
+      </ion-item-divider>
+      <ion-item *ngFor="let h of friendList">
+        <ion-label class="pt-d24 pb-d24 border-bec dark-borderbottom-333" *ngIf="letter==h.pinyin&&h.display">
+          <ion-checkbox class="che-box" mode="ios" [(ngModel)]="h.checked" (click)="checked(h)"
+                        slot="start"></ion-checkbox>
+          <img src="{{h.friendProfile}}"
+               onerror="this.src='assets/default-head.png'"
+               class="talk-header">
+          <span class="w-60 ml-d08 line-clamp" [innerHTML]="h.alias|searchText:search"></span>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>

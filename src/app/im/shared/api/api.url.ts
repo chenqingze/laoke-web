@@ -5,10 +5,11 @@ const API_HOST = environment.msgApiUrl;
 export const API_URL = {
     TALK_GROUP: {
         getGroupInfoById: `${API_HOST}/group/`,
-        getUserInGroup: `${API_HOST}/group/in/`,
+        getUserInGroup: `${API_HOST}/group/in`,
         getUserInGroupByNo: `${API_HOST}/group/in/`,
         getUser: `${API_HOST}/user/`,
-        getGroupByNo: `${API_HOST}/group/no/`
+        getGroupByNo: `${API_HOST}/group/no/`,
+        getGroupMaxMemberCount: `${API_HOST}/group/max-count`
 
     },
 
