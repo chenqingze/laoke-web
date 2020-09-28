@@ -17,6 +17,7 @@ import {InvitationService} from './addfriendgroup/shared/invitation.service';
 import { MucHeaderPipe } from './shared/pipe/muc-header/muc-header.pipe';
 import { SearchTextPipe } from './shared/pipe/search-text/search-text.pipe';
 import {SharedModule} from './shared/shared.module';
+import {NgPipesModule} from 'ngx-pipes';
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import {SharedModule} from './shared/shared.module';
         FormsModule,
         IonicModule,
         ImRoutingModule,
+        NgPipesModule,
         SharedModule
     ],
     exports: [
