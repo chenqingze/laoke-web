@@ -2,7 +2,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Pipe({
-    name: 'searchText'
+    name: 'searchText',
 })
 export class SearchTextPipe implements PipeTransform {
     constructor(private sanitizer: DomSanitizer) {
