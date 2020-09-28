@@ -14,8 +14,10 @@ import {RecentContactsComponent} from './recent-contacts/recent-contacts.compone
 import {RecentContactComponent} from './recent-contacts/recent-contact/recent-contact.component';
 import {NgPipesModule} from 'ngx-pipes';
 import {InvitationService} from './addfriendgroup/shared/invitation.service';
-import {MucHeaderPipe} from './shared/pipe/muc-header/muc-header.pipe';
-import {SearchTextPipe} from './shared/pipe/search-text/search-text.pipe';
+
+import { MucHeaderPipe } from './shared/pipe/muc-header/muc-header.pipe';
+import { SearchTextPipe } from './shared/pipe/search-text/search-text.pipe';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
     imports: [
@@ -23,7 +25,7 @@ import {SearchTextPipe} from './shared/pipe/search-text/search-text.pipe';
         FormsModule,
         IonicModule,
         ImRoutingModule,
-        NgPipesModule
+        SharedModule
     ],
     exports: [
         SearchTextPipe
