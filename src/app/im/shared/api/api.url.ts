@@ -5,12 +5,14 @@ const API_HOST = environment.msgApiUrl;
 export const API_URL = {
     TALK_GROUP: {
         getGroupInfoById: `${API_HOST}/group/`,
-        getUserInGroup: `${API_HOST}/in/`,
+        getUserInGroup: `${API_HOST}/group/in/`,
+        getUserInGroupByNo: `${API_HOST}/group/in/`,
         getUser: `${API_HOST}/user/`,
+        getGroupByNo: `${API_HOST}/group/no/`
 
     },
 
-    FRIEND:{
+    FRIEND: {
         // searchFriend: `${API_HOST_HTTPS}/uc/user/user-query-info`,
     }
 };

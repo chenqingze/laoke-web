@@ -234,7 +234,7 @@ export class ApiService{
     public getByAuth(apiUrl: string, reqParams?: any): Observable<any> {
         // 获取本地token
         // const token = localStorage.getItem('token');
-        const token = '42136f34-0b9f-4956-b687-ce98d829bacd';
+        const token = '8d9808e6-2b9f-49d4-bd94-98d406b94958';
         // 设置header
         const headers = new HttpHeaders()
             .set('Content-Type', 'application/json')

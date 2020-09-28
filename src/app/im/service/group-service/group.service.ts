@@ -16,8 +16,19 @@ export class GroupService {
         return this.apiService.getByAuth(url);
     }
 
-    queryUserInGroup(groupId){
-        const url =  API_URL.TALK_GROUP.getUserInGroup + groupId;
+    queryUserInGroup(groupId) {
+        const url = API_URL.TALK_GROUP.getUserInGroup + '?groupNo' + groupId;
         return this.apiService.getByAuth(url);
+    }
+
+    queryUserInGroupByNo(groupNo) {
+        const url = API_URL.TALK_GROUP.getUserInGroupByNo + groupNo;
+        return this.apiService.getByAuth(url);
+    }
+
+    queryGroupByNo(groupNo) {
+        const url = API_URL.TALK_GROUP.getGroupByNo +  + groupNo;
+        return this.apiService.getByAuth(url);
+
     }
 }
