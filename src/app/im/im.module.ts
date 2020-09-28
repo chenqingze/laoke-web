@@ -13,6 +13,7 @@ import {GroupsComponent} from './contacts/groups/groups.component';
 import {RecentContactsComponent} from './recent-contacts/recent-contacts.component';
 import {RecentContactComponent} from './recent-contacts/recent-contact/recent-contact.component';
 import {InvitationService} from './addfriendgroup/shared/invitation.service';
+
 import { MucHeaderPipe } from './shared/pipe/muc-header/muc-header.pipe';
 import { SearchTextPipe } from './shared/pipe/search-text/search-text.pipe';
 import {SharedModule} from './shared/shared.module';
@@ -25,6 +26,9 @@ import {SharedModule} from './shared/shared.module';
         ImRoutingModule,
         SharedModule
     ],
+    exports: [
+        SearchTextPipe
+    ],
     declarations: [
         ImPage,
         RecentContactComponent,
@@ -35,9 +39,6 @@ import {SharedModule} from './shared/shared.module';
         FriendsComponent,
         GroupsComponent,
         MucHeaderPipe,
-        SearchTextPipe
-    ],
-    exports: [
         SearchTextPipe
     ]
 })
