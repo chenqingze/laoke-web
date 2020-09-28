@@ -5,7 +5,7 @@ import {InvitationDeclinedRequest} from '../../core/lib/Invitation_pb';
 
 
 export class InvitationDeclinedRequestModel extends BaseModel {
-    readonly opCode = OpCode.FRIEND_INVITATION_DECLINED_REQUEST;
+    readonly opCode = OpCode.INVITATION_DECLINED_REQUEST;
     id:string;
 
     convertMessageToModel(message: Message): BaseModel {

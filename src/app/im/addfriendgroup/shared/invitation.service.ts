@@ -52,7 +52,7 @@ export class InvitationService {
     }
 
     listenInvitation() {
-        this.wsService.messages$(OpCode.FRIEND_INVITATION_REQUEST_ACK).pipe(concatMap(
+        this.wsService.messages$(OpCode.INVITATION_REQUEST_ACK).pipe(concatMap(
             (friendInvitationRequestAckModel: InvitationRequestAckModel) =>
                 this.addInvitation(friendInvitationRequestAckModel))).subscribe(
                     (sqlResult) => {
@@ -67,7 +67,7 @@ export class InvitationService {
                         console.error('err', err);
                     });
 
-        this.wsService.messages$(OpCode.FRIEND_INVITATION_ACCEPT_ACK).pipe(concatMap(
+        this.wsService.messages$(OpCode.INVITATION_ACCEPT_ACK).pipe(concatMap(
             (friendInvitationAcceptAckModel: InvitationAcceptAckModel) => {
                 return this.updateInviteStatus(friendInvitationAcceptAckModel.id,InviteStatus.ACCEPTED);
             })).subscribe(
@@ -83,7 +83,7 @@ export class InvitationService {
                 console.error('err', err);
             });
 
-        this.wsService.messages$(OpCode.FRIEND_INVITATION_DECLINED_ACK).pipe(concatMap(
+        this.wsService.messages$(OpCode.INVITATION_DECLINED_ACK).pipe(concatMap(
             (friendInvitationDeclinedAckModel: InvitationDeclinedAckModel) => {
                 return this.updateInviteStatus(friendInvitationDeclinedAckModel.id,InviteStatus.DECLINED);
             })).subscribe(

@@ -6,7 +6,7 @@ import {Invitation, ReadStatus} from './Invitation.model';
 
 
 export class InvitationRequestAckModel extends BaseModel {
-    readonly opCode = OpCode.FRIEND_INVITATION_REQUEST_ACK;
+    readonly opCode = OpCode.INVITATION_REQUEST_ACK;
     invitation:Invitation;
     res:number; //0-失败，1-成功*/
 

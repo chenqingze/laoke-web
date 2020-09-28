@@ -50,13 +50,13 @@ export class NewFriendPage implements OnInit {
 
     listenInvitation() {
         console.log(InviteStatus.REQUESTED)
-        this.wsService.messages$(OpCode.FRIEND_INVITATION_REQUEST_ACK).subscribe((
+        this.wsService.messages$(OpCode.INVITATION_REQUEST_ACK).subscribe((
             friendInvitationRequestAckModel: InvitationRequestAckModel
         ) => {
             this.invitations.unshift(friendInvitationRequestAckModel.invitation);
         });
 
-        this.wsService.messages$(OpCode.FRIEND_INVITATION_ACCEPT_ACK).subscribe((
+        this.wsService.messages$(OpCode.INVITATION_ACCEPT_ACK).subscribe((
             friendInvitationAcceptAckModel: InvitationAcceptAckModel
         ) => {
             for (let i = 0; i < this.invitations.length; i++) {
@@ -65,7 +65,7 @@ export class NewFriendPage implements OnInit {
             }
         });
 
-        this.wsService.messages$(OpCode.FRIEND_INVITATION_DECLINED_ACK).subscribe((
+        this.wsService.messages$(OpCode.INVITATION_DECLINED_ACK).subscribe((
             friendInvitationDeclinedAckModel: InvitationDeclinedAckModel
         ) => {
             for (let i = 0; i < this.invitations.length; i++) {

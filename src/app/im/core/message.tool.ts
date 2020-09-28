@@ -28,11 +28,11 @@ export class MessageTool {
             case OpCode.MSG_ACK:
                 return GroupMsgAckModel.createMessageModel().convertMessageToModel(message);
 
-            case OpCode.FRIEND_INVITATION_REQUEST_ACK:
+            case OpCode.INVITATION_REQUEST_ACK:
                 return InvitationRequestAckModel.createMessageModel().convertMessageToModel(message);
-            case OpCode.FRIEND_INVITATION_ACCEPT_ACK:
+            case OpCode.INVITATION_ACCEPT_ACK:
                 return InvitationAcceptAckModel.createMessageModel().convertMessageToModel(message);
-            case OpCode.FRIEND_INVITATION_DECLINED_ACK:
+            case OpCode.INVITATION_DECLINED_ACK:
                 return InvitationDeclinedAckModel.createMessageModel().convertMessageToModel(message);
             case OpCode.UNKNOWN:
             default:

@@ -9,7 +9,7 @@ import {Friend} from '../../contacts/friends/shared/friend.model';
 
 
 export class InvitationAcceptAckModel extends BaseModel {
-    readonly opCode = OpCode.FRIEND_INVITATION_ACCEPT_ACK;
+    readonly opCode = OpCode.INVITATION_ACCEPT_ACK;
     id:string;
     friend:Friend;
     res:number; //0-失败，1-成功*/

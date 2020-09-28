@@ -5,7 +5,7 @@ import {InvitationRequestRequest} from '../../core/lib/Invitation_pb';
 
 
 export class InvitationRequestRequestModel extends BaseModel {
-    readonly opCode = OpCode.FRIEND_INVITATION_REQUEST_REQUEST;
+    readonly opCode = OpCode.INVITATION_REQUEST_REQUEST;
     addresseeId:string;
     addresseeAlias:string;
     content:string;
