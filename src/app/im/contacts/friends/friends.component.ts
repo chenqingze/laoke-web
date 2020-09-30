@@ -77,7 +77,7 @@ export class FriendsComponent implements OnInit {
             this.commonUtil.showToast('该用户已注销');
         }*/
 
-        this.router.navigate(['/tabs/im/chat-window'], {relativeTo: this.route, queryParams: {id: friend.friendId, chatType: 'friend'}});
+        this.router.navigate(['/tabs/im/chat-window'], {queryParams: {id: friend.friendId}, relativeTo: this.route});
     }
 
 }

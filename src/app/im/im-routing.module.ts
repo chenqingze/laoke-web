@@ -39,7 +39,15 @@ const routes: Routes = [
   {
     path: 'create-group',
     loadChildren: () => import('./page/create-group/create-group.module').then( m => m.CreateGroupPageModule)
+  },  {
+    path: 'setting',
+    loadChildren: () => import('./chat/setting/setting.module').then( m => m.SettingPageModule)
+  },
+  {
+    path: 'friend-alias',
+    loadChildren: () => import('./chat/friend-alias/friend-alias.module').then( m => m.FriendAliasPageModule)
   }
+
 
 
 

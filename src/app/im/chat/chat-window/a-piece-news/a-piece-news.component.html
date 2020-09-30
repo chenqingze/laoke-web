@@ -1,0 +1,24 @@
+
+<!--对方发送的消息-->
+<ion-row *ngIf="msg.msgDirection == 'in'" class="ion-align-items-start" style="padding-top: 0.3rem">
+  <ion-col size="2">
+    <ion-thumbnail style="margin: auto;">
+      <img src="/assets/dragon.jpg">
+    </ion-thumbnail>
+  </ion-col>
+  <ion-col size="8">
+    {{msg.content}}
+  </ion-col>
+</ion-row>
+
+<!--我发送的消息-->
+<ion-row *ngIf="msg.msgDirection == 'out'" class="ion-align-items-end" style="padding-top: 0.3rem">
+  <ion-col size="8" [offset]="2" style="margin: auto;">
+    {{msg.content}}
+  </ion-col>
+  <ion-col size="2" style="margin-bottom: auto;">
+    <ion-thumbnail style="margin: auto;">
+      <img [src]="friend.friendProfile">
+    </ion-thumbnail>
+  </ion-col>
+</ion-row>
