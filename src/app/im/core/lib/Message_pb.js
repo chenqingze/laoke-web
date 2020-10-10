@@ -58,7 +58,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.Message.oneofGroups_ = [[11,12,20,23,21,22,24,25,26,27,28,29,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010]];
+proto.Message.oneofGroups_ = [[11,12,20,23,21,22,24,25,26,27,28,29,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1101,1102]];
 
 /**
  * @enum {number}
@@ -86,7 +86,9 @@ proto.Message.PayloadCase = {
   INVITATION_REQUEST: 1007,
   INVITATION_ACK: 1008,
   FRIEND_REQUEST: 1009,
-  FRIEND_ACK: 1010
+  FRIEND_ACK: 1010,
+  MSG_READ_NOTIFY: 1101,
+  MSG_READ_ACK: 1102
 };
 
 /**
@@ -152,7 +154,9 @@ proto.Message.toObject = function(includeInstance, msg) {
     invitationRequest: (f = msg.getInvitationRequest()) && Invitation_pb.InvitationRequest.toObject(includeInstance, f),
     invitationAck: (f = msg.getInvitationAck()) && Invitation_pb.InvitationAck.toObject(includeInstance, f),
     friendRequest: (f = msg.getFriendRequest()) && Friend_pb.FriendRequest.toObject(includeInstance, f),
-    friendAck: (f = msg.getFriendAck()) && Friend_pb.FriendAck.toObject(includeInstance, f)
+    friendAck: (f = msg.getFriendAck()) && Friend_pb.FriendAck.toObject(includeInstance, f),
+    msgReadNotify: (f = msg.getMsgReadNotify()) && Msg_pb.MsgReadNotify.toObject(includeInstance, f),
+    msgReadAck: (f = msg.getMsgReadAck()) && Msg_pb.MsgReadAck.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -314,6 +318,16 @@ proto.Message.deserializeBinaryFromReader = function(msg, reader) {
       var value = new Friend_pb.FriendAck;
       reader.readMessage(value,Friend_pb.FriendAck.deserializeBinaryFromReader);
       msg.setFriendAck(value);
+      break;
+    case 1101:
+      var value = new Msg_pb.MsgReadNotify;
+      reader.readMessage(value,Msg_pb.MsgReadNotify.deserializeBinaryFromReader);
+      msg.setMsgReadNotify(value);
+      break;
+    case 1102:
+      var value = new Msg_pb.MsgReadAck;
+      reader.readMessage(value,Msg_pb.MsgReadAck.deserializeBinaryFromReader);
+      msg.setMsgReadAck(value);
       break;
     default:
       reader.skipField();
@@ -546,6 +560,22 @@ proto.Message.serializeBinaryToWriter = function(message, writer) {
       1010,
       f,
       Friend_pb.FriendAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getMsgReadNotify();
+  if (f != null) {
+    writer.writeMessage(
+      1101,
+      f,
+      Msg_pb.MsgReadNotify.serializeBinaryToWriter
+    );
+  }
+  f = message.getMsgReadAck();
+  if (f != null) {
+    writer.writeMessage(
+      1102,
+      f,
+      Msg_pb.MsgReadAck.serializeBinaryToWriter
     );
   }
 };
@@ -1434,6 +1464,80 @@ proto.Message.prototype.clearFriendAck = function() {
  */
 proto.Message.prototype.hasFriendAck = function() {
   return jspb.Message.getField(this, 1010) != null;
+};
+
+
+/**
+ * optional MsgReadNotify msg_read_notify = 1101;
+ * @return {?proto.MsgReadNotify}
+ */
+proto.Message.prototype.getMsgReadNotify = function() {
+  return /** @type{?proto.MsgReadNotify} */ (
+    jspb.Message.getWrapperField(this, Msg_pb.MsgReadNotify, 1101));
+};
+
+
+/**
+ * @param {?proto.MsgReadNotify|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setMsgReadNotify = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1101, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearMsgReadNotify = function() {
+  return this.setMsgReadNotify(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasMsgReadNotify = function() {
+  return jspb.Message.getField(this, 1101) != null;
+};
+
+
+/**
+ * optional MsgReadAck msg_read_ack = 1102;
+ * @return {?proto.MsgReadAck}
+ */
+proto.Message.prototype.getMsgReadAck = function() {
+  return /** @type{?proto.MsgReadAck} */ (
+    jspb.Message.getWrapperField(this, Msg_pb.MsgReadAck, 1102));
+};
+
+
+/**
+ * @param {?proto.MsgReadAck|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setMsgReadAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1102, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearMsgReadAck = function() {
+  return this.setMsgReadAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasMsgReadAck = function() {
+  return jspb.Message.getField(this, 1102) != null;
 };
 
 

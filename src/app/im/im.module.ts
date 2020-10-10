@@ -18,6 +18,7 @@ import { MucHeaderPipe } from './shared/pipe/muc-header/muc-header.pipe';
 import { SearchTextPipe } from './shared/pipe/search-text/search-text.pipe';
 import {SharedModule} from './shared/shared.module';
 import {NgPipesModule} from 'ngx-pipes';
+import {MsgService} from './chat/shared/msg.service';
 
 @NgModule({
     imports: [
@@ -49,6 +50,7 @@ export class ImModule {
     constructor(
         private webSocketService: WebSocketService,
         private invitationService: InvitationService,
+        private msgService: MsgService,
         @Optional() @SkipSelf() parentModule?: ImModule,
     ) {
         if (parentModule) {

@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {WebSocketService} from '../../core/web-socket.service';
 import {Friend} from '../../contacts/friends/shared/friend.model';
 import {AlertController, Platform} from '@ionic/angular';
-import {ChatService} from '../shared/chat.service';
 import {AlertControllerService} from '../../service/alert-controller/alert-controller.service';
 import {FriendService} from '../../contacts/friends/shared/friend.service';
 
@@ -27,7 +26,6 @@ export class SettingPage implements OnInit {
       public alertController: AlertController,
       private dialog: AlertControllerService,
       // private sqlService: SqlService,
-      private chatService: ChatService,
       // private commonUtil: CommonUtil,
       public router: Router,
       private platform: Platform,

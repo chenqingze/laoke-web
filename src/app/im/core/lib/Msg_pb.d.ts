@@ -115,6 +115,9 @@ export class MsgReadNotify extends jspb.Message {
   getExtendData(): string;
   setExtendData(value: string): void;
 
+  getSenderId(): string;
+  setSenderId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MsgReadNotify.AsObject;
   static toObject(includeInstance: boolean, msg: MsgReadNotify): MsgReadNotify.AsObject;
@@ -136,24 +139,25 @@ export namespace MsgReadNotify {
     content: string,
     time: number,
     extendData: string,
+    senderId: string,
   }
 }
 
-export class MsgReadConfirmRequest extends jspb.Message {
+export class MsgReadAck extends jspb.Message {
   getMsgId(): string;
   setMsgId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): MsgReadConfirmRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: MsgReadConfirmRequest): MsgReadConfirmRequest.AsObject;
+  toObject(includeInstance?: boolean): MsgReadAck.AsObject;
+  static toObject(includeInstance: boolean, msg: MsgReadAck): MsgReadAck.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: MsgReadConfirmRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): MsgReadConfirmRequest;
-  static deserializeBinaryFromReader(message: MsgReadConfirmRequest, reader: jspb.BinaryReader): MsgReadConfirmRequest;
+  static serializeBinaryToWriter(message: MsgReadAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MsgReadAck;
+  static deserializeBinaryFromReader(message: MsgReadAck, reader: jspb.BinaryReader): MsgReadAck;
 }
 
-export namespace MsgReadConfirmRequest {
+export namespace MsgReadAck {
   export type AsObject = {
     msgId: string,
   }
@@ -228,6 +232,38 @@ export class MsgReadConfirmNotify extends jspb.Message {
 export namespace MsgReadConfirmNotify {
   export type AsObject = {
     msgId: string,
+  }
+}
+
+export class OfflineMsgRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): OfflineMsgRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: OfflineMsgRequest): OfflineMsgRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: OfflineMsgRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): OfflineMsgRequest;
+  static deserializeBinaryFromReader(message: OfflineMsgRequest, reader: jspb.BinaryReader): OfflineMsgRequest;
+}
+
+export namespace OfflineMsgRequest {
+  export type AsObject = {
+  }
+}
+
+export class OfflineMsgAck extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): OfflineMsgAck.AsObject;
+  static toObject(includeInstance: boolean, msg: OfflineMsgAck): OfflineMsgAck.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: OfflineMsgAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): OfflineMsgAck;
+  static deserializeBinaryFromReader(message: OfflineMsgAck, reader: jspb.BinaryReader): OfflineMsgAck;
+}
+
+export namespace OfflineMsgAck {
+  export type AsObject = {
   }
 }
 

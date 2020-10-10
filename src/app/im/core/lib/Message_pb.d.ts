@@ -133,6 +133,16 @@ export class Message extends jspb.Message {
   getFriendAck(): Friend_pb.FriendAck | undefined;
   setFriendAck(value?: Friend_pb.FriendAck): void;
 
+  hasMsgReadNotify(): boolean;
+  clearMsgReadNotify(): void;
+  getMsgReadNotify(): Msg_pb.MsgReadNotify | undefined;
+  setMsgReadNotify(value?: Msg_pb.MsgReadNotify): void;
+
+  hasMsgReadAck(): boolean;
+  clearMsgReadAck(): void;
+  getMsgReadAck(): Msg_pb.MsgReadAck | undefined;
+  setMsgReadAck(value?: Msg_pb.MsgReadAck): void;
+
   getPayloadCase(): Message.PayloadCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Message.AsObject;
@@ -172,6 +182,8 @@ export namespace Message {
     invitationAck?: Invitation_pb.InvitationAck.AsObject,
     friendRequest?: Friend_pb.FriendRequest.AsObject,
     friendAck?: Friend_pb.FriendAck.AsObject,
+    msgReadNotify?: Msg_pb.MsgReadNotify.AsObject,
+    msgReadAck?: Msg_pb.MsgReadAck.AsObject,
   }
 
   export enum PayloadCase {
@@ -198,6 +210,8 @@ export namespace Message {
     INVITATION_ACK = 1008,
     FRIEND_REQUEST = 1009,
     FRIEND_ACK = 1010,
+    MSG_READ_NOTIFY = 1101,
+    MSG_READ_ACK = 1102,
   }
 }
 

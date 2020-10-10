@@ -63,7 +63,9 @@ proto.OpCode = {
   FRIEND_DELETE_REQUEST: 1009,
   FRIEND_DELETE_ACK: 1010,
   FRIEND_REQUEST: 1011,
-  FRIEND_ACK: 1012
+  FRIEND_ACK: 1012,
+  MSG_READ_NOTIFY: 1101,
+  MSG_READ_ACK: 1102
 };
 
 goog.object.extend(exports, proto);

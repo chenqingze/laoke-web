@@ -7,15 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { ChatWindowPageRoutingModule } from './chat-window-routing.module';
 
 import { ChatWindowPage } from './chat-window.page';
-import {APieceNewsComponent} from './a-piece-news/a-piece-news.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ChatWindowPageRoutingModule
-  ],
-    declarations: [ChatWindowPage, APieceNewsComponent]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ChatWindowPageRoutingModule
+    ],
+  declarations: [ChatWindowPage]
 })
 export class ChatWindowPageModule {}
