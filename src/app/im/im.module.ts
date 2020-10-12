@@ -28,9 +28,6 @@ import {NgPipesModule} from 'ngx-pipes';
         NgPipesModule,
         SharedModule
     ],
-    exports: [
-        SearchTextPipe
-    ],
     declarations: [
         ImPage,
         RecentContactComponent,
@@ -40,8 +37,6 @@ import {NgPipesModule} from 'ngx-pipes';
         FansComponent,
         FriendsComponent,
         GroupsComponent,
-        MucHeaderPipe,
-        SearchTextPipe
     ]
 })
 export class ImModule {

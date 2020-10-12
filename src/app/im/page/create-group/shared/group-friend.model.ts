@@ -1,6 +1,7 @@
 export class GroupFriendModel {
     userId: string;
-    friendProfile: string;
+    friendId;
+    header: string;
     nickname: string;
     alias: string;
     isBlocked;

@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title>邀请新成员</ion-title>
+        <ion-buttons slot="end">
+            <span class="fontS-d28 mr-d32 colorf publish-btn" (click)="addUserInGroup()">提交</span>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+        <div class="pl-d32 pr-d32 fixed-search">
+            <div class="choosed-header-img" *ngIf="selected.length>0">
+            <span *ngFor="let u of selected">
+                <img src="{{u|mucHeader|async}}" class="selected-img"
+                     (click)="checked1(u)">
+            </span>
+            </div>
+            <ion-searchbar inputmode="numeric" *ngIf="selected.length == 0" [(ngModel)]="search" placeholder="搜索"
+                           (ionChange)="input()"></ion-searchbar>
+            <ion-input class="ml-d12 input-search" *ngIf="selected.length > 0" placeholder="搜索" [(ngModel)]="search"
+                       (ionChange)="input()"></ion-input>
+
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+
+    <div class="friend-list">
+        <div class="letter">
+            <div class="letter-right">
+                <span *ngFor="let letter of allLetters" (click)="scrollToTop(letter)">{{letter}}</span>
+            </div>
+        </div>
+        <ion-item-group *ngFor="let letter of letters">
+            <ion-item-divider color="light" id="{{letter}}">
+                <ion-label>{{letter}}</ion-label>
+            </ion-item-divider>
+            <div lines="none" *ngFor="let friend of friends" class="ml-d32 mr-d32">
+                <div class="ion-flex ion-align-items-center pt-d24 pb-d24"
+                     *ngIf="letter==friend.pinyin&&friend.display">
+                    <ion-checkbox class="che-box" mode="ios" [(ngModel)]="friend.checked"
+                                  (click)="checked(friend)"></ion-checkbox>
+                    <ion-label class="ion-flex ion-align-items-center w-84 ml-d24">
+                        <img class="avatar-img"
+                             src="{{friend.header}}"
+                             onerror="this.src='assets/default-head.png'">
+                        <p class="friends-name">{{friend.nickname}}</p>
+                    </ion-label>
+                </div>
+            </div>
+        </ion-item-group>
+    </div>
+
+</ion-content>

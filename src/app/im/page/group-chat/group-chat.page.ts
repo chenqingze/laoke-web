@@ -12,6 +12,7 @@ import {GroupMsgRequestModel} from './group-msg-request.model';
 import {DbService} from '../../shared/db.service';
 import {GroupMsgAckModel} from './group-msg-ack.model';
 import {GroupMsgDbService} from './group-msg-db-service';
+import {ChangeGroupNameRequestModel} from '../change-group-name/change-group-name-request.model';
 
 @Component({
     selector: 'app-group-chat',
@@ -73,6 +74,8 @@ export class GroupChatPage implements OnInit, OnDestroy {
     private showModel: boolean;
 
     private receiveSub: Subscription;
+
+    private groupSettingSub;
     public slideOpt = {
         initialSlide: 0,
         speed: 300,
@@ -116,6 +119,7 @@ export class GroupChatPage implements OnInit, OnDestroy {
         });
         // console.log('111');
     }
+
     queryGroupInfo() {
         this.groupService.queryGroupInfo(this.groupId).subscribe({
             next: (data) => {
@@ -164,10 +168,30 @@ export class GroupChatPage implements OnInit, OnDestroy {
                 console.log(err);
             }
         });
+        this.groupSettingSub = this.wsService.messages$([OpCode.EDIT_GROUP_NAME_REQUEST,
+            OpCode.INVITATION_USER_JOIN_GROUP_REQUEST,
+            OpCode.DETACH_USER_FROM_GROUP_REQUEST])
+            .subscribe({
+                next: (message) => {
+                    if (message.opCode == OpCode.EDIT_GROUP_NAME_REQUEST) {
+                        this.queryGroupInfo();
+                    } else if (message.opCode == OpCode.DETACH_USER_FROM_GROUP_REQUEST) {
+                        this.queryGroupInfo();
+                    } else if (message.opCode == OpCode.INVITATION_USER_JOIN_GROUP_REQUEST) {
+                        this.queryGroupInfo();
+                    }
+
+                }, error: (err) => {
+                    console.log(err);
+                }
+            });
+
     }
 
     ngOnDestroy() {
+        console.log('1');
         this.receiveSub.unsubscribe();
+        this.groupSettingSub.unsubscribe();
     }
 
 
@@ -314,8 +338,8 @@ export class GroupChatPage implements OnInit, OnDestroy {
 
     }
 
-    openSetting(){
-        this.router.navigate(['/tabs/im/group-chat-setting',{groupId: this.groupId}]);
+    openSetting() {
+        this.router.navigate(['/tabs/im/group-chat-setting', {groupId: this.groupId}]);
     }
 
 

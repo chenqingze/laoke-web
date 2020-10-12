@@ -4,10 +4,10 @@
 import * as jspb from "google-protobuf";
 
 export class CreateGroupRequest extends jspb.Message {
-  clearUserList(): void;
-  getUserList(): Array<string>;
-  setUserList(value: Array<string>): void;
-  addUser(value: string, index?: number): string;
+  clearUsersList(): void;
+  getUsersList(): Array<string>;
+  setUsersList(value: Array<string>): void;
+  addUsers(value: string, index?: number): string;
 
   getOwner(): string;
   setOwner(value: string): void;
@@ -33,7 +33,7 @@ export class CreateGroupRequest extends jspb.Message {
 
 export namespace CreateGroupRequest {
   export type AsObject = {
-    userList: Array<string>,
+    usersList: Array<string>,
     owner: string,
     header: string,
     name: string,
@@ -60,6 +60,9 @@ export class CreateGroupAck extends jspb.Message {
   getHeader(): string;
   setHeader(value: string): void;
 
+  getGroupNo(): string;
+  setGroupNo(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateGroupAck.AsObject;
   static toObject(includeInstance: boolean, msg: CreateGroupAck): CreateGroupAck.AsObject;
@@ -78,6 +81,7 @@ export namespace CreateGroupAck {
     owner: string,
     name: string,
     header: string,
+    groupNo: string,
   }
 }
 
@@ -396,6 +400,392 @@ export class InvitationJoinGroupAck extends jspb.Message {
 export namespace InvitationJoinGroupAck {
   export type AsObject = {
     groupId: string,
+    success: string,
+    message: string,
+  }
+}
+
+export class RemoveGroupMemberRequest extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  clearUserList(): void;
+  getUserList(): Array<string>;
+  setUserList(value: Array<string>): void;
+  addUser(value: string, index?: number): string;
+
+  getCurrentUser(): string;
+  setCurrentUser(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveGroupMemberRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveGroupMemberRequest): RemoveGroupMemberRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveGroupMemberRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveGroupMemberRequest;
+  static deserializeBinaryFromReader(message: RemoveGroupMemberRequest, reader: jspb.BinaryReader): RemoveGroupMemberRequest;
+}
+
+export namespace RemoveGroupMemberRequest {
+  export type AsObject = {
+    groupId: string,
+    userList: Array<string>,
+    currentUser: string,
+    message: string,
+    success: string,
+  }
+}
+
+export class RemoveGroupMemberAck extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveGroupMemberAck.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveGroupMemberAck): RemoveGroupMemberAck.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveGroupMemberAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveGroupMemberAck;
+  static deserializeBinaryFromReader(message: RemoveGroupMemberAck, reader: jspb.BinaryReader): RemoveGroupMemberAck;
+}
+
+export namespace RemoveGroupMemberAck {
+  export type AsObject = {
+    groupId: string,
+    message: string,
+    success: string,
+  }
+}
+
+export class ChangeGroupNameRequest extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getGroupName(): string;
+  setGroupName(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChangeGroupNameRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ChangeGroupNameRequest): ChangeGroupNameRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChangeGroupNameRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChangeGroupNameRequest;
+  static deserializeBinaryFromReader(message: ChangeGroupNameRequest, reader: jspb.BinaryReader): ChangeGroupNameRequest;
+}
+
+export namespace ChangeGroupNameRequest {
+  export type AsObject = {
+    groupId: string,
+    groupName: string,
+    success: string,
+    message: string,
+  }
+}
+
+export class ChangeGroupNameAck extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getGroupName(): string;
+  setGroupName(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChangeGroupNameAck.AsObject;
+  static toObject(includeInstance: boolean, msg: ChangeGroupNameAck): ChangeGroupNameAck.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChangeGroupNameAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChangeGroupNameAck;
+  static deserializeBinaryFromReader(message: ChangeGroupNameAck, reader: jspb.BinaryReader): ChangeGroupNameAck;
+}
+
+export namespace ChangeGroupNameAck {
+  export type AsObject = {
+    groupId: string,
+    groupName: string,
+    success: string,
+    message: string,
+  }
+}
+
+export class ChangeGroupNoticeRequest extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getNotice(): string;
+  setNotice(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChangeGroupNoticeRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ChangeGroupNoticeRequest): ChangeGroupNoticeRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChangeGroupNoticeRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChangeGroupNoticeRequest;
+  static deserializeBinaryFromReader(message: ChangeGroupNoticeRequest, reader: jspb.BinaryReader): ChangeGroupNoticeRequest;
+}
+
+export namespace ChangeGroupNoticeRequest {
+  export type AsObject = {
+    groupId: string,
+    notice: string,
+    success: string,
+    message: string,
+  }
+}
+
+export class ChangeGroupNoticeAck extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getNotice(): string;
+  setNotice(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChangeGroupNoticeAck.AsObject;
+  static toObject(includeInstance: boolean, msg: ChangeGroupNoticeAck): ChangeGroupNoticeAck.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChangeGroupNoticeAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChangeGroupNoticeAck;
+  static deserializeBinaryFromReader(message: ChangeGroupNoticeAck, reader: jspb.BinaryReader): ChangeGroupNoticeAck;
+}
+
+export namespace ChangeGroupNoticeAck {
+  export type AsObject = {
+    groupId: string,
+    notice: string,
+    success: string,
+    message: string,
+  }
+}
+
+export class ChangeMucMuteRequest extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getMute(): boolean;
+  setMute(value: boolean): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChangeMucMuteRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ChangeMucMuteRequest): ChangeMucMuteRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChangeMucMuteRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChangeMucMuteRequest;
+  static deserializeBinaryFromReader(message: ChangeMucMuteRequest, reader: jspb.BinaryReader): ChangeMucMuteRequest;
+}
+
+export namespace ChangeMucMuteRequest {
+  export type AsObject = {
+    groupId: string,
+    mute: boolean,
+    success: string,
+    message: string,
+  }
+}
+
+export class ChangeMucMuteAck extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getMute(): boolean;
+  setMute(value: boolean): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChangeMucMuteAck.AsObject;
+  static toObject(includeInstance: boolean, msg: ChangeMucMuteAck): ChangeMucMuteAck.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChangeMucMuteAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChangeMucMuteAck;
+  static deserializeBinaryFromReader(message: ChangeMucMuteAck, reader: jspb.BinaryReader): ChangeMucMuteAck;
+}
+
+export namespace ChangeMucMuteAck {
+  export type AsObject = {
+    groupId: string,
+    mute: boolean,
+    success: string,
+    message: string,
+  }
+}
+
+export class ChangeMucConfirmJoinRequest extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getConfirm(): boolean;
+  setConfirm(value: boolean): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChangeMucConfirmJoinRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ChangeMucConfirmJoinRequest): ChangeMucConfirmJoinRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChangeMucConfirmJoinRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChangeMucConfirmJoinRequest;
+  static deserializeBinaryFromReader(message: ChangeMucConfirmJoinRequest, reader: jspb.BinaryReader): ChangeMucConfirmJoinRequest;
+}
+
+export namespace ChangeMucConfirmJoinRequest {
+  export type AsObject = {
+    groupId: string,
+    confirm: boolean,
+    success: string,
+    message: string,
+  }
+}
+
+export class ChangeMucConfirmJoinAck extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getConfirm(): boolean;
+  setConfirm(value: boolean): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChangeMucConfirmJoinAck.AsObject;
+  static toObject(includeInstance: boolean, msg: ChangeMucConfirmJoinAck): ChangeMucConfirmJoinAck.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChangeMucConfirmJoinAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChangeMucConfirmJoinAck;
+  static deserializeBinaryFromReader(message: ChangeMucConfirmJoinAck, reader: jspb.BinaryReader): ChangeMucConfirmJoinAck;
+}
+
+export namespace ChangeMucConfirmJoinAck {
+  export type AsObject = {
+    groupId: string,
+    confirm: boolean,
+    success: string,
+    message: string,
+  }
+}
+
+export class ExitGroupRequest extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ExitGroupRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ExitGroupRequest): ExitGroupRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ExitGroupRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ExitGroupRequest;
+  static deserializeBinaryFromReader(message: ExitGroupRequest, reader: jspb.BinaryReader): ExitGroupRequest;
+}
+
+export namespace ExitGroupRequest {
+  export type AsObject = {
+    groupId: string,
+    userId: string,
+    success: string,
+    message: string,
+  }
+}
+
+export class ExitGroupAck extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ExitGroupAck.AsObject;
+  static toObject(includeInstance: boolean, msg: ExitGroupAck): ExitGroupAck.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ExitGroupAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ExitGroupAck;
+  static deserializeBinaryFromReader(message: ExitGroupAck, reader: jspb.BinaryReader): ExitGroupAck;
+}
+
+export namespace ExitGroupAck {
+  export type AsObject = {
+    groupId: string,
+    userId: string,
     success: string,
     message: string,
   }

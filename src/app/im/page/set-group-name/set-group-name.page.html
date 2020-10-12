@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="mr-d16">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>群基础信息</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <div class="border-tf6-d2">
+      <ion-row class="ion-text-center mt-d36">
+        <ion-col size="12" style="text-align:-webkit-center">
+          <ion-avatar class="avatar-img">
+            <img src="{{header}}" (click)="openSheet()">
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="12" class="mt-d4">
+          <span class="fontS-d28 color9 ">点击图片设置群头像</span>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ml-d32 mr-d32 mt-d112 ion-flex ion-align-items-center">
+        <span class="mr-d2">群昵称</span>
+        <ion-input clearInput="true" placeholder="昵称最长不超过20个字符" [(ngModel)]="name"></ion-input>
+      </ion-row>
+      <ion-row class="mt-d134 ion-flex ion-justify-content-center">
+        <ion-col size="11">
+          <ion-button expand="full" color="primary" shape="round" (click)="saveGroup()" [disabled]="btnStatus">完成
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
+</ion-content>

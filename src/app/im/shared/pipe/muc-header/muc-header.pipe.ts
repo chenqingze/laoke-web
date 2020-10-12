@@ -13,16 +13,15 @@ export class MucHeaderPipe implements PipeTransform {
     }
 
     async transform(userId) {
-        // const currentUser = JSON.parse(window.localStorage.getItem('accountModel')).userId;
-        const currentUser = '123';
-        const url = API_URL.TALK_GROUP.getUser + currentUser;
-        const user: any = await this.apiService.getByAuth(url).toPromise();
-        if (user.profile) {
-            return this.handleImgSrc(user.profile);
+
+        const url = API_URL.TALK_GROUP.getUser + userId;
+        const d: any = await this.apiService.getByAuth(url).toPromise();
+        if (d.user.header) {
+            return this.handleImgSrc(d.user.header);
         } else {
             return 'http://img.aihangxunxi.com/cms/4301947339430199456_4544278293495652403.png';
         }
-        return null;
+        return 'assets/default-head.png';
     }
 
     handleImgSrc(url) {
