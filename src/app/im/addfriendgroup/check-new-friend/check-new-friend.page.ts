@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiService} from '../../shared/api/api.service';
 import {WebSocketService} from '../../core/web-socket.service';
@@ -11,13 +11,13 @@ import {InvitationRequestRequestModel} from '../shared/friend-invitation-request
   templateUrl: './check-new-friend.page.html',
   styleUrls: ['./check-new-friend.page.scss'],
 })
-export class CheckNewFriendPage implements OnInit {
+export class CheckNewFriendPage implements OnInit, OnDestroy {
 
   public friendId: string;
   public profile: string;
   public nickname: string;
-  public content: string = "你好希克斯";
-  public alias: string = "666";
+  public content = '你好希克斯';
+  public alias = '666';
 
   constructor(
           private toastCtrl: ToastController,
@@ -29,18 +29,18 @@ export class CheckNewFriendPage implements OnInit {
           private wsService: WebSocketService,
           public changeDetectorRef: ChangeDetectorRef
   ) {
-    console.log("check-new-friend constructor")
+    console.log('check-new-friend constructor');
     this.friendId = this.activeRouter.snapshot.params.userId;
     this.profile = this.activeRouter.snapshot.params.profile;
     this.nickname = this.activeRouter.snapshot.params.nickname;
   }
 
   ngOnInit() {
-    console.log("check-new-friends ngOnInit")
+    console.log('check-new-friends ngOnInit');
   }
 
   ngOnDestroy() {
-    console.log("check-new-friends ngDestroy")
+    console.log('check-new-friends ngDestroy');
   }
 
   addFriend() {
@@ -48,15 +48,15 @@ export class CheckNewFriendPage implements OnInit {
     this.showToast('发送成功');
     // this.showToast('申请添加好友发送成功');
 
-    const friendInvitationRequestRequestModel  = InvitationRequestRequestModel.createMessageModel()
+    const friendInvitationRequestRequestModel  = InvitationRequestRequestModel.createMessageModel();
     friendInvitationRequestRequestModel.addresseeId = this.friendId;
     friendInvitationRequestRequestModel.addresseeAlias = this.alias;
     friendInvitationRequestRequestModel.content = this.content;
 
-    if(this.wsService.isAuthed()){
+    if (this.wsService.isAuthed()){
       this.wsService.sendMessage(friendInvitationRequestRequestModel);
     }else {
-      this.showToast("请稍后再试！")
+      this.showToast('请稍后再试！');
     }
 
     this.router.navigate(['/tabs/im']);

@@ -6,9 +6,9 @@ import {InvitationRequestRequest} from '../../core/lib/Invitation_pb';
 
 export class InvitationRequestRequestModel extends BaseModel {
     readonly opCode = OpCode.INVITATION_REQUEST_REQUEST;
-    addresseeId:string;
-    addresseeAlias:string;
-    content:string;
+    addresseeId: string;
+    addresseeAlias: string;
+    content: string;
 
     convertMessageToModel(message: Message): BaseModel {
         const friendInvitationRequestRequest = message.getInvitationRequestRequest();

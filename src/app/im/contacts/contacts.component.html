@@ -34,7 +34,7 @@
     </div>
     <div style="height: 100%">
         <div class="mt-d2">
-            <app-friends [hidden]="contactType != contactTypeEnum.FRIENDS"></app-friends>
+            <app-friends [hidden]="contactType != contactTypeEnum.FRIENDS" [content]="content"></app-friends>
             <app-groups [hidden]="contactType != contactTypeEnum.GROUPS"  [content]="content"></app-groups>
             <app-fans [hidden]="contactType != contactTypeEnum.FANS"></app-fans>
         </div>

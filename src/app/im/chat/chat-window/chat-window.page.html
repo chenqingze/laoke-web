@@ -1,0 +1,347 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{friend.alias ? friend.alias : friend.friendName}}</ion-title>
+    <ion-icon slot="end" name="ellipsis-horizontal" size="large" style="margin-right: 0.2rem;" (click)="goSettingPage()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<!--<ion-content #content (click)="focusInput()" scroll="true" class="dark-bg-9">
+  <ion-grid id="con" style="position: relative" [ngStyle]="{'padding-bottom': shareType=='info' || shareType=='good' ? '2.2rem':'0.6rem'}">
+
+    <div *ngFor="let item of msgs;let i=index" id="{{item.id}}">
+
+      <div class="loader" style="position: absolute;margin-top: 1.5rem;right: 1.8rem" *ngIf="item.msgStatus=='0'">
+        <div class="ball-beat">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+
+      <ion-row>
+        <ion-col class="ion-text-center mt-d42 mb-d2" *ngIf="(i>0 && item.createdAt-msgs[i-1].createdAt)>300000">
+&lt;!&ndash;          <span class="date-time dark-bg-8 dark-color-7">{{item.createdAt|chatTime}}</span>&ndash;&gt;
+          <span class="date-time dark-bg-8 dark-color-7">{{item.createdAt}}</span>
+        </ion-col>
+      </ion-row>
+
+      &lt;!&ndash; 我发送的信息 &ndash;&gt;
+
+      <ion-row class="mt-d28 ion-flex ion-justify-content-end" *ngIf="item.senderId == user.userId &&item.msgStatus!=4 &&item.msgStatus!=6">
+        &lt;!&ndash;文本&ndash;&gt;
+        <ion-col size="8" class="pr-d2 pl-d20" *ngIf="item.msgType=='0'" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+          <p class="message my_message replace-br">{{item.content}}</p>
+        </ion-col>
+        &lt;!&ndash;@&ndash;&gt;
+        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==18" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+          <p class="message my_message">{{item.content|talkAt}}</p>
+        </ion-col>
+        &lt;!&ndash; 语音&ndash;&gt;
+        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==1" (press)="hammer(item)">
+          &lt;!&ndash;                    <ion-label class="group-nickname-my">{{item.nickname}}</ion-label>&ndash;&gt;
+          <div class="message my_message" (click)="playPause($event,item.content,item.msgId,i,2)">
+                        <span class="my-voice" [ngStyle]="{'margin-left':(item.content|durationPadding)}">{{item.content|talkDuration}}
+                          "</span>
+            <div class="bg audios voicePause my_voice" id="audios2Div{{i}}"></div>
+          </div>
+        </ion-col>
+        &lt;!&ndash; 位置 &ndash;&gt;
+        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==3" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+          &lt;!&ndash;                    <ion-label class="group-nickname-my">{{item.nickname}}</ion-label>&ndash;&gt;
+          <p class="position_message">
+            <app-chat-maps [currentPosition]="item.content" (click)="router2Map(item.content)">
+            </app-chat-maps>
+          </p>
+        </ion-col>
+
+        &lt;!&ndash; 图片&ndash;&gt;
+        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==5" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+          <p class="my_message_pic">
+            &lt;!&ndash;                            <img src="{{msg.content|talkImg}}" (click)="setMaxImg(msg.content)">&ndash;&gt;
+            <app-talk-img-lazy-load [src]="item.content|talkImg" (click)="setMaxImg(item.id)">
+            </app-talk-img-lazy-load>
+          </p>
+        </ion-col>
+        &lt;!&ndash; 回复&ndash;&gt;
+        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==17" (press)="hammer(item)">
+          <span class="message my_message replace-br">{{item.content|talkReply}}</span>
+          <span class="my-reply line-clamp-2">{{item.content|talkReplyMsg}}</span>
+        </ion-col>
+        &lt;!&ndash; 文件&ndash;&gt;
+        <ion-col size="7" class="message my_message_file ion-flex ion-justify-content-between" *ngIf="item.msgType==15" (click)="router2FileDownload(item.content)" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+          <div class="mr-d24">
+            <div class="fontS-d32 color24 line-clamp-2">{{item.content|talkFileName}}</div>
+            <div class="color9 fontS-d24">{{item.content|talkFileSize}}</div>
+          </div>
+          <img class="wenjian-img" src="assets/wenjian.png">
+        </ion-col>
+
+        &lt;!&ndash; 产品&ndash;&gt;
+        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==9" (press)="hammer(item)" (click)="openStoreGood(item.content)" [style.touch-action]="'pan-y'">
+          &lt;!&ndash;                    <ion-label class="group-nickname-my">{{msg.nickname}}</ion-label>&ndash;&gt;
+          <p class="message my_talk_information_message">
+            <app-talk-goods class="w-100" [goodString]="item.content"></app-talk-goods>
+          </p>
+        </ion-col>
+        &lt;!&ndash; 店铺&ndash;&gt;
+        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==11" (press)="hammer(item)" (click)="openStore(item)" [style.touch-action]="'pan-y'">
+          &lt;!&ndash;                    <ion-label class="group-nickname-my">{{item.nickname}}</ion-label>&ndash;&gt;
+          <p class="message my_talk_information_message">
+            <app-talk-store class="w-100" [storeString]="item.content"></app-talk-store>
+          </p>
+        </ion-col>
+        &lt;!&ndash; 预购单&ndash;&gt;
+        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==19" (press)="hammer(item)" (click)="openPreview(item.content)" [style.touch-action]="'pan-y'">
+          &lt;!&ndash;                    <ion-label class="group-nickname-my">{{item.nickname}}</ion-label>&ndash;&gt;
+          <p class="message my_talk_information_message">
+            <app-talk-preview-order [orderString]="item.content"></app-talk-preview-order>
+          </p>
+        </ion-col>
+        &lt;!&ndash; 信息&ndash;&gt;
+        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==6" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+          &lt;!&ndash;                    <ion-label class="group-nickname-my">{{item.nickname}}</ion-label>&ndash;&gt;
+          <p class="message my_talk_information_message">
+            <app-talk-information class="w-100" [infoString]="item.content" (click)="openInformation(item.content)">
+            </app-talk-information>
+          </p>
+        </ion-col>
+        &lt;!&ndash; 配送&ndash;&gt;
+        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==20" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+          &lt;!&ndash;                    <ion-label class="group-nickname-my">{{msg.nickname}}</ion-label>&ndash;&gt;
+          <p class="message my_talk_information_message">
+            <app-talk-distribution class="w-100" [shareFriendString]="item.content" (click)="openDistribution(item.content)"></app-talk-distribution>
+          </p>
+        </ion-col>
+        &lt;!&ndash; 动态&ndash;&gt;
+        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==21" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+          <p class="message my_talk_information_message">
+            <app-talk-dynamic [dynamicString]="item.content" (click)="openDynamic(item.content)">
+            </app-talk-dynamic>
+          </p>
+        </ion-col>
+
+        <ion-col class="line-height1" size="2" *ngIf="item.msgType!=14&&item.msgType!=16&&item.msgType!=4">
+          <img class="avatar-img" src="{{user.profile|imgUrl}}" onerror="this.src='assets/default-head.png'" (click)="openPersonalHome(item.senderId)">
+
+          &lt;!&ndash;<ion-label class="group-nickname">{{msg.nickname}}</ion-label>&ndash;&gt;
+        </ion-col>
+
+        <ion-checkbox class="multiple-check" *ngIf="isMultiple&&item.msgType!=14&&item.msgType!=16&&item.msgStatus!=4" (ionChange)="multipleCheck(item)"></ion-checkbox>
+      </ion-row>
+
+      &lt;!&ndash; 对方发送的信息 &ndash;&gt;
+      <ion-row class="mt-d28 pl-d20" *ngIf="item.receiverId == user.userId &&item.msgStatus!=4 &&item.msgStatus!=6" [id]="item.msgId">
+        &lt;!&ndash;<ion-row class="line-height1" size="2">
+            <ion-col class="ion-text-center mt-d42 mb-d2" *ngIf="(item.createdAt-createdAt)>300000">
+                <span class="date-time">{{item.createdAt|chatTime}}</span>
+            </ion-col>
+        </ion-row>&ndash;&gt;
+        <ion-col size="2" class="line-height1" *ngIf="item.msgType!=14&&item.msgType!=16&&item.msgType!=4">
+          <img class="avatar-img" src="{{chatter.profile|imgUrl}}" onerror="this.src='assets/default-head.png'" (click)="openPersonalHome(item.senderId)">
+        </ion-col>
+        &lt;!&ndash;文本&ndash;&gt;
+        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==0" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+          <p class="message other_message replace-br">{{item.content}}</p>
+        </ion-col>
+        &lt;!&ndash;@&ndash;&gt;
+        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==18" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+          <p class="message other_message">{{item.content|talkAt}}</p>
+        </ion-col>
+        &lt;!&ndash; 产品&ndash;&gt;
+        <ion-col size="8" *ngIf="item.msgType==9" (press)="hammer(item)" (click)="openStoreGood(item.content)" [style.touch-action]="'pan-y'">
+          &lt;!&ndash;                    <ion-label class="group-nickname">{{item.nickname}}</ion-label>&ndash;&gt;
+          <p class="pl-d20 message other_message w-100">
+            <app-talk-goods class="w-100" [goodString]="item.content"></app-talk-goods>
+          </p>
+        </ion-col>
+        &lt;!&ndash; 店铺&ndash;&gt;
+        <ion-col size="8" *ngIf="item.msgType==11" (press)="hammer(item)" (click)="openStore(item)" [style.touch-action]="'pan-y'">
+          <p class="pl-d20 message other_message w-100">
+            <app-talk-store class="w-100" [storeString]="item.content"></app-talk-store>
+          </p>
+        </ion-col>
+        &lt;!&ndash; 信息&ndash;&gt;
+        <ion-col size="8" *ngIf="item.msgType==6" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+          &lt;!&ndash;                    <ion-label class="group-nickname">{{item.nickname}}</ion-label>&ndash;&gt;
+          <p class="pl-d20 message other_message w-100">
+            <app-talk-information class="w-100" [infoString]="item.content" (click)="openInformation(item.content)">
+            </app-talk-information>
+          </p>
+        </ion-col>
+        &lt;!&ndash; 预购单 &ndash;&gt;
+
+        <ion-col size="8" *ngIf="item.msgType==19" (press)="hammer(item)" (click)="openPreview(item.content)" [style.touch-action]="'pan-y'">
+          &lt;!&ndash;                    <ion-label class="group-nickname">{{item.nickname}}</ion-label>&ndash;&gt;
+
+          <p class="pl-d20 message other_message">
+            <app-talk-preview-order [orderString]="item.content"></app-talk-preview-order>
+          </p>
+        </ion-col>
+        &lt;!&ndash; 动态 &ndash;&gt;
+
+        <ion-col size="8" *ngIf="item.msgType==21" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+          &lt;!&ndash;                    <ion-label class="group-nickname">{{item.nickname}}</ion-label>&ndash;&gt;
+          <p class="pl-d20 message other_message w-100">
+            <app-talk-dynamic [dynamicString]="item.content" (click)="openDynamic(item.content)">
+            </app-talk-dynamic>
+          </p>
+        </ion-col>
+        &lt;!&ndash; 配送 &ndash;&gt;
+        <ion-col size="8" *ngIf="item.msgType==20" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+          &lt;!&ndash;                    <ion-label class="group-nickname">{{item.nickname}}</ion-label>&ndash;&gt;
+
+          <p class="pl-d20 message other_message w-100">
+            <app-talk-distribution class="w-100" [shareFriendString]="item.content" (click)="openDistribution(item.content)"></app-talk-distribution>
+          </p>
+        </ion-col>
+
+        &lt;!&ndash; 语音 &ndash;&gt;
+        <ion-col size="8" *ngIf="item.msgType==1" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+          <div class="message other_message" (click)="playPause($event,item.content,item.msgId,i,1)">
+            <div class="bg1 voicePause audios my_voice" id="audios1Div{{i}}"></div>
+            <span class="other-voice" [ngStyle]="{'margin-right':(item.content|durationPadding)}">{{item.content|talkDuration}}
+              "</span>
+          </div>
+          <div class="unreadVoice" [ngStyle]="{'margin-left':(item.content|talkUnreadVoice)}" *ngIf="!item.played"></div>
+        </ion-col>
+        &lt;!&ndash; 地图 &ndash;&gt;
+        <ion-col size="8" *ngIf="item.msgType==3" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+          &lt;!&ndash;                    <ion-label class="group-nickname">{{msg.nickname}}</ion-label>&ndash;&gt;
+          <app-chat-maps [currentPosition]="item.content" (click)="router2Map(item.content)"></app-chat-maps>
+        </ion-col>
+
+        &lt;!&ndash; 图片&ndash;&gt;
+        <ion-col size="8" class="other_message_pic" *ngIf="item.msgType==5" [style.touch-action]="'pan-y'" (press)="hammer(item)">
+          &lt;!&ndash;                    <ion-label class="group-nickname">{{item.nickname}}</ion-label>&ndash;&gt;
+
+          &lt;!&ndash;                        <img src="{{msg.content|talkImg}}" (click)="setMaxImg(msg.content)">&ndash;&gt;
+          <app-talk-img-lazy-load [src]="item.content|talkImg" (click)="setMaxImg(item.id)">
+          </app-talk-img-lazy-load>
+
+        </ion-col>
+        &lt;!&ndash; 回复&ndash;&gt;
+        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==17">
+          <span class="message other_message replace-br">{{item.content|talkReply}}</span>
+          <span class="other-reply line-clamp-2">{{item.content|talkReplyMsg}}</span>
+        </ion-col>
+        &lt;!&ndash; 文件&ndash;&gt;
+        <ion-col size="7" *ngIf="item.msgType==15">
+          &lt;!&ndash;                    <ion-label class="group-nickname">{{msg.nickname}}</ion-label>&ndash;&gt;
+
+          <div class="other_message_file ion-flex ion-justify-content-between" (click)="router2FileDownload(item.content)" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+            <div class="mr-d24">
+              <div class="fontS-d32 color24 line-clamp-2">{{item.content|talkFileName}}</div>
+              <div class="color9 fontS-d24">{{item.content|talkFileSize}}</div>
+            </div>
+            <img class="wenjian-img" src="assets/wenjian.png">
+          </div>
+        </ion-col>
+
+        <ion-checkbox class="multiple-check" *ngIf="isMultiple&&item.msgType!=14&&item.msgType!=16&&item.msgStatus!=4" (ionChange)="multipleCheck(item)"></ion-checkbox>
+      </ion-row>
+
+      <ion-row *ngIf="item.msgType==14">
+        <ion-col class="ion-text-center reject-message">{{item.content}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="item.msgType==16">
+        <ion-col class="ion-text-center reject-message">
+          <p [innerHTML]="item.content|talkGroupNotice"></p>
+        </ion-col>
+      </ion-row>
+      &lt;!&ndash;消息撤回&ndash;&gt;
+      <ion-row *ngIf="item.msgStatus==4 && item.senderId == user.userId">
+        <ion-col class="ion-text-center reject-message">
+          <p>你撤回了一条消息!</p>
+        </ion-col>
+      </ion-row>
+      &lt;!&ndash;消息撤回&ndash;&gt;
+      <ion-row *ngIf="item.msgStatus==4 && item.senderId != user.userId">
+        <ion-col class="ion-text-center reject-message">
+          <p>对方撤回了一条消息!</p>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
+  &lt;!&ndash;一键回到未读消息&ndash;&gt;
+  &lt;!&ndash;<div class="unread-message" *ngIf="unReadCount>4" (click)="scrollToUnread()">
+    <span class="fontS-d28">{{unReadCount}}条新消息</span>
+  </div>&ndash;&gt;
+  <div id="bottom"></div>
+</ion-content>-->
+
+<ion-footer style="background: rgb(247,247,247);">
+  <div [ngStyle]="{'display':showKeyboard ? 'block':'none'}" class="showKeyboard">
+
+  </div>
+  <ion-row class="send-box">
+    <ion-col size="12" class="ion-flex ion-align-items-center" [ngStyle]="{'bottom':showKeyboard ? '290px':'0'}">
+
+      <!-- 键盘语音切换，图标稍后替换-->
+      <i class="iconfont pl-d20 pr-d2 iconchat-keyboard fontS-d53" *ngIf="keyBoardShow" (click)="showVoiceBtn()"></i>
+      <i class="iconfont pl-d20 pr-d2 iconchat-yuyin fontS-d53" *ngIf="!keyBoardShow" (click)="showVoiceBtn()"></i>
+
+      <!--按住说话和请输入-->
+      <ion-button style="width: 66%;border-radius: 0.1rem;padding-left: 0.2rem;margin: 0px" color="light" *ngIf="keyBoardShow" (touchstart)="startRecordAudio()" (touchend)="finishRecord()">
+        按住说话
+      </ion-button>
+
+      <ion-textarea cols="28" rows="1" *ngIf="!keyBoardShow" (ionChange)="sendCheck($event.detail.value)" [(ngModel)]="sendContent"
+                    placeholder="请输入...." class="chat-textarea" (ionFocus)="getFocus()" (ionBlur)="blurInput()" #textarea>
+      </ion-textarea>
+      <i class="iconfont icondongtai-detail-emoji fontS-d53" (click)="triggerEmoji()"></i>
+      <i class="iconfont fontS-d53 iconstore-add-peisongfei" *ngIf="plusIcon" (click)=showPlusFun($event)></i>
+      <ion-button size="small" class="ml-d28 mr-d2" *ngIf="sendBtn" (click)=sendMsg(0)>发送</ion-button>
+    </ion-col>
+  </ion-row>
+  <!-- 回复-->
+  <!--<ion-row *ngIf="isReplyMsg" class="reply-msg-content">
+    <div class="reply-msg">{{replyUser}}:{{replyMsg}}</div>
+    <div class="close-reply" (click)="closeReply()">×</div>
+  </ion-row>-->
+  <!-- 多选-->
+  <!--<ion-row *ngIf="isMultiple">
+    <ion-col size="4" align="center" (click)="openShare()">
+      <ion-icon class="iconfont icongoods-detail-zhuanfa padding-d32"></ion-icon>
+    </ion-col>
+    <ion-col size="4" align="center" (click)="deleteMsg()">
+      <ion-icon class="iconfont icongouwudai-delete padding-d32"></ion-icon>
+    </ion-col>
+    <ion-col size="4" align="center" (click)="cancelMultiple()">
+      <ion-icon class="iconfont iconsearch-delete-text padding-d32"></ion-icon>
+    </ion-col>
+  </ion-row>-->
+  <ion-row class="mt-d32 chat-more" *ngIf="plusFun">
+    <ion-col size="3" class="ion-text-center" (click)="openGalaxy()">
+      <div class="pic-map-bg">
+        <i class="iconfont fontS-d48 iconxiangce"></i>
+      </div>
+      <p>相册</p>
+    </ion-col>
+    <ion-col size="3" class="ion-text-center" (click)="openCamera()">
+      <div class="pic-map-bg">
+        <i class="iconfont fontS-d56 iconcamera"></i>
+      </div>
+      <p>拍摄</p>
+    </ion-col>
+    <ion-col size="3" class="ion-text-center" (click)="choosePosition()">
+      <div class="pic-map-bg">
+        <i class="iconfont fontS-d56 iconmap-daohang"></i>
+      </div>
+      <p>位置</p>
+    </ion-col>
+    <ion-col size="3" class="ion-text-center" (click)="chooseFile()" *ngIf="!isIos">
+      <div class="pic-map-bg">
+        <i class="iconfont fontS-d48 iconwenjian"></i>
+      </div>
+      <p>文件</p>
+    </ion-col>
+  </ion-row>
+  <ion-row class="mt-d32 chat-more" *ngIf="showEmoji">
+    <app-emoji-picker ngDefaultControl style="width: 100%" [(ngModel)]="sendContent"></app-emoji-picker>
+  </ion-row>
+  <audio id="chatAudio" controls="controls" hidden="true"></audio>
+</ion-footer>

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="mr-d16">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>设置备注</ion-title>
+    <ion-buttons slot="end" class="mr-d2">
+      <span class="fontS-d28 colorf publish-btn" style="color: black" (click)="updAlias($event)">完成</span>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="dark-bg-9">
+  <ion-grid>
+    <div class="border-tf6-d2 dark-bordertop-1a friend-alias mt-d46 dark-bg-8">
+      <ion-row class="ml-d32 mr-d32 pt-d24 pb-d24 ion-flex ion-align-items-center">
+        <!-- <span class="mr-d2">昵称</span> -->
+        <ion-input maxlength="20" clearInput="true" placeholder="昵称最长不超过20个字符" [(ngModel)]="alias" ></ion-input>
+      </ion-row>
+      <!-- <ion-row class="mt-d134 ion-flex ion-justify-content-center">
+        <ion-col size="11">
+          <ion-button expand="full" color="primary" shape="round" (click)="updAlias($event)">完成</ion-button>
+        </ion-col>
+      </ion-row> -->
+    </div>
+  </ion-grid>
+
+</ion-content>

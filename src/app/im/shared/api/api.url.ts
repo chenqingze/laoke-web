@@ -36,5 +36,9 @@ export const API_URL = {
 
     FRIEND: {
         // searchFriend: `${API_HOST_HTTPS}/uc/user/user-query-info`,
+        updateFriendAlias: `${API_HOST}/friend/alias`,
+        updateFriendMute: `${API_HOST}/friend/mute`,
+        updFriendStickOnTop: `${API_HOST}/friend/top`,
+        updFriendBlocked: `${API_HOST}/friend/blocked`,
     }
 };

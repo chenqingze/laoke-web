@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="mr-d16">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>聊天设置</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="border-bf6-d2 pb-d42 dark-borderbottom-home">
+    <ion-list lines="none">
+<!--      <div [routerLink]="['/personal-home', this.friend.friendId]">-->
+      <div>
+        <ion-item class="mt-d24">
+          <ion-avatar class="avatar-img">
+            <img src="{{this.friend.friendProfile}}">
+          </ion-avatar>
+          <ion-label class="ml-d2 ion-justify-content-between">
+            <div>
+              <span class="color24 fontS-d32 dark-color-9">{{this.friend.alias}}</span>
+              <p class="dark-color-7">{{this.friend.friendName}}</p>
+            </div>
+            <div>
+              <span class="fontS-d28 color6 mr-d12">个人主页</span>
+              <i class="iconfont iconmore fontS-d28 color9"></i>
+            </div>
+          </ion-label>
+        </ion-item>
+      </div>
+    </ion-list>
+  </div>
+  <ion-list lines="none">
+    <ion-item>
+      <div class="border-bf6 dark-borderbottom-333 list-row" [routerLink]="['/tabs/im/friend-alias']" [queryParams]="this.friend">
+        <ion-label class="fontS-d32">设置备注</ion-label>
+        <div>
+          <i class="iconfont iconmore color9 fontS-d28"></i>
+        </div>
+      </div>
+    </ion-item>
+    <ion-item>
+      <div class="border-bf6 dark-borderbottom-333 list-row" (click)="router2SearchHis()">
+        <ion-label class="fontS-d32">查看聊天记录</ion-label>
+        <div>
+          <span class="fontS-d32 mr-d2 color6" *ngIf="!isIos">图片、文件、链接等</span>
+          <span class="fontS-d32 mr-d2 color6" *ngIf="isIos">图片、链接等</span>
+          <i class="iconfont iconmore color9 fontS-d28"></i>
+        </div>
+      </div>
+    </ion-item>
+    <ion-item>
+        <div class="border-bf6 dark-borderbottom-333 list-row list-row-toggle">
+            <ion-label class="fontS-d32">消息免打扰</ion-label>
+            <ion-toggle mode="md" [checked]="friend.isMute == 1" (ionChange)="mute($event)"></ion-toggle>
+        </div>
+    </ion-item>
+    <ion-item>
+      <div class="border-bf6 dark-borderbottom-333 list-row list-row-toggle">
+        <ion-label class="fontS-d32">置顶聊天</ion-label>
+        <ion-toggle mode="md" [checked]="friend.isStickOnTop == 1" (ionChange)="stickOnTop($event)"></ion-toggle>
+      </div>
+    </ion-item>
+    <ion-item>
+      <div class="border-bf6 dark-borderbottom-333 list-row" (click)="delFriend()">
+        <ion-label class="fontS-d32">删除好友</ion-label>
+        <div>
+          <i class="iconfont iconmore color9 fontS-d28"></i>
+        </div>
+      </div>
+    </ion-item>
+    <ion-item>
+        <div class="border-bf6 list-row">
+            <ion-label class="fontS-d32">加入黑名单</ion-label>
+            <ion-toggle mode="md" [checked]="friend.isBlocked == 1" (ionChange)="blacklist($event)"></ion-toggle>
+        </div>
+    </ion-item>
+    <ion-item>
+      <div class="border-bf6 dark-borderbottom-333 list-row" (click)="deleteGroupConversation()">
+        <ion-label class="fontS-d32">清空聊天记录</ion-label>
+        <div>
+          <i class="iconfont iconmore color9 fontS-d28"></i>
+        </div>
+      </div>
+    </ion-item>
+    <!--<ion-item>
+  <div class="border-bf6 list-row">
+    <ion-label class="fontS-d32">投诉举报</ion-label>
+    <div>
+      <i class="iconfont iconmore color9 fontS-d28"></i>
+    </div>
+  </div>
+</ion-item>-->
+  </ion-list>
+
+</ion-content>

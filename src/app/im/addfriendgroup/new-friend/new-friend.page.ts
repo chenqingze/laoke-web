@@ -41,7 +41,7 @@ export class NewFriendPage implements OnInit {
     initInvitation() {
         this.invitationService.getInvitation().subscribe(data => {
             for (let i = 0; i < data.rows.length; i++) {
-                this.invitations.push(data.rows[i])
+                this.invitations.push(data.rows[i]);
             }
         }, err => {
             console.error('getInvitation err:', err);
@@ -49,7 +49,7 @@ export class NewFriendPage implements OnInit {
     }
 
     listenInvitation() {
-        console.log(InviteStatus.REQUESTED)
+        console.log(InviteStatus.REQUESTED);
         this.wsService.messages$(OpCode.INVITATION_REQUEST_ACK).subscribe((
             friendInvitationRequestAckModel: InvitationRequestAckModel
         ) => {
@@ -60,8 +60,9 @@ export class NewFriendPage implements OnInit {
             friendInvitationAcceptAckModel: InvitationAcceptAckModel
         ) => {
             for (let i = 0; i < this.invitations.length; i++) {
-                if(this.invitations[i].id == friendInvitationAcceptAckModel.id)
+                if (this.invitations[i].id == friendInvitationAcceptAckModel.id) {
                     this.invitations[i].inviteStatus = InviteStatus.ACCEPTED;
+                }
             }
         });
 
@@ -69,8 +70,9 @@ export class NewFriendPage implements OnInit {
             friendInvitationDeclinedAckModel: InvitationDeclinedAckModel
         ) => {
             for (let i = 0; i < this.invitations.length; i++) {
-                if(this.invitations[i].id == friendInvitationDeclinedAckModel.id)
+                if (this.invitations[i].id == friendInvitationDeclinedAckModel.id) {
                     this.invitations[i].inviteStatus = InviteStatus.DECLINED;
+                }
             }
         });
     }

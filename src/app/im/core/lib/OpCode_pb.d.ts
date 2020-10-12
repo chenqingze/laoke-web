@@ -51,6 +51,8 @@ export interface OpCodeMap {
   FRIEND_DELETE_ACK: 1010;
   FRIEND_REQUEST: 1011;
   FRIEND_ACK: 1012;
+  MSG_READ_NOTIFY: 1101;
+  MSG_READ_ACK: 1102;
 }
 
 export const OpCode: OpCodeMap;

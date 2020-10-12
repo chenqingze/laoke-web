@@ -36,6 +36,7 @@
     "cordova-browser": "6.0.0",
     "google-protobuf": "^3.13.0",
     "ngx-pipes": "^2.7.5",
+    "pinyin": "^2.9.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

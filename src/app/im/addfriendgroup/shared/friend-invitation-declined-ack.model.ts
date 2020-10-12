@@ -6,18 +6,18 @@ import {InvitationDeclinedAck} from '../../core/lib/Invitation_pb';
 
 export class InvitationDeclinedAckModel extends BaseModel {
     readonly opCode = OpCode.INVITATION_DECLINED_ACK;
-    id:string;
-    res:number; //0-失败，1-成功*/
+    id: string;
+    res: number; // 0-失败，1-成功*/
 
     convertMessageToModel(message: Message): BaseModel {
-        let friendInvitationDeclinedAck = message.getInvitationDeclinedAck();
+        const friendInvitationDeclinedAck = message.getInvitationDeclinedAck();
         this.id = friendInvitationDeclinedAck.getId();
         this.res = friendInvitationDeclinedAck.getRes();
         return this;
     }
 
     convertToMessage(): Message {
-        let friendInvitationDeclinedAck = new InvitationDeclinedAck();
+        const friendInvitationDeclinedAck = new InvitationDeclinedAck();
         friendInvitationDeclinedAck.setId(this.id);
         friendInvitationDeclinedAck.setRes(this.res);
 

@@ -140,7 +140,8 @@ export class ApiService{
         // 设置header
         const headers = new HttpHeaders()
             .set('Content-Type', 'application/json')
-            .set('Authorization', token)
+            // .set('Authorization', token)
+            .set('Authorization', "7a47ed42-9eb1-444d-a86a-80f6ab6a77b5")
             .set('appversion', this.VERSION);
         // 设置请求参数
         const params = createRequestOption(reqParams);

@@ -1,0 +1,34 @@
+
+.avatar-img{
+  width: 0.96rem;
+  height: 0.96rem;
+}
+
+.sc-ion-label-ios-s p{
+  font-size: 0.28rem;
+  color: #242424;
+  margin-top: 0.08rem;
+}
+.item.sc-ion-label-ios-h, .item .sc-ion-label-ios-h{
+  display: flex;
+  margin-inline-end: 0;
+  align-items: center;
+  font-size: 0.32rem;
+}
+.list-row{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.36rem 0;
+}
+.list-row-toggle{
+  padding: 0.26rem 0;
+  align-items: center;
+
+  .toggle-icon{
+    button{
+      padding: 0 !important;
+    }
+  }
+
+}
