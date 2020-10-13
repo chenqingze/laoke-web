@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="mr-d16">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title class="dark-color-10">群通知</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list lines="none" class="ion-padding-top">
+    <ion-item-group detail="false" class="mb-d32" *ngFor="let notification of invitationGroups">
+      <ion-item *ngIf="notification.type==1">
+        <ion-thumbnail slot="start" class="header-img">
+          <img src="{{notification.requesterProfile|async}}" onerror="this.src='assets/default-head.png'">
+        </ion-thumbnail>
+        <ion-label class="label">
+          <ion-row class="ion-align-items-center">
+            <ion-col size="7">
+              <div class="title dark-color-10 line-clamp">{{notification.requesterAlias}}</div>
+              <p class="fontS-d28 dark-color-9 color9">{{notification.content}}</p>
+              <p class="dark-color-9">申请加入{{notification.addresseeAlias}}群</p>
+            </ion-col>
+            <ion-col size="5" class="ion-flex dark-color-10 ion-justify-content-end" *ngIf="notification.inviteStatus=='REQUESTED'">
+              <div class="fontS-d24 dismiss-btn"
+                   (click)="declined(notification.addresseeId,notification.requesterId)">拒绝
+              </div>
+              <div class="fontS-d24 accept-btn"
+                   (click)="access(notification.addresseeId,notification.requesterId)">同意
+              </div>
+
+            </ion-col>
+            <ion-col size="5" class="ion-text-right dark-color-10" >
+              <div *ngIf="notification.inviteStatus=='ACCEPTED'" class="fontS-d24 color9">已同意</div>
+              <div *ngIf="notification.inviteStatus=='DECLINED'" class="fontS-d24 color9">已拒绝</div>
+              <div *ngIf="notification.inviteStatus=='IGNORED'" class="fontS-d24 color9">无效</div>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+      <ion-item *ngIf="notification.type==0">
+        <ion-thumbnail slot="start" class="header-img">
+          <img src="{{notification.addresseeProfile}}" onerror="this.src='assets/default-head.png'">
+        </ion-thumbnail>
+        <ion-label class="label">
+          <ion-row class="ion-align-items-center">
+            <ion-col size="7">
+              <h3 class="title dark-color-10">{{notification.addresseeAlias}}</h3>
+              <p class="fontS-d28 dark-color-9 color9">{{notification.content}}</p>
+            </ion-col>
+            <ion-col size="5" class="ion-text-right dark-color-10" >
+              <div *ngIf="notification.inviteStatus=='REQUESTED'" class="fontS-d24 color9">等待验证</div>
+              <div *ngIf="notification.inviteStatus=='ACCEPTED'" class="fontS-d24 color9">已加入</div>
+              <div *ngIf="notification.inviteStatus=='DECLINED'" class="fontS-d24 color9">被拒绝</div>
+              <div *ngIf="notification.inviteStatus=='IGNORED'" class="fontS-d24 color9">无效</div>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+</ion-content>

@@ -136,12 +136,12 @@ export class ApiService{
         // tslint:disable-next-line: variable-name
         const _body = body || '';
         // 获取本地token
-        const token = 'b9f7dcff-3e73-47c3-9224-8b50e468d6f6';
+        const token = 'c278b1ed-e5d6-4846-bd7c-638ad500ad40';
         // 设置header
         const headers = new HttpHeaders()
             .set('Content-Type', 'application/json')
-            // .set('Authorization', token)
-            .set('Authorization', "7a47ed42-9eb1-444d-a86a-80f6ab6a77b5")
+            .set('Authorization', token)
+            // .set('Authorization', "7a47ed42-9eb1-444d-a86a-80f6ab6a77b5")
             .set('appversion', this.VERSION);
         // 设置请求参数
         const params = createRequestOption(reqParams);
@@ -235,7 +235,7 @@ export class ApiService{
     public getByAuth(apiUrl: string, reqParams?: any): Observable<any> {
         // 获取本地token
         // const token = localStorage.getItem('token');
-        const token = 'b9f7dcff-3e73-47c3-9224-8b50e468d6f6';
+        const token = 'c278b1ed-e5d6-4846-bd7c-638ad500ad40';
         // 设置header
         const headers = new HttpHeaders()
             .set('Content-Type', 'application/json')

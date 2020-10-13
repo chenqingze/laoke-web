@@ -33,7 +33,7 @@
                 <!-- 消息主体-->
                 <ion-row>
                     <ion-col size="2" class="pl-d20" *ngIf="msg.msgType!=14&&msg.msgType!=16">
-                        <img src="{{msg.senderId}}" class="avatar-img">
+                        <img src="{{msg.senderId|mucHeader|async}}" class="avatar-img">
                     </ion-col>
                     <ion-col size="8" class="pl-d20">
                         <ion-label class="group-nickname">{{msg.senderName}}</ion-label>
@@ -58,7 +58,7 @@
                         <p class="message my_message replace-br">{{msg.content}}</p>
                     </ion-col>
                     <ion-col size="2" class="pl-d20" *ngIf="msg.msgType!=14&&msg.msgType!=16">
-                        <img src="{{msg.senderId}}" class="avatar-img">
+                        <img src="{{msg.senderId|mucHeader|async}}" class="avatar-img">
                     </ion-col>
                 </ion-row>
             </div>

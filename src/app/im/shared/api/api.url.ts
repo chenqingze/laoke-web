@@ -18,6 +18,9 @@ export const API_URL = {
         checkGroupIsFull: `${API_HOST}/group/check/full`,
         updateGroupMemberNickname: `${API_HOST}/group/member/name`,
         groupMemberTop: `${API_HOST}/group/member/top`,
+        getGroupInvitation: `${API_HOST}/group/invitation`,
+        getGroupInvitationCount: `${API_HOST}/group/invitation/count`,
+
 
     }, COMMON: {
         clientType: 'AHXX_APP',

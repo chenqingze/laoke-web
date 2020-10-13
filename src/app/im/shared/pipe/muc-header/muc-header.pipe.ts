@@ -25,7 +25,7 @@ export class MucHeaderPipe implements PipeTransform {
     }
 
     handleImgSrc(url) {
-        if (url.startsWith('http://')) {
+        if (url.startsWith('http://') || url.startsWith('https://')) {
             return url;
         }
 

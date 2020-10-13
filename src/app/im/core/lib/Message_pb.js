@@ -58,7 +58,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.Message.oneofGroups_ = [[11,12,20,23,21,22,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1101,1102]];
+proto.Message.oneofGroups_ = [[11,12,20,23,21,22,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1101,1102]];
 
 /**
  * @enum {number}
@@ -89,6 +89,10 @@ proto.Message.PayloadCase = {
   CHANGE_MUC_CONFIRM_JOIN_ACK: 39,
   EXIT_GROUP_REQUEST: 40,
   EXIT_GROUP_ACK: 41,
+  ACCESS_USER_JOIN_MUC_REQUEST: 42,
+  ACCESS_USER_JOIN_MUC_ACK: 43,
+  REFUSE_USER_JOIN_MUC_REQUEST: 44,
+  REFUSE_USER_JOIN_MUC_ACK: 45,
   INVITATION_REQUEST_REQUEST: 1001,
   INVITATION_REQUEST_ACK: 1002,
   INVITATION_ACCEPT_REQUEST: 1003,
@@ -169,6 +173,10 @@ proto.Message.toObject = function(includeInstance, msg) {
     changeMucConfirmJoinAck: (f = msg.getChangeMucConfirmJoinAck()) && Group_pb.ChangeMucConfirmJoinAck.toObject(includeInstance, f),
     exitGroupRequest: (f = msg.getExitGroupRequest()) && Group_pb.ExitGroupRequest.toObject(includeInstance, f),
     exitGroupAck: (f = msg.getExitGroupAck()) && Group_pb.ExitGroupAck.toObject(includeInstance, f),
+    accessUserJoinMucRequest: (f = msg.getAccessUserJoinMucRequest()) && Group_pb.AccessUserJoinMucRequest.toObject(includeInstance, f),
+    accessUserJoinMucAck: (f = msg.getAccessUserJoinMucAck()) && Group_pb.AccessUserJoinMucAck.toObject(includeInstance, f),
+    refuseUserJoinMucRequest: (f = msg.getRefuseUserJoinMucRequest()) && Group_pb.RefuseUserJoinMucRequest.toObject(includeInstance, f),
+    refuseUserJoinMucAck: (f = msg.getRefuseUserJoinMucAck()) && Group_pb.RefuseUserJoinMucAck.toObject(includeInstance, f),
     invitationRequestRequest: (f = msg.getInvitationRequestRequest()) && Invitation_pb.InvitationRequestRequest.toObject(includeInstance, f),
     invitationRequestAck: (f = msg.getInvitationRequestAck()) && Invitation_pb.InvitationRequestAck.toObject(includeInstance, f),
     invitationAcceptRequest: (f = msg.getInvitationAcceptRequest()) && Invitation_pb.InvitationAcceptRequest.toObject(includeInstance, f),
@@ -352,6 +360,26 @@ proto.Message.deserializeBinaryFromReader = function(msg, reader) {
       var value = new Group_pb.ExitGroupAck;
       reader.readMessage(value,Group_pb.ExitGroupAck.deserializeBinaryFromReader);
       msg.setExitGroupAck(value);
+      break;
+    case 42:
+      var value = new Group_pb.AccessUserJoinMucRequest;
+      reader.readMessage(value,Group_pb.AccessUserJoinMucRequest.deserializeBinaryFromReader);
+      msg.setAccessUserJoinMucRequest(value);
+      break;
+    case 43:
+      var value = new Group_pb.AccessUserJoinMucAck;
+      reader.readMessage(value,Group_pb.AccessUserJoinMucAck.deserializeBinaryFromReader);
+      msg.setAccessUserJoinMucAck(value);
+      break;
+    case 44:
+      var value = new Group_pb.RefuseUserJoinMucRequest;
+      reader.readMessage(value,Group_pb.RefuseUserJoinMucRequest.deserializeBinaryFromReader);
+      msg.setRefuseUserJoinMucRequest(value);
+      break;
+    case 45:
+      var value = new Group_pb.RefuseUserJoinMucAck;
+      reader.readMessage(value,Group_pb.RefuseUserJoinMucAck.deserializeBinaryFromReader);
+      msg.setRefuseUserJoinMucAck(value);
       break;
     case 1001:
       var value = new Invitation_pb.InvitationRequestRequest;
@@ -660,6 +688,38 @@ proto.Message.serializeBinaryToWriter = function(message, writer) {
       41,
       f,
       Group_pb.ExitGroupAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getAccessUserJoinMucRequest();
+  if (f != null) {
+    writer.writeMessage(
+      42,
+      f,
+      Group_pb.AccessUserJoinMucRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getAccessUserJoinMucAck();
+  if (f != null) {
+    writer.writeMessage(
+      43,
+      f,
+      Group_pb.AccessUserJoinMucAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getRefuseUserJoinMucRequest();
+  if (f != null) {
+    writer.writeMessage(
+      44,
+      f,
+      Group_pb.RefuseUserJoinMucRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getRefuseUserJoinMucAck();
+  if (f != null) {
+    writer.writeMessage(
+      45,
+      f,
+      Group_pb.RefuseUserJoinMucAck.serializeBinaryToWriter
     );
   }
   f = message.getInvitationRequestRequest();
@@ -1718,6 +1778,154 @@ proto.Message.prototype.clearExitGroupAck = function() {
  */
 proto.Message.prototype.hasExitGroupAck = function() {
   return jspb.Message.getField(this, 41) != null;
+};
+
+
+/**
+ * optional AccessUserJoinMucRequest access_user_join_muc_request = 42;
+ * @return {?proto.AccessUserJoinMucRequest}
+ */
+proto.Message.prototype.getAccessUserJoinMucRequest = function() {
+  return /** @type{?proto.AccessUserJoinMucRequest} */ (
+    jspb.Message.getWrapperField(this, Group_pb.AccessUserJoinMucRequest, 42));
+};
+
+
+/**
+ * @param {?proto.AccessUserJoinMucRequest|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setAccessUserJoinMucRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 42, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearAccessUserJoinMucRequest = function() {
+  return this.setAccessUserJoinMucRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasAccessUserJoinMucRequest = function() {
+  return jspb.Message.getField(this, 42) != null;
+};
+
+
+/**
+ * optional AccessUserJoinMucAck access_user_join_muc_ack = 43;
+ * @return {?proto.AccessUserJoinMucAck}
+ */
+proto.Message.prototype.getAccessUserJoinMucAck = function() {
+  return /** @type{?proto.AccessUserJoinMucAck} */ (
+    jspb.Message.getWrapperField(this, Group_pb.AccessUserJoinMucAck, 43));
+};
+
+
+/**
+ * @param {?proto.AccessUserJoinMucAck|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setAccessUserJoinMucAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 43, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearAccessUserJoinMucAck = function() {
+  return this.setAccessUserJoinMucAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasAccessUserJoinMucAck = function() {
+  return jspb.Message.getField(this, 43) != null;
+};
+
+
+/**
+ * optional RefuseUserJoinMucRequest refuse_user_join_muc_request = 44;
+ * @return {?proto.RefuseUserJoinMucRequest}
+ */
+proto.Message.prototype.getRefuseUserJoinMucRequest = function() {
+  return /** @type{?proto.RefuseUserJoinMucRequest} */ (
+    jspb.Message.getWrapperField(this, Group_pb.RefuseUserJoinMucRequest, 44));
+};
+
+
+/**
+ * @param {?proto.RefuseUserJoinMucRequest|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setRefuseUserJoinMucRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 44, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearRefuseUserJoinMucRequest = function() {
+  return this.setRefuseUserJoinMucRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasRefuseUserJoinMucRequest = function() {
+  return jspb.Message.getField(this, 44) != null;
+};
+
+
+/**
+ * optional RefuseUserJoinMucAck refuse_user_join_muc_ack = 45;
+ * @return {?proto.RefuseUserJoinMucAck}
+ */
+proto.Message.prototype.getRefuseUserJoinMucAck = function() {
+  return /** @type{?proto.RefuseUserJoinMucAck} */ (
+    jspb.Message.getWrapperField(this, Group_pb.RefuseUserJoinMucAck, 45));
+};
+
+
+/**
+ * @param {?proto.RefuseUserJoinMucAck|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setRefuseUserJoinMucAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 45, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearRefuseUserJoinMucAck = function() {
+  return this.setRefuseUserJoinMucAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasRefuseUserJoinMucAck = function() {
+  return jspb.Message.getField(this, 45) != null;
 };
 
 

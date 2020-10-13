@@ -116,13 +116,33 @@ export class GroupService {
         return this.apiService.getByAuth(url);
     }
 
+    // 更新用户置顶
     updateGroupMemberTop(groupId, top) {
         const url = API_URL.TALK_GROUP.groupMemberTop + '?groupId=' + groupId + '&top=' + top;
         return this.apiService.putByAuth(url);
     }
 
+    // 获取某人某群置顶
     queryGroupMemberTop(groupId) {
         const url = API_URL.TALK_GROUP.groupMemberTop + '?groupId=' + groupId;
         return this.apiService.getByAuth(url);
+    }
+
+    // 获取群申请记录
+    queryGroupInvitation() {
+        const url = API_URL.TALK_GROUP.getGroupInvitation;
+        return this.apiService.getByAuth(url);
+    }
+
+    // 获取未读的邀请记录条数
+    queryUnreadGroupInvitationCount() {
+        const url = API_URL.TALK_GROUP.getGroupInvitationCount;
+        return this.apiService.getByAuth(url);
+    }
+
+    // 更新未读邀请记录为已读
+    updateUnreadGroupInvitation() {
+        const url = API_URL.TALK_GROUP.getGroupInvitationCount;
+        return this.apiService.putByAuth(url);
     }
 }

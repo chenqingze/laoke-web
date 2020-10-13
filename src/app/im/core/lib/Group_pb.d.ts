@@ -791,3 +791,131 @@ export namespace ExitGroupAck {
   }
 }
 
+export class AccessUserJoinMucRequest extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AccessUserJoinMucRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AccessUserJoinMucRequest): AccessUserJoinMucRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AccessUserJoinMucRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AccessUserJoinMucRequest;
+  static deserializeBinaryFromReader(message: AccessUserJoinMucRequest, reader: jspb.BinaryReader): AccessUserJoinMucRequest;
+}
+
+export namespace AccessUserJoinMucRequest {
+  export type AsObject = {
+    groupId: string,
+    userId: string,
+    success: string,
+    message: string,
+  }
+}
+
+export class AccessUserJoinMucAck extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AccessUserJoinMucAck.AsObject;
+  static toObject(includeInstance: boolean, msg: AccessUserJoinMucAck): AccessUserJoinMucAck.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AccessUserJoinMucAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AccessUserJoinMucAck;
+  static deserializeBinaryFromReader(message: AccessUserJoinMucAck, reader: jspb.BinaryReader): AccessUserJoinMucAck;
+}
+
+export namespace AccessUserJoinMucAck {
+  export type AsObject = {
+    groupId: string,
+    userId: string,
+    success: string,
+    message: string,
+  }
+}
+
+export class RefuseUserJoinMucRequest extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RefuseUserJoinMucRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RefuseUserJoinMucRequest): RefuseUserJoinMucRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RefuseUserJoinMucRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RefuseUserJoinMucRequest;
+  static deserializeBinaryFromReader(message: RefuseUserJoinMucRequest, reader: jspb.BinaryReader): RefuseUserJoinMucRequest;
+}
+
+export namespace RefuseUserJoinMucRequest {
+  export type AsObject = {
+    groupId: string,
+    userId: string,
+    success: string,
+    message: string,
+  }
+}
+
+export class RefuseUserJoinMucAck extends jspb.Message {
+  getGroupId(): string;
+  setGroupId(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  getSuccess(): string;
+  setSuccess(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RefuseUserJoinMucAck.AsObject;
+  static toObject(includeInstance: boolean, msg: RefuseUserJoinMucAck): RefuseUserJoinMucAck.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RefuseUserJoinMucAck, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RefuseUserJoinMucAck;
+  static deserializeBinaryFromReader(message: RefuseUserJoinMucAck, reader: jspb.BinaryReader): RefuseUserJoinMucAck;
+}
+
+export namespace RefuseUserJoinMucAck {
+  export type AsObject = {
+    groupId: string,
+    userId: string,
+    success: string,
+    message: string,
+  }
+}
+

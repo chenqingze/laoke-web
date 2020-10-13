@@ -143,6 +143,26 @@ export class Message extends jspb.Message {
   getExitGroupAck(): Group_pb.ExitGroupAck | undefined;
   setExitGroupAck(value?: Group_pb.ExitGroupAck): void;
 
+  hasAccessUserJoinMucRequest(): boolean;
+  clearAccessUserJoinMucRequest(): void;
+  getAccessUserJoinMucRequest(): Group_pb.AccessUserJoinMucRequest | undefined;
+  setAccessUserJoinMucRequest(value?: Group_pb.AccessUserJoinMucRequest): void;
+
+  hasAccessUserJoinMucAck(): boolean;
+  clearAccessUserJoinMucAck(): void;
+  getAccessUserJoinMucAck(): Group_pb.AccessUserJoinMucAck | undefined;
+  setAccessUserJoinMucAck(value?: Group_pb.AccessUserJoinMucAck): void;
+
+  hasRefuseUserJoinMucRequest(): boolean;
+  clearRefuseUserJoinMucRequest(): void;
+  getRefuseUserJoinMucRequest(): Group_pb.RefuseUserJoinMucRequest | undefined;
+  setRefuseUserJoinMucRequest(value?: Group_pb.RefuseUserJoinMucRequest): void;
+
+  hasRefuseUserJoinMucAck(): boolean;
+  clearRefuseUserJoinMucAck(): void;
+  getRefuseUserJoinMucAck(): Group_pb.RefuseUserJoinMucAck | undefined;
+  setRefuseUserJoinMucAck(value?: Group_pb.RefuseUserJoinMucAck): void;
+
   hasInvitationRequestRequest(): boolean;
   clearInvitationRequestRequest(): void;
   getInvitationRequestRequest(): Invitation_pb.InvitationRequestRequest | undefined;
@@ -244,6 +264,10 @@ export namespace Message {
     changeMucConfirmJoinAck?: Group_pb.ChangeMucConfirmJoinAck.AsObject,
     exitGroupRequest?: Group_pb.ExitGroupRequest.AsObject,
     exitGroupAck?: Group_pb.ExitGroupAck.AsObject,
+    accessUserJoinMucRequest?: Group_pb.AccessUserJoinMucRequest.AsObject,
+    accessUserJoinMucAck?: Group_pb.AccessUserJoinMucAck.AsObject,
+    refuseUserJoinMucRequest?: Group_pb.RefuseUserJoinMucRequest.AsObject,
+    refuseUserJoinMucAck?: Group_pb.RefuseUserJoinMucAck.AsObject,
     invitationRequestRequest?: Invitation_pb.InvitationRequestRequest.AsObject,
     invitationRequestAck?: Invitation_pb.InvitationRequestAck.AsObject,
     invitationAcceptRequest?: Invitation_pb.InvitationAcceptRequest.AsObject,
@@ -284,6 +308,10 @@ export namespace Message {
     CHANGE_MUC_CONFIRM_JOIN_ACK = 39,
     EXIT_GROUP_REQUEST = 40,
     EXIT_GROUP_ACK = 41,
+    ACCESS_USER_JOIN_MUC_REQUEST = 42,
+    ACCESS_USER_JOIN_MUC_ACK = 43,
+    REFUSE_USER_JOIN_MUC_REQUEST = 44,
+    REFUSE_USER_JOIN_MUC_ACK = 45,
     INVITATION_REQUEST_REQUEST = 1001,
     INVITATION_REQUEST_ACK = 1002,
     INVITATION_ACCEPT_REQUEST = 1003,

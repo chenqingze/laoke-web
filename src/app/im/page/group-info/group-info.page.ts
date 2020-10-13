@@ -48,6 +48,10 @@ export class GroupInfoPage implements OnInit, OnDestroy {
                 this.router.navigate(['/tabs/im/group-chat', {groupName: this.groupInfo.name, groupId: this.groupId}], {replaceUrl: true});
             } else if (f.success == 'full') {
                 this.dialog.presentAlert(f.message);
+            } else if (f.success == 'wait') {
+                this.dialog.presentAlert(f.message);
+                this.router.navigate(['/tabs/im/', {}], {replaceUrl: true});
+
             }
         });
 

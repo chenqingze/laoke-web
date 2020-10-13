@@ -87,7 +87,11 @@ const routes: Routes = [
         path: 'chat-window1',
         loadChildren: () => import('./chat/chat-window1/chat-window1.module').then(m => m.ChatWindow1PageModule)
 
-    }
+    },
+  {
+    path: 'group-notify',
+    loadChildren: () => import('./group-notify/group-notify/group-notify.module').then( m => m.GroupNotifyPageModule)
+  }
 
 
 ];

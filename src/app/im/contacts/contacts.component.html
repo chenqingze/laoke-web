@@ -10,9 +10,9 @@
         </ion-row>
     </div>
     <div class="border-bf6 dark-borderbottom-333 pb-d32 mt-d28">
-        <ion-row class="ml-d32">
+        <ion-row class="ml-d32" (click)="openGroupNotify()">
             <ion-col size="11" class="ion-flex ion-align-items-center">群通知
-                <ion-badge class="ml-d2" color="primary">`消息数`</ion-badge>
+                <ion-badge class="ml-d2" color="primary" *ngIf="groupUnreadCount>0">{{groupUnreadCount}}</ion-badge>
             </ion-col>
             <!--<ion-col size="1">
                 <i class="iconfont iconmore fontS-d28 color9"></i>
@@ -35,7 +35,7 @@
     <div style="height: 100%">
         <div class="mt-d2">
             <app-friends [hidden]="contactType != contactTypeEnum.FRIENDS" [content]="content"></app-friends>
-            <app-groups [hidden]="contactType != contactTypeEnum.GROUPS"  [content]="content"></app-groups>
+            <app-groups [hidden]="contactType != contactTypeEnum.GROUPS" [content]="content"></app-groups>
             <app-fans [hidden]="contactType != contactTypeEnum.FANS"></app-fans>
         </div>
     </div>

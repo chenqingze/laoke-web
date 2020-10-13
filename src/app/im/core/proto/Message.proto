@@ -65,6 +65,14 @@ message Message {
     ExitGroupRequest exit_group_request = 40;
     // 退出群回执
     ExitGroupAck exit_group_ack = 41;
+    // 同意某人加入群
+    AccessUserJoinMucRequest access_user_join_muc_request = 42;
+    // 同意某人加入群回执
+    AccessUserJoinMucAck access_user_join_muc_ack = 43;
+    // 拒绝某人加入群
+    RefuseUserJoinMucRequest refuse_user_join_muc_request = 44;
+    // 拒绝某人加入群回执
+    RefuseUserJoinMucAck refuse_user_join_muc_ack = 45;
     //------------------------------------------好友及好友邀请---------------------------------------------------
 
     InvitationRequestRequest invitation_request_request = 1001;

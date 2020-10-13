@@ -27,7 +27,11 @@ import {MucMuteAckMotel} from '../page/group-chat-setting/muc-mute-ack.motel';
 import {MucConfirmJoinRequestModel} from '../page/group-chat-setting/muc-confirm-join-request.model';
 import {MucConfirmJoinAckModel} from '../page/group-chat-setting/muc-confirm-join-ack.model';
 import {ExitGroupAckModel} from '../page/group-chat-setting/exit-group-ack.model';
+import {AccessUserJoinMucRequestModel} from '../group-notify/group-notify/access-user-join-muc-request.model';
+import {AccessUserJoinMucAckModel} from '../group-notify/group-notify/access-user-join-muc-ack.model';
 import {ExitGroupRequestModel} from '../page/group-chat-setting/exit-group-request.model';
+import {RefuseUserJoinMucRequestModel} from '../group-notify/group-notify/refuse-user-join-muc-request.model';
+import {RefuseUserJoinMucAckModel} from '../group-notify/group-notify/refuse-user-join-muc-ack.model';
 
 
 export class MessageTool {
@@ -81,6 +85,17 @@ export class MessageTool {
                 return ExitGroupAckModel.createMessageModel().convertMessageToModel(message);
             case OpCode.EXIT_GROUP_REQUEST:
                 return ExitGroupRequestModel.createMessageModel().convertMessageToModel(message);
+
+            case OpCode.ACCESS_USER_JOIN_GROUP_REQUEST:
+                return AccessUserJoinMucRequestModel.createMessageModel().convertMessageToModel(message);
+            case OpCode.ACCESS_USER_JOIN_GROUP_ACK:
+                return AccessUserJoinMucAckModel.createMessageModel().convertMessageToModel(message);
+
+            case OpCode.REFUSE_USER_JOIN_MUC_REQUEST:
+                return RefuseUserJoinMucRequestModel.createMessageModel().convertMessageToModel(message);
+            case OpCode.REFUSE_USER_JOIN_MUC_ACK:
+                return RefuseUserJoinMucAckModel.createMessageModel().convertMessageToModel(message);
+
 
             case OpCode.ASK_FOR_JOIN_GROUP_REQUEST:
                 return AskForJoinGroupRequestModel.createMessageModel().convertMessageToModel(message);

@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IonContent} from '@ionic/angular';
+import {Router} from '@angular/router';
+import {GroupService} from '../service/group-service/group.service';
 
 
 export enum ContactType {
@@ -18,11 +20,21 @@ export class ContactsComponent implements OnInit {
     @Input() content: IonContent;
     contactType: ContactType;
 
-    constructor() {
+    groupUnreadCount;
+
+    constructor(private router: Router, private groupSer: GroupService) {
         this.contactType = ContactType.FRIENDS;
+        this.groupUnreadCount = 0;
     }
 
     ngOnInit() {
+        this.groupSer.queryUnreadGroupInvitationCount().toPromise().then((d) => {
+            this.groupUnreadCount = d.size;
+        });
     }
 
+    openGroupNotify() {
+        this.router.navigate(['/tabs/im/group-notify']);
+        this.groupUnreadCount = 0;
+    }
 }
