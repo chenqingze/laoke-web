@@ -2,9 +2,9 @@ import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core
 import {IonContent} from '@ionic/angular';
 import {GroupMemberModel} from '../../shared/model/group-member.model';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AlertControllerService} from '../../service/alert-controller/alert-controller.service';
+import {AlertControllerService} from '../../shared/service/alert-controller/alert-controller.service';
 import {WebSocketService} from '../../core/web-socket.service';
-import {GroupService} from '../../service/group-service/group.service';
+import {GroupService} from '../../shared/service/group-service/group.service';
 import {RemoveGroupMemberRequestModel} from './remove-group-member-request.model';
 import {OpCode} from '../../core/lib/OpCode_pb';
 import {RemoveGroupMemberAckModel} from './remove-group-member-ack.model';

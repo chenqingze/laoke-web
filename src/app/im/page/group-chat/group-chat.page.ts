@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {GroupService} from '../../service/group-service/group.service';
+import {GroupService} from '../../shared/service/group-service/group.service';
 import {Subscription} from 'rxjs';
 import {filter} from 'rxjs/operators';
 import {AlertController, IonContent, ModalController} from '@ionic/angular';
@@ -9,10 +9,9 @@ import {WebSocketService} from '../../core/web-socket.service';
 import {OpCode} from '../../core/lib/OpCode_pb';
 import {MucMsgModel} from './muc-msg.model';
 import {GroupMsgRequestModel} from './group-msg-request.model';
-import {DbService} from '../../shared/db.service';
+import {DbService} from '../../core/db.service';
 import {GroupMsgAckModel} from './group-msg-ack.model';
 import {GroupMsgDbService} from './group-msg-db-service';
-import {ChangeGroupNameRequestModel} from '../change-group-name/change-group-name-request.model';
 
 @Component({
     selector: 'app-group-chat',
@@ -173,11 +172,11 @@ export class GroupChatPage implements OnInit, OnDestroy {
             OpCode.DETACH_USER_FROM_GROUP_REQUEST])
             .subscribe({
                 next: (message) => {
-                    if (message.opCode == OpCode.EDIT_GROUP_NAME_REQUEST) {
+                    if (message.opCode === OpCode.EDIT_GROUP_NAME_REQUEST) {
                         this.queryGroupInfo();
-                    } else if (message.opCode == OpCode.DETACH_USER_FROM_GROUP_REQUEST) {
+                    } else if (message.opCode === OpCode.DETACH_USER_FROM_GROUP_REQUEST) {
                         this.queryGroupInfo();
-                    } else if (message.opCode == OpCode.INVITATION_USER_JOIN_GROUP_REQUEST) {
+                    } else if (message.opCode === OpCode.INVITATION_USER_JOIN_GROUP_REQUEST) {
                         this.queryGroupInfo();
                     }
 
@@ -345,5 +344,21 @@ export class GroupChatPage implements OnInit, OnDestroy {
 
     back() {
         this.router.navigate(['/tabs/im'], {replaceUrl: false});
+    }
+
+    openGallery() {
+
+    }
+
+    openCamera() {
+
+    }
+
+    choosePosition() {
+
+    }
+
+    chooseFile() {
+
     }
 }

@@ -1,7 +1,7 @@
 import {BaseModel} from '../../core/base.model';
 import {OpCode} from '../../core/lib/OpCode_pb';
 import {Message} from '../../core/lib/Message_pb';
-import {ChangeMucConfirmJoinAck, ChangeMucMuteAck} from '../../core/lib/Group_pb';
+import {ChangeMucConfirmJoinAck} from '../../core/lib/Group_pb';
 
 export class MucConfirmJoinAckModel extends BaseModel {
     readonly opCode = OpCode.UPDATE_GROUP_CONFIRM_SETTING_ACK;

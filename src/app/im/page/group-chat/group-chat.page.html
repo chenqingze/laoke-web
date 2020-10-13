@@ -98,9 +98,9 @@
 
         </ion-col>
     </ion-row>
-    <!--  文件区域-->
+    <!--  文件区域 -->
     <ion-row class="mt-d32 chat-more" *ngIf="showUpload">
-        <ion-col size="3" class="ion-text-center" (click)="openGalaxy()">
+        <ion-col size="3" class="ion-text-center" (click)="openGallery()">
             <div class="pic-map-bg">
                 <i class="iconfont fontS-d56 iconxiangce"></i>
             </div>
@@ -118,7 +118,8 @@
             </div>
             <p>位置</p>
         </ion-col>
-        <ion-col size="3" class="ion-text-center" (click)="chooseFile()" *ngIf="!isIos">
+        <!--        <ion-col size="3" class="ion-text-center" (click)="chooseFile()" *ngIf="!isIos">-->
+        <ion-col size="3" class="ion-text-center" (click)="chooseFile()">
             <div class="pic-map-bg">
                 <i class="iconfont fontS-d56 iconwenjian"></i>
             </div>

@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { SetGroupNamePage } from './set-group-name.page';
+import {SetGroupNamePage} from './set-group-name.page';
 
 const routes: Routes = [
   {

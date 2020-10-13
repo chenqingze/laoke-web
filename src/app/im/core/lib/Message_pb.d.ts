@@ -4,7 +4,6 @@
 import * as jspb from "google-protobuf";
 import * as Msg_pb from "./Msg_pb";
 import * as OpCode_pb from "./OpCode_pb";
-import * as Connection_pb from "./Connection_pb";
 import * as Auth_pb from "./Auth_pb";
 import * as Group_pb from "./Group_pb";
 import * as Invitation_pb from "./Invitation_pb";

@@ -1,7 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {IonicModule} from '@ionic/angular';
 
-import { SetGroupNamePage } from './set-group-name.page';
+import {SetGroupNamePage} from './set-group-name.page';
 
 describe('SetGroupNamePage', () => {
   let component: SetGroupNamePage;

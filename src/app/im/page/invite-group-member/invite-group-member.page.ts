@@ -1,10 +1,10 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {IonContent, NavController} from '@ionic/angular';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AlertControllerService} from '../../service/alert-controller/alert-controller.service';
+import {AlertControllerService} from '../../shared/service/alert-controller/alert-controller.service';
 import {WebSocketService} from '../../core/web-socket.service';
 import {GroupFriendModel} from '../create-group/shared/group-friend.model';
-import {GroupService} from '../../service/group-service/group.service';
+import {GroupService} from '../../shared/service/group-service/group.service';
 import {InvitationUserJoinGroupRequestModel} from './invitation-user-join-group-request.model';
 import {OpCode} from '../../core/lib/OpCode_pb';
 import {InvitationUserJoinGroupAckModel} from './invitation-user-join-group-ack.model';

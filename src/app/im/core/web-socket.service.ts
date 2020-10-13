@@ -7,10 +7,11 @@ import {BaseModel} from './base.model';
 import {Message} from './lib/Message_pb';
 import * as OpCode_pb from './lib/OpCode_pb';
 import {OpCode} from './lib/OpCode_pb';
-import {AuthRequestModel} from '../auth/auth-request.model';
+import {AuthRequestModel} from './auth/auth-request.model';
 import {MessageTool} from './message.tool';
 import {delay, filter, retryWhen} from 'rxjs/operators';
 import {debug} from './rxjs-debug.config';
+import {imInjector} from '../ImInjector';
 
 export const enum WsStatus {
     DISCONNECTED,
@@ -32,10 +33,11 @@ export class WebSocketService implements OnDestroy {
     private readonly closeSubject: Subject<CloseEvent>;
     private wsMessages$: Subject<BaseModel>;
     private authSub: SubscriptionLike;
+    private imConfig = imInjector.get(ImConfig);
 
 
-    constructor(private imConfig: ImConfig) {
-        console.log('websocket 配置', imConfig);
+    constructor() {
+        console.log('websocket 配置', this.imConfig);
         this.openSubject = new Subject<Event>();
         this.closeSubject = new Subject<CloseEvent>();
         this.wsMessages$ = new Subject<BaseModel>();
@@ -51,7 +53,7 @@ export class WebSocketService implements OnDestroy {
                 this.status$.next(WsStatus.CONNECTED);
                 // todo:发送token 认证
                 console.log('发送认证请求!');
-                let s = window.prompt('请输入userId', '123');
+                const s = window.prompt('请输入userId', '123');
                 // @ts-ignore
                 window.userId = s;
                 const authRequest = AuthRequestModel.createMessageModel();

@@ -5,20 +5,20 @@ import {IonicModule} from '@ionic/angular';
 import {ImPage} from './im.page';
 import {ImRoutingModule} from './im-routing.module';
 import {WebSocketService} from './core/web-socket.service';
-import {DiscoveryComponent} from './discovery/discovery.component';
-import {ContactsComponent} from './contacts/contacts.component';
-import {FansComponent} from './contacts/fans/fans.component';
-import {FriendsComponent} from './contacts/friends/friends.component';
-import {GroupsComponent} from './contacts/groups/groups.component';
-import {RecentContactsComponent} from './recent-contacts/recent-contacts.component';
-import {RecentContactComponent} from './recent-contacts/recent-contact/recent-contact.component';
-import {InvitationService} from './addfriendgroup/shared/invitation.service';
+import {DiscoveryComponent} from './page/discovery/discovery.component';
+import {ContactsComponent} from './page/contacts/contacts.component';
+import {FansComponent} from './page/contacts/fans/fans.component';
+import {FriendsComponent} from './page/contacts/friends/friends.component';
+import {GroupsComponent} from './page/contacts/groups/groups.component';
+import {RecentContactsComponent} from './page/recent-contacts/recent-contacts.component';
+import {RecentContactComponent} from './page/recent-contacts/recent-contact/recent-contact.component';
+import {InvitationService} from './page/addfriendgroup/shared/invitation.service';
 
 import { MucHeaderPipe } from './shared/pipe/muc-header/muc-header.pipe';
 import { SearchTextPipe } from './shared/pipe/search-text/search-text.pipe';
 import {SharedModule} from './shared/shared.module';
 import {NgPipesModule} from 'ngx-pipes';
-import {MsgService} from './chat/shared/msg.service';
+import {MsgService} from './page/chat/shared/msg.service';
 
 @NgModule({
     imports: [

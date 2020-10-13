@@ -1,7 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {IonicModule} from '@ionic/angular';
 
-import { RemoveGroupMemberPage } from './remove-group-member.page';
+import {RemoveGroupMemberPage} from './remove-group-member.page';
 
 describe('RemoveGroupMemberPage', () => {
   let component: RemoveGroupMemberPage;

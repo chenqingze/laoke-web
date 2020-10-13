@@ -1,7 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {IonicModule} from '@ionic/angular';
 
-import { CreateGroupPage } from './create-group.page';
+import {CreateGroupPage} from './create-group.page';
 
 describe('CreateGroupPage', () => {
   let component: CreateGroupPage;

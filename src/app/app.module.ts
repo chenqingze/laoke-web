@@ -30,8 +30,7 @@ import {ImagePicker} from '@ionic-native/image-picker/ngx';
         Camera,
         HttpClient,
         SQLite,
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-        {provide: ImConfig, useValue: environment.im}
+        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
     bootstrap: [AppComponent]
 })

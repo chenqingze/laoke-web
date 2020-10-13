@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NavController, Platform} from '@ionic/angular';
-import {AlertControllerService} from '../../service/alert-controller/alert-controller.service';
+import {AlertControllerService} from '../../shared/service/alert-controller/alert-controller.service';
 import {WebSocketService} from '../../core/web-socket.service';
 import {EditGroupNoticeRequestModel} from './edit-group-notice-request.model';
 import {OpCode} from '../../core/lib/OpCode_pb';

@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {DbService} from './shared/db.service';
+import {DbService} from './core/db.service';
 import {IonContent} from '@ionic/angular';
 
 export enum ImSubComponent {
@@ -40,6 +40,9 @@ export class ImPage implements OnInit {
     }
 
     ngOnInit() {
+    }
+
+    goToLogin() {
     }
 
 }

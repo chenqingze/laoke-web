@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 
-import { EditGroupNoticePageRoutingModule } from './edit-group-notice-routing.module';
+import {EditGroupNoticePageRoutingModule} from './edit-group-notice-routing.module';
 
-import { EditGroupNoticePage } from './edit-group-notice.page';
+import {EditGroupNoticePage} from './edit-group-notice.page';
 
 @NgModule({
   imports: [

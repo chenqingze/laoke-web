@@ -1,7 +1,8 @@
 import {Message} from './lib/Message_pb';
 import * as OpCode_pb from './lib/OpCode_pb';
-import {ImConfig, injector} from '../im.config';
-import {DbUtil} from './db-util';
+import {OpCode} from './lib/OpCode_pb';
+import {ImConfig} from '../im.config';
+import {imInjector} from '../ImInjector';
 
 type Constructor<M> = new(...args: any[]) => M;
 
@@ -18,16 +19,28 @@ export abstract class BaseModel {
      */
     createMessage(): Message {
         const message = new Message();
-        message.setMagic(injector.get(ImConfig).protocol.magic);
-        message.setVersion(injector.get(ImConfig).protocol.version);
+        message.setMagic(imInjector.get(ImConfig).protocol.magic);
+        message.setVersion(imInjector.get(ImConfig).protocol.version);
         message.setSeq(new Date().getTime().toString());
         this.seq = message.getSeq();
-        DbUtil.instance.storageMessageModel(this);
+        this.storeMessageModel(this);
         return message;
+
     }
 
     abstract convertToMessage(): Message;
 
     abstract convertMessageToModel(message: Message): BaseModel;
+
+    storeMessageModel(model: BaseModel) {
+        switch (model.opCode) {
+            case OpCode.QUERY_USER_GROUP_ACK:
+                // todo :存数据库；
+                break;
+            default:
+                // 这里处理所有不需要存库的类型
+                break;
+        }
+    }
 }
 

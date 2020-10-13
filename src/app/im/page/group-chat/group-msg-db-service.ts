@@ -1,4 +1,4 @@
-import {DbService} from '../../shared/db.service';
+import {DbService} from '../../core/db.service';
 import {Injectable} from '@angular/core';
 
 @Injectable({

@@ -14,15 +14,15 @@ const routes: Routes = [
     },
     {
         path: 'new-friend',
-        loadChildren: () => import('./addfriendgroup/new-friend/new-friend.module').then(m => m.NewFriendPageModule)
+        loadChildren: () => import('./page/addfriendgroup/new-friend/new-friend.module').then(m => m.NewFriendPageModule)
     },
     {
         path: 'add-friend-group',
-        loadChildren: () => import('./addfriendgroup/add-friend-group/add-friend-group.module').then(m => m.AddFriendGroupPageModule)
+        loadChildren: () => import('./page/addfriendgroup/add-friend-group/add-friend-group.module').then(m => m.AddFriendGroupPageModule)
     },
     {
         path: 'check-new-friend',
-        loadChildren: () => import('./addfriendgroup/check-new-friend/check-new-friend.module').then(m => m.CheckNewFriendPageModule)
+        loadChildren: () => import('./page/addfriendgroup/check-new-friend/check-new-friend.module').then(m => m.CheckNewFriendPageModule)
     },
     {
         path: 'group-chat-setting',
@@ -34,7 +34,7 @@ const routes: Routes = [
     },
     {
         path: 'chat-window',
-        loadChildren: () => import('./chat/chat-window/chat-window.module').then(m => m.ChatWindowPageModule)
+        loadChildren: () => import('./page/chat/chat-window/chat-window.module').then(m => m.ChatWindowPageModule)
     },
     {
         path: 'create-group',
@@ -77,20 +77,20 @@ const routes: Routes = [
         loadChildren: () => import('./page/group-members/group-members.module').then(m => m.GroupMembersPageModule)
     }, {
         path: 'setting',
-        loadChildren: () => import('./chat/setting/setting.module').then(m => m.SettingPageModule)
+        loadChildren: () => import('./page/chat/setting/setting.module').then(m => m.SettingPageModule)
     },
     {
         path: 'friend-alias',
-        loadChildren: () => import('./chat/friend-alias/friend-alias.module').then(m => m.FriendAliasPageModule)
+        loadChildren: () => import('./page/chat/friend-alias/friend-alias.module').then(m => m.FriendAliasPageModule)
     },
     {
         path: 'chat-window1',
-        loadChildren: () => import('./chat/chat-window1/chat-window1.module').then(m => m.ChatWindow1PageModule)
+        loadChildren: () => import('./page/chat/chat-window1/chat-window1.module').then(m => m.ChatWindow1PageModule)
 
     },
   {
     path: 'group-notify',
-    loadChildren: () => import('./group-notify/group-notify/group-notify.module').then( m => m.GroupNotifyPageModule)
+    loadChildren: () => import('./page/group-notify/group-notify/group-notify.module').then(m => m.GroupNotifyPageModule)
   }
 
 

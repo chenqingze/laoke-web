@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { EditGroupNoticePage } from './edit-group-notice.page';
+import {EditGroupNoticePage} from './edit-group-notice.page';
 
 const routes: Routes = [
   {

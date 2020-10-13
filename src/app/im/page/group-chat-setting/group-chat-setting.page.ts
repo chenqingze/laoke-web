@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AlertControllerService} from '../../service/alert-controller/alert-controller.service';
+import {AlertControllerService} from '../../shared/service/alert-controller/alert-controller.service';
 import {WebSocketService} from '../../core/web-socket.service';
 import {ActionSheetController, NavController, Platform} from '@ionic/angular';
 import {GroupChatSettingModel} from './group-chat-setting.model';
-import {GroupService} from '../../service/group-service/group.service';
-import {UploadService} from '../../service/upload/upload.service';
+import {GroupService} from '../../shared/service/group-service/group.service';
+import {UploadService} from '../../shared/service/upload/upload.service';
 import * as OSS from 'ali-oss';
 import {OpCode} from '../../core/lib/OpCode_pb';
 import {MucMuteRequestModel} from './muc-mute-request.model';

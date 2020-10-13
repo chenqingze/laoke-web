@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {GroupService} from '../../service/group-service/group.service';
+import {GroupService} from '../../shared/service/group-service/group.service';
 import {ActionSheetController, IonContent} from '@ionic/angular';
 import {GroupMemberModel} from '../../shared/model/group-member.model';
 import {ActivatedRoute, Router} from '@angular/router';

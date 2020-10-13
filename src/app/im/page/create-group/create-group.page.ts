@@ -1,9 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {IonContent} from '@ionic/angular';
-import {AlertControllerService} from '../../service/alert-controller/alert-controller.service';
+import {AlertControllerService} from '../../shared/service/alert-controller/alert-controller.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GroupFriendModel} from './shared/group-friend.model';
-import {GroupService} from '../../service/group-service/group.service';
+import {GroupService} from '../../shared/service/group-service/group.service';
 
 @Component({
     selector: 'app-create-group',

@@ -1,7 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {IonicModule} from '@ionic/angular';
 
-import { GroupChatPage } from './group-chat.page';
+import {GroupChatPage} from './group-chat.page';
 
 describe('GroupChatPage', () => {
   let component: GroupChatPage;

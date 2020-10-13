@@ -1,7 +1,7 @@
 import {BaseModel} from '../../core/base.model';
 import {OpCode} from '../../core/lib/OpCode_pb';
 import {Message} from '../../core/lib/Message_pb';
-import {CreateGroupRequest, InvitationJoinGroupRequest} from '../../core/lib/Group_pb';
+import {InvitationJoinGroupRequest} from '../../core/lib/Group_pb';
 
 export class InvitationUserJoinGroupRequestModel extends BaseModel {
 

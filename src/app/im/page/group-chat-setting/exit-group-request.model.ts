@@ -1,7 +1,7 @@
 import {BaseModel} from '../../core/base.model';
 import {OpCode} from '../../core/lib/OpCode_pb';
 import {Message} from '../../core/lib/Message_pb';
-import {ChangeMucConfirmJoinAck, ExitGroupRequest} from '../../core/lib/Group_pb';
+import {ExitGroupRequest} from '../../core/lib/Group_pb';
 
 export class ExitGroupRequestModel extends BaseModel {
     readonly opCode = OpCode.EXIT_GROUP_REQUEST;

@@ -1,8 +1,6 @@
 // package: 
 // file: OpCode.proto
 
-import * as jspb from "google-protobuf";
-
 export interface OpCodeMap {
   UNKNOWN: 0;
   AUTH_REQUEST: 1;

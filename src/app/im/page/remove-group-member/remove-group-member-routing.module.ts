@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { RemoveGroupMemberPage } from './remove-group-member.page';
+import {RemoveGroupMemberPage} from './remove-group-member.page';
 
 const routes: Routes = [
   {

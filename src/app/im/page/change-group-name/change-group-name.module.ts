@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 
-import { ChangeGroupNamePageRoutingModule } from './change-group-name-routing.module';
+import {ChangeGroupNamePageRoutingModule} from './change-group-name-routing.module';
 
-import { ChangeGroupNamePage } from './change-group-name.page';
+import {ChangeGroupNamePage} from './change-group-name.page';
 
 @NgModule({
   imports: [

@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WebSocketService} from '../../core/web-socket.service';
-import {AlertControllerService} from '../../service/alert-controller/alert-controller.service';
+import {AlertControllerService} from '../../shared/service/alert-controller/alert-controller.service';
 import {IonRouterOutlet} from '@ionic/angular';
-import {GroupModel} from '../../contacts/groups/group.model';
-import {GroupService} from '../../service/group-service/group.service';
+import {GroupModel} from '../contacts/groups/group.model';
+import {GroupService} from '../../shared/service/group-service/group.service';
 import {AskForJoinGroupRequestModel} from './ask-for-join-group-request.model';
 import {OpCode} from '../../core/lib/OpCode_pb';
 import {AskForJoinGroupAckModel} from './ask-for-join-group-ack.model';

@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { GroupChatSettingPage } from './group-chat-setting.page';
+import {GroupChatSettingPage} from './group-chat-setting.page';
 
 const routes: Routes = [
   {

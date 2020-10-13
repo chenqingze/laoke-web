@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { GroupQrCodePage } from './group-qr-code.page';
+import {GroupQrCodePage} from './group-qr-code.page';
 
 const routes: Routes = [
   {

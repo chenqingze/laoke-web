@@ -2,20 +2,20 @@ import {Message} from './lib/Message_pb';
 import * as OpCode_pb from './lib/OpCode_pb';
 import {OpCode} from './lib/OpCode_pb';
 import {BaseModel} from './base.model';
-import {AuthAckModel} from '../auth/auth-ack.model';
-import {QueryGroupAckModel} from '../contacts/groups/query-group-ack.model';
+import {AuthAckModel} from './auth/auth-ack.model';
+import {QueryGroupAckModel} from '../page/contacts/groups/query-group-ack.model';
 
 import {GroupMsgAckModel} from '../page/group-chat/group-msg-ack.model';
 import {GroupMsgRequestModel} from '../page/group-chat/group-msg-request.model';
-import {InvitationRequestAckModel} from '../addfriendgroup/shared/friend-invitation-request-ack.model';
-import {InvitationAcceptAckModel} from '../addfriendgroup/shared/friend-invitation-accept-ack.model';
-import {InvitationDeclinedAckModel} from '../addfriendgroup/shared/friend-invitation-declined-ack.model';
+import {InvitationRequestAckModel} from '../page/addfriendgroup/shared/friend-invitation-request-ack.model';
+import {InvitationAcceptAckModel} from '../page/addfriendgroup/shared/friend-invitation-accept-ack.model';
+import {InvitationDeclinedAckModel} from '../page/addfriendgroup/shared/friend-invitation-declined-ack.model';
 import {AskForJoinGroupRequestModel} from '../page/group-info/ask-for-join-group-request.model';
 import {AskForJoinGroupAckModel} from '../page/group-info/ask-for-join-group-ack.model';
-import {MsgRequestModel} from '../chat/shared/msg-request.model';
-import {MsgAckModel} from '../chat/shared/msg-ack.model';
-import {MsgReadNotifyModel} from '../chat/shared/msg-read-notify.model';
-import {MsgReadAckModel} from '../chat/shared/msg-read-ack.model';
+import {MsgRequestModel} from '../page/chat/shared/msg-request.model';
+import {MsgAckModel} from '../page/chat/shared/msg-ack.model';
+import {MsgReadNotifyModel} from '../page/chat/shared/msg-read-notify.model';
+import {MsgReadAckModel} from '../page/chat/shared/msg-read-ack.model';
 import {CreateGroupAckModel} from '../page/set-group-name/create-group-ack.model';
 import {CreateGroupRequestModel} from '../page/set-group-name/create-group-request.model';
 import {InvitationUserJoinGroupRequestModel} from '../page/invite-group-member/invitation-user-join-group-request.model';
@@ -31,11 +31,11 @@ import {MucMuteAckMotel} from '../page/group-chat-setting/muc-mute-ack.motel';
 import {MucConfirmJoinRequestModel} from '../page/group-chat-setting/muc-confirm-join-request.model';
 import {MucConfirmJoinAckModel} from '../page/group-chat-setting/muc-confirm-join-ack.model';
 import {ExitGroupAckModel} from '../page/group-chat-setting/exit-group-ack.model';
-import {AccessUserJoinMucRequestModel} from '../group-notify/group-notify/access-user-join-muc-request.model';
-import {AccessUserJoinMucAckModel} from '../group-notify/group-notify/access-user-join-muc-ack.model';
+import {AccessUserJoinMucRequestModel} from '../page/group-notify/group-notify/access-user-join-muc-request.model';
+import {AccessUserJoinMucAckModel} from '../page/group-notify/group-notify/access-user-join-muc-ack.model';
 import {ExitGroupRequestModel} from '../page/group-chat-setting/exit-group-request.model';
-import {RefuseUserJoinMucRequestModel} from '../group-notify/group-notify/refuse-user-join-muc-request.model';
-import {RefuseUserJoinMucAckModel} from '../group-notify/group-notify/refuse-user-join-muc-ack.model';
+import {RefuseUserJoinMucRequestModel} from '../page/group-notify/group-notify/refuse-user-join-muc-request.model';
+import {RefuseUserJoinMucAckModel} from '../page/group-notify/group-notify/refuse-user-join-muc-ack.model';
 
 
 export class MessageTool {

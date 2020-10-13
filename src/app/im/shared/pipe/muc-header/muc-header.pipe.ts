@@ -1,6 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {ApiService} from '../../api/api.service';
-import {API_URL} from '../../api/api.url';
+import {ApiService} from '../../../core/api/api.service';
+import {API_URL} from '../../../core/api/api.url';
 
 @Pipe({
     name: 'mucHeader'

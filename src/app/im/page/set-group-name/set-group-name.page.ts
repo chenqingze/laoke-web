@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AlertControllerService} from '../../service/alert-controller/alert-controller.service';
+import {AlertControllerService} from '../../shared/service/alert-controller/alert-controller.service';
 import {ActionSheetController, IonRouterOutlet, LoadingController} from '@ionic/angular';
 import {WebSocketService} from '../../core/web-socket.service';
-import {GroupService} from '../../service/group-service/group.service';
+import {GroupService} from '../../shared/service/group-service/group.service';
 import {CreateGroupRequestModel} from './create-group-request.model';
 import {OpCode} from '../../core/lib/OpCode_pb';
 import {CreateGroupAckModel} from './create-group-ack.model';
@@ -62,7 +62,7 @@ export class SetGroupNamePage implements OnInit, OnDestroy {
     }
 
     async saveGroup() {
-        if (this.name == '' || this.name.trim() == '' || this.name.trim().length == 0) {
+        if (this.name === '' || this.name.trim() === '' || this.name.trim().length === 0) {
             this.dialog.presentAlert('请输入群聊名称');
             return;
         }
@@ -94,5 +94,9 @@ export class SetGroupNamePage implements OnInit, OnDestroy {
                 this.dialog.presentAlert('创建群聊失败，已达创建上限');
             }
         }).catch(err => this.btnStatus = false).finally(() => this.btnStatus = false);
+    }
+
+    openSheet() {
+
     }
 }
