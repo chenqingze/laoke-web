@@ -136,7 +136,7 @@ export class ApiService{
         // tslint:disable-next-line: variable-name
         const _body = body || '';
         // 获取本地token
-        const token = localStorage.getItem('token');
+        const token = 'b9f7dcff-3e73-47c3-9224-8b50e468d6f6';
         // 设置header
         const headers = new HttpHeaders()
             .set('Content-Type', 'application/json')
@@ -235,7 +235,7 @@ export class ApiService{
     public getByAuth(apiUrl: string, reqParams?: any): Observable<any> {
         // 获取本地token
         // const token = localStorage.getItem('token');
-        const token = '8d9808e6-2b9f-49d4-bd94-98d406b94958';
+        const token = 'b9f7dcff-3e73-47c3-9224-8b50e468d6f6';
         // 设置header
         const headers = new HttpHeaders()
             .set('Content-Type', 'application/json')

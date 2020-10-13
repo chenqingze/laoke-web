@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="mr-d16">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>群成员</ion-title>
+    <ion-buttons slot="end" class="mr-d30" (click)="actionSheet()" *ngIf="isOwner">
+      <i class="iconfont iconhomepage-more fontS-d4"></i>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+  <ion-searchbar placeholder="请输入成员名" [(ngModel)]="searchContent" (ionChange)="input()"></ion-searchbar>
+  <div class="letter">
+    <div class="letter-right">
+      <span *ngFor="let letter of allLetters" (click)="scrollToTop(letter)">{{letter}}</span>
+    </div>
+  </div>
+  <ion-list>
+    <ion-item-group *ngFor="let letter of letters">
+      <ion-item-divider color="light" id="{{letter}}">
+        <ion-label class="letter-group">{{letter}}</ion-label>
+      </ion-item-divider>
+      <ion-item *ngFor="let h of memberList" lines="none">
+        <ion-avatar slot="start" class="avatar-group" *ngIf="letter==h.pinyin">
+          <img src="{{h.header}}">
+        </ion-avatar>
+        <ion-label [innerHTML]="h.nickname" *ngIf="letter==h.pinyin"></ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>

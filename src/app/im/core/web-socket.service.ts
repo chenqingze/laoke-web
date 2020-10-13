@@ -142,6 +142,7 @@ export class WebSocketService implements OnDestroy {
     }
 
     sendMessage(messageModel: BaseModel): void {
+        console.log(messageModel);
         this.webSocketSubject.next(messageModel);
     }
 

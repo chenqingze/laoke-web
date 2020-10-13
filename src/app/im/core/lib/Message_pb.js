@@ -58,7 +58,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.Message.oneofGroups_ = [[11,12,20,23,21,22,24,25,26,27,28,29,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1101,1102]];
+proto.Message.oneofGroups_ = [[11,12,20,23,21,22,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1101,1102]];
 
 /**
  * @enum {number}
@@ -77,6 +77,18 @@ proto.Message.PayloadCase = {
   INVITATION_JOIN_GROUP_ACK: 27,
   CREATE_GROUP_REQUEST: 28,
   CREATE_GROUP_ACK: 29,
+  REMOVE_GROUP_MEMBER_REQUEST: 30,
+  REMOVE_GROUP_MEMBER_ACK: 31,
+  CHANGE_GROUP_NAME_REQUEST: 32,
+  CHANGE_GROUP_NAME_ACK: 33,
+  CHANGE_GROUP_NOTICE_REQUEST: 34,
+  CHANGE_GROUP_NOTICE_ACK: 35,
+  CHANGE_MUC_MUTE_REQUEST: 36,
+  CHANGE_MUC_MUTE_ACK: 37,
+  CHANGE_MUC_CONFIRM_JOIN_REQUEST: 38,
+  CHANGE_MUC_CONFIRM_JOIN_ACK: 39,
+  EXIT_GROUP_REQUEST: 40,
+  EXIT_GROUP_ACK: 41,
   INVITATION_REQUEST_REQUEST: 1001,
   INVITATION_REQUEST_ACK: 1002,
   INVITATION_ACCEPT_REQUEST: 1003,
@@ -145,6 +157,18 @@ proto.Message.toObject = function(includeInstance, msg) {
     invitationJoinGroupAck: (f = msg.getInvitationJoinGroupAck()) && Group_pb.InvitationJoinGroupAck.toObject(includeInstance, f),
     createGroupRequest: (f = msg.getCreateGroupRequest()) && Group_pb.CreateGroupRequest.toObject(includeInstance, f),
     createGroupAck: (f = msg.getCreateGroupAck()) && Group_pb.CreateGroupAck.toObject(includeInstance, f),
+    removeGroupMemberRequest: (f = msg.getRemoveGroupMemberRequest()) && Group_pb.RemoveGroupMemberRequest.toObject(includeInstance, f),
+    removeGroupMemberAck: (f = msg.getRemoveGroupMemberAck()) && Group_pb.RemoveGroupMemberAck.toObject(includeInstance, f),
+    changeGroupNameRequest: (f = msg.getChangeGroupNameRequest()) && Group_pb.ChangeGroupNameRequest.toObject(includeInstance, f),
+    changeGroupNameAck: (f = msg.getChangeGroupNameAck()) && Group_pb.ChangeGroupNameAck.toObject(includeInstance, f),
+    changeGroupNoticeRequest: (f = msg.getChangeGroupNoticeRequest()) && Group_pb.ChangeGroupNoticeRequest.toObject(includeInstance, f),
+    changeGroupNoticeAck: (f = msg.getChangeGroupNoticeAck()) && Group_pb.ChangeGroupNoticeAck.toObject(includeInstance, f),
+    changeMucMuteRequest: (f = msg.getChangeMucMuteRequest()) && Group_pb.ChangeMucMuteRequest.toObject(includeInstance, f),
+    changeMucMuteAck: (f = msg.getChangeMucMuteAck()) && Group_pb.ChangeMucMuteAck.toObject(includeInstance, f),
+    changeMucConfirmJoinRequest: (f = msg.getChangeMucConfirmJoinRequest()) && Group_pb.ChangeMucConfirmJoinRequest.toObject(includeInstance, f),
+    changeMucConfirmJoinAck: (f = msg.getChangeMucConfirmJoinAck()) && Group_pb.ChangeMucConfirmJoinAck.toObject(includeInstance, f),
+    exitGroupRequest: (f = msg.getExitGroupRequest()) && Group_pb.ExitGroupRequest.toObject(includeInstance, f),
+    exitGroupAck: (f = msg.getExitGroupAck()) && Group_pb.ExitGroupAck.toObject(includeInstance, f),
     invitationRequestRequest: (f = msg.getInvitationRequestRequest()) && Invitation_pb.InvitationRequestRequest.toObject(includeInstance, f),
     invitationRequestAck: (f = msg.getInvitationRequestAck()) && Invitation_pb.InvitationRequestAck.toObject(includeInstance, f),
     invitationAcceptRequest: (f = msg.getInvitationAcceptRequest()) && Invitation_pb.InvitationAcceptRequest.toObject(includeInstance, f),
@@ -268,6 +292,66 @@ proto.Message.deserializeBinaryFromReader = function(msg, reader) {
       var value = new Group_pb.CreateGroupAck;
       reader.readMessage(value,Group_pb.CreateGroupAck.deserializeBinaryFromReader);
       msg.setCreateGroupAck(value);
+      break;
+    case 30:
+      var value = new Group_pb.RemoveGroupMemberRequest;
+      reader.readMessage(value,Group_pb.RemoveGroupMemberRequest.deserializeBinaryFromReader);
+      msg.setRemoveGroupMemberRequest(value);
+      break;
+    case 31:
+      var value = new Group_pb.RemoveGroupMemberAck;
+      reader.readMessage(value,Group_pb.RemoveGroupMemberAck.deserializeBinaryFromReader);
+      msg.setRemoveGroupMemberAck(value);
+      break;
+    case 32:
+      var value = new Group_pb.ChangeGroupNameRequest;
+      reader.readMessage(value,Group_pb.ChangeGroupNameRequest.deserializeBinaryFromReader);
+      msg.setChangeGroupNameRequest(value);
+      break;
+    case 33:
+      var value = new Group_pb.ChangeGroupNameAck;
+      reader.readMessage(value,Group_pb.ChangeGroupNameAck.deserializeBinaryFromReader);
+      msg.setChangeGroupNameAck(value);
+      break;
+    case 34:
+      var value = new Group_pb.ChangeGroupNoticeRequest;
+      reader.readMessage(value,Group_pb.ChangeGroupNoticeRequest.deserializeBinaryFromReader);
+      msg.setChangeGroupNoticeRequest(value);
+      break;
+    case 35:
+      var value = new Group_pb.ChangeGroupNoticeAck;
+      reader.readMessage(value,Group_pb.ChangeGroupNoticeAck.deserializeBinaryFromReader);
+      msg.setChangeGroupNoticeAck(value);
+      break;
+    case 36:
+      var value = new Group_pb.ChangeMucMuteRequest;
+      reader.readMessage(value,Group_pb.ChangeMucMuteRequest.deserializeBinaryFromReader);
+      msg.setChangeMucMuteRequest(value);
+      break;
+    case 37:
+      var value = new Group_pb.ChangeMucMuteAck;
+      reader.readMessage(value,Group_pb.ChangeMucMuteAck.deserializeBinaryFromReader);
+      msg.setChangeMucMuteAck(value);
+      break;
+    case 38:
+      var value = new Group_pb.ChangeMucConfirmJoinRequest;
+      reader.readMessage(value,Group_pb.ChangeMucConfirmJoinRequest.deserializeBinaryFromReader);
+      msg.setChangeMucConfirmJoinRequest(value);
+      break;
+    case 39:
+      var value = new Group_pb.ChangeMucConfirmJoinAck;
+      reader.readMessage(value,Group_pb.ChangeMucConfirmJoinAck.deserializeBinaryFromReader);
+      msg.setChangeMucConfirmJoinAck(value);
+      break;
+    case 40:
+      var value = new Group_pb.ExitGroupRequest;
+      reader.readMessage(value,Group_pb.ExitGroupRequest.deserializeBinaryFromReader);
+      msg.setExitGroupRequest(value);
+      break;
+    case 41:
+      var value = new Group_pb.ExitGroupAck;
+      reader.readMessage(value,Group_pb.ExitGroupAck.deserializeBinaryFromReader);
+      msg.setExitGroupAck(value);
       break;
     case 1001:
       var value = new Invitation_pb.InvitationRequestRequest;
@@ -480,6 +564,102 @@ proto.Message.serializeBinaryToWriter = function(message, writer) {
       29,
       f,
       Group_pb.CreateGroupAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getRemoveGroupMemberRequest();
+  if (f != null) {
+    writer.writeMessage(
+      30,
+      f,
+      Group_pb.RemoveGroupMemberRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getRemoveGroupMemberAck();
+  if (f != null) {
+    writer.writeMessage(
+      31,
+      f,
+      Group_pb.RemoveGroupMemberAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getChangeGroupNameRequest();
+  if (f != null) {
+    writer.writeMessage(
+      32,
+      f,
+      Group_pb.ChangeGroupNameRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getChangeGroupNameAck();
+  if (f != null) {
+    writer.writeMessage(
+      33,
+      f,
+      Group_pb.ChangeGroupNameAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getChangeGroupNoticeRequest();
+  if (f != null) {
+    writer.writeMessage(
+      34,
+      f,
+      Group_pb.ChangeGroupNoticeRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getChangeGroupNoticeAck();
+  if (f != null) {
+    writer.writeMessage(
+      35,
+      f,
+      Group_pb.ChangeGroupNoticeAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getChangeMucMuteRequest();
+  if (f != null) {
+    writer.writeMessage(
+      36,
+      f,
+      Group_pb.ChangeMucMuteRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getChangeMucMuteAck();
+  if (f != null) {
+    writer.writeMessage(
+      37,
+      f,
+      Group_pb.ChangeMucMuteAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getChangeMucConfirmJoinRequest();
+  if (f != null) {
+    writer.writeMessage(
+      38,
+      f,
+      Group_pb.ChangeMucConfirmJoinRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getChangeMucConfirmJoinAck();
+  if (f != null) {
+    writer.writeMessage(
+      39,
+      f,
+      Group_pb.ChangeMucConfirmJoinAck.serializeBinaryToWriter
+    );
+  }
+  f = message.getExitGroupRequest();
+  if (f != null) {
+    writer.writeMessage(
+      40,
+      f,
+      Group_pb.ExitGroupRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getExitGroupAck();
+  if (f != null) {
+    writer.writeMessage(
+      41,
+      f,
+      Group_pb.ExitGroupAck.serializeBinaryToWriter
     );
   }
   f = message.getInvitationRequestRequest();
@@ -1094,6 +1274,450 @@ proto.Message.prototype.clearCreateGroupAck = function() {
  */
 proto.Message.prototype.hasCreateGroupAck = function() {
   return jspb.Message.getField(this, 29) != null;
+};
+
+
+/**
+ * optional RemoveGroupMemberRequest remove_group_member_request = 30;
+ * @return {?proto.RemoveGroupMemberRequest}
+ */
+proto.Message.prototype.getRemoveGroupMemberRequest = function() {
+  return /** @type{?proto.RemoveGroupMemberRequest} */ (
+    jspb.Message.getWrapperField(this, Group_pb.RemoveGroupMemberRequest, 30));
+};
+
+
+/**
+ * @param {?proto.RemoveGroupMemberRequest|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setRemoveGroupMemberRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 30, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearRemoveGroupMemberRequest = function() {
+  return this.setRemoveGroupMemberRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasRemoveGroupMemberRequest = function() {
+  return jspb.Message.getField(this, 30) != null;
+};
+
+
+/**
+ * optional RemoveGroupMemberAck remove_group_member_ack = 31;
+ * @return {?proto.RemoveGroupMemberAck}
+ */
+proto.Message.prototype.getRemoveGroupMemberAck = function() {
+  return /** @type{?proto.RemoveGroupMemberAck} */ (
+    jspb.Message.getWrapperField(this, Group_pb.RemoveGroupMemberAck, 31));
+};
+
+
+/**
+ * @param {?proto.RemoveGroupMemberAck|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setRemoveGroupMemberAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 31, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearRemoveGroupMemberAck = function() {
+  return this.setRemoveGroupMemberAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasRemoveGroupMemberAck = function() {
+  return jspb.Message.getField(this, 31) != null;
+};
+
+
+/**
+ * optional ChangeGroupNameRequest change_group_name_request = 32;
+ * @return {?proto.ChangeGroupNameRequest}
+ */
+proto.Message.prototype.getChangeGroupNameRequest = function() {
+  return /** @type{?proto.ChangeGroupNameRequest} */ (
+    jspb.Message.getWrapperField(this, Group_pb.ChangeGroupNameRequest, 32));
+};
+
+
+/**
+ * @param {?proto.ChangeGroupNameRequest|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setChangeGroupNameRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 32, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearChangeGroupNameRequest = function() {
+  return this.setChangeGroupNameRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasChangeGroupNameRequest = function() {
+  return jspb.Message.getField(this, 32) != null;
+};
+
+
+/**
+ * optional ChangeGroupNameAck change_group_name_ack = 33;
+ * @return {?proto.ChangeGroupNameAck}
+ */
+proto.Message.prototype.getChangeGroupNameAck = function() {
+  return /** @type{?proto.ChangeGroupNameAck} */ (
+    jspb.Message.getWrapperField(this, Group_pb.ChangeGroupNameAck, 33));
+};
+
+
+/**
+ * @param {?proto.ChangeGroupNameAck|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setChangeGroupNameAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 33, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearChangeGroupNameAck = function() {
+  return this.setChangeGroupNameAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasChangeGroupNameAck = function() {
+  return jspb.Message.getField(this, 33) != null;
+};
+
+
+/**
+ * optional ChangeGroupNoticeRequest change_group_notice_request = 34;
+ * @return {?proto.ChangeGroupNoticeRequest}
+ */
+proto.Message.prototype.getChangeGroupNoticeRequest = function() {
+  return /** @type{?proto.ChangeGroupNoticeRequest} */ (
+    jspb.Message.getWrapperField(this, Group_pb.ChangeGroupNoticeRequest, 34));
+};
+
+
+/**
+ * @param {?proto.ChangeGroupNoticeRequest|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setChangeGroupNoticeRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 34, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearChangeGroupNoticeRequest = function() {
+  return this.setChangeGroupNoticeRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasChangeGroupNoticeRequest = function() {
+  return jspb.Message.getField(this, 34) != null;
+};
+
+
+/**
+ * optional ChangeGroupNoticeAck change_group_notice_ack = 35;
+ * @return {?proto.ChangeGroupNoticeAck}
+ */
+proto.Message.prototype.getChangeGroupNoticeAck = function() {
+  return /** @type{?proto.ChangeGroupNoticeAck} */ (
+    jspb.Message.getWrapperField(this, Group_pb.ChangeGroupNoticeAck, 35));
+};
+
+
+/**
+ * @param {?proto.ChangeGroupNoticeAck|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setChangeGroupNoticeAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 35, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearChangeGroupNoticeAck = function() {
+  return this.setChangeGroupNoticeAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasChangeGroupNoticeAck = function() {
+  return jspb.Message.getField(this, 35) != null;
+};
+
+
+/**
+ * optional ChangeMucMuteRequest change_muc_mute_request = 36;
+ * @return {?proto.ChangeMucMuteRequest}
+ */
+proto.Message.prototype.getChangeMucMuteRequest = function() {
+  return /** @type{?proto.ChangeMucMuteRequest} */ (
+    jspb.Message.getWrapperField(this, Group_pb.ChangeMucMuteRequest, 36));
+};
+
+
+/**
+ * @param {?proto.ChangeMucMuteRequest|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setChangeMucMuteRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 36, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearChangeMucMuteRequest = function() {
+  return this.setChangeMucMuteRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasChangeMucMuteRequest = function() {
+  return jspb.Message.getField(this, 36) != null;
+};
+
+
+/**
+ * optional ChangeMucMuteAck change_muc_mute_ack = 37;
+ * @return {?proto.ChangeMucMuteAck}
+ */
+proto.Message.prototype.getChangeMucMuteAck = function() {
+  return /** @type{?proto.ChangeMucMuteAck} */ (
+    jspb.Message.getWrapperField(this, Group_pb.ChangeMucMuteAck, 37));
+};
+
+
+/**
+ * @param {?proto.ChangeMucMuteAck|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setChangeMucMuteAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 37, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearChangeMucMuteAck = function() {
+  return this.setChangeMucMuteAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasChangeMucMuteAck = function() {
+  return jspb.Message.getField(this, 37) != null;
+};
+
+
+/**
+ * optional ChangeMucConfirmJoinRequest change_muc_confirm_join_request = 38;
+ * @return {?proto.ChangeMucConfirmJoinRequest}
+ */
+proto.Message.prototype.getChangeMucConfirmJoinRequest = function() {
+  return /** @type{?proto.ChangeMucConfirmJoinRequest} */ (
+    jspb.Message.getWrapperField(this, Group_pb.ChangeMucConfirmJoinRequest, 38));
+};
+
+
+/**
+ * @param {?proto.ChangeMucConfirmJoinRequest|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setChangeMucConfirmJoinRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 38, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearChangeMucConfirmJoinRequest = function() {
+  return this.setChangeMucConfirmJoinRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasChangeMucConfirmJoinRequest = function() {
+  return jspb.Message.getField(this, 38) != null;
+};
+
+
+/**
+ * optional ChangeMucConfirmJoinAck change_muc_confirm_join_ack = 39;
+ * @return {?proto.ChangeMucConfirmJoinAck}
+ */
+proto.Message.prototype.getChangeMucConfirmJoinAck = function() {
+  return /** @type{?proto.ChangeMucConfirmJoinAck} */ (
+    jspb.Message.getWrapperField(this, Group_pb.ChangeMucConfirmJoinAck, 39));
+};
+
+
+/**
+ * @param {?proto.ChangeMucConfirmJoinAck|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setChangeMucConfirmJoinAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 39, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearChangeMucConfirmJoinAck = function() {
+  return this.setChangeMucConfirmJoinAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasChangeMucConfirmJoinAck = function() {
+  return jspb.Message.getField(this, 39) != null;
+};
+
+
+/**
+ * optional ExitGroupRequest exit_group_request = 40;
+ * @return {?proto.ExitGroupRequest}
+ */
+proto.Message.prototype.getExitGroupRequest = function() {
+  return /** @type{?proto.ExitGroupRequest} */ (
+    jspb.Message.getWrapperField(this, Group_pb.ExitGroupRequest, 40));
+};
+
+
+/**
+ * @param {?proto.ExitGroupRequest|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setExitGroupRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 40, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearExitGroupRequest = function() {
+  return this.setExitGroupRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasExitGroupRequest = function() {
+  return jspb.Message.getField(this, 40) != null;
+};
+
+
+/**
+ * optional ExitGroupAck exit_group_ack = 41;
+ * @return {?proto.ExitGroupAck}
+ */
+proto.Message.prototype.getExitGroupAck = function() {
+  return /** @type{?proto.ExitGroupAck} */ (
+    jspb.Message.getWrapperField(this, Group_pb.ExitGroupAck, 41));
+};
+
+
+/**
+ * @param {?proto.ExitGroupAck|undefined} value
+ * @return {!proto.Message} returns this
+*/
+proto.Message.prototype.setExitGroupAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 41, proto.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.Message} returns this
+ */
+proto.Message.prototype.clearExitGroupAck = function() {
+  return this.setExitGroupAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Message.prototype.hasExitGroupAck = function() {
+  return jspb.Message.getField(this, 41) != null;
 };
 
 

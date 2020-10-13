@@ -29,9 +29,6 @@ import {MsgService} from './chat/shared/msg.service';
         NgPipesModule,
         SharedModule
     ],
-    exports: [
-        SearchTextPipe
-    ],
     declarations: [
         ImPage,
         RecentContactComponent,
@@ -41,8 +38,6 @@ import {MsgService} from './chat/shared/msg.service';
         FansComponent,
         FriendsComponent,
         GroupsComponent,
-        MucHeaderPipe,
-        SearchTextPipe
     ]
 })
 export class ImModule {

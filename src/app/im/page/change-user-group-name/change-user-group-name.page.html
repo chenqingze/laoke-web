@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="mr-d16">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>修改我在本群昵称</ion-title>
+    <ion-buttons slot="end">
+      <span class="fontS-d28 mr-d32 colorf publish-btn" (click)="updateUserGroupName()">提交</span>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="dark-bg-10">
+
+  <ion-grid>
+    <ion-row class="pl-d32 pr-d32 amend-name dark-bg-9">
+      <ion-input placeholder="我在群里的昵称" clearInput="true" [(ngModel)]="name"></ion-input>
+    </ion-row>
+
+    <!--修改我在本群昵称-->
+    <ion-row>
+      <ion-col class="ml-d32">
+        <p class="fontS-d28 color9 pt-d24">昵称修改后，只会在此群内显示，群内成员都可以看见</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

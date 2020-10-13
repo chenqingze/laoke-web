@@ -23,7 +23,7 @@ export class DbService {
             `CREATE TABLE IF NOT EXISTS invitation( id VARCHAR PRIMARY KEY, requesterId VARCHAR, requesterAlias VARCHAR, requesterNickname VARCHAR, `
         + `requesterProfile VARCHAR, addresseeId VARCHAR, addresseeAlias VARCHAR, addresseeNickname VARCHAR, addresseeProfile VARCHAR, `
         + `inviteStatus VARCHAR, readStatus NUMBER, content VARCHAR, inviteType VARCHAR, createdAt NUMBER(32), updatedAt NUMBER(32))`,
-            `CREATE TABLE IF NOT EXISTS "group" (id TEXT PRIMARY KEY,name TEXT, notice TEXT,groupNo TEXT,header TEXT,isMute BOOLEAN, isConfirmJoin BOOLEAN)`
+            `CREATE TABLE IF NOT EXISTS "group" (id TEXT PRIMARY KEY,name TEXT, notice TEXT,groupNo TEXT,header TEXT,isMute BOOLEAN, isConfirmJoin BOOLEAN,owner VARCHAR)`
     ];
 
     constructor(private platform: Platform,

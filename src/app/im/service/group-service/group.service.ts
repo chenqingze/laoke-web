@@ -1,13 +1,15 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from '../../shared/api/api.service';
 import {API_URL} from '../../shared/api/api.url';
+import {DbService} from '../../shared/db.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class GroupService {
 
-    constructor(private apiService: ApiService) {
+    constructor(private apiService: ApiService,
+                private dbSer: DbService) {
     }
 
     // 获取群资料
@@ -38,6 +40,89 @@ export class GroupService {
     // 获取最大成员数
     queryGroupMaxMemberCount() {
         const url = API_URL.TALK_GROUP.getGroupMaxMemberCount;
+        return this.apiService.getByAuth(url);
+    }
+
+    // 获取好友
+    queryFriends() {
+        const url = API_URL.TALK_GROUP.getFriends;
+        return this.apiService.getByAuth(url);
+    }
+
+    queryFriendById(id): Promise<any> {
+        const sql = 'select * from friend where friendId = ?';
+        return this.dbSer.storage.executeSql(sql, [id]);
+    }
+
+
+    // 判断最大创建数是否合法
+    checkUserGroupMaxCount() {
+        const url = API_URL.TALK_GROUP.checkMaxGroupCount;
+        return this.apiService.getByAuth(url);
+    }
+
+    // 把群保存至前端数据库
+    saveGroup(id, name, notice, groupNo, header, isMute, isConfirmJoin) {
+        const sql = 'INSERT OR REPLACE INTO "group" (id,name,notice,groupNo,header,isMute,isConfirmJoin) VALUES (?,?, ?,?,?,?,?)';
+        this.dbSer.storage.executeSql(sql, [id, name, notice, groupNo, header, isMute, isConfirmJoin]);
+    }
+
+    // 删除群聊记录
+    deleteGroupMsg(groupId) {
+        const sql = 'DELETE FROM "msg_hist" where conversationId=? ';
+        this.dbSer.storage.executeSql(sql, [groupId]);
+    }
+
+    // 获取群设置
+    queryGroupSettingInfo(id) {
+        const url = API_URL.TALK_GROUP.getGroupSettingInfo + '?groupId=' + id;
+        return this.apiService.getByAuth(url);
+    }
+
+    // 获取群成员列表
+    queryGroupMembers(groupId) {
+        const url = API_URL.TALK_GROUP.getGroupMembers + '?id=' + groupId;
+        return this.apiService.getByAuth(url);
+    }
+
+    // 获取群主
+    queryGroupOwner(groupId): Promise<any> {
+        const sql = 'SELECT * FROM "group" where id=?';
+        return this.dbSer.storage.executeSql(sql, [groupId]);
+
+    }
+
+    // 获取不在群里的好友
+    queryFriendNotInGroup(groupId) {
+        const url = API_URL.TALK_GROUP.getFriendNotInGroup + '?groupId=' + groupId;
+        return this.apiService.getByAuth(url);
+    }
+
+    // 判断群是否满了
+    checkGroupIsFull(groupId, count) {
+        const url = API_URL.TALK_GROUP.checkGroupIsFull + '?groupId=' + groupId + '&invitationCount=' + count;
+        return this.apiService.getByAuth(url);
+    }
+
+    // 更新群昵称
+    updateGroupMemberNickname(groupId, nickname) {
+        const url = API_URL.TALK_GROUP.updateGroupMemberNickname + '?groupId=' + groupId + '&name=' + nickname;
+        return this.apiService.putByAuth(url);
+    }
+
+    // 获取群昵称
+    queryGroupMemberNickname(groupId) {
+        const url = API_URL.TALK_GROUP.updateGroupMemberNickname + '?groupId=' + groupId;
+        return this.apiService.getByAuth(url);
+    }
+
+    updateGroupMemberTop(groupId, top) {
+        const url = API_URL.TALK_GROUP.groupMemberTop + '?groupId=' + groupId + '&top=' + top;
+        return this.apiService.putByAuth(url);
+    }
+
+    queryGroupMemberTop(groupId) {
+        const url = API_URL.TALK_GROUP.groupMemberTop + '?groupId=' + groupId;
         return this.apiService.getByAuth(url);
     }
 }

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="mr-d16">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{owner === 'yes' ? '群公告编辑':'群公告'}}</ion-title>
+    <ion-buttons slot="end" *ngIf="owner === 'yes'">
+      <span class="fontS-d28 mr-d32 colorf publish-btn" (click)="saveGroupNotice()">提交</span>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ml-d32 mr-d32">
+      <ion-textarea maxlength="200" auto-grow="true" rows="5" [(ngModel)]="notice"
+                    [placeholder]="owner === 'yes' ? '填写公告，1-200字':'暂无群公告'" [readonly]="owner === 'no'"></ion-textarea>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -10,6 +10,8 @@ import {environment} from '../environments/environment';
 import {ImConfig} from './im/im.config';
 import {SQLite} from '@ionic-native/sqlite/ngx';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {Camera} from '@ionic-native/camera/ngx';
+import {ImagePicker} from '@ionic-native/image-picker/ngx';
 
 @NgModule({
     declarations: [AppComponent],
@@ -23,7 +25,9 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     ],
     providers: [
         StatusBar,
+        ImagePicker,
         SplashScreen,
+        Camera,
         HttpClient,
         SQLite,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},

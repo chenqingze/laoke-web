@@ -83,6 +83,66 @@ export class Message extends jspb.Message {
   getCreateGroupAck(): Group_pb.CreateGroupAck | undefined;
   setCreateGroupAck(value?: Group_pb.CreateGroupAck): void;
 
+  hasRemoveGroupMemberRequest(): boolean;
+  clearRemoveGroupMemberRequest(): void;
+  getRemoveGroupMemberRequest(): Group_pb.RemoveGroupMemberRequest | undefined;
+  setRemoveGroupMemberRequest(value?: Group_pb.RemoveGroupMemberRequest): void;
+
+  hasRemoveGroupMemberAck(): boolean;
+  clearRemoveGroupMemberAck(): void;
+  getRemoveGroupMemberAck(): Group_pb.RemoveGroupMemberAck | undefined;
+  setRemoveGroupMemberAck(value?: Group_pb.RemoveGroupMemberAck): void;
+
+  hasChangeGroupNameRequest(): boolean;
+  clearChangeGroupNameRequest(): void;
+  getChangeGroupNameRequest(): Group_pb.ChangeGroupNameRequest | undefined;
+  setChangeGroupNameRequest(value?: Group_pb.ChangeGroupNameRequest): void;
+
+  hasChangeGroupNameAck(): boolean;
+  clearChangeGroupNameAck(): void;
+  getChangeGroupNameAck(): Group_pb.ChangeGroupNameAck | undefined;
+  setChangeGroupNameAck(value?: Group_pb.ChangeGroupNameAck): void;
+
+  hasChangeGroupNoticeRequest(): boolean;
+  clearChangeGroupNoticeRequest(): void;
+  getChangeGroupNoticeRequest(): Group_pb.ChangeGroupNoticeRequest | undefined;
+  setChangeGroupNoticeRequest(value?: Group_pb.ChangeGroupNoticeRequest): void;
+
+  hasChangeGroupNoticeAck(): boolean;
+  clearChangeGroupNoticeAck(): void;
+  getChangeGroupNoticeAck(): Group_pb.ChangeGroupNoticeAck | undefined;
+  setChangeGroupNoticeAck(value?: Group_pb.ChangeGroupNoticeAck): void;
+
+  hasChangeMucMuteRequest(): boolean;
+  clearChangeMucMuteRequest(): void;
+  getChangeMucMuteRequest(): Group_pb.ChangeMucMuteRequest | undefined;
+  setChangeMucMuteRequest(value?: Group_pb.ChangeMucMuteRequest): void;
+
+  hasChangeMucMuteAck(): boolean;
+  clearChangeMucMuteAck(): void;
+  getChangeMucMuteAck(): Group_pb.ChangeMucMuteAck | undefined;
+  setChangeMucMuteAck(value?: Group_pb.ChangeMucMuteAck): void;
+
+  hasChangeMucConfirmJoinRequest(): boolean;
+  clearChangeMucConfirmJoinRequest(): void;
+  getChangeMucConfirmJoinRequest(): Group_pb.ChangeMucConfirmJoinRequest | undefined;
+  setChangeMucConfirmJoinRequest(value?: Group_pb.ChangeMucConfirmJoinRequest): void;
+
+  hasChangeMucConfirmJoinAck(): boolean;
+  clearChangeMucConfirmJoinAck(): void;
+  getChangeMucConfirmJoinAck(): Group_pb.ChangeMucConfirmJoinAck | undefined;
+  setChangeMucConfirmJoinAck(value?: Group_pb.ChangeMucConfirmJoinAck): void;
+
+  hasExitGroupRequest(): boolean;
+  clearExitGroupRequest(): void;
+  getExitGroupRequest(): Group_pb.ExitGroupRequest | undefined;
+  setExitGroupRequest(value?: Group_pb.ExitGroupRequest): void;
+
+  hasExitGroupAck(): boolean;
+  clearExitGroupAck(): void;
+  getExitGroupAck(): Group_pb.ExitGroupAck | undefined;
+  setExitGroupAck(value?: Group_pb.ExitGroupAck): void;
+
   hasInvitationRequestRequest(): boolean;
   clearInvitationRequestRequest(): void;
   getInvitationRequestRequest(): Invitation_pb.InvitationRequestRequest | undefined;
@@ -172,6 +232,18 @@ export namespace Message {
     invitationJoinGroupAck?: Group_pb.InvitationJoinGroupAck.AsObject,
     createGroupRequest?: Group_pb.CreateGroupRequest.AsObject,
     createGroupAck?: Group_pb.CreateGroupAck.AsObject,
+    removeGroupMemberRequest?: Group_pb.RemoveGroupMemberRequest.AsObject,
+    removeGroupMemberAck?: Group_pb.RemoveGroupMemberAck.AsObject,
+    changeGroupNameRequest?: Group_pb.ChangeGroupNameRequest.AsObject,
+    changeGroupNameAck?: Group_pb.ChangeGroupNameAck.AsObject,
+    changeGroupNoticeRequest?: Group_pb.ChangeGroupNoticeRequest.AsObject,
+    changeGroupNoticeAck?: Group_pb.ChangeGroupNoticeAck.AsObject,
+    changeMucMuteRequest?: Group_pb.ChangeMucMuteRequest.AsObject,
+    changeMucMuteAck?: Group_pb.ChangeMucMuteAck.AsObject,
+    changeMucConfirmJoinRequest?: Group_pb.ChangeMucConfirmJoinRequest.AsObject,
+    changeMucConfirmJoinAck?: Group_pb.ChangeMucConfirmJoinAck.AsObject,
+    exitGroupRequest?: Group_pb.ExitGroupRequest.AsObject,
+    exitGroupAck?: Group_pb.ExitGroupAck.AsObject,
     invitationRequestRequest?: Invitation_pb.InvitationRequestRequest.AsObject,
     invitationRequestAck?: Invitation_pb.InvitationRequestAck.AsObject,
     invitationAcceptRequest?: Invitation_pb.InvitationAcceptRequest.AsObject,
@@ -200,6 +272,18 @@ export namespace Message {
     INVITATION_JOIN_GROUP_ACK = 27,
     CREATE_GROUP_REQUEST = 28,
     CREATE_GROUP_ACK = 29,
+    REMOVE_GROUP_MEMBER_REQUEST = 30,
+    REMOVE_GROUP_MEMBER_ACK = 31,
+    CHANGE_GROUP_NAME_REQUEST = 32,
+    CHANGE_GROUP_NAME_ACK = 33,
+    CHANGE_GROUP_NOTICE_REQUEST = 34,
+    CHANGE_GROUP_NOTICE_ACK = 35,
+    CHANGE_MUC_MUTE_REQUEST = 36,
+    CHANGE_MUC_MUTE_ACK = 37,
+    CHANGE_MUC_CONFIRM_JOIN_REQUEST = 38,
+    CHANGE_MUC_CONFIRM_JOIN_ACK = 39,
+    EXIT_GROUP_REQUEST = 40,
+    EXIT_GROUP_ACK = 41,
     INVITATION_REQUEST_REQUEST = 1001,
     INVITATION_REQUEST_ACK = 1002,
     INVITATION_ACCEPT_REQUEST = 1003,

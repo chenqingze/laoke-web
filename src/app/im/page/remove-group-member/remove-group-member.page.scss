@@ -1,0 +1,44 @@
+.letter {
+  display: flex;
+  width: 20px;
+  position: fixed;
+  right: 0;
+  top: 70px;
+  z-index: 10010;
+  justify-content: center;
+  align-items: center;
+
+  .letter-right {
+    font-size: 0.8em;
+    display: flex;
+    //flex-direction: column;
+    //flex-flow:1;
+    flex-flow: column nowrap;
+    background: transparent;
+    color: #2c2c2c;
+    border-top-left-radius: 6px;
+    align-items: center;
+
+    span {
+      display: block;
+      padding: 1px 1px;
+    }
+  }
+}
+
+.letter:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.publish-btn {
+  background: #e52200;
+  border-radius: 0.3rem;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  margin: 0 auto;
+  padding: 0.14rem 0.32rem;
+  line-height: 1;
+}

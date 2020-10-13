@@ -1,201 +1,197 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start" class="mr-d16">
-      <ion-back-button text=""></ion-back-button>
-    </ion-buttons>
-    <ion-title>聊天设置</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start" class="mr-d16">
+            <ion-back-button text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title>聊天设置</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content class="dark-bg-10">
-  <div class="border-bf6-d2 dark-borderbottom-home">
-    <ion-list lines="none" class="pb-d24 pt-d24">
-      <!--  当前人为管理员 可修改头像-->
-      <ion-item *ngIf="currentUser==owner">
-        <ion-label class="w-25 fontS-d32">群头像</ion-label>
-        <ion-avatar class="avatar-img">
-          <img src="{{groupSetting.groupHeader}}" (click)="openActionSheet()">
-        </ion-avatar>
-      </ion-item>
-      <!-- 当前人为非管理员 不可修改头像-->
-      <ion-item *ngIf="currentUser!=owner">
-        <ion-label class="w-25 fontS-d32">群头像</ion-label>
-        <ion-avatar class="avatar-img">
-          <img src="{{groupSetting.groupHeader}}">
-        </ion-avatar>
-      </ion-item>
-    </ion-list>
-  </div>
-  <div class="border-bf6-d2 dark-borderbottom-home">
-    <ion-list lines="none" class="pb-d24 pt-d24">
-      <ion-item>
-        <ion-label class="w-25 fontS-d32">群聊成员</ion-label>
-        <div (click)="router2Members()">
-          <span class="color6 fontS-d28 mr-d2">共{{groupSetting.memberCount}}人</span>
-          <i class="iconfont iconmore color9 fontS-d28"></i>
-        </div>
-      </ion-item>
-      <!--  群管理显示-->
-      <ion-item class="mt-d4 mb-d28" *ngIf="currentUser==owner">
-        <ion-row class="ion-flex w-100">
-          <ion-col class="line-clamp">
-            <ion-avatar class="avatar-img" *ngFor="let member of groupSetting.userList;let i =index">
-              <img src="{{member.profile}}" *ngIf="i<3" (click)="openStore(member.userId)">
-            </ion-avatar>
-          </ion-col>
-          <ion-avatar class="avatar-img avatar-add" (click)="router2InviteGroupMember()"
-                      *ngIf="this.currentUser==this.owner">
-            <i class="iconfont iconupload-photo fontS-d4 color9"></i>
-          </ion-avatar>
-          <ion-avatar class="avatar-img avatar-add" style="    padding-top: 8px;"
-                      (click)="router2DetachGroupMember()" *ngIf="this.currentUser==this.owner">
-            <i class="iconfont iconjian fontS-d4 color9"></i>
-          </ion-avatar>
-        </ion-row>
-      </ion-item>
-      <!-- 非群管理显示-->
-      <ion-item class="mt-d4 mb-d28" *ngIf="currentUser!=owner">
-        <ion-row class="ion-flex w-100">
-          <ion-avatar class="avatar-img" *ngFor="let member of groupSetting.userList">
-            <img src="{{member.profile}}">
-          </ion-avatar>
-        </ion-row>
-      </ion-item>
-    </ion-list>
-  </div>
+    <div class="border-bf6-d2 dark-borderbottom-home">
+        <ion-list lines="none" class="pb-d24 pt-d24">
+            <!--  当前人为管理员 可修改头像-->
+            <ion-item *ngIf="currentUser==this.groupSetting.owner">
+                <ion-label class="w-25 fontS-d32">群头像</ion-label>
+                <ion-avatar class="avatar-img">
+                    <img src="{{groupSetting.header}}" (click)="openActionSheet()">
+                </ion-avatar>
+            </ion-item>
+            <!-- 当前人为非管理员 不可修改头像-->
+            <ion-item *ngIf="currentUser!=this.groupSetting.owner">
+                <ion-label class="w-25 fontS-d32">群头像</ion-label>
+                <ion-avatar class="avatar-img">
+                    <img src="{{groupSetting.header}}">
+                </ion-avatar>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div class="border-bf6-d2 dark-borderbottom-home">
+        <ion-list lines="none" class="pb-d24 pt-d24">
+            <ion-item>
+                <ion-label class="w-25 fontS-d32">群聊成员</ion-label>
+                <div (click)="router2Members()">
+                    <span class="color6 fontS-d28 mr-d2">共{{groupSetting.memberCount}}人</span>
+                    <i class="iconfont iconmore color9 fontS-d28"></i>
+                </div>
+            </ion-item>
+            <!--  群管理显示-->
+            <ion-item class="mt-d4 mb-d28" *ngIf="currentUser==this.groupSetting.owner">
+                <ion-row class="ion-flex w-100">
+                    <ion-col class="line-clamp">
+                        <ion-avatar class="avatar-img" *ngFor="let member of groupSetting.users;let i =index">
+                            <img src="{{member.header}}" *ngIf="i<3" (click)="openStore(member.userId)">
+                        </ion-avatar>
+                    </ion-col>
+                    <ion-avatar class="avatar-img avatar-add" (click)="router2InviteGroupMember()"
+                                *ngIf="this.currentUser==this.groupSetting.owner">
+                        <i class="iconfont iconupload-photo fontS-d4 color9"></i>
+                    </ion-avatar>
+                    <ion-avatar class="avatar-img avatar-add" style="    padding-top: 8px;"
+                                (click)="router2DetachGroupMember()" *ngIf="this.currentUser==this.groupSetting.owner">
+                        <i class="iconfont iconjian fontS-d4 color9"></i>
+                    </ion-avatar>
+                </ion-row>
+            </ion-item>
+            <!-- 非群管理显示-->
+            <ion-item class="mt-d4 mb-d28" *ngIf="currentUser!=this.groupSetting.owner">
+                <ion-row class="ion-flex w-100">
+                    <ion-avatar class="avatar-img" *ngFor="let member of groupSetting.users">
+                        <img src="{{member.header}}">
+                    </ion-avatar>
+                </ion-row>
+            </ion-item>
+        </ion-list>
+    </div>
 
-  <ion-list lines="none">
-    <!-- 群管理可见-->
-    <ion-item *ngIf="currentUser==owner">
-      <div class="border-bf6 dark-borderbottom-333 list-row" (click)="router2ChangeGroupName()">
-        <ion-label class="w-25 fontS-d32">群聊名称</ion-label>
-        <div>
-          <span class="fontS-d32 mr-d2 font-weight-bold">{{groupSetting.groupName}}</span>
-          <i class="iconfont iconmore color9 fontS-d28"></i>
-        </div>
-      </div>
-    </ion-item>
-    <!-- 非群管理可见-->
-    <ion-item *ngIf="currentUser!=owner">
-      <div class="border-bf6 dark-borderbottom-333 list-row">
-        <ion-label class="w-25 fontS-d32">群聊名称</ion-label>
-        <div>
-          <span class="fontS-d32 mr-d2 font-weight-bold">{{groupSetting.groupName}}</span>
-          <i class="iconfont iconmore color9 fontS-d28"></i>
-        </div>
-      </div>
-    </ion-item>
-
-    <ion-item>
-      <!-- <div class="border-bf6 list-row" (click)="router2QrCode()"> -->
-      <div class="border-bf6 dark-borderbottom-333 list-row">
-        <ion-label class="w-40 fontS-d32">群号
-          <!-- /二维码 -->
-        </ion-label>
-        <div class="w-60 text-al-right">
-          <i class="fontS-d32 mr-d2">{{groupSetting.groupNo}}</i>
-          <!-- <i class="iconfont iconqrcode fontS-d32 mr-d2"></i> -->
-          <!-- <i class="iconfont iconmore color9 fontS-d28"></i> -->
-        </div>
-      </div>
-    </ion-item>
-    <!-- 管理者-->
-    <ion-item>
-      <div class="border-bf6 dark-borderbottom-333 w-100" (click)="router2GroupNotice()">
-        <ion-label class="w-100 fontS-d32 group-gonggao-title">群公告</ion-label>
-        <div class="ion-flex ion-justify-content-between group-notice">
-          <p class="fontS-d28 mr-d12 color6 line-clamp-3">{{groupSetting.notice }}</p>
-          <i class="iconfont iconmore color9 fontS-d28"></i>
-        </div>
-      </div>
-    </ion-item>
-    <!-- 非管理者-->
-    <!-- <ion-item *ngIf="currentUser!=owner">
-        <div class="border-bf6 dark-borderbottom-333 w-100">
-            <ion-label class="w-100 fontS-d32 group-gonggao-title">群公告</ion-label>
-            <div class="ion-flex ion-justify-content-between group-notice">
-                <span class="fontS-d32 mr-d2 color6 line-clamp-3">{{groupSetting.notice}}</span>
+    <ion-list lines="none">
+        <!-- 群管理可见-->
+        <ion-item *ngIf="currentUser==this.groupSetting.owner">
+            <div class="border-bf6 dark-borderbottom-333 list-row" (click)="router2ChangeGroupName()">
+                <ion-label class="w-25 fontS-d32">群聊名称</ion-label>
+                <div>
+                    <span class="fontS-d32 mr-d2 font-weight-bold">{{groupSetting.name}}</span>
+                    <i class="iconfont iconmore color9 fontS-d28"></i>
+                </div>
             </div>
-        </div>
-    </ion-item> -->
+        </ion-item>
+        <!-- 非群管理可见-->
+        <ion-item *ngIf="currentUser!=this.groupSetting.owner">
+            <div class="border-bf6 dark-borderbottom-333 list-row">
+                <ion-label class="w-25 fontS-d32">群聊名称</ion-label>
+                <div>
+                    <span class="fontS-d32 mr-d2 font-weight-bold">{{groupSetting.name}}</span>
+                    <i class="iconfont iconmore color9 fontS-d28"></i>
+                </div>
+            </div>
+        </ion-item>
+
+        <ion-item>
+            <!-- <div class="border-bf6 list-row" (click)="router2QrCode()"> -->
+            <div class="border-bf6 dark-borderbottom-333 list-row">
+                <ion-label class="w-40 fontS-d32">群号
+                    <!-- /二维码 -->
+                </ion-label>
+                <div class="w-60 text-al-right">
+                    <i class="fontS-d32 mr-d2">{{groupSetting.groupNo}}</i>
+                    <!-- <i class="iconfont iconqrcode fontS-d32 mr-d2"></i> -->
+                    <!-- <i class="iconfont iconmore color9 fontS-d28"></i> -->
+                </div>
+            </div>
+        </ion-item>
+        <!-- 管理者-->
+        <ion-item>
+            <div class="border-bf6 dark-borderbottom-333 w-100" (click)="router2GroupNotice()">
+                <ion-label class="w-100 fontS-d32 group-gonggao-title">群公告</ion-label>
+                <div class="ion-flex ion-justify-content-between group-notice">
+                    <p class="fontS-d28 mr-d12 color6 line-clamp-3">{{groupSetting.notice }}</p>
+                    <i class="iconfont iconmore color9 fontS-d28"></i>
+                </div>
+            </div>
+        </ion-item>
+        <!-- 非管理者-->
+        <!-- <ion-item *ngIf="currentUser!=owner">
+            <div class="border-bf6 dark-borderbottom-333 w-100">
+                <ion-label class="w-100 fontS-d32 group-gonggao-title">群公告</ion-label>
+                <div class="ion-flex ion-justify-content-between group-notice">
+                    <span class="fontS-d32 mr-d2 color6 line-clamp-3">{{groupSetting.notice}}</span>
+                </div>
+            </div>
+        </ion-item> -->
 
 
-    <ion-item>
-      <div class="border-bf6 dark-borderbottom-333 list-row" (click)="router2SearchHis()">
-        <ion-label class="w-40 fontS-d32">查看聊天记录</ion-label>
-        <div>
-          <span class="fontS-d32 mr-d2 color6" *ngIf="!isIos">图片、文件、链接等</span>
-          <span class="fontS-d32 mr-d2 color6" *ngIf="isIos">图片、链接等</span>
-          <i class="iconfont iconmore color9 fontS-d28"></i>
-        </div>
-      </div>
-    </ion-item>
-    <!--<ion-item>
-        <div class="border-bf6 dark-borderbottom-333 list-row list-row-toggle">
-            <ion-label class="w-40 fontS-d32">消息免打扰</ion-label>
-            <ion-toggle mode="md" [(ngModel)]="groupSetting.quiet" (ionChange)="changeQuiet()"></ion-toggle>
-        </div>
-    </ion-item>-->
-    <ion-item>
-      <div class="border-bf6 dark-borderbottom-333 list-row list-row-toggle">
-        <ion-label class="w-40 fontS-d32">置顶聊天</ion-label>
-        <ion-toggle mode="md" [(ngModel)]="groupSetting.top" (ionChange)="changeTop()"></ion-toggle>
-      </div>
-    </ion-item>
-    <!-- 管理者-->
-    <ion-item *ngIf="owner==currentUser">
-      <div class="border-bf6 dark-borderbottom-333 list-row list-row-toggle">
-        <ion-label class="w-30 fontS-d32">设置禁言</ion-label>
-        <ion-toggle mode="md" checked="{{groupSetting.beQuiet}}" (click)="changeGroupQuiet()"></ion-toggle>
+        <ion-item>
+            <div class="border-bf6 dark-borderbottom-333 list-row" (click)="router2SearchHis()">
+                <ion-label class="w-40 fontS-d32">查看聊天记录</ion-label>
+                <div>
+                    <span class="fontS-d32 mr-d2 color6" *ngIf="!isIos">图片、文件、链接等</span>
+                    <span class="fontS-d32 mr-d2 color6" *ngIf="isIos">图片、链接等</span>
+                    <i class="iconfont iconmore color9 fontS-d28"></i>
+                </div>
+            </div>
+        </ion-item>
+        <!--<ion-item>
+            <div class="border-bf6 dark-borderbottom-333 list-row list-row-toggle">
+                <ion-label class="w-40 fontS-d32">消息免打扰</ion-label>
+                <ion-toggle mode="md" [(ngModel)]="groupSetting.quiet" (ionChange)="changeQuiet()"></ion-toggle>
+            </div>
+        </ion-item>-->
+        <ion-item>
+            <div class="border-bf6 dark-borderbottom-333 list-row list-row-toggle">
+                <ion-label class="w-40 fontS-d32">置顶聊天</ion-label>
+                <ion-toggle mode="md" [(ngModel)]="groupSetting.top" (ionChange)="changeTop()"></ion-toggle>
+            </div>
+        </ion-item>
+        <!-- 管理者-->
+        <ion-item *ngIf="this.groupSetting.owner==currentUser">
+            <div class="border-bf6 dark-borderbottom-333 list-row list-row-toggle">
+                <ion-label class="w-30 fontS-d32">设置禁言</ion-label>
+                <ion-toggle mode="md" [(ngModel)]="groupSetting.mute" (click)="changeGroupQuiet()"></ion-toggle>
 
-      </div>
-    </ion-item>
-    <!-- 非管理者-->
-    <!-- <ion-item *ngIf="owner!=currentUser">
-        <div class="border-bf6 list-row list-row-toggle">
-            <ion-label class="w-40 fontS-d32">设置禁言</ion-label>
-            <ion-toggle mode="md" checked="{{groupSetting.beQuiet}}" disabled></ion-toggle>
-        </div>
-    </ion-item> -->
-    <ion-item>
-      <div class="border-bf6 dark-borderbottom-333 list-row" (click)="router2UserGroupNickname()">
-        <ion-label class="w-40 fontS-d32">我的群昵称</ion-label>
-        <div class="w-60 text-al-right">
-          <span class="fontS-d32 mr-d2 color6">{{groupSetting.userNickname}}</span>
-          <i class="iconfont iconmore color9 fontS-d28"></i>
-        </div>
-      </div>
-    </ion-item>
-    <!-- 管理员-->
-    <ion-item *ngIf="currentUser==owner">
-      <div class="border-bf6 dark-borderbottom-333 list-row list-row-toggle">
-        <ion-label class="w-60 fontS-d32">群聊邀请确认</ion-label>
-        <ion-toggle mode="md" [(ngModel)]="groupSetting.confirmJoinGroup" (ionChange)="changeGroupConfirm()">
-        </ion-toggle>
-      </div>
-    </ion-item>
-    <!-- 非管理-->
-    <!-- <ion-item *ngIf="currentUser!=owner">
-        <div class="border-bf6 list-row list-row-toggle">
-            <ion-label class="w-60 fontS-d32">群聊邀请确认</ion-label>
-            <ion-toggle mode="md" [(ngModel)]="groupSetting.confirmJoinGroup" disabled></ion-toggle>
-        </div>
-    </ion-item> -->
-    <ion-item (click)="deleteGroupConversation()">
-      <div class="border-bf6 dark-borderbottom-333 list-row">
-        <ion-label class="w-60 fontS-d32">清空聊天记录</ion-label>
-        <div>
-          <i class="iconfont iconmore color9 fontS-d28"></i>
-        </div>
-      </div>
-    </ion-item>
-  </ion-list>
+            </div>
+        </ion-item>
+        <!-- 非管理者-->
+        <!-- <ion-item *ngIf="owner!=currentUser">
+            <div class="border-bf6 list-row list-row-toggle">
+                <ion-label class="w-40 fontS-d32">设置禁言</ion-label>
+                <ion-toggle mode="md" checked="{{groupSetting.beQuiet}}" disabled></ion-toggle>
+            </div>
+        </ion-item> -->
+        <ion-item>
+            <div class="border-bf6 dark-borderbottom-333 list-row" (click)="router2UserGroupNickname()">
+                <ion-label class="w-40 fontS-d32">我的群昵称</ion-label>
+                <div class="w-60 text-al-right">
+                    <span class="fontS-d32 mr-d2 color6">{{groupSetting.userNickname}}</span>
+                    <i class="iconfont iconmore color9 fontS-d28"></i>
+                </div>
+            </div>
+        </ion-item>
+        <!-- 管理员-->
+        <ion-item *ngIf="currentUser==this.groupSetting.owner">
+            <div class="border-bf6 dark-borderbottom-333 list-row list-row-toggle">
+                <ion-label class="w-60 fontS-d32">群聊邀请确认</ion-label>
+                <ion-toggle mode="md" [(ngModel)]="groupSetting.confirmJoin" (click)="changeGroupConfirm()">
+                </ion-toggle>
+            </div>
+        </ion-item>
+        <!-- 非管理-->
+        <!-- <ion-item *ngIf="currentUser!=owner">
+            <div class="border-bf6 list-row list-row-toggle">
+                <ion-label class="w-60 fontS-d32">群聊邀请确认</ion-label>
+                <ion-toggle mode="md" [(ngModel)]="groupSetting.confirmJoinGroup" disabled></ion-toggle>
+            </div>
+        </ion-item> -->
+        <ion-item (click)="deleteGroupConversation()">
+            <div class="border-bf6 dark-borderbottom-333 list-row">
+                <ion-label class="w-60 fontS-d32">清空聊天记录</ion-label>
+                <div>
+                    <i class="iconfont iconmore color9 fontS-d28"></i>
+                </div>
+            </div>
+        </ion-item>
+    </ion-list>
 
-  <ion-row class="ion-text-center list-row dismiss-group dark-bg-9" *ngIf="currentUser==owner"
-           (click)="dismissGroup()">
-    <ion-col class="color-primary dark-color-9">删除并退出</ion-col>
-  </ion-row>
-  <ion-row class="ion-text-center list-row dismiss-group dark-bg-9" *ngIf="currentUser!=owner" (click)="quitGroup()">
-    <ion-col class="color-primary dark-color-9">删除并退出</ion-col>
-  </ion-row>
+    <ion-row class="ion-text-center list-row dismiss-group dark-bg-9" (click)="dismissGroup()">
+        <ion-col class="color-primary dark-color-9">删除并退出</ion-col>
+    </ion-row>
 </ion-content>

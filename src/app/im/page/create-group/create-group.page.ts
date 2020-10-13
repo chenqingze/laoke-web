@@ -42,6 +42,22 @@ export class CreateGroupPage implements OnInit {
             this.maxMemberCount = d.max;
         });
 
+        this.groupSer.queryFriends().toPromise().then((d) => {
+            this.friendList = d.friends;
+            console.log(this.friendList);
+            for (let i = 0; i < this.friendList.length; i++) {
+                this.friendList[i].display = true;
+
+                if (this.letters.length == 0) {
+                    this.letters.push(this.friendList[i].pinyin);
+                } else {
+                    if (this.letters.indexOf(this.friendList[i].pinyin) == -1) {
+                        this.letters.push(this.friendList[i].pinyin);
+                    }
+                }
+            }
+
+        });
     }
 
     scrollToTop(letter) {
@@ -67,6 +83,56 @@ export class CreateGroupPage implements OnInit {
         }
     }
 
+    checked(friend: GroupFriendModel) {
+        for (let i = 0; i < this.friendList.length; i++) {
+            const selected = this.friendList[i].friendId;
+            const friendId = friend.friendId;
+            if (friendId === selected) {
+                if (this.selected.indexOf(selected) > -1) {
+                    this.selected.splice(this.selected.indexOf(selected), 1);
+                } else {
+                    this.selected.push(selected);
+                }
+            }
+        }
+
+        console.log(this.selected);
+    }
+
+    checked1(friendId) {
+        console.log(friendId);
+        this.selected.splice(this.selected.indexOf(friendId), 1);
+        for (let i = 0; i < this.friendList.length; i++) {
+            const selected = this.friendList[i].friendId;
+            if (friendId === selected) {
+                this.friendList[i].checked = false;
+            }
+
+        }
+    }
+
+    // 跳转至设置群名称
+    router2GroupName() {
+
+        if (this.selected.length > this.maxMemberCount) {
+            this.dialog.presentAlert('群成员数量过多，最多为:' + this.maxMemberCount);
+            return;
+        }
+        if (this.selected.length === 0) {
+            this.dialog.presentAlert('请选择好友!');
+            return;
+        }
+        if (this.selected.length < 2) {
+            this.dialog.presentAlert('至少要选择两个好友!');
+            return;
+        }
+        if (this.selected.length > 0) {
+            this.router.navigate(['/tabs/im/set-group-name', {
+                selected: this.selected,
+                owner: this.currentUser
+            }]);
+        }
+    }
 
 
 }

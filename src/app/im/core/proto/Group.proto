@@ -3,7 +3,7 @@ syntax = "proto3";
 //***********************群组相关操作***********************//
 
 message CreateGroupRequest{
-  repeated string user = 1;
+  repeated string users = 1;
   string owner = 2;
   string header = 3;
   string name = 4;
@@ -17,6 +17,7 @@ message CreateGroupAck{
   string owner = 4;
   string name = 5;
   string header = 6;
+  string group_no=7;
 }
 
 //解散群
@@ -86,4 +87,78 @@ message InvitationJoinGroupAck{
   string group_id = 1;
   string success = 2;
   string message = 3;
+}
+message RemoveGroupMemberRequest{
+  string group_id = 1;
+  repeated string user = 2;
+  string current_user = 3;
+  string message = 4;
+  string success = 5;
+}
+message RemoveGroupMemberAck{
+  string group_id = 1;
+  string message = 2;
+  string success = 3;
+}
+message ChangeGroupNameRequest{
+  string group_id = 1;
+  string group_name = 2;
+  string success = 3;
+  string message = 4;
+}
+message ChangeGroupNameAck{
+  string group_id = 1;
+  string group_name = 2;
+  string success = 3;
+  string message = 4;
+}
+message ChangeGroupNoticeRequest{
+  string group_id = 1;
+  string notice = 2;
+  string success = 3;
+  string message = 4;
+}
+message ChangeGroupNoticeAck{
+  string group_id = 1;
+  string notice = 2;
+  string success = 3;
+  string message = 4;
+}
+message ChangeMucMuteRequest{
+  string group_id = 1;
+  bool mute = 2;
+  string success = 3;
+  string message = 4;
+}
+
+message ChangeMucMuteAck{
+  string group_id = 1;
+  bool mute = 2;
+  string success = 3;
+  string message = 4;
+}
+message ChangeMucConfirmJoinRequest{
+  string group_id = 1;
+  bool confirm = 2;
+  string success = 3;
+  string message = 4;
+}
+message ChangeMucConfirmJoinAck{
+  string group_id = 1;
+  bool confirm = 2;
+  string success = 3;
+  string message = 4;
+}
+message ExitGroupRequest{
+  string group_id = 1;
+  string user_id = 2;
+  string success = 3;
+  string message = 4;
+}
+
+message ExitGroupAck{
+  string group_id = 1;
+  string user_id = 2;
+  string success = 3;
+  string message = 4;
 }

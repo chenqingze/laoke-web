@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="mr-d16">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>移除群成员</ion-title>
+    <ion-buttons slot="end">
+      <span (click)="detachUser()" class="fontS-d28 mr-d32 colorf publish-btn">移除</span>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+  <ion-searchbar placeholder="请输入成员名称" [(ngModel)]="searchContent" (ionChange)="input()"></ion-searchbar>
+  <div class="letter">
+    <div class="letter-right">
+      <span *ngFor="let letter of allLetters" (click)="scrollToTop(letter)">{{letter}}</span>
+    </div>
+  </div>
+  <ion-list>
+    <ion-item-group *ngFor="let letter of letters">
+      <ion-item-divider color="light" id="{{letter}}">
+        <ion-label>{{letter}}</ion-label>
+      </ion-item-divider>
+      <ion-item *ngFor="let h of memberList" lines="none">
+        <ion-checkbox slot="start" class="che-box" mode="ios" *ngIf="letter==h.pinyin" (ionChange)="checked(h)"></ion-checkbox>
+        <ion-avatar slot="start" *ngIf="letter==h.pinyin">
+          <img src="{{h.header}}">
+        </ion-avatar>
+        <p class="fontS-d32" [innerHTML]="h.nickname" *ngIf="letter==h.pinyin"></p>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>
