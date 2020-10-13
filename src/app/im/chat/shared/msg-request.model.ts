@@ -14,6 +14,7 @@ export class MsgRequestModel extends BaseModel {
     time: number;
     extendData: string;
     senderId: string;
+    receiverId: string;
 
 
     readonly opCode = OpCode.MSG_REQUEST;
@@ -21,7 +22,7 @@ export class MsgRequestModel extends BaseModel {
     convertMessageToModel(message: Message): BaseModel {
         const msgRequest = message.getMsgRequest();
         this.msgId = msgRequest.getMsgId();
-        this.conversationId = msgRequest.getConversationId();
+        this.receiverId = msgRequest.getReceiverId();
         this.conversationType = msgRequest.getConversationType();
         this.msgStatus = msgRequest.getMsgStatus();
         this.msgType = msgRequest.getMsgType();
@@ -36,8 +37,8 @@ export class MsgRequestModel extends BaseModel {
     convertToMessage(): Message {
         const msgRequest = new MsgRequest();
         msgRequest.setMsgId('123');
-        msgRequest.setConversationId(this.conversationId);
-        msgRequest.setConversationType(1);
+        msgRequest.setReceiverId(this.receiverId);
+        msgRequest.setConversationType(0);
         msgRequest.setMsgStatus(0);
         msgRequest.setMsgType(this.msgType);
         msgRequest.setMsgAttachstr(this.msgAttachstr);

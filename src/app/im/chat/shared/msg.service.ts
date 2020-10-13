@@ -4,9 +4,11 @@ import {concatMap} from 'rxjs/operators';
 import {InvitationRequestAckModel} from '../../addfriendgroup/shared/friend-invitation-request-ack.model';
 import {WebSocketService} from '../../core/web-socket.service';
 import {MsgAckModel} from './msg-ack.model';
-import {of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {DbService} from '../../shared/db.service';
 import {MsgReadNotifyModel} from './msg-read-notify.model';
+import {MsgModel} from './msg.model';
+import {MsgRequestModel} from './msg-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -67,16 +69,36 @@ export class MsgService {
       }));
   }
 
-  private addMsg(msgReadNotifyModel: MsgReadNotifyModel) {
+    addMsg(msgReadNotifyModel: MsgReadNotifyModel) {
       const m = msgReadNotifyModel;
-      const sql = 'insert or update into msg_hist (seq, id, conversationType, conversationId, senderId, msgDirection, msgType, msgStatus, ' +
+      const sql = 'insert or replace into msg_hist (seq, id, conversationType, conversationId, senderId, msgDirection, msgType, msgStatus, ' +
           'content, createdAt, updatedAt, revokeAt)values (?,?,?,?,?,?,?,?,?,?,?,?);';
       return this.dbService.dbReady$().pipe(concatMap(isDbReady => {
           if (isDbReady) {
-              return this.dbService.storage.executeSql(sql, [m.seq, m.msgId, m.conversationType, m.conversationId, m.senderId, "ccc",
+              return this.dbService.storage.executeSql(sql, [m.seq, m.msgId, m.conversationType, m.conversationId, m.senderId, 'ccc',
               m.msgType, m.msgStatus, m.content, m.time, m.time, m.time]);
           }
           return of(null);
       }));
   }
+
+    getMsg(friendId: string): Observable<any>{
+      const sql = 'select * from msg_hist where receiverId = ?';
+      return this.dbService.dbReady$().pipe(concatMap(isDbReady => {
+          if (isDbReady) {
+              return this.dbService.storage.executeSql(sql, [friendId]);
+          }
+          return of(null);
+      }));
+    }
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    addMsgRequestModel(msgRequestModel: MsgRequestModel){
+      const m: MsgRequestModel = msgRequestModel;
+      const sql = 'insert or replace into msg_hist(msgId,senderId,receiverId,conversationType,msgType,msgStatus,content) '
+          + 'values(?,?,?,?,?,?,?);';
+      return this.dbService.storage.executeSql(sql, m.msgId, m.senderId, m.receiverId, m.conversationType, m.msgType,
+          m.msgStatus, m.content);
+    }
 }

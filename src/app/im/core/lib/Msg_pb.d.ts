@@ -34,6 +34,9 @@ export class MsgRequest extends jspb.Message {
   getSenderId(): string;
   setSenderId(value: string): void;
 
+  getReceiverId(): string;
+  setReceiverId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MsgRequest.AsObject;
   static toObject(includeInstance: boolean, msg: MsgRequest): MsgRequest.AsObject;
@@ -56,6 +59,7 @@ export namespace MsgRequest {
     time: number,
     extendData: string,
     senderId: string,
+    receiverId: string,
   }
 }
 
@@ -68,6 +72,12 @@ export class MsgAck extends jspb.Message {
 
   getConversationType(): string;
   setConversationType(value: string): void;
+
+  getCreatedAt(): number;
+  setCreatedAt(value: number): void;
+
+  getUpdatedAt(): number;
+  setUpdatedAt(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MsgAck.AsObject;
@@ -84,6 +94,8 @@ export namespace MsgAck {
     msgId: string,
     seq: string,
     conversationType: string,
+    createdAt: number,
+    updatedAt: number,
   }
 }
 
@@ -118,6 +130,15 @@ export class MsgReadNotify extends jspb.Message {
   getSenderId(): string;
   setSenderId(value: string): void;
 
+  getReceiverId(): string;
+  setReceiverId(value: string): void;
+
+  getCreatedAt(): number;
+  setCreatedAt(value: number): void;
+
+  getUpdatedAt(): number;
+  setUpdatedAt(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MsgReadNotify.AsObject;
   static toObject(includeInstance: boolean, msg: MsgReadNotify): MsgReadNotify.AsObject;
@@ -140,6 +161,9 @@ export namespace MsgReadNotify {
     time: number,
     extendData: string,
     senderId: string,
+    receiverId: string,
+    createdAt: number,
+    updatedAt: number,
   }
 }
 

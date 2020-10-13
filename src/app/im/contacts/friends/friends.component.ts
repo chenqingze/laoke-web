@@ -45,7 +45,7 @@ export class FriendsComponent implements OnInit {
                     // if(friend.status != "effective") continue;
                     friendList.push(friend);
 
-                    const arrays = pinyin(friend.alias ? friend.alias : friend.nickname, {style: pinyin.STYLE_NORMAL});
+                    const arrays = pinyin(friend.alias ? friend.alias : friend.friendName, {style: pinyin.STYLE_NORMAL});
                     const byte = arrays[0][0];
                     const first = byte.split('')[0].toUpperCase();
                     const isletter = /^[a-zA-Z]+$/.test(first);

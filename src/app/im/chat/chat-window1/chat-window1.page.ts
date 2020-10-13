@@ -17,6 +17,11 @@ export class ChatWindow1Page implements OnInit {
 
   msgs: Array<MsgModel>;
 
+  keyBoardShow: boolean;
+  voiceShow: boolean;
+  emojiShow: boolean;
+  mediaShow: boolean;
+
   constructor(
       private router: Router,
       private route: ActivatedRoute,
@@ -24,6 +29,10 @@ export class ChatWindow1Page implements OnInit {
   ) {
     console.log('ChatWindowPage constructor ...');
     this.friend = new Friend();
+    this.keyBoardShow = false;
+    this.voiceShow = true;
+    this.emojiShow = true;
+    this.mediaShow = false;
   }
 
   ngOnInit() {

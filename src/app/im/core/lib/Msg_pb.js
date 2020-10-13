@@ -229,7 +229,8 @@ proto.MsgRequest.toObject = function(includeInstance, msg) {
     content: jspb.Message.getFieldWithDefault(msg, 7, ""),
     time: jspb.Message.getFieldWithDefault(msg, 8, 0),
     extendData: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    senderId: jspb.Message.getFieldWithDefault(msg, 10, "")
+    senderId: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    receiverId: jspb.Message.getFieldWithDefault(msg, 11, "")
   };
 
   if (includeInstance) {
@@ -305,6 +306,10 @@ proto.MsgRequest.deserializeBinaryFromReader = function(msg, reader) {
     case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.setSenderId(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setReceiverId(value);
       break;
     default:
       reader.skipField();
@@ -402,6 +407,13 @@ proto.MsgRequest.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       10,
+      f
+    );
+  }
+  f = message.getReceiverId();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
       f
     );
   }
@@ -588,6 +600,24 @@ proto.MsgRequest.prototype.setSenderId = function(value) {
 };
 
 
+/**
+ * optional string receiver_id = 11;
+ * @return {string}
+ */
+proto.MsgRequest.prototype.getReceiverId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.MsgRequest} returns this
+ */
+proto.MsgRequest.prototype.setReceiverId = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
 
 
 
@@ -622,7 +652,9 @@ proto.MsgAck.toObject = function(includeInstance, msg) {
   var f, obj = {
     msgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     seq: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    conversationType: jspb.Message.getFieldWithDefault(msg, 3, "")
+    conversationType: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    createdAt: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    updatedAt: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -671,6 +703,14 @@ proto.MsgAck.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setConversationType(value);
       break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setCreatedAt(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setUpdatedAt(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -718,6 +758,20 @@ proto.MsgAck.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getCreatedAt();
+  if (f !== 0) {
+    writer.writeUint64(
+      4,
+      f
+    );
+  }
+  f = message.getUpdatedAt();
+  if (f !== 0) {
+    writer.writeUint64(
+      5,
       f
     );
   }
@@ -778,6 +832,42 @@ proto.MsgAck.prototype.setConversationType = function(value) {
 };
 
 
+/**
+ * optional uint64 created_at = 4;
+ * @return {number}
+ */
+proto.MsgAck.prototype.getCreatedAt = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.MsgAck} returns this
+ */
+proto.MsgAck.prototype.setCreatedAt = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional uint64 updated_at = 5;
+ * @return {number}
+ */
+proto.MsgAck.prototype.getUpdatedAt = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.MsgAck} returns this
+ */
+proto.MsgAck.prototype.setUpdatedAt = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
 
 
 
@@ -819,7 +909,10 @@ proto.MsgReadNotify.toObject = function(includeInstance, msg) {
     content: jspb.Message.getFieldWithDefault(msg, 7, ""),
     time: jspb.Message.getFieldWithDefault(msg, 8, 0),
     extendData: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    senderId: jspb.Message.getFieldWithDefault(msg, 10, "")
+    senderId: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    receiverId: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    createdAt: jspb.Message.getFieldWithDefault(msg, 12, 0),
+    updatedAt: jspb.Message.getFieldWithDefault(msg, 13, 0)
   };
 
   if (includeInstance) {
@@ -895,6 +988,18 @@ proto.MsgReadNotify.deserializeBinaryFromReader = function(msg, reader) {
     case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.setSenderId(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setReceiverId(value);
+      break;
+    case 12:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setCreatedAt(value);
+      break;
+    case 13:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setUpdatedAt(value);
       break;
     default:
       reader.skipField();
@@ -992,6 +1097,27 @@ proto.MsgReadNotify.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       10,
+      f
+    );
+  }
+  f = message.getReceiverId();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
+      f
+    );
+  }
+  f = message.getCreatedAt();
+  if (f !== 0) {
+    writer.writeUint64(
+      12,
+      f
+    );
+  }
+  f = message.getUpdatedAt();
+  if (f !== 0) {
+    writer.writeUint64(
+      13,
       f
     );
   }
@@ -1175,6 +1301,60 @@ proto.MsgReadNotify.prototype.getSenderId = function() {
  */
 proto.MsgReadNotify.prototype.setSenderId = function(value) {
   return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * optional string receiver_id = 11;
+ * @return {string}
+ */
+proto.MsgReadNotify.prototype.getReceiverId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.MsgReadNotify} returns this
+ */
+proto.MsgReadNotify.prototype.setReceiverId = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional uint64 created_at = 12;
+ * @return {number}
+ */
+proto.MsgReadNotify.prototype.getCreatedAt = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.MsgReadNotify} returns this
+ */
+proto.MsgReadNotify.prototype.setCreatedAt = function(value) {
+  return jspb.Message.setProto3IntField(this, 12, value);
+};
+
+
+/**
+ * optional uint64 updated_at = 13;
+ * @return {number}
+ */
+proto.MsgReadNotify.prototype.getUpdatedAt = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.MsgReadNotify} returns this
+ */
+proto.MsgReadNotify.prototype.setUpdatedAt = function(value) {
+  return jspb.Message.setProto3IntField(this, 13, value);
 };
 
 

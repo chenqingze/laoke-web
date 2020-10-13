@@ -8,10 +8,10 @@
   </ion-toolbar>
 </ion-header>
 
-<!--<ion-content #content (click)="focusInput()" scroll="true" class="dark-bg-9">
+<ion-content #content (click)="focusInput()" scroll="true" class="dark-bg-9">
   <ion-grid id="con" style="position: relative" [ngStyle]="{'padding-bottom': shareType=='info' || shareType=='good' ? '2.2rem':'0.6rem'}">
 
-    <div *ngFor="let item of msgs;let i=index" id="{{item.id}}">
+    <div *ngFor="let item of msgs;let i=index" id="{{item.msgId}}">
 
       <div class="loader" style="position: absolute;margin-top: 1.5rem;right: 1.8rem" *ngIf="item.msgStatus=='0'">
         <div class="ball-beat">
@@ -23,21 +23,22 @@
 
       <ion-row>
         <ion-col class="ion-text-center mt-d42 mb-d2" *ngIf="(i>0 && item.createdAt-msgs[i-1].createdAt)>300000">
-&lt;!&ndash;          <span class="date-time dark-bg-8 dark-color-7">{{item.createdAt|chatTime}}</span>&ndash;&gt;
+<!--          <span class="date-time dark-bg-8 dark-color-7">{{item.createdAt|chatTime}}</span>-->
           <span class="date-time dark-bg-8 dark-color-7">{{item.createdAt}}</span>
         </ion-col>
       </ion-row>
 
-      &lt;!&ndash; 我发送的信息 &ndash;&gt;
+      <!-- 我发送的信息 -->
 
       <ion-row class="mt-d28 ion-flex ion-justify-content-end" *ngIf="item.senderId == user.userId &&item.msgStatus!=4 &&item.msgStatus!=6">
-        &lt;!&ndash;文本&ndash;&gt;
+        <!--文本-->
         <ion-col size="8" class="pr-d2 pl-d20" *ngIf="item.msgType=='0'" (press)="hammer(item)" [style.touch-action]="'pan-y'">
           <p class="message my_message replace-br">{{item.content}}</p>
         </ion-col>
-        &lt;!&ndash;@&ndash;&gt;
-        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==18" (press)="hammer(item)" [style.touch-action]="'pan-y'">
-          <p class="message my_message">{{item.content|talkAt}}</p>
+        <!--@-->
+       <!-- <ion-col size="8" class="pr-d2" *ngIf="item.msgType==18" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+&lt;!&ndash;          <p class="message my_message">{{item.content|talkAt}}</p>&ndash;&gt;
+          <p class="message my_message">{{item.content}}</p>
         </ion-col>
         &lt;!&ndash; 语音&ndash;&gt;
         <ion-col size="8" class="pr-d2" *ngIf="item.msgType==1" (press)="hammer(item)">
@@ -121,33 +122,33 @@
             <app-talk-dynamic [dynamicString]="item.content" (click)="openDynamic(item.content)">
             </app-talk-dynamic>
           </p>
-        </ion-col>
+        </ion-col>-->
 
         <ion-col class="line-height1" size="2" *ngIf="item.msgType!=14&&item.msgType!=16&&item.msgType!=4">
-          <img class="avatar-img" src="{{user.profile|imgUrl}}" onerror="this.src='assets/default-head.png'" (click)="openPersonalHome(item.senderId)">
-
-          &lt;!&ndash;<ion-label class="group-nickname">{{msg.nickname}}</ion-label>&ndash;&gt;
+<!--          <img class="avatar-img" src="{{user.profile|imgUrl}}" onerror="this.src='assets/default-head.png'" (click)="openPersonalHome(item.senderId)">-->
+          <img class="avatar-img" src="{{user.profile}}" onerror="this.src='assets/default-head.png'">
         </ion-col>
 
-        <ion-checkbox class="multiple-check" *ngIf="isMultiple&&item.msgType!=14&&item.msgType!=16&&item.msgStatus!=4" (ionChange)="multipleCheck(item)"></ion-checkbox>
+<!--        <ion-checkbox class="multiple-check" *ngIf="isMultiple&&item.msgType!=14&&item.msgType!=16&&item.msgStatus!=4" (ionChange)="multipleCheck(item)"></ion-checkbox>-->
       </ion-row>
 
-      &lt;!&ndash; 对方发送的信息 &ndash;&gt;
+      <!-- 对方发送的信息 -->
       <ion-row class="mt-d28 pl-d20" *ngIf="item.receiverId == user.userId &&item.msgStatus!=4 &&item.msgStatus!=6" [id]="item.msgId">
-        &lt;!&ndash;<ion-row class="line-height1" size="2">
+        <!--<ion-row class="line-height1" size="2">
             <ion-col class="ion-text-center mt-d42 mb-d2" *ngIf="(item.createdAt-createdAt)>300000">
                 <span class="date-time">{{item.createdAt|chatTime}}</span>
             </ion-col>
-        </ion-row>&ndash;&gt;
+        </ion-row>-->
         <ion-col size="2" class="line-height1" *ngIf="item.msgType!=14&&item.msgType!=16&&item.msgType!=4">
-          <img class="avatar-img" src="{{chatter.profile|imgUrl}}" onerror="this.src='assets/default-head.png'" (click)="openPersonalHome(item.senderId)">
+<!--          <img class="avatar-img" src="{{friend.profile|imgUrl}}" onerror="this.src='assets/default-head.png'" (click)="openPersonalHome(item.senderId)">-->
+          <img class="avatar-img" src="{{friend.friendProfile}}" onerror="this.src='assets/default-head.png'">
         </ion-col>
-        &lt;!&ndash;文本&ndash;&gt;
+        <!--文本-->
         <ion-col size="8" class="pr-d2" *ngIf="item.msgType==0" (press)="hammer(item)" [style.touch-action]="'pan-y'">
           <p class="message other_message replace-br">{{item.content}}</p>
         </ion-col>
-        &lt;!&ndash;@&ndash;&gt;
-        <ion-col size="8" class="pr-d2" *ngIf="item.msgType==18" (press)="hammer(item)" [style.touch-action]="'pan-y'">
+        <!--@-->
+       <!-- <ion-col size="8" class="pr-d2" *ngIf="item.msgType==18" (press)="hammer(item)" [style.touch-action]="'pan-y'">
           <p class="message other_message">{{item.content|talkAt}}</p>
         </ion-col>
         &lt;!&ndash; 产品&ndash;&gt;
@@ -240,10 +241,10 @@
           </div>
         </ion-col>
 
-        <ion-checkbox class="multiple-check" *ngIf="isMultiple&&item.msgType!=14&&item.msgType!=16&&item.msgStatus!=4" (ionChange)="multipleCheck(item)"></ion-checkbox>
+        <ion-checkbox class="multiple-check" *ngIf="isMultiple&&item.msgType!=14&&item.msgType!=16&&item.msgStatus!=4" (ionChange)="multipleCheck(item)"></ion-checkbox>-->
       </ion-row>
 
-      <ion-row *ngIf="item.msgType==14">
+      <!--<ion-row *ngIf="item.msgType==14">
         <ion-col class="ion-text-center reject-message">{{item.content}}</ion-col>
       </ion-row>
       <ion-row *ngIf="item.msgType==16">
@@ -262,16 +263,16 @@
         <ion-col class="ion-text-center reject-message">
           <p>对方撤回了一条消息!</p>
         </ion-col>
-      </ion-row>
+      </ion-row>-->
     </div>
   </ion-grid>
 
-  &lt;!&ndash;一键回到未读消息&ndash;&gt;
-  &lt;!&ndash;<div class="unread-message" *ngIf="unReadCount>4" (click)="scrollToUnread()">
+  <!--一键回到未读消息-->
+  <!--<div class="unread-message" *ngIf="unReadCount>4" (click)="scrollToUnread()">
     <span class="fontS-d28">{{unReadCount}}条新消息</span>
-  </div>&ndash;&gt;
+  </div>-->
   <div id="bottom"></div>
-</ion-content>-->
+</ion-content>
 
 <ion-footer style="background: rgb(247,247,247);">
   <div [ngStyle]="{'display':showKeyboard ? 'block':'none'}" class="showKeyboard">

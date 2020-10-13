@@ -12,15 +12,18 @@ import {HttpHandler} from '@angular/common/http';
 import {EmojiPickerComponent} from '../../components/emoji-picker/emoji-picker.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    GroupChatPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        GroupChatPageRoutingModule
+    ],
     declarations: [GroupChatPage, EmojiPickerComponent],
-  providers: [
-      GroupService,
-  ]
+    exports: [
+        EmojiPickerComponent
+    ],
+    providers: [
+        GroupService,
+    ]
 })
 export class GroupChatPageModule {}
