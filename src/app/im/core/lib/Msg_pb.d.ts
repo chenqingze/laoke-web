@@ -70,8 +70,8 @@ export class MsgAck extends jspb.Message {
   getSeq(): string;
   setSeq(value: string): void;
 
-  getConversationType(): string;
-  setConversationType(value: string): void;
+  getConversationType(): number;
+  setConversationType(value: number): void;
 
   getCreatedAt(): number;
   setCreatedAt(value: number): void;
@@ -93,7 +93,7 @@ export namespace MsgAck {
   export type AsObject = {
     msgId: string,
     seq: string,
-    conversationType: string,
+    conversationType: number,
     createdAt: number,
     updatedAt: number,
   }

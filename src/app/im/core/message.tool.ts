@@ -46,17 +46,17 @@ export class MessageTool {
             case OpCode.QUERY_USER_GROUP_ACK:
                 return QueryGroupAckModel.createMessageModel().convertMessageToModel(message);
             case OpCode.MSG_REQUEST:
-                if (message.getMsgRequest().getConversationType() == 0){
+                if (message.getMsgRequest().getConversationType()){
                     return MsgRequestModel.createMessageModel().convertMessageToModel(message);
                 }
-                if (message.getMsgRequest().getConversationType() == 1){
+                if (message.getMsgRequest().getConversationType() === 1){
                     return GroupMsgRequestModel.createMessageModel().convertMessageToModel(message);
                 }
             case OpCode.MSG_ACK:
-                if (message.getMsgAck().getConversationType() == 0){
+                if (ConversationType.P2P === message.getMsgAck().getConversationType()){
                     return MsgAckModel.createMessageModel().convertMessageToModel(message);
                 }
-                if (message.getMsgAck().getConversationType() == 1){
+                if (ConversationType.MUC === message.getMsgAck().getConversationType()){
                     return GroupMsgAckModel.createMessageModel().convertMessageToModel(message);
                 }
             case OpCode.CREATE_GROUP_ACK:

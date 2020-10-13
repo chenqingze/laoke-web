@@ -652,7 +652,7 @@ proto.MsgAck.toObject = function(includeInstance, msg) {
   var f, obj = {
     msgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     seq: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    conversationType: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    conversationType: jspb.Message.getFieldWithDefault(msg, 3, 0),
     createdAt: jspb.Message.getFieldWithDefault(msg, 4, 0),
     updatedAt: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
@@ -700,7 +700,7 @@ proto.MsgAck.deserializeBinaryFromReader = function(msg, reader) {
       msg.setSeq(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {number} */ (reader.readUint32());
       msg.setConversationType(value);
       break;
     case 4:
@@ -755,8 +755,8 @@ proto.MsgAck.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getConversationType();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f !== 0) {
+    writer.writeUint32(
       3,
       f
     );
@@ -815,20 +815,20 @@ proto.MsgAck.prototype.setSeq = function(value) {
 
 
 /**
- * optional string conversation_type = 3;
- * @return {string}
+ * optional uint32 conversation_type = 3;
+ * @return {number}
  */
 proto.MsgAck.prototype.getConversationType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {number} value
  * @return {!proto.MsgAck} returns this
  */
 proto.MsgAck.prototype.setConversationType = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 

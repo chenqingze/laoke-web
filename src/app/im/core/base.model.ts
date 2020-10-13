@@ -1,7 +1,7 @@
 import {Message} from './lib/Message_pb';
 import * as OpCode_pb from './lib/OpCode_pb';
 import {ImConfig, injector} from '../im.config';
-import {DbUtil} from './DbUtil';
+import {DbUtil} from './db-util';
 
 type Constructor<M> = new(...args: any[]) => M;
 
@@ -22,7 +22,7 @@ export abstract class BaseModel {
         message.setVersion(injector.get(ImConfig).protocol.version);
         message.setSeq(new Date().getTime().toString());
         this.seq = message.getSeq();
-        DbUtil.storageMessageModel(this);
+        DbUtil.instance.storageMessageModel(this);
         return message;
     }
 
