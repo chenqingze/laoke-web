@@ -19,10 +19,14 @@ import {SharedModule} from '../../shared/shared.module';
         IonicModule,
         GroupChatPageRoutingModule,
         SharedModule
+
     ],
     declarations: [GroupChatPage, EmojiPickerComponent],
-  providers: [
-      GroupService,
-  ]
+    exports: [
+        EmojiPickerComponent
+    ],
+    providers: [
+        GroupService,
+    ]
 })
 export class GroupChatPageModule {}

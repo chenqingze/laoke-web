@@ -1,9 +1,10 @@
 
 
 export class MsgModel {
-    id: string;
+    msgId: string;
     senderId: string;
-    conversationType: string;
+    receiverId: string;
+    conversationType: number;
     conversationId: string;
     msgDirection: string;
     msgType: string;

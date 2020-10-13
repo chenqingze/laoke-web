@@ -1,11 +1,18 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Friend} from '../../contacts/friends/shared/friend.model';
 import {MsgModel} from '../shared/msg.model';
 import {FriendService} from '../../contacts/friends/shared/friend.service';
-import {IonContent, Platform} from '@ionic/angular';
+import {IonButton, IonContent, Platform} from '@ionic/angular';
 import {AndroidPermissions} from '@ionic-native/android-permissions/ngx';
 import {Vibration} from '@ionic-native/vibration/ngx';
+import {MsgService} from '../shared/msg.service';
+import {OpCode} from '../../core/lib/OpCode_pb';
+import {AlertControllerService} from '../../service/alert-controller/alert-controller.service';
+import {MsgRequestModel} from '../shared/msg-request.model';
+import {WebSocketService} from '../../core/web-socket.service';
+import {fromEvent} from 'rxjs';
+import {DbService} from '../../shared/db.service';
 
 @Component({
   selector: 'app-chat-window',
@@ -18,7 +25,7 @@ export class ChatWindowPage implements OnInit {
 
   params: ParamMap;
   friend: Friend;
-  user = {name: '大威天龙', userId: 90068};
+  user = {name: '大威天龙', userId: 90068, profile: 'https://cn.bing.com/th?id=OHR.MountCetatea_EN-CN2318138498_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp'};
 
   msgs: Array<MsgModel>;
 
@@ -49,13 +56,17 @@ export class ChatWindowPage implements OnInit {
       // private androidPermissions: AndroidPermissions,
       // public imagePicker: ImagePicker,
       // private camera: Camera,
+      private msgService: MsgService,
+      private dialog: AlertControllerService,
+      private wsService: WebSocketService,
+      private dbService: DbService,
       private friendService: FriendService
   ) {
     console.log('ChatWindowPage constructor ...');
 
     this.sendContent = '';
     this.keyBoardShow = false;
-    this.plusIcon = false;
+    this.plusIcon = true;
     this.plusFun = false;
     this.showEmoji = false;
     this.moveScroll = false;
@@ -138,6 +149,21 @@ export class ChatWindowPage implements OnInit {
     msgModel3.content = '你家中必有千年的蛇妖，一条白，一条青';
     msgModel3.msgDirection = 'out';
     this.msgs = [msgModel, msgModel1, msgModel2, msgModel3];
+
+    this.msgService.getMsg(this.friend.friendId).subscribe(
+        (sqlResult) => {
+          if (sqlResult != null) {
+            console.log('get success: %o', sqlResult);
+
+          }
+          if (sqlResult == null) {
+            console.error('get fail');
+          }
+        },
+        err => {
+          console.error('err', err);
+        });
+
   }
 
   private listenMsgAck() {
@@ -150,54 +176,140 @@ export class ChatWindowPage implements OnInit {
 
   sendMsg(msgType) {
     this.moveScroll = false;
-    /*this.textarea.setFocus();
-    if (this.sendCheck()) return;
-    if (this.cont == null || this.cont === '') {
+    // this.textarea.setFocus();
+    // if (this.sendCheck()) return;
+    if (this.sendContent == null || this.sendContent === '') {
       this.dialog.presentAlert('请输入消息内容！');
       return;
     }
-    if (this.cont.trim() === '') {
+    if (this.sendContent.trim() === '') {
       this.dialog.presentAlert('请输入消息内容！');
-      this.cont = '';
+      this.sendContent = '';
       return;
     }
-    if (this.cont.trim().length > 200) {
-      this.commonUtil.showToast('消息过长');
+    if (this.sendContent.trim().length > 200) {
+      // this.commonUtil.showToast('消息过长');
       return;
     }
 
-    this.cont = this.cont.trim().replace(/[<>&"]/g, (c) => {
+    this.sendContent = this.sendContent.trim().replace(/[<>&"]/g, (c) => {
       return { '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c];
     });
 
-    let msgId = new Date().getTime().toString();
-    // 向服务器发送消息
-    const con = new Conversation_pb.Conversation();
-    con.setSenderId(this.user.userId);
-    // con.setSenderType(this.chatType);
-    con.setSenderClientType(this.platFormName);
-    con.setReceiverId(this.chatter.id);
-    // con.setReceiverType(this.chatType);
-    con.setMsgId(msgId);
-    con.setMsgType(String(msgType));
-    con.setStatus(0);
-    con.setContent(this.cont);
+    const msgRequestModel = MsgRequestModel.createMessageModel();
+    msgRequestModel.receiverId = '456';
+    msgRequestModel.content = this.sendContent;
+    msgRequestModel.msgType = 0;
+    msgRequestModel.conversationType = 0;
 
-    if (this.isReplyMsg) {
-      con.setMsgType('17');
-      const reply = { content: this.cont, replyMsg: this.replyUser + ':' + this.replyMsg };
-      con.setContent(JSON.stringify(reply));
-    } else {
-      con.setMsgType('0');
-      con.setContent(this.cont);
+    this.wsService.sendMessage(msgRequestModel);
+
+    // this.isReplyMsg = false;
+
+    this.sendContent = '';
+
+  }
+
+  async hammer(msg) {
+    /*const self = this;
+    const actionSheetButtons: ActionSheetButton[] = [];
+    // 撤回
+    if (new Date().getTime() - msg.createdAt < 300000 && msg.senderId == this.user.userId) {
+      const withdraw: ActionSheetButton = new class implements ActionSheetButton {
+        text = '撤回';
+        handler = () => {
+          console.log('撤回');
+          const con = new Conversation_pb.Conversation();
+          con.setId(msg.id);
+          con.setSenderId(self.user.userId);
+          con.setReceiverId(self.chatter.id);
+          con.setMsgId(msg.msgId);
+          con.setContent(self.user.nickname + '撤回了一条消息');
+          con.setStatus('4');
+          self.wsService.send(con, OpCode.Conversation);
+        }
+      };
+      actionSheetButtons.push(withdraw);
+
+    }
+    // 复制
+    const copy: ActionSheetButton = new class implements ActionSheetButton {
+      text = '复制';
+      handler = () => {
+        if (msg.msgType == 0) {
+          self.clipboard.copy(msg.content);
+          self.commonUtil.showToast('已复制');
+        } else {
+          const con = JSON.parse(msg.content).content;
+          self.clipboard.copy(con);
+          self.commonUtil.showToast('已复制');
+        }
+      }
+    };
+    if (msg.msgType == 0 || msg.msgType == 17) {
+      actionSheetButtons.push(copy);
     }
 
-    this.wsService.send(con, OpCode.Conversation);
+    // 回复
+    const reply: ActionSheetButton = new class implements ActionSheetButton {
+      text = '回复';
+      handler = () => {
+        console.log('回复');
+        self.isReplyMsg = true;
+        if (msg.msgType == 0) {
+          self.replyMsg = msg.content;
+        } else if (msg.msgType == 18) {
+          self.replyMsg = JSON.parse(msg.content).content;
+        } else if (msg.msgType == 17) {
+          self.replyMsg = JSON.parse(msg.content).content;
+        }
+        self.messageSer.queryUserNickname(msg.senderId).then((data) => {
+          console.log(data.data.nickname);
+          self.replyUser = data.data.nickname;
+        });
+      }
+    };
+    if (msg.msgType == 0 || msg.msgType == 18 || msg.msgType == 17) {
+      actionSheetButtons.push(reply);
 
-    this.isReplyMsg = false;
+    }
+    // 删除
+    const drop: ActionSheetButton = new class implements ActionSheetButton {
+      text = '删除';
+      handler = () => {
+        console.log('删除');
+        self.dialog.doubleAlert(null, '确认删除？', '取消', '确定', () => {
+        }, () => {
+          self.sqlService.deleteMsg(msg.msgId).then((data) => {
+            self.dialog.presentAlert('已删除');
+            for (let i = 0; i < self.msgs.length; i++) {
+              if (self.msgs[i].msgId == msg.msgId) {
+                self.msgs.splice(i, 1);
+              }
+            }
+          });
+        });
+      }
+    };
+    actionSheetButtons.push(drop);
+    // 多选
+    const multi: ActionSheetButton = new class implements ActionSheetButton {
+      text = '多选';
+      handler = () => {
+        console.log('多选');
+        self.isMultiple = true;
+      }
+    };
+    // actionSheetButtons.push(multi);
 
-    this.cont = '';*/
+    const actionSheet = await this.actionSheet.create({
+      header: '操作',
+      buttons: actionSheetButtons,
+    });
 
+    setTimeout(async () => {
+      await actionSheet.present();
+    }, 250);*/
   }
 
   goSettingPage() {
