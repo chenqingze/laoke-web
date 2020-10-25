@@ -17,6 +17,7 @@ export class FriendInvitationRequestAckModel extends BaseModel {
     content:string;
     inviteStatus:string;
     inviteType:string;
+    readStatus:number;
     createdAt:number;
     updatedAt:number;
     res:number; //0-失败，1-成功*/

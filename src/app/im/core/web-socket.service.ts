@@ -9,7 +9,7 @@ import * as OpCode_pb from './lib/OpCode_pb';
 import {OpCode} from './lib/OpCode_pb';
 import {AuthRequestModel} from '../auth/auth-request.model';
 import {MessageTool} from './message.tool';
-import {delay, filter, retryWhen} from 'rxjs/operators';
+import {delay, filter, retryWhen, tap} from 'rxjs/operators';
 import {AlertController} from '@ionic/angular';
 import {AlertControllerService} from '../service/alert-controller/alert-controller.service';
 
@@ -66,7 +66,7 @@ export class WebSocketService implements OnDestroy {
                 this.status$.next(WsStatus.CONNECTED);
                 // todo:发送token 认证
                 console.log('发送认证请求!');
-                let s = window.prompt("请输入userId","123");
+                let s = window.prompt('请输入userId', '123');
                 const authRequest = AuthRequestModel.createMessageModel();
                 authRequest.token = s;
                 this.sendMessage(authRequest);
@@ -93,13 +93,22 @@ export class WebSocketService implements OnDestroy {
             }
         });
         // 用于接收消息的订阅避免直接使用WebSocketSubject对象接收消息,取消订阅后websocket连接断开
-        this.webSocketSubject.pipe(retryWhen((errors) => errors.pipe(delay(10_000)))).subscribe(
-            message => {
-                console.log('收到消息', message);
-                this.wsMessages$.next(message);
-            }, error => {
-                console.log(error);
-            }
+        this.webSocketSubject.pipe(
+                tap({
+                    next: data => {
+                        console.log('webSocketSubject msg', data);
+                    },
+                    error: err => {
+                        console.log('webSocketSubject err', err);
+
+                    }
+                }),
+                retryWhen((errors) => errors.pipe(delay(10_000)))).subscribe(
+                message => {
+                    this.wsMessages$.next(message);
+                }, error => {
+                    console.log(error);
+                }
         );
     }
 
@@ -117,9 +126,9 @@ export class WebSocketService implements OnDestroy {
      * @param opCodeArg 事件类型
      */
     messages$(opCodeArg: OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap]
-        | OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap] []): Observable<BaseModel> {
+            | OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap] []): Observable<BaseModel> {
         return this.wsMessages$.pipe(
-            filter((model: BaseModel) => this.messageFilterExpression(model, opCodeArg))
+                filter((model: BaseModel) => this.messageFilterExpression(model, opCodeArg))
         );
     }
 
@@ -130,7 +139,7 @@ export class WebSocketService implements OnDestroy {
      * @private
      */
     private messageFilterExpression(model: BaseModel, opCodeArg: OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap]
-        | OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap] []): boolean {
+            | OpCode_pb.OpCodeMap[keyof OpCode_pb.OpCodeMap] []): boolean {
         if (opCodeArg instanceof Array) {
             for (const opCode of opCodeArg) {
                 if (model.opCode === opCode) {

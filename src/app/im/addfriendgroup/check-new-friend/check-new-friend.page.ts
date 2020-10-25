@@ -4,8 +4,8 @@ import {ApiService} from '../../shared/api/api.service';
 import {WebSocketService} from '../../core/web-socket.service';
 import {ToastController} from '@ionic/angular';
 import {FriendInvitationRequestRequest} from '../../core/lib/Invitation_pb';
-import {FriendInvitationRequestRequestModel} from '../shared/friend-invitation-request-request.model';
 import {FriendService} from '../../contacts/friends/shared/friend.service';
+import {FriendInvitationRequestRequestModel} from '../shared/friend-invitation-request-request.model';
 
 @Component({
   selector: 'app-check-new-friend',
