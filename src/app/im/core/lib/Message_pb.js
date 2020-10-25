@@ -56,7 +56,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_ = [[11,12,20,21,22,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010]];
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_ = [[11,12,20,23,21,22,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010]];
 
 /**
  * @enum {number}
@@ -66,6 +66,7 @@ proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.PayloadCase = {
   AUTH_REQUEST: 11,
   AUTH_ACK: 12,
   MSG_REQUEST: 20,
+  MSG_ACK: 23,
   QUERY_USER_GROUP_REQUEST: 21,
   QUERY_USER_GROUP_ACK: 22,
   FRIEND_INVITATION_REQUEST_REQUEST: 1001,
@@ -125,6 +126,7 @@ proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.toObject = function(inc
     authRequest: (f = msg.getAuthRequest()) && Auth_pb.AuthRequest.toObject(includeInstance, f),
     authAck: (f = msg.getAuthAck()) && Auth_pb.AuthAck.toObject(includeInstance, f),
     msgRequest: (f = msg.getMsgRequest()) && Msg_pb.MsgRequest.toObject(includeInstance, f),
+    msgAck: (f = msg.getMsgAck()) && Msg_pb.MsgAck.toObject(includeInstance, f),
     queryUserGroupRequest: (f = msg.getQueryUserGroupRequest()) && Group_pb.QueryUserGroupsRequest.toObject(includeInstance, f),
     queryUserGroupAck: (f = msg.getQueryUserGroupAck()) && Group_pb.QueryUserGroupsAck.toObject(includeInstance, f),
     friendInvitationRequestRequest: (f = msg.getFriendInvitationRequestRequest()) && Invitation_pb.FriendInvitationRequestRequest.toObject(includeInstance, f),
@@ -203,6 +205,11 @@ proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.deserializeBinaryFromRe
       var value = new Msg_pb.MsgRequest;
       reader.readMessage(value,Msg_pb.MsgRequest.deserializeBinaryFromReader);
       msg.setMsgRequest(value);
+      break;
+    case 23:
+      var value = new Msg_pb.MsgAck;
+      reader.readMessage(value,Msg_pb.MsgAck.deserializeBinaryFromReader);
+      msg.setMsgAck(value);
       break;
     case 21:
       var value = new Group_pb.QueryUserGroupsRequest;
@@ -343,6 +350,14 @@ proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.serializeBinaryToWriter
       20,
       f,
       Msg_pb.MsgRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getMsgAck();
+  if (f != null) {
+    writer.writeMessage(
+      23,
+      f,
+      Msg_pb.MsgAck.serializeBinaryToWriter
     );
   }
   f = message.getQueryUserGroupRequest();
@@ -624,6 +639,43 @@ proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.clearMsgReque
  */
 proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.hasMsgRequest = function() {
   return jspb.Message.getField(this, 20) != null;
+};
+
+
+/**
+ * optional MsgAck msg_ack = 23;
+ * @return {?proto.MsgAck}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.getMsgAck = function() {
+  return /** @type{?proto.MsgAck} */ (
+    jspb.Message.getWrapperField(this, Msg_pb.MsgAck, 23));
+};
+
+
+/**
+ * @param {?proto.MsgAck|undefined} value
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+*/
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.setMsgAck = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 23, proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message} returns this
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.clearMsgAck = function() {
+  return this.setMsgAck(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.com.aihangxunxi.aitalk.im.protocol.buffers.Message.prototype.hasMsgAck = function() {
+  return jspb.Message.getField(this, 23) != null;
 };
 
 

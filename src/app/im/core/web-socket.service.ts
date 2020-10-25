@@ -85,13 +85,6 @@ export class WebSocketService implements OnDestroy {
             }
         });
 
-        // this.messages$(OpCode.QUERY_USER_GROUP_ACK).subscribe({
-        //      next: (message) => {
-        //          console.log('123123');
-        //      }, error: () => {
-        //          console.log('123123');
-        //      }
-        //  });
         // 订阅WebSocket连接关闭事件
         this.closeSubject.subscribe({
             next: () => {
@@ -104,6 +97,8 @@ export class WebSocketService implements OnDestroy {
             message => {
                 console.log('收到消息', message);
                 this.wsMessages$.next(message);
+            }, error => {
+                console.log(error);
             }
         );
     }

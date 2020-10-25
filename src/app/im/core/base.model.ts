@@ -19,7 +19,7 @@ export abstract class BaseModel {
         const message = new Message();
         message.setMagic(injector.get(ImConfig).protocol.magic);
         message.setVersion(injector.get(ImConfig).protocol.version);
-        message.setSeq(new Date().getMilliseconds().toString());
+        message.setSeq(new Date().getTime().toString());
         this.seq = message.getSeq();
         return message;
     }

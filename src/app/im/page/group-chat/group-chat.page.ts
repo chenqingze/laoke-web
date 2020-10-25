@@ -1,16 +1,25 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {GroupService} from '../../service/group-service/group.service';
-import {combineLatest, fromEvent, interval, merge, Observable, timer} from 'rxjs';
-import {map, mergeAll} from 'rxjs/operators';
-import {IonContent, ModalController} from '@ionic/angular';
+import {Subscription} from 'rxjs';
+import {filter} from 'rxjs/operators';
+import {AlertController, IonContent, ModalController} from '@ionic/angular';
+
+import {WebSocketService} from '../../core/web-socket.service';
+import {OpCode} from '../../core/lib/OpCode_pb';
+import {MucMsgModel} from './muc-msg.model';
+import {GroupMsgRequestModel} from './group-msg-request.model';
+import {DbService} from '../../shared/db.service';
+import {GroupMsgAckModel} from './group-msg-ack.model';
+import {GroupMsgDbService} from './group-msg-db-service';
 
 @Component({
     selector: 'app-group-chat',
     templateUrl: './group-chat.page.html',
     styleUrls: ['./group-chat.page.scss'],
+    providers: [GroupMsgDbService]
 })
-export class GroupChatPage implements OnInit {
+export class GroupChatPage implements OnInit, OnDestroy {
     @ViewChild(IonContent, {static: false}) content: IonContent;
     @ViewChild('textarea', {static: false}) textarea;
     // 群id
@@ -63,7 +72,7 @@ export class GroupChatPage implements OnInit {
     messageContent = '';
     private showModel: boolean;
 
-
+    private receiveSub: Subscription;
     public slideOpt = {
         initialSlide: 0,
         speed: 300,
@@ -72,8 +81,14 @@ export class GroupChatPage implements OnInit {
     };
     public showList: Array<any>;
 
+    public conversationList: Array<MucMsgModel>;
+
     constructor(private activeRouter: ActivatedRoute,
                 private modalCtrl: ModalController,
+                private wsService: WebSocketService,
+                private groupMsgDbService: GroupMsgDbService,
+                private dialog: AlertController,
+                private dbService: DbService,
                 private groupService: GroupService) {
         this.groupId = this.activeRouter.snapshot.params.groupId;
         this.name = this.activeRouter.snapshot.params.groupName;
@@ -88,7 +103,9 @@ export class GroupChatPage implements OnInit {
 
         this.startRecord = false;
         this.atList = [];
+        this.conversationList = [];
         this.showList = new Array<any>();
+        // console.log('111');
     }
 
     queryGroupInfo() {
@@ -114,7 +131,37 @@ export class GroupChatPage implements OnInit {
 
     ngOnInit() {
         this.queryGroupInfo();
+
+        this.receiveSub = this.wsService.messages$(OpCode.MSG_REQUEST)
+            .pipe(filter((model: GroupMsgRequestModel) => model.conversationType === 1)).subscribe({
+                next: (message: GroupMsgRequestModel) => {
+                    const conversation = new MucMsgModel();
+                    conversation.content = message.content;
+                    conversation.msgId = message.msgId;
+                    conversation.createdAt = message.time;
+                    conversation.msgType = message.msgType;
+                    conversation.msgStatus = message.msgStatus;
+                    // 从后台获取头像
+                    this.conversationList.push(conversation);
+
+                }, error: (err) => {
+                    console.log(err);
+                }
+            });
+        this.wsService.messages$(OpCode.MSG_ACK)
+            .pipe(filter((model: GroupMsgAckModel) => model.conversationType === '1')).subscribe({
+            next: (message: GroupMsgAckModel) => {
+                console.log(message);
+            }, error: (err) => {
+                console.log(err);
+            }
+        });
     }
+
+    ngOnDestroy() {
+        this.receiveSub.unsubscribe();
+    }
+
 
     // 移除at
     removeAt(at, i) {
@@ -149,7 +196,6 @@ export class GroupChatPage implements OnInit {
     async scrollToBottom() {
         setTimeout(() => {
             if (this.content.scrollY) {
-                console.log('滚动到底部');
                 this.content.scrollToBottom(1);
             }
         }, 50);
@@ -172,8 +218,7 @@ export class GroupChatPage implements OnInit {
         if (this.messageContent.length === 0) {
             this.isCheck = true;
         } else {
-            console.log(this.messageContent.lastIndexOf('@'));
-            if (this.messageContent.lastIndexOf('@') == this.messageContent.length - 1) {
+            if (this.messageContent.lastIndexOf('@') === this.messageContent.length - 1) {
                 if (!this.showModel) {
 
                 }
@@ -204,6 +249,59 @@ export class GroupChatPage implements OnInit {
     }
 
     sendMessage() {
+        if (this.wsService.isAuthed()) {
+            this.moveScroll = false;
+            this.textarea.setFocus();
+            if (this.messageContent == null || this.messageContent === '') {
+                // this.dialog.presentAlert('请输入消息内容！');
+                alert('请输入内容');
+                return;
+            }
+            if (this.messageContent.trim() === '') {
+                // this.dialog.presentAlert('请输入消息内容！');
+                alert('请输入内容');
+
+                this.messageContent = '';
+                return;
+            }
+            if (this.messageContent.trim().length > 200) {
+                // this.commonUtil.showToast('消息过长');
+                alert('请输入内容');
+                return;
+            }
+            const groupMsgReq = GroupMsgRequestModel.createMessageModel();
+            groupMsgReq.msgId = '';
+
+            groupMsgReq.conversationId = this.groupId;
+            groupMsgReq.conversationType = 1;
+            groupMsgReq.msgStatus = 0;
+            groupMsgReq.msgType = 0;
+            groupMsgReq.msgAttachstr = '';
+            groupMsgReq.content = this.messageContent;
+            groupMsgReq.time = new Date().getTime();
+            groupMsgReq.extendData = '123';
+            groupMsgReq.senderId = '123';
+            groupMsgReq.extendData = '';
+
+            this.wsService.sendMessage(groupMsgReq);
+            this.pushInConversationList(groupMsgReq);
+            this.groupMsgDbService.saveMucHist(groupMsgReq.seq,
+                groupMsgReq.conversationType, groupMsgReq.conversationId, 'OUT',
+                groupMsgReq.msgType, groupMsgReq.msgStatus, this.messageContent);
+        }
+    }
+
+    pushInConversationList(groupMsgReq) {
+        const model = new MucMsgModel();
+        model.seq = groupMsgReq.seq;
+        model.msgType = groupMsgReq.msgType;
+        model.msgStatus = groupMsgReq.msgStatus;
+        model.content = groupMsgReq.content;
+        model.senderId = groupMsgReq.senderId;
+        groupMsgReq.receiverId = groupMsgReq.receiverId;
+        groupMsgReq.createdAt = new Date().getTime();
+        groupMsgReq.senderName = '发发发';
+        this.conversationList.push(model);
 
     }
 

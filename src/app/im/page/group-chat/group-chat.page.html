@@ -4,11 +4,46 @@
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
     <ion-title>{{name}}({{memberCount}})</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="ellipsis-horizontal"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content #content scrollEvents="true" class="dark-bg-9">
+<ion-grid style="position: relative;padding-bottom: 0.6rem">
+  <div *ngFor="let msg of conversationList;let i = index" id="{{msg.msgId}}">
 
+    <div *ngIf="msg.senderId!=currentUser && msg.msgStatus!=4">
+      <ion-row>
+        <ion-col class="ion-text-center mt-d24 mb-d24" *ngIf="(msg.createdAt-msg.lastChatTime)>300000">
+          <span class="date-time dark-bg-8 dark-color-7">
+            {{msg.createdAt}}
+          </span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        {{msg.content}}
+      </ion-row>
+    </div>
+
+    <div *ngIf="msg.senderId==currentUser && msg.msgStatus!=4">
+      <ion-row>
+        <ion-col class="ion-text-center mt-d24 mb-d24" *ngIf="(msg.createdAt-msg.lastChatTime)>300000">
+          <span class="date-time dark-bg-8 dark-color-7">
+            {{msg.createdAt}}
+          </span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        {{msg.content}}
+      </ion-row>
+    </div>
+
+  </div>
+</ion-grid>
 </ion-content>
 <ion-footer *ngIf="!mute||this.owner==this.currentUser">
   <div [ngStyle]="{'display':showKeyboard?'block':'none'}" class="showKeyboard"></div>
