@@ -12,7 +12,6 @@ import {FriendsComponent} from './contacts/friends/friends.component';
 import {GroupsComponent} from './contacts/groups/groups.component';
 import {RecentContactsComponent} from './recent-contacts/recent-contacts.component';
 import {RecentContactComponent} from './recent-contacts/recent-contact/recent-contact.component';
-import {SharedModule} from './shared/shared.module';
 import {HttpClient} from '@angular/common/http';
 import {NgPipesModule} from 'ngx-pipes';
 import {InvitationService} from './addfriendgroup/shared/invitation.service';
@@ -23,7 +22,6 @@ import {InvitationService} from './addfriendgroup/shared/invitation.service';
         FormsModule,
         IonicModule,
         ImRoutingModule,
-        SharedModule,
         NgPipesModule
     ],
     declarations: [

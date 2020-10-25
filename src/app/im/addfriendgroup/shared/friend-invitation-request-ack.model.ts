@@ -31,8 +31,8 @@ export class FriendInvitationRequestAckModel extends BaseModel {
         this.addresseeAlias = friendInvitationRequestAck.getAddresseealias();
         this.addresseeNickname = friendInvitationRequestAck.getAddresseenickname();
         this.content = friendInvitationRequestAck.getContent();
-        this.inviteStatus = friendInvitationRequestAck.getInviteStatus();
-        this.inviteType = friendInvitationRequestAck.getInviteType();
+        this.inviteStatus = friendInvitationRequestAck.getInvitestatus();
+        this.inviteType = friendInvitationRequestAck.getInvitetype();
         this.createdAt = friendInvitationRequestAck.getCreatedat();
         this.updatedAt = friendInvitationRequestAck.getUpdatedat();
         this.res = friendInvitationRequestAck.getRes();
@@ -49,8 +49,8 @@ export class FriendInvitationRequestAckModel extends BaseModel {
         friendInvitationRequestAck.setAddresseealias(this.addresseeId);
         friendInvitationRequestAck.setAddresseenickname(this.addresseeId);
         friendInvitationRequestAck.setContent(this.addresseeId);
-        friendInvitationRequestAck.setInviteStatus(this.addresseeId);
-        friendInvitationRequestAck.setInviteType(this.addresseeId);
+        friendInvitationRequestAck.setInvitestatus(this.addresseeId);
+        friendInvitationRequestAck.setInvitetype(this.addresseeId);
         friendInvitationRequestAck.setCreatedat(this.createdAt);
         friendInvitationRequestAck.setUpdatedat(this.updatedAt);
         friendInvitationRequestAck.setRes(this.res);

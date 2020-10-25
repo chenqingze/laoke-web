@@ -2,10 +2,10 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiService} from '../../shared/api/api.service';
 import {WebSocketService} from '../../core/web-socket.service';
-import {FriendService} from '../../contacts/friends/shared/friend.service';
 import {ToastController} from '@ionic/angular';
 import {FriendInvitationRequestRequest} from '../../core/lib/Invitation_pb';
-import {FriendInvitationRequestRequestModel} from '../shared/friend-invitation-request-request';
+import {FriendInvitationRequestRequestModel} from '../shared/friend-invitation-request-request.model';
+import {FriendService} from '../../contacts/friends/shared/friend.service';
 
 @Component({
   selector: 'app-check-new-friend',
@@ -17,8 +17,8 @@ export class CheckNewFriendPage implements OnInit {
   public friendId: string;
   public profile: string;
   public nickname: string;
-  public content: string = "";
-  public alias: string = "";
+  public content: string = "你好希克斯";
+  public alias: string = "666";
 
   constructor(
           private toastCtrl: ToastController,
@@ -46,11 +46,12 @@ export class CheckNewFriendPage implements OnInit {
 
   addFriend() {
 
-    this.showToast('申请添加好友发送成功');
+    this.showToast('发送成功');
+    // this.showToast('申请添加好友发送成功');
 
     const friendInvitationRequestRequestModel  = FriendInvitationRequestRequestModel.createMessageModel()
     friendInvitationRequestRequestModel.addresseeId = this.friendId;
-    friendInvitationRequestRequestModel.addresseeAlias = this.nickname;
+    friendInvitationRequestRequestModel.addresseeAlias = this.alias;
     friendInvitationRequestRequestModel.content = this.content;
 
     if(this.wsService.isAuthed()){

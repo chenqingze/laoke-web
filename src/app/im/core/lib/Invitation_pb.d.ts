@@ -28,11 +28,11 @@ export class Invitation extends jspb.Message {
   getContent(): string;
   setContent(value: string): void;
 
-  getInviteStatus(): string;
-  setInviteStatus(value: string): void;
+  getInvitestatus(): string;
+  setInvitestatus(value: string): void;
 
-  getInviteType(): string;
-  setInviteType(value: string): void;
+  getInvitetype(): string;
+  setInvitetype(value: string): void;
 
   getCreatedat(): number;
   setCreatedat(value: number): void;
@@ -60,8 +60,8 @@ export namespace Invitation {
     addresseealias: string,
     addresseenickname: string,
     content: string,
-    inviteStatus: string,
-    inviteType: string,
+    invitestatus: string,
+    invitetype: string,
     createdat: number,
     updatedat: number,
   }
@@ -124,9 +124,6 @@ export namespace Friend {
 }
 
 export class FriendInvitationRequestRequest extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
   getAddresseeid(): string;
   setAddresseeid(value: string): void;
 
@@ -148,7 +145,6 @@ export class FriendInvitationRequestRequest extends jspb.Message {
 
 export namespace FriendInvitationRequestRequest {
   export type AsObject = {
-    id: string,
     addresseeid: string,
     addresseealias: string,
     content: string,
@@ -180,11 +176,11 @@ export class FriendInvitationRequestAck extends jspb.Message {
   getContent(): string;
   setContent(value: string): void;
 
-  getInviteStatus(): string;
-  setInviteStatus(value: string): void;
+  getInvitestatus(): string;
+  setInvitestatus(value: string): void;
 
-  getInviteType(): string;
-  setInviteType(value: string): void;
+  getInvitetype(): string;
+  setInvitetype(value: string): void;
 
   getCreatedat(): number;
   setCreatedat(value: number): void;
@@ -215,8 +211,8 @@ export namespace FriendInvitationRequestAck {
     addresseealias: string,
     addresseenickname: string,
     content: string,
-    inviteStatus: string,
-    inviteType: string,
+    invitestatus: string,
+    invitetype: string,
     createdat: number,
     updatedat: number,
     res: number,
@@ -339,6 +335,9 @@ export class FriendInvitationAck extends jspb.Message {
   setInvitationList(value: Array<Invitation>): void;
   addInvitation(value?: Invitation, index?: number): Invitation;
 
+  getRes(): number;
+  setRes(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FriendInvitationAck.AsObject;
   static toObject(includeInstance: boolean, msg: FriendInvitationAck): FriendInvitationAck.AsObject;
@@ -352,6 +351,7 @@ export class FriendInvitationAck extends jspb.Message {
 export namespace FriendInvitationAck {
   export type AsObject = {
     invitationList: Array<Invitation.AsObject>,
+    res: number,
   }
 }
 
@@ -381,6 +381,9 @@ export class FriendAck extends jspb.Message {
   setInvitationList(value: Array<Invitation>): void;
   addInvitation(value?: Invitation, index?: number): Invitation;
 
+  getRes(): number;
+  setRes(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FriendAck.AsObject;
   static toObject(includeInstance: boolean, msg: FriendAck): FriendAck.AsObject;
@@ -394,6 +397,7 @@ export class FriendAck extends jspb.Message {
 export namespace FriendAck {
   export type AsObject = {
     invitationList: Array<Invitation.AsObject>,
+    res: number,
   }
 }
 

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {WebSocketService, WsStatus} from '../../core/web-socket.service';
 import {OpCode} from '../../core/lib/OpCode_pb';
-import {FriendInvitationRequestAckModel} from './friend-invitation-request-ack';
+import {FriendInvitationRequestAckModel} from './friend-invitation-request-ack.model';
 import {DbService} from '../../shared/db.service';
 import {concatMap, mergeMap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
@@ -20,11 +20,11 @@ export class InvitationService {
 
     addInvitation(f:FriendInvitationRequestAckModel):Observable<any>{
         let sql:string = "insert into invitation (id,requesterId,requesterAlias,requesterNickname,addresseeId,addresseeAlias," +
-                "addresseeNickname,content,inviteStatus,inviteType,createdAt,updateAt) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+                "addresseeNickname,content,inviteStatus,inviteType,readStatus,createdAt,updateAt) values(?,?,?,?,?,?,?,?,?,?,?,?)";
         return this.dbService.dbReady$().pipe(mergeMap(isDbReady => {
             if (isDbReady) {
                 return this.dbService.storage.executeSql('insert', [f.id,f.requesterId,f.requesterAlias,f.requesterNickname,
-                f.addresseeId,f.addresseeAlias,f.addresseeNickname,f.content,f.inviteStatus,f.inviteType,f.createdAt,f.updatedAt]);
+                f.addresseeId,f.addresseeAlias,f.addresseeNickname,f.content,f.inviteStatus,f.inviteType,f.createdAt,0,f.updatedAt]);
             }
             return of(null);
         }));

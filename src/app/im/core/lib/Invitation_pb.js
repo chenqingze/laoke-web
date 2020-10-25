@@ -316,8 +316,8 @@ proto.Invitation.toObject = function(includeInstance, msg) {
     addresseealias: jspb.Message.getFieldWithDefault(msg, 6, ""),
     addresseenickname: jspb.Message.getFieldWithDefault(msg, 7, ""),
     content: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    inviteStatus: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    inviteType: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    invitestatus: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    invitetype: jspb.Message.getFieldWithDefault(msg, 10, ""),
     createdat: jspb.Message.getFieldWithDefault(msg, 11, 0),
     updatedat: jspb.Message.getFieldWithDefault(msg, 12, 0)
   };
@@ -390,11 +390,11 @@ proto.Invitation.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 9:
       var value = /** @type {string} */ (reader.readString());
-      msg.setInviteStatus(value);
+      msg.setInvitestatus(value);
       break;
     case 10:
       var value = /** @type {string} */ (reader.readString());
-      msg.setInviteType(value);
+      msg.setInvitetype(value);
       break;
     case 11:
       var value = /** @type {number} */ (reader.readUint64());
@@ -489,14 +489,14 @@ proto.Invitation.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getInviteStatus();
+  f = message.getInvitestatus();
   if (f.length > 0) {
     writer.writeString(
       9,
       f
     );
   }
-  f = message.getInviteType();
+  f = message.getInvitetype();
   if (f.length > 0) {
     writer.writeString(
       10,
@@ -665,10 +665,10 @@ proto.Invitation.prototype.setContent = function(value) {
 
 
 /**
- * optional string invite_status = 9;
+ * optional string inviteStatus = 9;
  * @return {string}
  */
-proto.Invitation.prototype.getInviteStatus = function() {
+proto.Invitation.prototype.getInvitestatus = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
@@ -677,16 +677,16 @@ proto.Invitation.prototype.getInviteStatus = function() {
  * @param {string} value
  * @return {!proto.Invitation} returns this
  */
-proto.Invitation.prototype.setInviteStatus = function(value) {
+proto.Invitation.prototype.setInvitestatus = function(value) {
   return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
 /**
- * optional string invite_type = 10;
+ * optional string inviteType = 10;
  * @return {string}
  */
-proto.Invitation.prototype.getInviteType = function() {
+proto.Invitation.prototype.getInvitetype = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
 
@@ -695,7 +695,7 @@ proto.Invitation.prototype.getInviteType = function() {
  * @param {string} value
  * @return {!proto.Invitation} returns this
  */
-proto.Invitation.prototype.setInviteType = function(value) {
+proto.Invitation.prototype.setInvitetype = function(value) {
   return jspb.Message.setProto3StringField(this, 10, value);
 };
 
@@ -1168,10 +1168,9 @@ proto.FriendInvitationRequestRequest.prototype.toObject = function(opt_includeIn
  */
 proto.FriendInvitationRequestRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    addresseeid: jspb.Message.getFieldWithDefault(msg, 2, "0"),
-    addresseealias: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    content: jspb.Message.getFieldWithDefault(msg, 4, "")
+    addresseeid: jspb.Message.getFieldWithDefault(msg, 1, "0"),
+    addresseealias: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    content: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1209,18 +1208,14 @@ proto.FriendInvitationRequestRequest.deserializeBinaryFromReader = function(msg,
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
-      break;
-    case 2:
       var value = /** @type {string} */ (reader.readUint64String());
       msg.setAddresseeid(value);
       break;
-    case 3:
+    case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setAddresseealias(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setContent(value);
       break;
@@ -1253,31 +1248,24 @@ proto.FriendInvitationRequestRequest.prototype.serializeBinary = function() {
  */
 proto.FriendInvitationRequestRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
   f = message.getAddresseeid();
   if (parseInt(f, 10) !== 0) {
     writer.writeUint64String(
-      2,
+      1,
       f
     );
   }
   f = message.getAddresseealias();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      2,
       f
     );
   }
   f = message.getContent();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      3,
       f
     );
   }
@@ -1285,29 +1273,11 @@ proto.FriendInvitationRequestRequest.serializeBinaryToWriter = function(message,
 
 
 /**
- * optional string id = 1;
- * @return {string}
- */
-proto.FriendInvitationRequestRequest.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.FriendInvitationRequestRequest} returns this
- */
-proto.FriendInvitationRequestRequest.prototype.setId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional uint64 addresseeId = 2;
+ * optional uint64 addresseeId = 1;
  * @return {string}
  */
 proto.FriendInvitationRequestRequest.prototype.getAddresseeid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, "0"));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, "0"));
 };
 
 
@@ -1316,16 +1286,16 @@ proto.FriendInvitationRequestRequest.prototype.getAddresseeid = function() {
  * @return {!proto.FriendInvitationRequestRequest} returns this
  */
 proto.FriendInvitationRequestRequest.prototype.setAddresseeid = function(value) {
-  return jspb.Message.setProto3StringIntField(this, 2, value);
+  return jspb.Message.setProto3StringIntField(this, 1, value);
 };
 
 
 /**
- * optional string addresseeAlias = 3;
+ * optional string addresseeAlias = 2;
  * @return {string}
  */
 proto.FriendInvitationRequestRequest.prototype.getAddresseealias = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
@@ -1334,16 +1304,16 @@ proto.FriendInvitationRequestRequest.prototype.getAddresseealias = function() {
  * @return {!proto.FriendInvitationRequestRequest} returns this
  */
 proto.FriendInvitationRequestRequest.prototype.setAddresseealias = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string content = 4;
+ * optional string content = 3;
  * @return {string}
  */
 proto.FriendInvitationRequestRequest.prototype.getContent = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
@@ -1352,7 +1322,7 @@ proto.FriendInvitationRequestRequest.prototype.getContent = function() {
  * @return {!proto.FriendInvitationRequestRequest} returns this
  */
 proto.FriendInvitationRequestRequest.prototype.setContent = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -1396,8 +1366,8 @@ proto.FriendInvitationRequestAck.toObject = function(includeInstance, msg) {
     addresseealias: jspb.Message.getFieldWithDefault(msg, 6, ""),
     addresseenickname: jspb.Message.getFieldWithDefault(msg, 7, ""),
     content: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    inviteStatus: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    inviteType: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    invitestatus: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    invitetype: jspb.Message.getFieldWithDefault(msg, 10, ""),
     createdat: jspb.Message.getFieldWithDefault(msg, 11, 0),
     updatedat: jspb.Message.getFieldWithDefault(msg, 12, 0),
     res: jspb.Message.getFieldWithDefault(msg, 13, 0)
@@ -1471,11 +1441,11 @@ proto.FriendInvitationRequestAck.deserializeBinaryFromReader = function(msg, rea
       break;
     case 9:
       var value = /** @type {string} */ (reader.readString());
-      msg.setInviteStatus(value);
+      msg.setInvitestatus(value);
       break;
     case 10:
       var value = /** @type {string} */ (reader.readString());
-      msg.setInviteType(value);
+      msg.setInvitetype(value);
       break;
     case 11:
       var value = /** @type {number} */ (reader.readUint64());
@@ -1574,14 +1544,14 @@ proto.FriendInvitationRequestAck.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getInviteStatus();
+  f = message.getInvitestatus();
   if (f.length > 0) {
     writer.writeString(
       9,
       f
     );
   }
-  f = message.getInviteType();
+  f = message.getInvitetype();
   if (f.length > 0) {
     writer.writeString(
       10,
@@ -1757,10 +1727,10 @@ proto.FriendInvitationRequestAck.prototype.setContent = function(value) {
 
 
 /**
- * optional string invite_status = 9;
+ * optional string inviteStatus = 9;
  * @return {string}
  */
-proto.FriendInvitationRequestAck.prototype.getInviteStatus = function() {
+proto.FriendInvitationRequestAck.prototype.getInvitestatus = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
@@ -1769,16 +1739,16 @@ proto.FriendInvitationRequestAck.prototype.getInviteStatus = function() {
  * @param {string} value
  * @return {!proto.FriendInvitationRequestAck} returns this
  */
-proto.FriendInvitationRequestAck.prototype.setInviteStatus = function(value) {
+proto.FriendInvitationRequestAck.prototype.setInvitestatus = function(value) {
   return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
 /**
- * optional string invite_type = 10;
+ * optional string inviteType = 10;
  * @return {string}
  */
-proto.FriendInvitationRequestAck.prototype.getInviteType = function() {
+proto.FriendInvitationRequestAck.prototype.getInvitetype = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
 
@@ -1787,7 +1757,7 @@ proto.FriendInvitationRequestAck.prototype.getInviteType = function() {
  * @param {string} value
  * @return {!proto.FriendInvitationRequestAck} returns this
  */
-proto.FriendInvitationRequestAck.prototype.setInviteType = function(value) {
+proto.FriendInvitationRequestAck.prototype.setInvitetype = function(value) {
   return jspb.Message.setProto3StringField(this, 10, value);
 };
 
@@ -2009,7 +1979,7 @@ proto.FriendInvitationAcceptAck.prototype.toObject = function(opt_includeInstanc
 proto.FriendInvitationAcceptAck.toObject = function(includeInstance, msg) {
   var f, obj = {
     friend: (f = msg.getFriend()) && proto.Friend.toObject(includeInstance, f),
-    res: jspb.Message.getFieldWithDefault(msg, 10, 0)
+    res: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -2051,7 +2021,7 @@ proto.FriendInvitationAcceptAck.deserializeBinaryFromReader = function(msg, read
       reader.readMessage(value,proto.Friend.deserializeBinaryFromReader);
       msg.setFriend(value);
       break;
-    case 10:
+    case 2:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setRes(value);
       break;
@@ -2095,7 +2065,7 @@ proto.FriendInvitationAcceptAck.serializeBinaryToWriter = function(message, writ
   f = message.getRes();
   if (f !== 0) {
     writer.writeUint32(
-      10,
+      2,
       f
     );
   }
@@ -2140,11 +2110,11 @@ proto.FriendInvitationAcceptAck.prototype.hasFriend = function() {
 
 
 /**
- * optional uint32 res = 10;
+ * optional uint32 res = 2;
  * @return {number}
  */
 proto.FriendInvitationAcceptAck.prototype.getRes = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
@@ -2153,7 +2123,7 @@ proto.FriendInvitationAcceptAck.prototype.getRes = function() {
  * @return {!proto.FriendInvitationAcceptAck} returns this
  */
 proto.FriendInvitationAcceptAck.prototype.setRes = function(value) {
-  return jspb.Message.setProto3IntField(this, 10, value);
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -2320,7 +2290,7 @@ proto.FriendInvitationDeclinedAck.prototype.toObject = function(opt_includeInsta
 proto.FriendInvitationDeclinedAck.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    res: jspb.Message.getFieldWithDefault(msg, 10, 0)
+    res: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -2361,7 +2331,7 @@ proto.FriendInvitationDeclinedAck.deserializeBinaryFromReader = function(msg, re
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
-    case 10:
+    case 2:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setRes(value);
       break;
@@ -2404,7 +2374,7 @@ proto.FriendInvitationDeclinedAck.serializeBinaryToWriter = function(message, wr
   f = message.getRes();
   if (f !== 0) {
     writer.writeUint32(
-      10,
+      2,
       f
     );
   }
@@ -2430,11 +2400,11 @@ proto.FriendInvitationDeclinedAck.prototype.setId = function(value) {
 
 
 /**
- * optional uint32 res = 10;
+ * optional uint32 res = 2;
  * @return {number}
  */
 proto.FriendInvitationDeclinedAck.prototype.getRes = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
@@ -2443,7 +2413,7 @@ proto.FriendInvitationDeclinedAck.prototype.getRes = function() {
  * @return {!proto.FriendInvitationDeclinedAck} returns this
  */
 proto.FriendInvitationDeclinedAck.prototype.setRes = function(value) {
-  return jspb.Message.setProto3IntField(this, 10, value);
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -2617,7 +2587,8 @@ proto.FriendInvitationAck.prototype.toObject = function(opt_includeInstance) {
 proto.FriendInvitationAck.toObject = function(includeInstance, msg) {
   var f, obj = {
     invitationList: jspb.Message.toObjectList(msg.getInvitationList(),
-    proto.Invitation.toObject, includeInstance)
+    proto.Invitation.toObject, includeInstance),
+    res: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -2659,6 +2630,10 @@ proto.FriendInvitationAck.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,proto.Invitation.deserializeBinaryFromReader);
       msg.addInvitation(value);
       break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setRes(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2694,6 +2669,13 @@ proto.FriendInvitationAck.serializeBinaryToWriter = function(message, writer) {
       1,
       f,
       proto.Invitation.serializeBinaryToWriter
+    );
+  }
+  f = message.getRes();
+  if (f !== 0) {
+    writer.writeUint32(
+      2,
+      f
     );
   }
 };
@@ -2734,6 +2716,24 @@ proto.FriendInvitationAck.prototype.addInvitation = function(opt_value, opt_inde
  */
 proto.FriendInvitationAck.prototype.clearInvitationList = function() {
   return this.setInvitationList([]);
+};
+
+
+/**
+ * optional uint32 res = 2;
+ * @return {number}
+ */
+proto.FriendInvitationAck.prototype.getRes = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.FriendInvitationAck} returns this
+ */
+proto.FriendInvitationAck.prototype.setRes = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -2907,7 +2907,8 @@ proto.FriendAck.prototype.toObject = function(opt_includeInstance) {
 proto.FriendAck.toObject = function(includeInstance, msg) {
   var f, obj = {
     invitationList: jspb.Message.toObjectList(msg.getInvitationList(),
-    proto.Invitation.toObject, includeInstance)
+    proto.Invitation.toObject, includeInstance),
+    res: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -2949,6 +2950,10 @@ proto.FriendAck.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,proto.Invitation.deserializeBinaryFromReader);
       msg.addInvitation(value);
       break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setRes(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2984,6 +2989,13 @@ proto.FriendAck.serializeBinaryToWriter = function(message, writer) {
       1,
       f,
       proto.Invitation.serializeBinaryToWriter
+    );
+  }
+  f = message.getRes();
+  if (f !== 0) {
+    writer.writeUint32(
+      2,
+      f
     );
   }
 };
@@ -3024,6 +3036,24 @@ proto.FriendAck.prototype.addInvitation = function(opt_value, opt_index) {
  */
 proto.FriendAck.prototype.clearInvitationList = function() {
   return this.setInvitationList([]);
+};
+
+
+/**
+ * optional uint32 res = 2;
+ * @return {number}
+ */
+proto.FriendAck.prototype.getRes = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.FriendAck} returns this
+ */
+proto.FriendAck.prototype.setRes = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
